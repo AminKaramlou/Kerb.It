@@ -1,0 +1,3 @@
+target 'kerbit' do
+  pod 'GoogleMaps'
+end
