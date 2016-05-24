@@ -4,3 +4,112 @@
   max-width: 100%;
   height: 500px;
 }
+
+/* Global Styles */
+
+body {
+    padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    font-family: "Lato", "sans-serif", "Helvetica";
+    font-weight: bold;
+}
+
+.nav > li > a {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.navbar-nav > li {
+  padding-left:10px;
+  padding-right:10px;
+}
+
+.btn-f35b68 {
+	  color: #fff;
+	  background-color: #f35b68;
+	  border-color: #c24853; }
+.btn-f35b68:focus,
+.btn-f35b68.focus {
+  color: #fff;
+  background-color: #c24853;
+  border-color: #91363e;
+}
+.btn-f35b68:hover {
+  color: #fff;
+  background-color: #c24853;
+  border-color: #91363e;
+}
+.btn-f35b68:active,
+.btn-f35b68.active {
+  color: #fff;
+  background-color: #91363e;
+  border-color: #612429;
+}
+.btn-f35b68:focus:active {
+	 color: #fff;
+	 background-color: #612429;
+	 border-color: #301214;
+}
+
+.img-portfolio {
+    margin-bottom: 20px;
+}
+.img-hover:hover {
+    opacity: 0.8;
+}
+
+/* 404 Page Styles */
+
+.error-404 {
+    font-size: 100px;
+}
+
+.intro-header {
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url("/test/Truck.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.intro-message {
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 40px 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+/* Responsive Styles */
+@media(max-width:767px) {
+    .img-portfolio {
+        margin-bottom: 10px;
+    }
+}
