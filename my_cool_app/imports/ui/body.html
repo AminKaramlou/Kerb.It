@@ -4,9 +4,13 @@
       <h1>KERBIT COMPLETED APP</h1>
 	<button class = "deleteAll"> DeleteAll </button>
     </header>
+{{> loginButtons}}
+
+{{#if currentUser}}
  <form class="new-task">
         <input type="text" name="text" placeholder="Type to add new tasks" />
       </form>
+{{/if}}
     <ul>
       {{#each tasks}}
         {{> task}}
@@ -16,7 +20,7 @@
 </body>
 
 <template name="task">
-  <li>{{text}} created at {{createdAt}} <button class="delete">Delete </button> </li>
+  <li><strong>{{username}}  </strong>{{text}} <button class="delete">Delete </button> </li>
 </template>
 
 
