@@ -8,7 +8,7 @@
 /* Global Styles */
 
 body {
-    padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    /*padding-top: 50px; Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     font-family: "Lato", "sans-serif", "Helvetica";
     font-weight: bold;
 }
@@ -17,9 +17,22 @@ body {
 	padding-left: 10px;
 	padding-right: 10px;
 }
+
+.navbar-default .navbar-nav > li > a {
+	color: #000;
+}
+
 .navbar-nav > li {
   padding-left:10px;
   padding-right:10px;
+}
+
+.navbar-default .navbar-brand {
+    color: #000;
+}
+
+#mainNav {
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .btn-f35b68 {
@@ -66,7 +79,7 @@ body {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url("/test/Truck.jpg") no-repeat center center;
+    background: url("/test/truck.jpg") no-repeat center center;
     background-size: cover;
 }
 
