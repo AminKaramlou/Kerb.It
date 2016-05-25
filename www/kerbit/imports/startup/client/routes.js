@@ -1,5 +1,5 @@
 import '../../ui/pages/';
-import '../../ui/layouts/main.js';
+import '../../ui/layouts/';
 
 Router.route('/', {
   template: 'home'
@@ -8,5 +8,5 @@ Router.route('/', {
 Router.route('/register');
 
 Router.configure({
-    layoutTemplate: 'main'
+    layoutTemplate: 'app-layout'
 });
