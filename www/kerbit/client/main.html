@@ -1,53 +1,11 @@
-<head>
-  <title>KERB.IT</title>
-  <script src="https://use.fontawesome.com/658eff4761.js"></script>
-  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-  <link rel="shortcut icon" href="/test/van.ico">
-</head>
+<template name="home">
 
-<body>
 
-    <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- <a href="#" class="pull-left"><img src="/path/to/image.png"></a> -->
+    <body>
 
-                <a class="navbar-brand page-scroll" href="#page-top"><i class="fa fa-truck fa-fw"></i> | KERB.IT</a>
-            </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#services">Services</a>
-                    </li>
-                    <li>
-                        <p class="navbar-btn">
-                            <a href="#" class="btn btn-default">Log-in</a>
-                        </p>
-                    </li>
-                    <li>
-                        <p class="navbar-btn">
-                            <a href="#" class="btn btn-default btn-f35b68">Sign-up</a>
-                        </p>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+
+    <!-- {{> map}} -->
 
     <div class="intro-header">
         <div class="container">
@@ -59,11 +17,11 @@
                         <h3>Coming soon</h3>
                         <hr class="intro-divider">
                         <div class="row">
-                        	<div class="col-md-4 col-md-offset-4">
-                        		<a href="#" class="btn btn-default btn-block" onclick="hoho()"><span class="lead"><i class="fa fa-recycle fa-fw"></i> GET STARTED</span></a>
-                        	</div>
+                            <div class="col-md-4 col-md-offset-4">
+                                <a href="#" class="btn btn-default btn-block" onclick="hoho()"><span class="lead"><i class="fa fa-recycle fa-fw"></i> GET STARTED</span></a>
+                            </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -76,56 +34,81 @@
 
     <div class="container">
 
-    	<!-- START THE FEATURETTES -->
-    	<hr class="featurette-divider">
+        <!-- START THE FEATURETTES -->
+        <hr class="featurette-divider">
 
-    	<div class="row featurette">
-    	  <div class="col-md-7">
-    	    <h2 class="featurette-heading">Testing featurette... <span class="text-muted">Ok</span></h2>
-    	    <p class="lead">Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8
-    	    Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8
-    	    Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8</p>
-    	  </div>
-    	  <div class="col-md-5">
-    	    <img class="featurette-image img-responsive center-block" src="http://placehold.it/500x500" alt="Generic placeholder image">
-    	  </div>
-    	</div>
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Testing featurette... <span class="text-muted">Ok</span></h2>
+                <p class="lead">Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8
+                    Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8
+                    Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8</p>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-responsive center-block" src="http://placehold.it/500x500" alt="Generic placeholder image">
+            </div>
+        </div>
 
-    	<hr class="featurette-divider">
+        <hr class="featurette-divider">
 
-    	<div class="row featurette">
-    	  <div class="col-md-7 col-md-push-5">
-    	    <h2 class="featurette-heading">Testing featurette... <span class="text-muted">Ok</span></h2>
-    	    <p class="lead">Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8
-    	    Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8
-    	    Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8</p>
-    	  </div>
-    	  <div class="col-md-5 col-md-pull-7">
-    	    <img class="featurette-image img-responsive center-block" src="http://placehold.it/500x500" alt="Generic placeholder image">
-    	  </div>
-    	</div>
+        <div class="row featurette">
+            <div class="col-md-7 col-md-push-5">
+                <h2 class="featurette-heading">Testing featurette... <span class="text-muted">Ok</span></h2>
+                <p class="lead">Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8
+                    Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8
+                    Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8</p>
+            </div>
+            <div class="col-md-5 col-md-pull-7">
+                <img class="featurette-image img-responsive center-block" src="http://placehold.it/500x500" alt="Generic placeholder image">
+            </div>
+        </div>
 
-    	<hr class="featurette-divider">
+        <hr class="featurette-divider">
 
-    	<div class="row featurette">
-    	  <div class="col-md-7">
-    	    <h2 class="featurette-heading">Testing featurette... <span class="text-muted">Ok</span></h2>
-    	    <p class="lead">Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8
-    	    Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8
-    	    Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8</p>
-    	  </div>
-    	  <div class="col-md-5">
-    	    <img class="featurette-image img-responsive center-block" src="http://placehold.it/500x500" alt="Generic placeholder image">
-    	  </div>
-    	</div>
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Testing featurette... <span class="text-muted">Ok</span></h2>
+                <p class="lead">Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8
+                    Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8
+                    Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8 - Placehold.it m8</p>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-responsive center-block" src="http://placehold.it/500x500" alt="Generic placeholder image">
+            </div>
+        </div>
 
-    	<hr class="featurette-divider">
-    	<!-- /END THE FEATURETTES -->
+        <hr class="featurette-divider">
+        <!-- /END THE FEATURETTES -->
     </div>
     <script>
-    	function hoho() {
-    	    alert("Or don't");
-    	}
+        function hoho() {
+            alert("Or don't");
+        }
     </script>
 
-</body>
+    </body>
+</template>
+
+<template name="main">
+    {{>page_header}}
+    {{>nav_bar}}
+    {{> yield}}
+    <hr />
+
+    <p>Copyright &copy; KerbIT, 2015-2016.</p>
+</template>
+
+
+
+
+
+
+<!--
+
+<template name="map">
+  <div class="map-container">
+    {{> googleMap name="map" options=mapOptions}}
+  </div>
+</template>
+
+-->
