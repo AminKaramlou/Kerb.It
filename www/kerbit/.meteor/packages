@@ -23,3 +23,5 @@ spacebars
 accounts-password
 alanning:roles
 iron:router
+accounts-ui
+useraccounts:iron-routing
