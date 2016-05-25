@@ -25,3 +25,5 @@ alanning:roles
 iron:router
 accounts-ui
 useraccounts:iron-routing
+msavin:mongol
+kadira:blaze-layout
