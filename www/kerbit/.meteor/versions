@@ -91,6 +91,7 @@ twbs:bootstrap@3.3.6
 ui@1.0.11
 underscore@1.0.8
 url@1.0.9
+useraccounts:bootstrap@1.14.2
 useraccounts:core@1.14.2
 useraccounts:iron-routing@1.14.2
 webapp@1.2.8

@@ -1,22 +1,27 @@
+// Options
+AccountsTemplates.configure({
+    // defaultLayout: 'emptyLayout',
+    showForgotPasswordLink: true,
+    overrideLoginErrors: true,
+    enablePasswordChange: true,
 
+    sendVerificationEmail: true,
+    enforceEmailVerification: true,
+    confirmPassword: true,
+    //continuousValidation: false,
+    //displayFormLabels: true,
+    //forbidClientAccountCreation: true,
+    //formValidationFeedback: true,
+    homeRoutePath: '/',
+    //showAddRemoveServices: false,
+    //showPlaceholders: true,
 
-import { AccountsTemplates } from 'meteor/useraccounts:core';
+    negativeValidation: true,
+    positiveValidation: true,
+    negativeFeedback: false,
+    positiveFeedback: true,
 
-
-// AccountsTemplates.configure({
-//     showForgotPasswordLink: true,
-//     texts: {
-//         errors: {
-//             loginForbidden: ('Incorrect username or password'),
-//             pwdMismatch: ('Passwords don\'t match'),
-//         },
-//         title: {
-//             signIn: ('Sign In'),
-//             signUp: ('Join'),
-//         },
-//     },
-//     defaultTemplate: 'Auth_page',
-//     defaultLayout: 'App_body',
-//     defaultContentRegion: 'main',
-//     defaultLayoutRegions: {},
-// });
+    // Privacy Policy and Terms of Use
+    //privacyUrl: 'privacy',
+    //termsUrl: 'terms-of-use',
+});
