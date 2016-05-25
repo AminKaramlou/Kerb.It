@@ -1,7 +1,42 @@
 <template name="register">
     {{>page_header}}
-    <body>
+    <body class="body-padded50">
 
     {{>nav_bar}}
+
+    <div class="container">
+        <div class="row">
+            <form role="form">
+                <div class="col-md-6">
+                    <div class="page-header">
+                        <h1>Register</h1>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="user_id" name="user_id" placeholder="Username" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password_id" name="password_id" placeholder="Password" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="firstname_id" id="firstname_id" placeholder="First Name" required>
+                            </div>
+                            <div class="form-group">
+                                    <input type="text" class="form-control" name="surname_id" id="surname_id" placeholder="Surname" required>
+                            </div>
+                            <div class="form-group">
+                                    <input type="email" class="form-control" name="email_id" id="email_id"  placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email_confirm_id" name="email_confirm_id" placeholder="Confirm Email" required>
+                            </div>
+                            <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+                        </div>
+                    </div> <!-- /PANEL -->
+                </div> <!-- /COL-MD-6 -->
+            </form>
+        </div> <!-- /ROW -->
+    </div> <!-- /CONTAINER -->
     </body>
 </template>
