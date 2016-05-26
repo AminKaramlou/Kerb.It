@@ -27,10 +27,6 @@ AccountsTemplates.configureRoute('signIn');
 AccountsTemplates.configureRoute('signUp');
 AccountsTemplates.configureRoute('verifyEmail');
 
-
-Router.route('/', {
-    template: 'home'
-});
 // // Content Protection
 // Router.plugin('ensureSignedIn', {
 //     except: ['home', 'atSignIn', 'atSignUp', 'atForgotPassword','main']
