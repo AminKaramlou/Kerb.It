@@ -32,6 +32,9 @@ body {
 #mainNav {
     background-color: rgba(255, 255, 255, 1); /* Transparency setting */
 }
+#at-nav-button {
+    margin: 0px;
+}
 
 .btn-f35b68 {
 	  color: #fff;
