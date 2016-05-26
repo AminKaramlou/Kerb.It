@@ -30,6 +30,13 @@ AccountsTemplates.configure({
     // Privacy Policy and Terms of Use
     //privacyUrl: 'privacy',
     //termsUrl: 'terms-of-use',
+
+    // Texts
+    texts: {
+        socialIcons: {
+            "meteor-developer": "fa fa-rocket"
+        },
+    },
 });
 
 var pwd = AccountsTemplates.removeField('password');
