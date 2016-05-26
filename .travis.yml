@@ -14,8 +14,8 @@ before_script:
   - cd www/kerbit 
   - meteor npm install
 script:
-  - meteor test --once --driver-package dispatch:mocha-phantomjs
   - meteor add dispatch:mocha-phantomjs
+  - meteor test --once --driver-package dispatch:mocha-phantomjs
 notifications:
   slack: curbit:deFtjCAGd3vlfhrJzEefCymO
   email: false
