@@ -3,7 +3,6 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "test": "./node_modules/mocha/bin/mocha"
 
   },
   "dependencies": {
