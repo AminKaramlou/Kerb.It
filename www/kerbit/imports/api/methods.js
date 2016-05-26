@@ -1,7 +1,7 @@
 import { Transactions, Requests, Offers } from './collections.js';
 
 Meteor.methods({
-  'makeRequest'(consumerId) {
+  'makeRequest'(consumerId, bidWindow, sizeRequired) {
     const date = new Date();
 
     const transactionId = Transactions.insert({
@@ -31,15 +31,15 @@ Meteor.methods({
     request.offers.push(offerId);
     //Does modifying the object change the database? Doubt it.
 
-    //Requests.update(requestId, {
-    //  $set: {
-    //    offers: request.offers
-    //  }
-    //});
+    Requests.update(requestId, {
+      $set: {
+        offers: request.offers
+      }
+    });
   },
   'acceptOffer'(transactionId, requestId, offerId, driverId, size_allocated, price) {
-    Offers.remove(requestId);
-    Requests.remove(offerId);
+    Requests.remove(requestId);
+    Offers.remove(offerId);
     Transactions.update(transactionId, {
       $set: {
         size_allocated,
