@@ -25,7 +25,10 @@ body {
   padding-right:10px;
 }
 
-.navbar-default .navbar-brand {
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:active,
+.navbar-default .navbar-brand:hover {
     color: #000;
 }
 
