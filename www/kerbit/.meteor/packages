@@ -28,3 +28,4 @@ useraccounts:iron-routing
 useraccounts:bootstrap
 email
 practicalmeteor:mocha
+dispatch:mocha-phantomjs
