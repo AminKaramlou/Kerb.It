@@ -6,6 +6,8 @@ AccountsTemplates.configure({
     }
 });
 
+Markers = new Mongo.Collection('markers');
+
 Meteor.startup(() => {
   // code to run on server at startup
 });

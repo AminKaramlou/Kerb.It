@@ -39,6 +39,12 @@ body {
     margin: 0px;
 }
 
+.map-container {
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+}
+
 .btn-f35b68 {
 	  color: #fff;
 	  background-color: #f35b68;

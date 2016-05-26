@@ -4,11 +4,10 @@ import '../../ui/layouts/';
 Router.route('/', {
   template: 'home'
 });
+Router.route('/request');
 
 process.env.MAIL_URL ='';
 
-//Router.route('/register');
-//Router.route('/login');
 Router.configure({
     layoutTemplate: 'app-layout'
 });
