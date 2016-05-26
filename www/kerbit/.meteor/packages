@@ -27,5 +27,4 @@ accounts-ui
 useraccounts:iron-routing
 useraccounts:bootstrap
 email
-dispatch:mocha-phantomjs
 practicalmeteor:mocha
