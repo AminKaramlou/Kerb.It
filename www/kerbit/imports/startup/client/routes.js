@@ -5,6 +5,9 @@ Router.route('/', {
   template: 'home'
 });
 
+Router.route('/login');
+Router.route('/register');
+
 process.env.MAIL_URL ='';
 
 
