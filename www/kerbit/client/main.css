@@ -15,6 +15,9 @@ body {
     padding-top: 50px;
 }
 
+.body-extra {
+    padding-top: 300px;
+}
 .nav > li > a {
 	padding-left: 10px;
 	padding-right: 10px;
