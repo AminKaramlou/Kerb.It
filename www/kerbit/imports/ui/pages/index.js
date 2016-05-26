@@ -1,3 +1,3 @@
 import "./register.js";
 import "./home.js";
-import "./login.html";
+import "./login.js";
