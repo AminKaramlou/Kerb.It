@@ -7,19 +7,19 @@ export const Offers = new Mongo.Collection('offers');
 export const Transactions = new Mongo.Collection('transactions');
 
 if (Meteor.isServer) {
-  Meteor.publish('drivers', function driversPublication()) {
+  Meteor.publish('drivers', function driversPublication() {
     return Drivers.find({});
-  }
-  Meteor.publish('consumers', function consumersPublication()) {
+  });
+  Meteor.publish('consumers', function consumersPublication() {
     return Consumers.find({});
-  }
-  Meteor.publish('requests', function requestsPublication()) {
+  });
+  Meteor.publish('requests', function requestsPublication(){
     return Requests.find({});
-  }
-  Meteor.publish('offers', function offersPublication()) {
+  });
+  Meteor.publish('offers', function offersPublication(){
     return Offers.find({});
-  }
-  Meteor.publish('transactions', function transactionsPublication()) {
+  });
+  Meteor.publish('transactions', function transactionsPublication() {
     return Transactions.find({});
-  }
+  });
 }
