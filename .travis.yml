@@ -11,8 +11,9 @@ cache:
     - node_modules
 
 before_script:
-  - $echo $HOME 
-  - $echo $PATH
+  - echo $HOME 
+  - echo $PATH
+  - cd www/kerbit 
   - meteor npm install
 
 script:
