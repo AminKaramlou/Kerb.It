@@ -11,14 +11,11 @@ cache:
     - node_modules
 
 before_script:
-  - echo $HOME 
-  - echo $PATH
   - cd www/kerbit 
   - meteor npm install
-
 script:
   - meteor test --once --driver-package dispatch:mocha-phantomjs
-
+  - meteor add dispatch:mocha-phantomjs
 notifications:
   slack: curbit:deFtjCAGd3vlfhrJzEefCymO
   email: false
