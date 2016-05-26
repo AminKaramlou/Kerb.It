@@ -4,13 +4,15 @@ language: node_js
 
 before_install:
   - curl https://install.meteor.com | /bin/sh
-  - export PATH="$HOME/www/kerbit/.meteor:$PATH"
+  - export PATH="$HOME/.meteor:$PATH"
 
 cache:
   directories:
     - node_modules
 
 before_script:
+  - $echo $HOME 
+  - $echo $PATH
   - meteor npm install
 
 script:
