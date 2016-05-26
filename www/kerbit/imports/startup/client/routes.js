@@ -7,21 +7,31 @@ Router.route('/', {
 
 process.env.MAIL_URL ='';
 
-
 //Router.route('/register');
 //Router.route('/login');
 Router.configure({
     layoutTemplate: 'app-layout'
 });
 
-
 //Routes
 AccountsTemplates.configureRoute('changePwd');
 AccountsTemplates.configureRoute('enrollAccount');
 AccountsTemplates.configureRoute('forgotPwd');
 AccountsTemplates.configureRoute('resetPwd');
-AccountsTemplates.configureRoute('signIn');
-AccountsTemplates.configureRoute('signUp');
+AccountsTemplates.configureRoute('signIn', {
+    name: 'signin',
+    path: '/login',
+    template: 'login',
+    layoutTemplate: 'app-layout',
+    redirect: '/'
+});
+AccountsTemplates.configureRoute('signUp', {
+    name: 'signup',
+    path: '/register',
+    template: 'register',
+    layoutTemplate: 'app-layout',
+    redirect: '/'
+});
 AccountsTemplates.configureRoute('verifyEmail');
 
 // // Content Protection
