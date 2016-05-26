@@ -1,4 +1,4 @@
-import { Transactions, Requests, Offers } from './collections.js';
+import { Transactions, Requests, Offers, Markers } from './collections.js';
 
 Meteor.methods({
   'makeRequest'(consumerId, bidWindow, sizeRequired) {
@@ -49,4 +49,18 @@ Meteor.methods({
       }
     });
   },
+  'addMarker'(latitude, longitude) {
+      Markers.insert({
+        latitude,
+        longitude
+    });
+  },
+    'updateMarker'(markerId, latitude, longitude) {
+        Markers.update(markerId, {
+            $set: {
+                latitude,
+                longitude
+            }
+        });
+    }
 });

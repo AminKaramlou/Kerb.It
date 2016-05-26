@@ -5,6 +5,7 @@ export const Consumers = new Mongo.Collection('consumers');
 export const Requests = new Mongo.Collection('requests');
 export const Offers = new Mongo.Collection('offers');
 export const Transactions = new Mongo.Collection('transactions');
+export const Markers = new Mongo.Collection('markers');
 
 if (Meteor.isServer) {
   Meteor.publish('drivers', function driversPublication() {
@@ -21,5 +22,8 @@ if (Meteor.isServer) {
   });
   Meteor.publish('transactions', function transactionsPublication() {
     return Transactions.find({});
+  });
+  Meteor.publish('markers', function markersPublication() {
+    return Markers.find({});
   });
 }
