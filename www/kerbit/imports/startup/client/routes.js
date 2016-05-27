@@ -4,10 +4,8 @@ import '../../ui/layouts/';
 Router.route('/', {
   template: 'home'
 });
-Router.route('/home', {
-  template: 'driverHome'
-});
 Router.route('/request');
+Router.route('/makeOffers');
 Router.route('/my-requests');
 Router.route('/my-offers');
 
