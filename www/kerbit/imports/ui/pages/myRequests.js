@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Requests, Offers } from '../../api/collections.js';
-import './my-requests.html';
+import './myRequests.html';
 
 Template.myRequests.onCreated(function myRequestsCreated() {
   Meteor.subscribe('requests'); 
@@ -18,5 +18,11 @@ Template.myRequests.helpers({
     return Offers.find({
       requestId
     });
+  }
+});
+
+Template.myRequests.events({
+  'click .accept-offer'() {
+    Meteor.call('acceptOffer', this.transactionId, this.requestId, this._id, this.driverId, 100, this.price);
   }
 });
