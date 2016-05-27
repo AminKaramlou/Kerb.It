@@ -16,6 +16,7 @@ Template.requestPickup.events({
     const sizeRequired = Number(target.sizeRequired.value);
     const postcode = target.postcode.value;
 
-    Meteor.call('makeRequest', this._id, title, description, bidWindow, sizeRequired, postcode);
+    Meteor.call('makeRequest', Meteor.userId(), title, description, bidWindow, sizeRequired, postcode);
+    target.reset();
   }
 });
