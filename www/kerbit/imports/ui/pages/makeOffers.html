@@ -18,9 +18,11 @@
             </div>
           <div class="col-md-6">
             <div class="row">
-                    {{#each requests}}
-                      <input type="radio" name="requestId" value="{{_id}}" checked> {{title}}: {{_id}}<br>
-                    {{/each}}
+              <p>
+              {{#each requests}}
+                <input type="radio" name="requestId" value="{{title}}" checked> {{title}}<br>
+              {{/each}}
+              </p>
             </div>
           </div>
 
