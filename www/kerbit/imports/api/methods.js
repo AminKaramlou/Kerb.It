@@ -10,6 +10,7 @@ Meteor.methods({
     });
 
     Requests.insert({
+      consumerId,
       bidWindow,
       sizeRequired,
       transactionId,
@@ -19,14 +20,15 @@ Meteor.methods({
   },
 
   'makeOffer'(requestId, driverId, price) {
+    const request = Requests.findOne(requestId);
+
     const offerId = Offers.insert({
       requestId,
+      consumerId: request.consumerId,
       driverId,
       price,
       date: new Date()
     });
-
-    const request = Requests.findOne(requestId);
 
     request.offers.push(offerId);
     //Does modifying the object change the database? Doubt it.
