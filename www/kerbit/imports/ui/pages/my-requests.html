@@ -1,0 +1,24 @@
+<template name="myRequests">
+
+    <div class="container">
+        <div class="row">
+          {{#each requests}}
+            {{> req}}
+          {{/each}}
+        </div>
+    </div>
+
+</template>
+<template name='req'>
+  <li>
+    Request: {{_id}}
+    {{#each offers _id}}
+      {{> offer}}
+    {{/each}}
+  </li>
+</template>
+<template name='offer'>
+  <ul>
+    Offer: {{_id}}
+  </ul>
+</template>
