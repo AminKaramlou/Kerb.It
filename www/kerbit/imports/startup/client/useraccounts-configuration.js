@@ -108,5 +108,10 @@ AccountsTemplates.addFields([
         placeholder: "Telephone number",
         re: /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/g,
         errStr: 'Invalid telephone number'
+    },
+    {
+        _id: 'isDriver',
+        type: 'checkbox',
+        displayName: "Register as Driver",
     }
 ]);
