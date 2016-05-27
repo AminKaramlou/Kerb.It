@@ -12,6 +12,10 @@ Template.requestPickup.events({
     const sizeRequired = Number(target.sizeRequired.value);
     const postcode = target.postcode.value;
 
+    function getCurrentCenter() {
+      var currentCenter = new google.maps.LatLng(Template.map.getCenter());
+    }
+
     Meteor.call('makeRequest', this._id, title, description, bidWindow, sizeRequired, postcode);
   }
 });
