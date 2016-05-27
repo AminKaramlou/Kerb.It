@@ -1,3 +1,7 @@
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/template';
+
+import '../../api/methods.js';
 import "./requestPickup.html";
 
 Template.requestPickup.events({
