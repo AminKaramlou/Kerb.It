@@ -1,24 +1,16 @@
 <template name="myRequests">
-
-    <div class="container">
-        <div class="row">
-          {{#each requests}}
-            {{> req}}
+  <div class="container">
+    <div class="row">
+      {{#each requests}}
+        <li>
+          Request: {{_id}}
+          {{#each offers _id}}
+            <ul>
+              Offer: {{_id}}
+            </ul>
           {{/each}}
-        </div>
+        </li>
+      {{/each}}
     </div>
-
-</template>
-<template name='req'>
-  <li>
-    Request: {{_id}}
-    {{#each offers _id}}
-      {{> offer}}
-    {{/each}}
-  </li>
-</template>
-<template name='offer'>
-  <ul>
-    Offer: {{_id}}
-  </ul>
+  </div>
 </template>
