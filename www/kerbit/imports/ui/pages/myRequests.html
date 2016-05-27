@@ -2,17 +2,20 @@
   <div class="text-center h1"> My Requests </div>
   <div class="container">
     <div class="row">
-      {{#each requests}}
-        <li>
-          Request: {{formatDate date}} - {{formatPostcode postcode}} -
-          {{formatDescription description}}
+      <ul class="list-group">
+        {{#each requests}}
+        <li class="list-group-item">
+          Created on {{formatDate date}}. Pick up "{{formatDescription description}}" at postcode: {{formatPostcode postcode}}
           {{#each offers _id}}
-            <ul>
-              Offer: {{_id}} <button class='accept-offer'>Accept Offer</button>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Offer: {{_id}} <button class="btn btn-default btn-success">Accept Offer</button>
+                </li>
             </ul>
           {{/each}}
         </li>
-      {{/each}}
+        {{/each}}
+      </ul>
     </div>
   </div>
 </template>
