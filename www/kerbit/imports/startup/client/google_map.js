@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Markers } from '../../api/collections.js'
+import '../../api/methods.js';
 import { Template } from 'meteor/templating';
 
 Template.map.onCreated(function() {
