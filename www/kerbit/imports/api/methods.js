@@ -1,19 +1,25 @@
 import { Transactions, Requests, Offers, Markers } from './collections.js';
 
 Meteor.methods({
-  'makeRequest'(consumerId, bidWindow, sizeRequired) {
+  'makeRequest'(consumerId, title, description, bidWindow, sizeRequired, postcode) {
     const date = new Date();
 
     const transactionId = Transactions.insert({
+      title,
+      description,
       consumerId,
+      sizeAllocated: sizeRequired, //to change later
+      postcode,
       date
     });
 
     Requests.insert({
       consumerId,
+      title,
+      description,
       bidWindow,
       sizeRequired,
-      sizeAllocated: sizeRequired, //to change later
+      postcode,
       transactionId,
       offers: [],
       date
