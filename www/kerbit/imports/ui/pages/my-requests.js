@@ -10,7 +10,9 @@ Template.myRequests.onCreated(function myRequestsCreated() {
 
 Template.myRequests.helpers({
   requests() {
-    return Requests.find({});
+    return Requests.find({
+      consumerId: Meteor.userId()
+    });
   },
   offers(requestId) {
     return Offers.find({
