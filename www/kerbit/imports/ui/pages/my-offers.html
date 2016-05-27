@@ -1,0 +1,16 @@
+<template name="myOffers">
+<div class="container">
+  <div class="row">
+    {{#each offers}}
+      <li>
+        Offer: {{_id}}
+        {{#each requests requestId}}
+          <ul>
+            Request: {{_id}}
+          </ul>
+        {{/each}}
+      </li>
+    {{/each}}
+  </div>
+</div>
+</template>
