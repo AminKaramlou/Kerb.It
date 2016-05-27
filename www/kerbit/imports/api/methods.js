@@ -47,6 +47,7 @@ Meteor.methods({
       }
     });
   },
+
   'acceptOffer'(transactionId, requestId, offerId, driverId, size_allocated, price) {
     Requests.remove(requestId);
     Offers.remove(offerId);
@@ -59,12 +60,14 @@ Meteor.methods({
       }
     });
   },
+  
   'addMarker'(latitude, longitude) {
     Markers.insert({
       latitude,
       longitude
     });
   },
+ 
   'updateMarker'(markerId, latitude, longitude) {
     Markers.update(markerId, {
       $set: {

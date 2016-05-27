@@ -1,3 +1,6 @@
+import { Meteor } from 'meteor/meteor';
+import { Requests } from '../../api/collections.js';
+
 import "./requestPickup.html";
 
 Template.requestPickup.events({
@@ -12,6 +15,7 @@ Template.requestPickup.events({
     const sizeRequired = Number(target.sizeRequired.value);
     const postcode = target.postcode.value;
 
-    Meteor.call('makeRequest', this._id, title, description, bidWindow, sizeRequired, postcode);
+    Meteor.call('makeRequest', Meteor.userId(), title, description, bidWindow, sizeRequired, postcode);
+    target.reset();
   }
 });
