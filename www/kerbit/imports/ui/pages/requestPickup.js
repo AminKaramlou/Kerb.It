@@ -1,3 +1,7 @@
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/templating';
+
+import '../../api/methods.js';
 import "./requestPickup.html";
 
 Template.requestPickup.events({
@@ -16,6 +20,7 @@ Template.requestPickup.events({
       var currentCenter = new google.maps.LatLng(Template.map.getCenter());
     }
 
-    Meteor.call('makeRequest', this._id, title, description, bidWindow, sizeRequired, postcode);
+    Meteor.call('makeRequest', Meteor.userId(), title, description, bidWindow, sizeRequired, postcode);
+    target.reset();
   }
 });
