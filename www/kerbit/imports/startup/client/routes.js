@@ -4,7 +4,11 @@ import '../../ui/layouts/';
 Router.route('/', {
   template: 'home'
 });
+Router.route('/home', {
+  template: 'driverHome'
+});
 Router.route('/request');
+Router.route('/my-requests');
 
 process.env.MAIL_URL ='';
 
