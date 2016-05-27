@@ -1,0 +1,42 @@
+<template name="driverHome">
+
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="h1 text-center">Map</p>
+                    {{> map}}
+                </div>
+                <div class="col-md-6">
+                    <p class="h1 text-center">Address</p>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="address1" class="col-md-2 control-label">Address Line 1</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="address1" placeholder="Adress Line 1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address2" class="col-md-2 control-label">Address Line 2</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="Address Line 2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="city" class="col-md-2 control-label">Postcode</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="city" placeholder="Postcode">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn btn-default">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>
