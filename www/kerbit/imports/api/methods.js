@@ -13,6 +13,7 @@ Meteor.methods({
       consumerId,
       bidWindow,
       sizeRequired,
+      sizeAllocated: sizeRequired, //to change later
       transactionId,
       offers: [],
       date
@@ -25,6 +26,7 @@ Meteor.methods({
     const offerId = Offers.insert({
       requestId,
       consumerId: request.consumerId,
+      transactionId: request.transactionId,
       driverId,
       price,
       date: new Date()
@@ -44,7 +46,7 @@ Meteor.methods({
     Offers.remove(offerId);
     Transactions.update(transactionId, {
       $set: {
-        size_allocated,
+        //size_allocated,
         price,
         driverId,
         dateConfirmed: new Date()
@@ -52,17 +54,17 @@ Meteor.methods({
     });
   },
   'addMarker'(latitude, longitude) {
-      Markers.insert({
-        latitude,
-        longitude
+    Markers.insert({
+      latitude,
+      longitude
     });
   },
-    'updateMarker'(markerId, latitude, longitude) {
-        Markers.update(markerId, {
-            $set: {
-                latitude,
-                longitude
-            }
-        });
-    }
+  'updateMarker'(markerId, latitude, longitude) {
+    Markers.update(markerId, {
+      $set: {
+        latitude,
+        longitude
+      }
+    });
+  }
 });
