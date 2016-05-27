@@ -22,7 +22,7 @@ AccountsTemplates.configureRoute('signIn', {
     path: '/login',
     template: 'login',
     layoutTemplate: 'app-layout',
-    redirect: '/'
+    redirect: '/request'
 });
 AccountsTemplates.configureRoute('signUp', {
     name: 'signup',
