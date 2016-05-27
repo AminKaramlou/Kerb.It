@@ -4,8 +4,8 @@ import '../../ui/layouts/';
 Router.route('/', {
   template: 'home'
 });
-Router.route('/request');
-Router.route('/makeOffers');
+Router.route('/request-pickup');
+Router.route('/make-offers');
 Router.route('/my-requests');
 Router.route('/my-offers');
 
