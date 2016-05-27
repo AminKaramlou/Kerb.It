@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Requests } from '../../api/collections.js';
 
 import "./requestPickup.html";
+import "./map.js";
 
 Template.requestPickup.events({
   'submit form'(event) {
