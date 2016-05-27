@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Template } from 'meteor/template';
+import { Template } from 'meteor/templating';
 
 import '../../api/methods.js';
 import "./requestPickup.html";
