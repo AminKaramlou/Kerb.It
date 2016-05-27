@@ -3,10 +3,9 @@
   <div class="row">
     {{#each offers}}
       <li>
-        Offer: {{title}}
         {{#each requests requestId}}
           <ul>
-            Request: {{title}}
+            Request: {{title}} {{price}}
           </ul>
         {{/each}}
       </li>
