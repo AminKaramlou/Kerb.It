@@ -25,7 +25,7 @@ AccountsTemplates.configureRoute('signIn', {
     path: '/login',
     template: 'login',
     layoutTemplate: 'app-layout',
-    redirect: '/request'
+    redirect: '/request-pickup'
 });
 AccountsTemplates.configureRoute('signUp', {
     name: 'signup',
