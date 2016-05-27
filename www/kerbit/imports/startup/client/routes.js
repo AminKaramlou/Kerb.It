@@ -9,6 +9,7 @@ Router.route('/home', {
 });
 Router.route('/request');
 Router.route('/my-requests');
+Router.route('/my-offers');
 
 process.env.MAIL_URL ='';
 
