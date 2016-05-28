@@ -25,6 +25,12 @@ Meteor.methods({
       date
     });
   },
+  
+  'deleteRequest' (requestId) {
+    console.log("I am here and the id is");
+    console.log(requestId);
+    Requests.remove(requestId);
+  },
 
   'makeOffer'(requestId, driverId, price) {
     const request = Requests.findOne(requestId);
