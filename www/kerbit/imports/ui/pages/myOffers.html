@@ -2,13 +2,11 @@
 <div class="container">
   <div class="row">
     {{#each offers}}
-      <li>
         {{#each requests requestId}}
           <ul>
-            Request: {{title}} {{price}}
+            Request: {{title}} {{offers.price}}
           </ul>
         {{/each}}
-      </li>
     {{/each}}
   </div>
 </div>
