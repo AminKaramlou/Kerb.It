@@ -42,6 +42,11 @@ Template.myRequests.helpers({
 
 Template.myRequests.events({
   'click .accept-offer'() {
+    console.log("Hello, is it me you're looking for");
     Meteor.call('acceptOffer', this.transactionId, this.requestId, this._id, this.driverId, 100, this.price);
+  },
+  'click .delete-request'() {
+    console.log("Hello, is it me you're looking for");
+    Requests.remove(this.requestId)
   }
 });

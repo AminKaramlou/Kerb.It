@@ -5,14 +5,22 @@
       <ul class="list-group">
         {{#each requests}}
         <li class="list-group-item">
-          Created on {{formatDate date}}. Pick up "{{formatDescription description}}" at postcode: {{formatPostcode postcode}}
+          Request {{title}}: <br>
+          Created on {{formatDate date}}. <br>
+          Pick up {{formatDescription description}} <br>
+          at postcode: {{formatPostcode postcode}} <br>
           {{#each offers _id}}
             <ul class="list-group">
-                <li class="list-group-item">
-                    Offer: {{_id}} <button class="btn btn-default btn-success">Accept Offer</button>
-                </li>
+              <li class="list-group-item">
+                Offer: {{price}} <button class="btn btn-default btn-success accept-offer">Accept Offer</button>
+              </li>
             </ul>
           {{/each}}
+          <ul class="list-group">
+            <li class="list-group-item">
+              <button class="btn btn-default btn-danger delete-request">Delete Request</button>
+            </li>
+          </ul>
         </li>
         {{/each}}
       </ul>
