@@ -21,13 +21,14 @@ Template.makeOffers.events({
 
     const target = event.target;
     const price = Number(target.price.value);
-    console.log(target.requestId);
+    //console.log(target.requestId);
     let requestId;
     for (var i in target.requestId) {
-      console.log(true);
-      console.log(target.requestId[i]);
+     // console.log(true);
+      //console.log(target.requestId[i]);
       if (target.requestId[i].checked) {
-        requestId = target.requestId[i].value;
+        console.log(target.requestId[i]);
+        requestId = String(target.requestId[i].value);
       }
     }
 

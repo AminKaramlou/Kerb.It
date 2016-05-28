@@ -6,7 +6,7 @@ AccountsTemplates.configure({
     enablePasswordChange: true,
 
     sendVerificationEmail: true,
-    enforceEmailVerification: true,
+    enforceEmailVerification: false,
     confirmPassword: true,
     //continuousValidation: false,
     //displayFormLabels: true,
@@ -22,6 +22,7 @@ AccountsTemplates.configure({
     },
     showReCaptcha: true,
     showLabels: false,
+
 
     negativeValidation: true,
     positiveValidation: true,

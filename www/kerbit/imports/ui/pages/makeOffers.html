@@ -17,12 +17,11 @@
               </div>
             </div>
           <div class="col-md-6">
+            <p class="h3 text">Current Requests</p>
             <div class="row">
-              <p>
               {{#each requests}}
-                <input type="radio" name="requestId" value="{{title}}" checked> {{title}}<br>
+                <input type="radio" name="requestId" value={{_id}}> {{title}}<br>
               {{/each}}
-              </p>
             </div>
           </div>
 
