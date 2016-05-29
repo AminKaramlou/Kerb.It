@@ -54,8 +54,6 @@ Meteor.methods({
     });
   },
   'acceptOffer'(transactionId, requestId, offerId, driverId, size_allocated, price) {
-    Requests.remove(requestId);
-    Offers.remove(offerId);
     Transactions.update(transactionId, {
       $set: {
         //size_allocated,
