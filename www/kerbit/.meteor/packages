@@ -29,4 +29,11 @@ useraccounts:bootstrap
 email
 practicalmeteor:mocha
 msavin:mongol
+msavin:jetsetter
 fortawesome:fontawesome
+aldeed:collection2
+aldeed:autoform
+fastclick
+dburles:collection-helpers
+raix:handlebar-helpers
+matb33:bootstrap-glyphicons
