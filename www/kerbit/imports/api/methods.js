@@ -1,4 +1,7 @@
-import { Transactions, Requests, Offers, Markers } from './collections.js';
+import { Markers } from './collections.js';
+import { Transactions } from './schemas/transaction.js'
+import { Requests } from './schemas/request.js'
+import { Offers } from './schemas/offer.js'
 
 Meteor.methods({
   'makeRequest'(consumerId, title, description, bidWindow, sizeRequired, postcode) {
