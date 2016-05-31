@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
-import { Requests } from '../../api/collections.js';
+import { Requests } from '../../api/schemas/request.js'
 import '../../api/methods.js';
 import "./makeOffers.html";
 
@@ -21,7 +21,8 @@ Template.makeOffers.events({
 
     const target = event.target;
     const price = Number(target.price.value);
-    let requestId;
+    var requestId;
+    var hoho = "hehe";
     for (var i in target.requestId) {
 
       if (target.requestId[i].checked) {
