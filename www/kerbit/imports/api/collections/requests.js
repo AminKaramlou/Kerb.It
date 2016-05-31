@@ -5,10 +5,13 @@ export const Requests = new Mongo.Collection('requests');
 RequestsSchema = new SimpleSchema({
   consumerId: {
     type: String,
+    label: "Consumer ID",
     regEx: SimpleSchema.RegEx.Id,
-    autoValue: function() {
-      return this.userId;
-    }
+  },
+  transactionId: {
+    type: String,
+    label: "Transaction ID",
+    regEx: SimpleSchema.RegEx.Id,
   },
   description: {
     type: String,

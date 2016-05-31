@@ -3,37 +3,33 @@ import { Requests } from './collections/requests.js'
 import { Offers } from './collections/offers.js'
 
 Meteor.methods({
-  'makeRequest'(consumerId, title, description, bidWindow, sizeRequired, postcode) {
+  'makeRequest'(consumerId, description, bidWindow, sizeRequired, postcode) {
     const date = new Date();
 
     const transactionId = Transactions.insert({
-      title,
-      description,
       consumerId,
+      description,
       sizeAllocated: sizeRequired, //to change later
       postcode,
-      date
+      createdAt: date
     });
 
     Requests.insert({
       consumerId,
-      title,
+      transactionId,
       description,
       bidWindow,
       sizeRequired,
       postcode,
-      transactionId,
       offers: [],
-      date
+      createdAt: date
     });
   },
-  
-  'deleteRequest' (requestId) {
+  'deleteRequest'(requestId) {
     console.log("I am here and the id is");
     console.log(requestId);
     Requests.remove(requestId);
   },
-
   'makeOffer'(requestId, driverId, price) {
     const request = Requests.findOne(requestId);
 
