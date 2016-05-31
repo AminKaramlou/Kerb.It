@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo';
 
 export const Requests = new Mongo.Collection('requests');
 
-RequestSchema = new SimpleSchema({
+RequestsSchema = new SimpleSchema({
   consumerId: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
@@ -52,7 +52,7 @@ RequestSchema = new SimpleSchema({
   }
 });
 
-Requests.attachSchema(RequestSchema);
+Requests.attachSchema(RequestsSchema);
 
 if (Meteor.isServer) {
   Meteor.publish('requests', function requestsPublication() {
