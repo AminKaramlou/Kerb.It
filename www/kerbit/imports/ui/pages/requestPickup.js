@@ -4,7 +4,7 @@ import { Template } from 'meteor/templating';
 import '../../api/methods.js';
 import "./requestPickup.html";
 
-Template.requestPickup.events({
+Template.RequestPickup.events({
   'submit form'(event) {
     event.preventDefault();
 
