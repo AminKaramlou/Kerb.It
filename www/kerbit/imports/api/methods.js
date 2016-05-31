@@ -30,14 +30,19 @@ Meteor.methods({
   },
   
   'deleteRequest' (requestId) {
-    console.log("I am here and the id is");
-    console.log(requestId);
+    // Remove offers associated with this request
+    var request = Requests.findOne(requestId);
+    var offers = request.offers;
+    for (var i = 0; i < offers.length; i++) {
+      var offerId = offers[i];
+      Offers.remove(offerId);
+    }
+    // Remove this request
     Requests.remove(requestId);
   },
 
   'makeOffer'(requestId, driverId, price) {
     const request = Requests.findOne(requestId);
-
     const offerId = Offers.insert({
       requestId,
       consumerId: request.consumerId,
