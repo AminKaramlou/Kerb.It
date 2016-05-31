@@ -5,18 +5,23 @@ export const Offers = new Mongo.Collection('offers');
 OffersSchema = new SimpleSchema({
   requestId: {
     type: String,
+    label: "Request ID",
     regEx: SimpleSchema.RegEx.Id
   },
   consumerId: {
     type: String,
-    regEx: SimpleSchema.RegEx.Id,
+    label: "Consumer ID",
+    regEx: SimpleSchema.RegEx.Id
+  },
+  transactionId: {
+    type: String,
+    label: "Transaction ID",
+    regEx: SimpleSchema.RegEx.Id
   },
   driverId: {
     type: String,
+    label: "Driver ID",
     regEx: SimpleSchema.RegEx.Id,
-    autoValue: function() {
-      return this.userId;
-    }
   },
   price: {
     type: Number,
@@ -25,16 +30,7 @@ OffersSchema = new SimpleSchema({
   },
   createdAt: {
     type: Date,
-    label: "Created at",
-    autoValue: function() {
-      if (this.isInsert) {
-        return new Date();
-      } else if (this.isUpsert) {
-        return {$setOnInsert: new Date()};
-      } else {
-        unset();
-      }
-    }
+    label: "Created at"
   }
 });
 
