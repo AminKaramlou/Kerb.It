@@ -1,7 +1,6 @@
-import { Markers } from './collections.js';
-import { Transactions } from './schemas/transaction.js'
-import { Requests } from './schemas/request.js'
-import { Offers } from './schemas/offer.js'
+import { Transactions } from './collections/transactions.js'
+import { Requests } from './collections/requests.js'
+import { Offers } from './collections/offers.js'
 
 Meteor.methods({
   'makeRequest'(consumerId, title, description, bidWindow, sizeRequired, postcode) {
@@ -65,20 +64,6 @@ Meteor.methods({
         price,
         driverId,
         dateConfirmed: new Date()
-      }
-    });
-  },
-  'addMarker'(latitude, longitude) {
-    Markers.insert({
-      latitude,
-      longitude
-    });
-  },
-  'updateMarker'(markerId, latitude, longitude) {
-    Markers.update(markerId, {
-      $set: {
-        latitude,
-        longitude
       }
     });
   }
