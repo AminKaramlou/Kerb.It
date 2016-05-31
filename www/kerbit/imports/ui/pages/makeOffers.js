@@ -22,6 +22,8 @@ Template.makeOffers.events({
     const target = event.target;
     const price = Number(target.price.value);
     let requestId;
+
+    
     for (var i in target.requestId) {
 
       if (target.requestId[i].checked) {
