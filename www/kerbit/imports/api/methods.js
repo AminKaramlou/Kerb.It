@@ -26,6 +26,14 @@ Meteor.methods({
     });
   },
   'deleteRequest'(requestId) {
+    // Remove offers associated with this request
+    var request = Requests.findOne(requestId);
+    var offers = request.offers;
+    for (var i = 0; i < offers.length; i++) {
+      var offerId = offers[i];
+      Offers.remove(offerId);
+    }
+    // Remove this request
     Requests.remove(requestId);
   },
   'makeOffer'(requestId, driverId, price) {
@@ -33,7 +41,6 @@ Meteor.methods({
     console.log(driverId);
     console.log(price);
     const request = Requests.findOne(requestId);
-
     const offerId = Offers.insert({
       requestId,
       consumerId: request.consumerId,
