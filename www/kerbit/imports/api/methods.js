@@ -26,11 +26,12 @@ Meteor.methods({
     });
   },
   'deleteRequest'(requestId) {
-    console.log("I am here and the id is");
-    console.log(requestId);
     Requests.remove(requestId);
   },
   'makeOffer'(requestId, driverId, price) {
+    console.log(requestId);
+    console.log(driverId);
+    console.log(price);
     const request = Requests.findOne(requestId);
 
     const offerId = Offers.insert({
@@ -39,11 +40,10 @@ Meteor.methods({
       transactionId: request.transactionId,
       driverId,
       price,
-      date: new Date()
+      createdAt: new Date()
     });
 
     request.offers.push(offerId);
-    //Does modifying the object change the database? Doubt it.
 
     Requests.update(requestId, {
       $set: {
@@ -51,12 +51,12 @@ Meteor.methods({
       }
     });
   },
-  'acceptOffer'(transactionId, requestId, offerId, driverId, size_allocated, price) {
+  'acceptOffer'(transactionId, requestId, offerId, driverId, sizeAllocated, price) {
     Requests.remove(requestId);
     Offers.remove(offerId);
     Transactions.update(transactionId, {
       $set: {
-        //size_allocated,
+        //sizeAllocated,
         price,
         driverId,
         dateConfirmed: new Date()
