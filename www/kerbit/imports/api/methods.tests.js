@@ -2,7 +2,9 @@ import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';
 import { assert } from 'meteor/practicalmeteor:chai';
  
-import { Transactions, Requests, Offers } from './collections.js';
+import { Requests } from './collections/requests.js';
+import { Offers } from './collections/offers.js';
+import { Transactions } from './collections/transactions.js';
 import './methods.js';
  
 if (Meteor.isServer) {
