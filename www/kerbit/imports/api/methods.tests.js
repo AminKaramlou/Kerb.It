@@ -12,6 +12,10 @@ if (Meteor.isServer) {
     const consumerId = Random.id();
     const driverId = Random.id();
 
+    const description = "Test Description";
+    const bidWindow = 7;
+    const sizeRequired = 7;
+    const postcode = "SW72AZ";
     beforeEach(() => {
       Transactions.remove({});
       Requests.remove({});
@@ -23,7 +27,7 @@ if (Meteor.isServer) {
         const makeRequest = Meteor.server.method_handlers['makeRequest'];
         const invocation = { consumerId };
 
-        makeRequest.apply(invocation, {consumerId}); 
+        makeRequest.apply(invocation, [consumerId, description, bidWindow, sizeRequired, postcode]); 
       });
 
       it('should create request', () => {
@@ -41,13 +45,21 @@ if (Meteor.isServer) {
     describe('makeOffer', () => {
       beforeEach(() => {
         const makeOffer = Meteor.server.method_handlers['makeOffer'];
-        const invocation = { driverId };
+        const invocation = { userId: driverId };
     
+        const transactionId = Random.id();
         const requestId = Requests.insert({
-          offers: []
+          consumerId,
+          transactionId,
+          description,
+          bidWindow,
+          sizeRequired,
+          postcode,
+          offers: [],
+          createdAt: new Date()
         });
-
-        makeOffer.apply(invocation, [requestId, driverId]); 
+        const price = 1000;
+        makeOffer.apply(invocation, [requestId, driverId, price]); 
       });
 
       it('should create offer', () => {
@@ -71,14 +83,35 @@ if (Meteor.isServer) {
         const acceptOffer = Meteor.server.method_handlers['acceptOffer'];
         const invocation = { consumerId };
     
-        const offerId = Offers.insert({
+        const sizeAllocated = 7;
+        const price = 1000;
+        const date = new Date();
+        const transactionId = Transactions.insert({
+          consumerId,
+          description,
+          sizeAllocated,
+          postcode,
+          createdAt: date
         });
         const requestId = Requests.insert({
+          consumerId,
+          transactionId,
+          description,
+          bidWindow,
+          sizeRequired: sizeAllocated,
+          postcode,
+          offers: [],
+          createdAt: date
         });
-        const transactionId = Transactions.insert({
+        const offerId = Offers.insert({
+          requestId,
+          consumerId,
+          transactionId,
+          driverId,
+          price,
+          createdAt: date
         });
-
-        acceptOffer.apply(invocation, [transactionId, requestId, offerId, driverId]); 
+        acceptOffer.apply(invocation, [transactionId, requestId, offerId, driverId, sizeAllocated, price]); 
       });
 
       it('should delete request', () => {
