@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Requests, Offers } from '../../api/collections.js';
+import { Requests } from '../../api/collections/requests.js';
+import { Offers } from '../../api/collections/offers.js';
 import './myOffers.html';
 
 Template.myOffers.onCreated(function myRequestsCreated() {

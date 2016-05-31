@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
-import { Requests } from '../../api/collections.js';
+import { Requests } from '../../api/collections/requests.js';
 import '../../api/methods.js';
 import "./makeOffers.html";
 
