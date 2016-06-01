@@ -63,21 +63,21 @@ FlowRouter.route('/', {
 consumerSection.route('/request-pickup', {
   name: 'RequestPickup',
   action: function() {
-    BlazeLayout.render('HomeLayout', {main: 'RequestPickup'});
+    BlazeLayout.render('DashLayout', {main: 'RequestPickup'});
   }
 });
 
 consumerSection.route('/my-requests', {
   name: 'MyRequests',
   action: function() {
-    BlazeLayout.render('HomeLayout', {main: 'MyRequests'});
+    BlazeLayout.render('DashLayout', {main: 'MyRequests'});
   } 
 });
 
 driverSection.route('/make-offers', {
   name: 'MakeOffers',
   action: function() {
-    BlazeLayout.render('HomeLayout', {main: 'MakeOffers'});
+    BlazeLayout.render('DashLayout', {main: 'MakeOffers'});
   }
 });
 
@@ -85,7 +85,7 @@ driverSection.route('/make-offers', {
 driverSection.route('/my-offers', {
   name: 'MyOffers',
   action: function() {
-    BlazeLayout.render('HomeLayout', {main: 'MyOffers'});
+    BlazeLayout.render('DashLayout', {main: 'MyOffers'});
   } 
 });
 
