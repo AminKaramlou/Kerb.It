@@ -5,12 +5,16 @@ import { AccountsTemplates } from 'meteor/useraccounts:core';
 import '../../ui/pages/';
 import '../../ui/layouts/';
 
+var isDriver = function() {
+  return Meteor.call('isUserDriver');
+}
+
 var isNotConsumer = function () {
-  return ( (! Meteor.userId()) || Meteor.user().profile.isDriver );
+  return ( (! Meteor.userId()) || isDriver() );
 };
 
 var isNotDriver = function () {
-  return ( (! Meteor.userId()) || ( !Meteor.user().profile.isDriver ));
+  return ( (! Meteor.userId()) || ( !isDriver() ));
 };
 
 var consumerSection = FlowRouter.group({
@@ -48,9 +52,9 @@ FlowRouter.route('/', {
   action: function() {
     if(!Meteor.userId()) {
       BlazeLayout.render('HomeLayout', {main: 'Home'});
-    } else if (!Meteor.user().profile.isDriver) {
+    } else if ( !isDriver() ) {
       FlowRouter.go('RequestPickup');
-    } else if (Meteor.user().profile.isDriver) {
+    } else if ( isDriver() ) {
       FlowRouter.go('MakeOffers');
     }
   }

@@ -65,5 +65,13 @@ Meteor.methods({
         dateConfirmed: new Date()
       }
     });
+  },
+  'isUserDriver'() {
+    console.log(!!Meteor.userId());
+    console.log(Meteor.user().profile.isDriver);
+    if ( !!Metor.userId() ) {
+      return Meteor.user().profile.isDriver;
+    }
+    return false;
   }
 });
