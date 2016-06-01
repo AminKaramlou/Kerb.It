@@ -4,10 +4,10 @@ import "./sidebar.html";
 
 Template.side_bar.helpers({
   currentUserIsDriver: function() {
-    return Meteor.user().profile.isDriver;
+    return Meteor.user() && Meteor.user().profile.isDriver;
   },
   fullName: function() {
-    return toTitleCase(Meteor.user().profile.first_name + " " + Meteor.user().profile.last_name);
+    return Meteor.user() && toTitleCase(Meteor.user().profile.first_name + " " + Meteor.user().profile.last_name);
   }
 
 });
