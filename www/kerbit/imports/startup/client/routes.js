@@ -1,43 +1,66 @@
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { BlazeLayout } from 'meteor/kadira:blaze-layout';
+import { AccountsTemplates } from 'meteor/useraccounts:core';
+
 import '../../ui/pages/';
 import '../../ui/layouts/';
 
-Router.route('/', {
-  template: 'home'
+FlowRouter.route('/', {
+  name: 'Home',
+  action: function() {
+    BlazeLayout.render('HomeLayout', {main: 'Home'});
+  }
 });
-Router.route('/request-pickup');
-Router.route('/make-offers');
-Router.route('/my-requests');
-Router.route('/my-offers');
+
+FlowRouter.route('/request-pickup', {
+  name: 'RequestPickup',
+  action: function() {
+    BlazeLayout.render('HomeLayout', {main: 'RequestPickup'});
+  }
+});
+
+FlowRouter.route('/make-offers', {
+  name: 'MakeOffers',
+  action: function() {
+    BlazeLayout.render('HomeLayout', {main: 'MakeOffers'});
+  }
+});
+
+FlowRouter.route('/my-requests', {
+  name: 'MyRequests',
+  action: function() {
+    BlazeLayout.render('HomeLayout', {main: 'MyRequests'});
+  } 
+});
+
+FlowRouter.route('/my-offers', {
+  name: 'MyOffers',
+  action: function() {
+    BlazeLayout.render('HomeLayout', {main: 'MyOffers'});
+  } 
+});
 
 process.env.MAIL_URL ='';
 
-Router.configure({
-    layoutTemplate: 'app-layout'
-});
-
-//Routes
 AccountsTemplates.configureRoute('changePwd');
 AccountsTemplates.configureRoute('enrollAccount');
 AccountsTemplates.configureRoute('forgotPwd');
 AccountsTemplates.configureRoute('resetPwd');
 AccountsTemplates.configureRoute('signIn', {
-    name: 'signin',
+    name: 'Signin',
     path: '/login',
     template: 'login',
-    layoutTemplate: 'app-layout',
-    redirect: '/request-pickup'
+    layoutTemplate: 'HomeLayout',
+    redirect: '/request-pickup',
+    contentRegion: 'main'
 });
 AccountsTemplates.configureRoute('signUp', {
-    name: 'signup',
+    name: 'Signup',
     path: '/register',
     template: 'register',
-    layoutTemplate: 'app-layout',
-    redirect: '/'
+    layoutTemplate: 'HomeLayout',
+    redirect: '/',
+    contentRegion: 'main'
 });
+
 AccountsTemplates.configureRoute('verifyEmail');
-
-// // Content Protection
-// Router.plugin('ensureSignedIn', {
-//     except: ['home', 'atSignIn', 'atSignUp', 'atForgotPassword','main']
-// });
-

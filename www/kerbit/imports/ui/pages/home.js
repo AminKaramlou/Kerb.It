@@ -1,6 +1,6 @@
 import "./home.html";
 
-Template.home.events({
+Template.Home.events({
   'submit form'(event) {
     event.preventDefault();
     event.target.reset();

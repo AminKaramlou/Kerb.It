@@ -5,17 +5,17 @@ import { Requests } from '../../api/collections/requests.js';
 import '../../api/methods.js';
 import "./makeOffers.html";
 
-Template.makeOffers.onCreated(function driverHomeOnCreated() {
+Template.MakeOffers.onCreated(function driverHomeOnCreated() {
   Meteor.subscribe('requests');
 });
 
-Template.makeOffers.helpers({
+Template.MakeOffers.helpers({
   requests() {
     return Requests.find({});
   }
 });
 
-Template.makeOffers.events({
+Template.MakeOffers.events({
   'submit form'(event) {
     event.preventDefault();
 

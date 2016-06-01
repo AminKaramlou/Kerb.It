@@ -1,5 +1,7 @@
 // Options
 AccountsTemplates.configure({
+    defaultLayout: 'HomeLayout',
+    defaultContentRegion: 'main',
     // defaultLayout: 'emptyLayout',
     showForgotPasswordLink: true,
     overrideLoginErrors: true,
