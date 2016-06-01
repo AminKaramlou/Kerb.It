@@ -28,28 +28,17 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    {{#if currentUserIsDriver}}
-                    <li>
-                        <a class="page-scroll" href="/make-offers">Make Offers</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="/my-offers">My Offers</a>
-                    </li>
-                    {{/if}}
+
                     {{#if currentUser}}
-                    <li>
-                        <a class="page-scroll" href="/my-requests">My Requests</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="/request-pickup">Request Pickup</a>
-                    </li>
-                    {{/if}}
+
+                    {{else}}
                     <li>
                         <a class="page-scroll" href="/#about">About</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="/#services">Services</a>
                     </li>
+                    {{/if}}
                     <!--<li>
                         <p class="navbar-btn">
                             <a href="/login" class="btn btn-default">Sign-in</a>

@@ -1,0 +1,54 @@
+<template name="side_bar">
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Start Bootstrap
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Shortcuts</a>
+                </li>
+                <li>
+                    <a href="#">Overview</a>
+                </li>
+                <li>
+                    <a href="#">Events</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+    {{#if currentUserIsDriver}}
+        <li>
+            <a class="page-scroll" href="/make-offers">Make Offers</a>
+        </li>
+        <li>
+            <a class="page-scroll" href="/my-offers">My Offers</a>
+        </li>
+    {{/if}}
+    {{#if currentUser}}
+        <li>
+            <a class="page-scroll" href="/my-requests">My Requests</a>
+        </li>
+        <li>
+            <a class="page-scroll" href="/request-pickup">Request Pickup</a>
+        </li>
+    {{/if}}
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        </div>
+
+</template>
