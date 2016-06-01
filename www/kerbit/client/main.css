@@ -6,13 +6,9 @@ html {
 }
 
 body {
-    /*padding-top: 50px;*/
+    padding-top: 50px;
     font-weight: bold;
     margin-bottom: 30px; /* Footer height */
-}
-
-.body-padded50 {
-    padding-top: 50px;
 }
 
 .nav > li > a {
@@ -29,18 +25,31 @@ body {
   padding-right:10px;
 }
 
-.navbar-default .navbar-brand {
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:active,
+.navbar-default .navbar-brand:hover {
     color: #000;
 }
 
 #mainNav {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 1); /* Transparency setting */
+}
+#at-nav-button {
+    margin: 0px;
+}
+
+.map-container {
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
 }
 
 .btn-f35b68 {
 	  color: #fff;
 	  background-color: #f35b68;
-	  border-color: #c24853; }
+	  border-color: #c24853;
+}
 .btn-f35b68:focus,
 .btn-f35b68.focus {
   color: #fff;
@@ -64,24 +73,12 @@ body {
 	 border-color: #301214;
 }
 
-.img-portfolio {
-    margin-bottom: 20px;
-}
-.img-hover:hover {
-    opacity: 0.8;
-}
-
-/* 404 Page Styles */
-
-.error-404 {
-    font-size: 100px;
-}
-
 .intro-header {
+    padding-top: 0px;
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url("/test/truck.jpg") no-repeat center center;
+    background: url("/truck.jpg") no-repeat center center;
     background-size: cover;
 }
 
@@ -125,8 +122,4 @@ body {
   letter-spacing: -1px;
 }
 
-@media(max-width:767px) {
-    .img-portfolio {
-        margin-bottom: 10px;
-    }
-}
+/* OTHER RESOLUTIONS NEED TO BE ADDED (OTHER FILES) */

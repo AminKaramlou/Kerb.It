@@ -1,0 +1,16 @@
+<template name="myRequests">
+  <div class="container">
+    <div class="row">
+      {{#each requests}}
+        <li>
+          Request: {{_id}} - {{description}}
+          {{#each offers _id}}
+            <ul>
+              Offer: {{_id}} <button class='accept-offer'>Accept Offer</button>
+            </ul>
+          {{/each}}
+        </li>
+      {{/each}}
+    </div>
+  </div>
+</template>

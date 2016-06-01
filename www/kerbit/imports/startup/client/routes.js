@@ -1,15 +1,43 @@
-// Import to load these templates
-import '../../ui/components/header.js';
-import '../../ui/pages/footer.js';
-import '../../ui/pages/register.js';
-
+import '../../ui/pages/';
+import '../../ui/layouts/';
 
 Router.route('/', {
-    template: 'home'
+  template: 'home'
 });
+Router.route('/request-pickup');
+Router.route('/make-offers');
+Router.route('/my-requests');
+Router.route('/my-offers');
 
-Router.route('/register');
+process.env.MAIL_URL ='';
 
 Router.configure({
-    layoutTemplate: 'main'
+    layoutTemplate: 'app-layout'
 });
+
+//Routes
+AccountsTemplates.configureRoute('changePwd');
+AccountsTemplates.configureRoute('enrollAccount');
+AccountsTemplates.configureRoute('forgotPwd');
+AccountsTemplates.configureRoute('resetPwd');
+AccountsTemplates.configureRoute('signIn', {
+    name: 'signin',
+    path: '/login',
+    template: 'login',
+    layoutTemplate: 'app-layout',
+    redirect: '/request'
+});
+AccountsTemplates.configureRoute('signUp', {
+    name: 'signup',
+    path: '/register',
+    template: 'register',
+    layoutTemplate: 'app-layout',
+    redirect: '/'
+});
+AccountsTemplates.configureRoute('verifyEmail');
+
+// // Content Protection
+// Router.plugin('ensureSignedIn', {
+//     except: ['home', 'atSignIn', 'atSignUp', 'atForgotPassword','main']
+// });
+

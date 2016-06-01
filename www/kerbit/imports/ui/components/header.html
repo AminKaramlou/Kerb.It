@@ -3,7 +3,7 @@
         <title>KERB.IT</title>
         <script src="https://use.fontawesome.com/658eff4761.js"></script>
         <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link rel="shortcut icon" href="/test/van.ico">
+        <link rel="shortcut icon" href="/van.ico">
     </head>
 </template>
 
@@ -28,20 +28,41 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    {{#if currentUserIsDriver}}
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="/make-offers">Make Offers</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Services</a>
+                        <a class="page-scroll" href="/my-offers">My Offers</a>
+                    </li>
+                    {{/if}}
+                    {{#if currentUser}}
+                    <li>
+                        <a class="page-scroll" href="/my-requests">My Requests</a>
                     </li>
                     <li>
+                        <a class="page-scroll" href="/request-pickup">Request Pickup</a>
+                    </li>
+                    {{/if}}
+                    <li>
+                        <a class="page-scroll" href="/#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/#services">Services</a>
+                    </li>
+                    <!--<li>
                         <p class="navbar-btn">
-                            <a href="/login" class="btn btn-default">Log-in</a>
+                            <a href="/login" class="btn btn-default">Sign-in</a>
                         </p>
                     </li>
                     <li>
                         <p class="navbar-btn">
                             <a href="/register" class="btn btn-default btn-f35b68">Sign-up</a>
+                        </p>
+                    </li>-->
+                    <li>
+                        <p class="navbar-btn">
+                            {{> atNavButton}} <!-- EXPERIMENTAL -->
                         </p>
                     </li>
                 </ul>

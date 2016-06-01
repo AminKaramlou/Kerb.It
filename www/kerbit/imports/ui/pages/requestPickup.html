@@ -1,0 +1,52 @@
+<template name="requestPickup">
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-md-6">
+        <p class="h1 text-center">Map</p>
+        {{> map}}
+      </div>
+      <div class="col-md-6">
+        <p class="h1 text-center">Address</p>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="title" class="col-md-2 control-label">Title</label>
+            <div class="col-md-10">
+              <input type="text" class="form-control" id="title" placeholder="Title">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="description" class="col-md-2 control-label">Description</label>
+            <div class="col-md-10">
+              <textarea class="form-control" id="description" placeholder="Description" rows=10></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="sizeRequired" class="col-md-2 control-label">Size Required</label>
+            <div class="col-md-10">
+              <input type="range" id="sizeRequired" value="50">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="bidWindow" class="col-md-2 control-label">Bid Window</label>
+            <div class="col-md-10">
+              <input type="range" id="bidWindow" value="50">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="postcode" class="col-md-2 control-label">Postcode</label>
+            <div class="col-md-10">
+              <input type="text" class="form-control" id="postcode" placeholder="Postcode">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+              <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
