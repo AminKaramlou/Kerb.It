@@ -5,35 +5,68 @@ import { AccountsTemplates } from 'meteor/useraccounts:core';
 import '../../ui/pages/';
 import '../../ui/layouts/';
 
+var isNotConsumer = function () {
+  return ( (! Meteor.userId()) || Meteor.user().profile.isDriver );
+};
+
+var isNotDriver = function () {
+  return ( (! Meteor.userId()) || ( !Meteor.user().profile.isDriver ));
+};
+
+var consumerSection = FlowRouter.group({
+  triggersEnter: [
+    function() {
+      if( isNotConsumer() ){
+        FlowRouter.go('Home');
+      } 
+    }
+]});
+
+var driverSection = FlowRouter.group({
+  triggersEnter: [
+    function() {
+      if( isNotDriver() ) {
+        FlowRouter.go('Home');
+      } 
+    }
+]});
+
 FlowRouter.route('/', {
   name: 'Home',
   action: function() {
-    BlazeLayout.render('HomeLayout', {main: 'Home'});
+    if(!Meteor.userId()) {
+      BlazeLayout.render('HomeLayout', {main: 'Home'});
+    } else if (!Meteor.user().profile.isDriver) {
+      FlowRouter.go('RequestPickup');
+    } else if (Meteor.user().profile.isDriver) {
+      FlowRouter.go('MakeOffers');
+    }
   }
 });
 
-FlowRouter.route('/request-pickup', {
+consumerSection.route('/request-pickup', {
   name: 'RequestPickup',
   action: function() {
     BlazeLayout.render('HomeLayout', {main: 'RequestPickup'});
   }
 });
 
-FlowRouter.route('/make-offers', {
-  name: 'MakeOffers',
-  action: function() {
-    BlazeLayout.render('HomeLayout', {main: 'MakeOffers'});
-  }
-});
-
-FlowRouter.route('/my-requests', {
+consumerSection.route('/my-requests', {
   name: 'MyRequests',
   action: function() {
     BlazeLayout.render('HomeLayout', {main: 'MyRequests'});
   } 
 });
 
-FlowRouter.route('/my-offers', {
+driverSection.route('/make-offers', {
+  name: 'MakeOffers',
+  action: function() {
+    BlazeLayout.render('HomeLayout', {main: 'MakeOffers'});
+  }
+});
+
+
+driverSection.route('/my-offers', {
   name: 'MyOffers',
   action: function() {
     BlazeLayout.render('HomeLayout', {main: 'MyOffers'});
@@ -64,3 +97,9 @@ AccountsTemplates.configureRoute('signUp', {
 });
 
 AccountsTemplates.configureRoute('verifyEmail');
+
+FlowRouter.notFound = {
+  action: function () {
+    BlazeLayout.render('NotFound');
+  }
+};

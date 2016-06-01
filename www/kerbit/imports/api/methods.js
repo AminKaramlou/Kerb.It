@@ -5,7 +5,6 @@ import { Offers } from './collections/offers.js'
 Meteor.methods({
   'makeRequest'(consumerId, description, bidWindow, sizeRequired, postcode) {
     const date = new Date();
-
     const transactionId = Transactions.insert({
       consumerId,
       description,
@@ -37,9 +36,6 @@ Meteor.methods({
     Requests.remove(requestId);
   },
   'makeOffer'(requestId, driverId, price) {
-    console.log(requestId);
-    console.log(driverId);
-    console.log(price);
     const request = Requests.findOne(requestId);
     const offerId = Offers.insert({
       requestId,

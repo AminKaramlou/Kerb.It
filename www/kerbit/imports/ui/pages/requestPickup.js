@@ -20,7 +20,7 @@ Template.RequestPickup.events({
       var currentCenter = new google.maps.LatLng(Template.map.getCenter());
     }
 
-    Meteor.call('makeRequest', Meteor.userId(), title, description, bidWindow, sizeRequired, postcode);
+    Meteor.call('makeRequest', Meteor.userId(), description, bidWindow, sizeRequired, postcode);
     target.reset();
   }
 });
