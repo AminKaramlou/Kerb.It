@@ -6,7 +6,7 @@ TransactionsSchema = new SimpleSchema({
   consumerId: {
     type: String,
     label: "Transaction ID",
-    regEx: SimpleSchema.RegEx.Id,
+    regEx: SimpleSchema.RegEx.Id
   },
   description: {
     type: String,

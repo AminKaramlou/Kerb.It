@@ -5,12 +5,16 @@ import { AccountsTemplates } from 'meteor/useraccounts:core';
 import '../../ui/pages/';
 import '../../ui/layouts/';
 
+var isDriver = function() {
+  return Meteor.call('isUserDriver');
+}
+
 var isNotConsumer = function () {
-  return ( (! Meteor.userId()) || Meteor.user().profile.isDriver );
+  return ( (! Meteor.userId()) || isDriver() );
 };
 
 var isNotDriver = function () {
-  return ( (! Meteor.userId()) || ( !Meteor.user().profile.isDriver ));
+  return ( (! Meteor.userId()) || ( !isDriver() ));
 };
 
 var consumerSection = FlowRouter.group({
@@ -31,15 +35,27 @@ var driverSection = FlowRouter.group({
     }
 ]});
 
+Accounts.onLogin(function() {
+  if (!Meteor.user().profile.isDriver) {
+    FlowRouter.go('RequestPickup');
+  } else {
+    FlowRouter.go('MakeOffers');
+  }
+});
+
+Accounts.onLogout(function() {
+  FlowRouter.go('Home');
+});
+
 FlowRouter.route('/', {
   name: 'Home',
   action: function() {
     if(!Meteor.userId()) {
       BlazeLayout.render('HomeLayout', {main: 'Home'});
-    } else if (!Meteor.user().profile.isDriver) {
-        BlazeLayout.render('DashLayout', {main: 'Home'});
-    } else if (Meteor.user().profile.isDriver) {
-        BlazeLayout.render('DashLayout', {main: 'Home'});
+    } else if ( !isDriver() ) {
+      FlowRouter.go('RequestPickup');
+    } else if ( isDriver() ) {
+      FlowRouter.go('MakeOffers');
     }
   }
 });
@@ -47,21 +63,21 @@ FlowRouter.route('/', {
 consumerSection.route('/request-pickup', {
   name: 'RequestPickup',
   action: function() {
-    BlazeLayout.render('DashLayout', {main: 'RequestPickup'});
+    BlazeLayout.render('HomeLayout', {main: 'RequestPickup'});
   }
 });
 
 consumerSection.route('/my-requests', {
   name: 'MyRequests',
   action: function() {
-    BlazeLayout.render('DashLayout', {main: 'MyRequests'});
+    BlazeLayout.render('HomeLayout', {main: 'MyRequests'});
   } 
 });
 
 driverSection.route('/make-offers', {
   name: 'MakeOffers',
   action: function() {
-    BlazeLayout.render('DashLayout', {main: 'MakeOffers'});
+    BlazeLayout.render('HomeLayout', {main: 'MakeOffers'});
   }
 });
 
@@ -69,7 +85,7 @@ driverSection.route('/make-offers', {
 driverSection.route('/my-offers', {
   name: 'MyOffers',
   action: function() {
-    BlazeLayout.render('DashLayout', {main: 'MyOffers'});
+    BlazeLayout.render('HomeLayout', {main: 'MyOffers'});
   } 
 });
 
