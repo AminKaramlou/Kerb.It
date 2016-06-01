@@ -6,15 +6,15 @@ import '../../ui/pages/';
 import '../../ui/layouts/';
 
 var isDriver = function() {
-  return Meteor.call('isUserDriver');
-}
+  return Meteor.user() && Meteor.user().profile.isDriver;
+};
 
 var isNotConsumer = function () {
-  return ( (! Meteor.userId()) || isDriver() );
+  return (isDriver());
 };
 
 var isNotDriver = function () {
-  return ( (! Meteor.userId()) || ( !isDriver() ));
+  return (!isDriver());
 };
 
 var consumerSection = FlowRouter.group({
