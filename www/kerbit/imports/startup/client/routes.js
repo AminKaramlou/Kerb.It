@@ -60,6 +60,17 @@ FlowRouter.route('/', {
   }
 });
 
+FlowRouter.route('/settings', {
+  name: 'Settings',
+  action: function() {
+    if(!Meteor.userId()) {
+      BlazeLayout.render('HomeLayout', {main: 'Home'});
+    } else {
+      BlazeLayout.render('DashLayout', {main: 'accountSettings'});
+    }
+  }
+});
+
 consumerSection.route('/request-pickup', {
   name: 'RequestPickup',
   action: function() {
@@ -80,6 +91,8 @@ driverSection.route('/make-offers', {
     BlazeLayout.render('DashLayout', {main: 'MakeOffers'});
   }
 });
+
+
 
 
 driverSection.route('/my-offers', {

@@ -67,7 +67,7 @@ Meteor.methods({
     });
   },
   'isUserDriver'() {
-    if ( !!Metor.userId() ) {
+    if ( !!Meteor.userId() ) {
       return Meteor.user().profile.isDriver;
     }
     return false;
