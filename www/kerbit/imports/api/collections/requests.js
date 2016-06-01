@@ -21,7 +21,7 @@ RequestsSchema = new SimpleSchema({
   bidWindow: {
     type: Number,
     label: "Bid window",
-    min: 0,
+    min: 1,
     max: 20160 // Unit is minutes, maybe move to hours ?
   },
   sizeRequired: {
