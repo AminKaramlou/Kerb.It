@@ -4,11 +4,7 @@
       <div class="row">
         {{#each offers}}
           <li>
-            {{#each requests requestId}}
-              <ul>
-                Request: {{title}} {{price}}
-              </ul>
-            {{/each}}
+                Request: {{requestId}} {{price}}
           </li>
       {{/each}}
     </div>
