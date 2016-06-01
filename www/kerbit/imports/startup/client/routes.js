@@ -36,11 +36,7 @@ var driverSection = FlowRouter.group({
 ]});
 
 Accounts.onLogin(function() {
-  if (!Meteor.user().profile.isDriver) {
-    FlowRouter.go('RequestPickup');
-  } else {
-    FlowRouter.go('MakeOffers');
-  }
+  FlowRouter.go('Home');
 });
 
 Accounts.onLogout(function() {
@@ -53,9 +49,9 @@ FlowRouter.route('/', {
     if(!Meteor.userId()) {
       BlazeLayout.render('HomeLayout', {main: 'Home'});
     } else if ( !isDriver() ) {
-      FlowRouter.go('RequestPickup');
+      FlowRouter.go('ClientHistory');
     } else if ( isDriver() ) {
-      FlowRouter.go('MakeOffers');
+      FlowRouter.go('DriverHistory');
     }
   }
 });
@@ -70,6 +66,21 @@ FlowRouter.route('/settings', {
     }
   }
 });
+
+consumerSection.route('/history', {
+  name: 'ClientHistory',
+  action: function() {
+    BlazeLayout.render('DashLayout', {main: 'client_history'});
+  }
+});
+
+driverSection.route('/history', {
+  name: 'DriverHistory',
+  action: function() {
+    BlazeLayout.render('DashLayout', {main: 'driver_history'});
+  }
+});
+
 
 consumerSection.route('/request-pickup', {
   name: 'RequestPickup',
