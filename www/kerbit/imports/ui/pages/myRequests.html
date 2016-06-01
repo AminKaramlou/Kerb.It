@@ -3,16 +3,16 @@
   <div class="container">
     <div class="row">
       <ul class="list-group">
-        {{#each request in requests}}
+        {{#each requests}}
         <li class="list-group-item">
-          Request: {{request.description}} <br>
-          Created on {{formatDate request.date}}. <br>
-          Pick up {{formatDescription request.description}} <br>
-          at postcode: {{formatPostcode request.postcode}} <br>
-          {{#each offer in offers request._id}}
+          Request: {{description}} <br>
+          Created on {{formatDate date}}. <br>
+          Pick up {{formatDescription description}} <br>
+          at postcode: {{formatPostcode postcode}} <br>
+          {{#each offers _id}}
             <ul class="list-group">
               <li class="list-group-item">
-                Offer: {{offer.price}} <button class="btn btn-default btn-success accept-offer">Accept Offer</button>
+                Offer: {{price}} <button class="btn btn-default btn-success accept-offer">Accept Offer</button>
               </li>
             </ul>
           {{/each}}
