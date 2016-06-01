@@ -31,6 +31,18 @@ var driverSection = FlowRouter.group({
     }
 ]});
 
+Accounts.onLogin(function() {
+  if (!Meteor.user().profile.isDriver) {
+    FlowRouter.go('RequestPickup');
+  } else {
+    FlowRouter.go('MakeOffers');
+  }
+});
+
+Accounts.onLogout(function() {
+  FlowRouter.go('Home');
+});
+
 FlowRouter.route('/', {
   name: 'Home',
   action: function() {
