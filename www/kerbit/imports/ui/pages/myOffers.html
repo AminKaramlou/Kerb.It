@@ -2,9 +2,11 @@
   <div class="text-center h1"> My Offers </div>
     <div class="container">
       <div class="row">
-        {{#each offers}}
+        {{#each offer in offers}}
           <li>
-                Request: {{requestId}} {{price}}
+            {{#each request in requests offer.requestId}}
+                Request: {{request.description}} {{offer.price}}
+            {{/each}}
           </li>
       {{/each}}
     </div>

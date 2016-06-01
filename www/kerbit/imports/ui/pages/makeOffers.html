@@ -19,8 +19,8 @@
           <div class="col-md-6">
             <p class="h3 text">Current Requests</p>
             <div class="row" style="margin-left: 15px">
-              {{#each requests}}
-                <input type="radio" name="requestId" value={{_id}}> {{_id}}<br>
+              {{#each request in requests}}
+                <input type="radio" name="requestId" value={{request._id}}> {{request.description}}<br>
               {{/each}}
             </div>
           </div>
