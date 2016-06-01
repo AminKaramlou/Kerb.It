@@ -20,7 +20,7 @@ var isNotDriver = function () {
 var consumerSection = FlowRouter.group({
   triggersEnter: [
     function() {
-      if( isNotConsumer() ){
+      if( isDriver() ){
         FlowRouter.go('Home');
       } 
     }
@@ -29,7 +29,7 @@ var consumerSection = FlowRouter.group({
 var driverSection = FlowRouter.group({
   triggersEnter: [
     function() {
-      if( isNotDriver() ) {
+      if( !isDriver() ) {
         FlowRouter.go('Home');
       } 
     }
@@ -67,14 +67,14 @@ FlowRouter.route('/settings', {
   }
 });
 
-consumerSection.route('/history', {
+consumerSection.route('/history_client', {
   name: 'ClientHistory',
   action: function() {
     BlazeLayout.render('DashLayout', {main: 'client_history'});
   }
 });
 
-driverSection.route('/history', {
+driverSection.route('/history_driver', {
   name: 'DriverHistory',
   action: function() {
     BlazeLayout.render('DashLayout', {main: 'driver_history'});
