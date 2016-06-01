@@ -21,7 +21,7 @@ OffersSchema = new SimpleSchema({
   driverId: {
     type: String,
     label: "Driver ID",
-    regEx: SimpleSchema.RegEx.Id,
+    regEx: SimpleSchema.RegEx.Id
   },
   price: {
     type: Number,
