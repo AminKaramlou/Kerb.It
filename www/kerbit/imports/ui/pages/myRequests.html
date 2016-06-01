@@ -6,7 +6,7 @@
         {{#each requests}}
         <li class="list-group-item">
           Request: {{description}} <br>
-          Created on {{formatDate date}}. <br>
+          Created on {{formatDate createdAt}}. <br>
           Pick up {{formatDescription description}} <br>
           at postcode: {{formatPostcode postcode}} <br>
           {{#each offers _id}}
