@@ -5,35 +5,12 @@ import { AccountsTemplates } from 'meteor/useraccounts:core';
 import '../../ui/pages/';
 import '../../ui/layouts/';
 
-var isDriver = function() {
-  return Meteor.user() && Meteor.user().profile.isDriver;
-};
-
-var isNotConsumer = function () {
-  return (isDriver());
-};
-
-var isNotDriver = function () {
-  return (!isDriver());
-};
 
 var consumerSection = FlowRouter.group({
-  triggersEnter: [
-    function() {
-      if( isDriver() ){
-        FlowRouter.go('Home');
-      } 
-    }
-]});
+});
 
 var driverSection = FlowRouter.group({
-  triggersEnter: [
-    function() {
-      if( !isDriver() ) {
-        FlowRouter.go('Home');
-      } 
-    }
-]});
+});
 
 Accounts.onLogin(function() {
   FlowRouter.go('Home');
@@ -46,13 +23,7 @@ Accounts.onLogout(function() {
 FlowRouter.route('/', {
   name: 'Home',
   action: function() {
-    if(!Meteor.userId()) {
-      BlazeLayout.render('HomeLayout', {main: 'Home'});
-    } else if ( !isDriver() ) {
-      FlowRouter.go('ClientHistory');
-    } else if ( isDriver() ) {
-      FlowRouter.go('DriverHistory');
-    }
+    BlazeLayout.render('HomeLayout', {main: 'Home'});
   }
 });
 
@@ -67,14 +38,14 @@ FlowRouter.route('/settings', {
   }
 });
 
-consumerSection.route('/history_client', {
+consumerSection.route('/history-client', {
   name: 'ClientHistory',
   action: function() {
     BlazeLayout.render('DashLayout', {main: 'client_history'});
   }
 });
 
-driverSection.route('/history_driver', {
+driverSection.route('/history-driver', {
   name: 'DriverHistory',
   action: function() {
     BlazeLayout.render('DashLayout', {main: 'driver_history'});
@@ -102,9 +73,6 @@ driverSection.route('/make-offers', {
     BlazeLayout.render('DashLayout', {main: 'MakeOffers'});
   }
 });
-
-
-
 
 driverSection.route('/my-offers', {
   name: 'MyOffers',

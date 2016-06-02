@@ -4,12 +4,12 @@ import { Requests } from '../../api/collections/requests.js';
 import { Offers } from '../../api/collections/offers.js';
 import './myOffers.html';
 
-Template.MyOffers.onCreated(function myRequestsCreated() {
+Template.MyOffersHelper.onCreated(function myRequestsCreated() {
   Meteor.subscribe('requests'); 
   Meteor.subscribe('offers');
 });
 
-Template.MyOffers.helpers({
+Template.MyOffersHelper.helpers({
   offers() {
     return Offers.find({
       driverId: Meteor.userId()

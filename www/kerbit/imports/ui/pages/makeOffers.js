@@ -5,11 +5,11 @@ import { Requests } from '../../api/collections/requests.js';
 import '../../api/methods.js';
 import "./makeOffers.html";
 
-Template.MakeOffers.onCreated(function driverHomeOnCreated() {
+Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
   Meteor.subscribe('requests');
 });
 
-Template.MakeOffers.helpers({
+Template.MakeOffersHelper.helpers({
   requests() {
     return Requests.find({});
   },
@@ -34,7 +34,7 @@ Template.MakeOffers.helpers({
   }
 });
 
-Template.MakeOffers.events({
+Template.MakeOffersHelper.events({
   'submit form'(event) {
     event.preventDefault();
 

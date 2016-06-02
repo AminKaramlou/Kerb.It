@@ -7,4 +7,8 @@ import "./login.js";
 import "./requestPickup.js";
 import "./map.js";
 import "./notFound.js";
-import "./history";
+import "./driverHistory.js";
+import "./clientHistory.js";
+
+import '../components/onlyConsumer.js';
+import '../components/onlyDriver.js';

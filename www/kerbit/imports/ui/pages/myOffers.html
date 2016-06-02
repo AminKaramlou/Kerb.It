@@ -1,4 +1,10 @@
 <template name="MyOffers">
+  {{#onlyDriver}}
+    {{>MyOffersHelper}}
+  {{/onlyDriver}}
+</template>
+
+<template name="MyOffersHelper">
   <div class="text-center h1"> My Offers </div>
     <div class="container">
       <div class="row">

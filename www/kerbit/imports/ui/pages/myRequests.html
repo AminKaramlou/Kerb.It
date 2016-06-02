@@ -1,4 +1,10 @@
 <template name="MyRequests">
+  {{#onlyConsumer}}
+    {{>MyRequestsHelper}}
+  {{/onlyConsumer}}
+</template>
+
+<template name="MyRequestsHelper">
   <div class="text-center h1"> My Requests </div>
   <div class="container">
     <div class="row">

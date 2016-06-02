@@ -1,0 +1,12 @@
+<template name='OnlyDriver'>
+  {{#if authInProcess}}
+    <p> Currently logging you in ... </p>
+  {{else}}
+    {{#if canShow}}
+      {{> Template.contentBlock}}
+    {{else}}
+      <p> You are not authorized to see this page.</p>
+      <p> Please <a href="/login">login as a driver</a> to see this page.</p>
+    {{/if}}
+  {{/if}}
+</template>

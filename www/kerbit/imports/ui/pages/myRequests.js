@@ -4,12 +4,12 @@ import { Requests } from '../../api/collections/requests.js';
 import { Offers } from '../../api/collections/offers.js';
 import './myRequests.html';
 
-Template.MyRequests.onCreated(function myRequestsCreated() {
+Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
   Meteor.subscribe('requests'); 
   Meteor.subscribe('offers');
 });
 
-Template.MyRequests.helpers({
+Template.MyRequestsHelper.helpers({
   requests() {
     return Requests.find({
       consumerId: Meteor.userId()
@@ -41,7 +41,7 @@ Template.MyRequests.helpers({
   }
 });
 
-Template.MyRequests.events({
+Template.MyRequestsHelper.events({
   'click .accept-offer'() {
     Meteor.call('acceptOffer', this.transactionId, this.requestId, this._id, this.driverId, 100, this.price);
   },

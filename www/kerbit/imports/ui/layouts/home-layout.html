@@ -1,6 +1,8 @@
 <template name="HomeLayout">
+  {{#if redirect}}
     {{>page_header}}
     {{>nav_bar}}
     {{>Template.dynamic template=main}}
     {{>footer}}
+  {{/if}}
 </template>

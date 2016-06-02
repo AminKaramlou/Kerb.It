@@ -1,4 +1,9 @@
 <template name="MakeOffers">
+  {{#onlyDriver}}
+    {{>MakeOffersHelper}}
+  {{/onlyDriver}}
+</template>
+<template name="MakeOffersHelper">
 
   <div class="container">
     <div class="jumbotron">

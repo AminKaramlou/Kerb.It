@@ -1,4 +1,10 @@
 <template name="RequestPickup">
+  {{#onlyConsumer}}
+    {{>RequestPickupHelper}}
+  {{/onlyConsumer}}
+</template>
+
+<template name="RequestPickupHelper">
 <div class="container">
   <div class="jumbotron">
     <div class="row">
