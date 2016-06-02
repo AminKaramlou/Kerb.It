@@ -22,7 +22,7 @@
               {{#each requests}}
                 <input type="radio" name="requestId" value={{_id}}>
                 Request: {{description}} <br>
-                Created on {{formatDate date}}. <br>
+                Created on {{formatDate createdAt}}. <br>
                 Pick up {{formatDescription description}} <br>
                 at postcode: {{formatPostcode postcode}} <br><br>
               {{/each}}
