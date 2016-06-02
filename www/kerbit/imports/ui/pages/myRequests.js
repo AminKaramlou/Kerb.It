@@ -5,7 +5,7 @@ import { Offers } from '../../api/collections/offers.js';
 import './myRequests.html';
 
 Template.MyRequests.onCreated(function myRequestsCreated() {
-  Meteor.subscribe('requests'); 
+  Meteor.subscribe('requests');
   Meteor.subscribe('offers');
 });
 
@@ -47,5 +47,5 @@ Template.MyRequests.events({
   },
   'click .delete-request'() {
     Meteor.call('deleteRequest', this._id);
-  }
+  },
 });

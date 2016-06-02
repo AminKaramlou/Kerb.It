@@ -22,7 +22,7 @@
               {{#each requests}}
                 <input type="radio" name="requestId" value={{_id}}>
                 Request: {{description}} <br>
-                Created on {{formatDate date}}. <br>
+                Created on {{formatDate createdAt}}. <br>
                 Pick up {{formatDescription description}} <br>
                 at postcode: {{formatPostcode postcode}} <br><br>
               {{/each}}
@@ -38,6 +38,11 @@
         </div>
       </div>
     </div>
+      <!--<div class="row">-->
+          <!--<div class="col-md-12">-->
+              <!--{{> quickForm collection="Offers" id="insertOffer" type="insert" class="test-offer-form"}}-->
+          <!--</div>-->
+      <!--</div>-->
   </div>
 
 </template>

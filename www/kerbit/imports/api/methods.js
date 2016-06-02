@@ -1,6 +1,7 @@
 import { Transactions } from './collections/transactions.js'
 import { Requests } from './collections/requests.js'
 import { Offers } from './collections/offers.js'
+import {Images} from './collections/images.js'
 
 Meteor.methods({
   'makeRequest'(consumerId, description, bidWindow, sizeRequired, postcode) {
@@ -65,11 +66,5 @@ Meteor.methods({
         dateConfirmed: new Date()
       }
     });
-  },
-  'isUserDriver'() {
-    if ( !!Meteor.userId() ) {
-      return Meteor.user().profile.isDriver;
-    }
-    return false;
   }
 });

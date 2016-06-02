@@ -6,21 +6,21 @@ import '../../ui/pages/';
 import '../../ui/layouts/';
 
 var isDriver = function() {
-  return Meteor.call('isUserDriver');
-}
+  return Meteor.user() && Meteor.user().profile.isDriver;
+};
 
 var isNotConsumer = function () {
-  return ( (! Meteor.userId()) || isDriver() );
+  return (isDriver());
 };
 
 var isNotDriver = function () {
-  return ( (! Meteor.userId()) || ( !isDriver() ));
+  return (!isDriver());
 };
 
 var consumerSection = FlowRouter.group({
   triggersEnter: [
     function() {
-      if( isNotConsumer() ){
+      if( isDriver() ){
         FlowRouter.go('Home');
       } 
     }
@@ -29,18 +29,14 @@ var consumerSection = FlowRouter.group({
 var driverSection = FlowRouter.group({
   triggersEnter: [
     function() {
-      if( isNotDriver() ) {
+      if( !isDriver() ) {
         FlowRouter.go('Home');
       } 
     }
 ]});
 
 Accounts.onLogin(function() {
-  if (!Meteor.user().profile.isDriver) {
-    FlowRouter.go('RequestPickup');
-  } else {
-    FlowRouter.go('MakeOffers');
-  }
+  FlowRouter.go('Home');
 });
 
 Accounts.onLogout(function() {
@@ -53,39 +49,67 @@ FlowRouter.route('/', {
     if(!Meteor.userId()) {
       BlazeLayout.render('HomeLayout', {main: 'Home'});
     } else if ( !isDriver() ) {
-      FlowRouter.go('RequestPickup');
+      FlowRouter.go('ClientHistory');
     } else if ( isDriver() ) {
-      FlowRouter.go('MakeOffers');
+      FlowRouter.go('DriverHistory');
     }
   }
 });
 
+FlowRouter.route('/settings', {
+  name: 'Settings',
+  action: function() {
+    if(!Meteor.userId()) {
+      BlazeLayout.render('HomeLayout', {main: 'Home'});
+    } else {
+      BlazeLayout.render('DashLayout', {main: 'accountSettings'});
+    }
+  }
+});
+
+consumerSection.route('/history_client', {
+  name: 'ClientHistory',
+  action: function() {
+    BlazeLayout.render('DashLayout', {main: 'client_history'});
+  }
+});
+
+driverSection.route('/history_driver', {
+  name: 'DriverHistory',
+  action: function() {
+    BlazeLayout.render('DashLayout', {main: 'driver_history'});
+  }
+});
+
+
 consumerSection.route('/request-pickup', {
   name: 'RequestPickup',
   action: function() {
-    BlazeLayout.render('HomeLayout', {main: 'RequestPickup'});
+    BlazeLayout.render('DashLayout', {main: 'RequestPickup'});
   }
 });
 
 consumerSection.route('/my-requests', {
   name: 'MyRequests',
   action: function() {
-    BlazeLayout.render('HomeLayout', {main: 'MyRequests'});
+    BlazeLayout.render('DashLayout', {main: 'MyRequests'});
   } 
 });
 
 driverSection.route('/make-offers', {
   name: 'MakeOffers',
   action: function() {
-    BlazeLayout.render('HomeLayout', {main: 'MakeOffers'});
+    BlazeLayout.render('DashLayout', {main: 'MakeOffers'});
   }
 });
+
+
 
 
 driverSection.route('/my-offers', {
   name: 'MyOffers',
   action: function() {
-    BlazeLayout.render('HomeLayout', {main: 'MyOffers'});
+    BlazeLayout.render('DashLayout', {main: 'MyOffers'});
   } 
 });
 

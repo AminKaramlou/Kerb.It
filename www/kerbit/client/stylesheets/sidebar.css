@@ -1,0 +1,168 @@
+/*
+ * Component: Sidebar
+ * ------------------
+ */
+.main-sidebar,
+.left-side {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 50px;
+    min-height: 100%;
+    width: 230px;
+    z-index: 810;
+    -webkit-transition: -webkit-transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    -moz-transition: -moz-transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    -o-transition: -o-transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+@media (max-width: 767px) {
+    .main-sidebar,
+    .left-side {
+        padding-top: 100px;
+    }
+}
+@media (max-width: 767px) {
+    .main-sidebar,
+    .left-side {
+        -webkit-transform: translate(-230px, 0);
+        -ms-transform: translate(-230px, 0);
+        -o-transform: translate(-230px, 0);
+        transform: translate(-230px, 0);
+    }
+}
+@media (min-width: 768px) {
+    .sidebar-collapse .main-sidebar,
+    .sidebar-collapse .left-side {
+        -webkit-transform: translate(-230px, 0);
+        -ms-transform: translate(-230px, 0);
+        -o-transform: translate(-230px, 0);
+        transform: translate(-230px, 0);
+    }
+}
+@media (max-width: 767px) {
+    .sidebar-open .main-sidebar,
+    .sidebar-open .left-side {
+        -webkit-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+}
+.sidebar {
+    padding-bottom: 10px;
+}
+.sidebar-form input:focus {
+    border-color: transparent;
+}
+.user-panel {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    overflow: hidden;
+}
+.user-panel:before,
+.user-panel:after {
+    content: " ";
+    display: table;
+}
+.user-panel:after {
+    clear: both;
+}
+.user-panel > .image > img {
+    width: 100%;
+    max-width: 45px;
+    height: auto;
+}
+.user-panel > .info {
+    padding: 5px 5px 5px 15px;
+    line-height: 1;
+    position: absolute;
+    left: 55px;
+}
+.user-panel > .info > p {
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+.user-panel > .info > a {
+    text-decoration: none;
+    padding-right: 5px;
+    margin-top: 3px;
+    font-size: 11px;
+}
+.user-panel > .info > a > .fa,
+.user-panel > .info > a > .ion,
+.user-panel > .info > a > .glyphicon {
+    margin-right: 3px;
+}
+.sidebar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.sidebar-menu > li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+.sidebar-menu > li > a {
+    padding: 12px 5px 12px 15px;
+    display: block;
+}
+.sidebar-menu > li > a > .fa,
+.sidebar-menu > li > a > .glyphicon,
+.sidebar-menu > li > a > .ion {
+    width: 20px;
+}
+.sidebar-menu > li .label,
+.sidebar-menu > li .badge {
+    margin-top: 3px;
+    margin-right: 5px;
+}
+.sidebar-menu li.header {
+    padding: 10px 25px 10px 15px;
+    font-size: 12px;
+}
+.sidebar-menu li > a > .fa-angle-left {
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+.sidebar-menu li.active > a > .fa-angle-left {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+.sidebar-menu li.active > .treeview-menu {
+    display: block;
+}
+.sidebar-menu .treeview-menu {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-left: 5px;
+}
+.sidebar-menu .treeview-menu .treeview-menu {
+    padding-left: 20px;
+}
+.sidebar-menu .treeview-menu > li {
+    margin: 0;
+}
+.sidebar-menu .treeview-menu > li > a {
+    padding: 5px 5px 5px 15px;
+    display: block;
+    font-size: 14px;
+}
+.sidebar-menu .treeview-menu > li > a > .fa,
+.sidebar-menu .treeview-menu > li > a > .glyphicon,
+.sidebar-menu .treeview-menu > li > a > .ion {
+    width: 20px;
+}
+.sidebar-menu .treeview-menu > li > a > .fa-angle-left,
+.sidebar-menu .treeview-menu > li > a > .fa-angle-down {
+    width: auto;
+}
