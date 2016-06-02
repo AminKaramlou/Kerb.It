@@ -23,6 +23,7 @@
 		2B47A2611D00E4950097AE6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B47A2641D00E4950097AE6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B47A2661D00E4950097AE6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B47A26C1D00E52D0097AE6F /* leaderboard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "leaderboard-Bridging-Header.h"; sourceTree = "<group>"; };
 		865D5BFA84CF3674039E184E /* Pods-leaderboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leaderboard.release.xcconfig"; path = "Pods/Target Support Files/Pods-leaderboard/Pods-leaderboard.release.xcconfig"; sourceTree = "<group>"; };
 		9397F331980DE5E9FA80045F /* Pods-leaderboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leaderboard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-leaderboard/Pods-leaderboard.debug.xcconfig"; sourceTree = "<group>"; };
 		DD786F9B836BB52FF50FCC80 /* libPods-leaderboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-leaderboard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +77,7 @@
 				2B47A2611D00E4950097AE6F /* Assets.xcassets */,
 				2B47A2631D00E4950097AE6F /* LaunchScreen.storyboard */,
 				2B47A2661D00E4950097AE6F /* Info.plist */,
+				2B47A26C1D00E52D0097AE6F /* leaderboard-Bridging-Header.h */,
 			);
 			path = leaderboard;
 			sourceTree = "<group>";
@@ -325,10 +327,13 @@
 			baseConfigurationReference = 9397F331980DE5E9FA80045F /* Pods-leaderboard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = leaderboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = aptsd.leaderboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "leaderboard/leaderboard-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -337,10 +342,12 @@
 			baseConfigurationReference = 865D5BFA84CF3674039E184E /* Pods-leaderboard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = leaderboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = aptsd.leaderboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "leaderboard/leaderboard-Bridging-Header.h";
 			};
 			name = Release;
 		};
