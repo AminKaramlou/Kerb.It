@@ -8,14 +8,18 @@
 
 import UIKit
 
+let productionURL = "wss://kerbit.co.uk/websocket" //Not sure whether this is the correct URL
+let localURL = "ws://localhost:3000/websocket"
+let Meteor = METCoreDataDDPClient(serverURL: NSURL(string: localURL)!)
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    // Override point for customization after application launch.
+    Meteor.connect()
+    //add Meteor managedObjectContext code here
     return true
   }
 
