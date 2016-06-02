@@ -7,3 +7,4 @@ import "./login.js";
 import "./requestPickup.js";
 import "./map.js";
 import "./notFound.js";
+import "./history";

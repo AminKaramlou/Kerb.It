@@ -4,6 +4,6 @@ import "./header.html";
 
 Template.nav_bar.helpers({
   currentUserIsDriver() {
-    return Meteor.user().profile.isDriver;
+    return Meteor.user() && Meteor.user().profile.isDriver;
   }
 });
