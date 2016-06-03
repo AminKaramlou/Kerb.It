@@ -23,12 +23,15 @@ Meteor.methods({
       var offerId = offers[i];
       Offers.remove(offerId);
     }
-    Images.remove({_id:request.imageId});
+    Images.remove(request.imageId);
     Requests.remove(requestId);
   },
   'makeOffer'(requestId, driverId, price) {
+    console.log(requestId);
     const request = Requests.findOne(requestId);
+    console.log(request);
     const offers = request.offers;
+    console.log(offers);
     const offerId = Offers.insert({
       requestId,
       consumerId: request.consumerId,
@@ -58,7 +61,6 @@ Meteor.methods({
       driverId: offer.driverId,
       dateConfirmed: new Date()
     })
-    Requests.remove(requestId);
-    Offers.remove(offerId);
+    Meteor.call('deleteRequest', requestId);
   }
 });
