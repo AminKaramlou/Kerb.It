@@ -37,3 +37,4 @@ Template.ClientHistoryHelper.helpers({
   },
   
 });
+
