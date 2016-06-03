@@ -14,7 +14,12 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    DataManager.subscriptionLoader.addSubscriptionWithName("players")
+    DataManager.subscriptionLoader.whenReady() {
+      print("Done subscribing")
+    }
   }
+  
   @IBAction func didInsertPlayer(sender: AnyObject) {
     let newPlayer = DataManager.getNewObjectFromEntity(withName: "Player") as! Player
     newPlayer.name = nameTextField.text!
