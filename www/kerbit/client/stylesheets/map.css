@@ -5,7 +5,7 @@
     position: relative;
 }
 
-#map-container:after {
+#map-container.request-pickup:after {
     width: 22px;
     height: 40px;
     display: block;

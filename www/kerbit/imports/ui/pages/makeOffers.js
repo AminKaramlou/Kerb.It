@@ -1,16 +1,37 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Images } from '../../api/collections/images.js';
-
-
 import { Requests } from '../../api/collections/requests.js';
+
 import '../../api/methods.js';
 import "./makeOffers.html";
 
 Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
   Meteor.subscribe('requests');
   Meteor.subscribe('images');
-  
+
+  GoogleMaps.ready('map', function(map) {
+
+    var markers = {};
+
+    Requests.find().observe({
+      added: function (document) {
+        var marker = new google.maps.Marker({
+          animation: google.maps.Animation.DROP,
+          position: new google.maps.LatLng(document.latitude, document.longitude),
+          map: map.instance,
+          id: document._id
+      });
+
+        markers[document._id] = marker;
+      },
+
+      removed: function (oldDocument) {
+        markers[oldDocument._id].setMap(null);
+        delete markers[oldDocument._id];
+      }
+    });
+  });
 });
 
 Template.MakeOffersHelper.helpers({

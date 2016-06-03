@@ -5,9 +5,19 @@
 </template>
 
 <template name="ClientHistoryHelper">
-  <h3> Client History goes here ! </h3>
-    {{> starsRating id='rating' mutable=true}}
-    <button class="btn btn-default" onclick="getRating()">Button</button>
+  <div class="text-center h1"> My Recent Transactions </div>
+    <div class="container">
+      <div class="row">
+        <ul class="list-group">
+          {{#each transactions}}
+            <li class ="list-group-item">
+              {{>Transaction}}{{> starsRating id='rating' mutable=true}}
+              <button class="btn btn-default" onclick="getRating()">Rate this transaction</button>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
 
     <script>
         function getRating() {
