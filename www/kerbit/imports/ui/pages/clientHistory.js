@@ -2,8 +2,6 @@ import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { Transactions } from '../../api/collections/transactions.js';
 import { Images } from '../../api/collections/images.js';
-import { Transactions } from '../../api/collections/transactions.js';
-import { Template } from 'meteor/templating';
 import './clientHistory.html';
 import '../components/transaction.html';
 
@@ -20,7 +18,8 @@ Template.ClientHistoryHelper.helpers({
 
   pending() {
     return Transactions.find({
-      consumerId: Meteor.userId()
+      consumerId: Meteor.userId(),
+      isCompleted: false
     });
   },
 
@@ -43,7 +42,8 @@ Template.ClientHistoryHelper.helpers({
   
   transactions() {
     return Transactions.find({
-      consumerId: Meteor.userId()
+      consumerId: Meteor.userId(),
+      isCompleted: true
     });
   }
 });
@@ -53,6 +53,10 @@ Template.ClientHistoryHelper.events({
     event.preventDefault();
     var rating = $('#rating').data('userrating');
     Meteor.call('rateDriver', this.driverId, rating);
+  },
+  'click .collect'(event) {
+    event.preventDefault();
+    Meteor.call('collect', this._id);
   }
 });
 

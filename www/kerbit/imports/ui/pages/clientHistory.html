@@ -32,6 +32,7 @@
     <table class="table table-hover">
         <thead>
         <tr>
+            <th>Date</th>
             <th>Order ID</th>
             <th>Driver</th>
             <th>Location</th>
@@ -39,38 +40,19 @@
         </tr>
         </thead>
         <tbody>
+        {{#each transactions}}
         <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th>{{formatDate dateConfirmed}}</th>
+            <th scope="row">{{_id}}</th>
+            <td><img src="https://randomuser.me/api/portraits/men/8.jpg" style="width:35px;height:30px;">{{getDriverName}}</td>
+            <td>{{formatPostcode postcode}}</td>
+            <td>{{> starsRating id='rating' mutable=true}}<button class="btn btn-default ratingButton">Rate this transaction</button></td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        {{/each}}
+
         </tbody>
     </table>
 
-  <div class="text-center h1"> My Recent Transactions </div>
-    <div class="container">
-      <div class="row">
-        <ul class="list-group">
-          {{#each transactions}}
-            <li class ="list-group-item">
-              {{>Transaction}}{{> starsRating id='rating' mutable=true}}
-              <button class="btn btn-default ratingButton">Rate this transaction</button>
-            </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
+
 </template>
 
