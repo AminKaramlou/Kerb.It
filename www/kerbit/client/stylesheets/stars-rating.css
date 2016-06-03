@@ -1,0 +1,17 @@
+/* IF we want to change default colours:
+
+1. Add class to template call
+{{> starsRating id='rating' class='custom-star' mutable=true}}
+2. Modify code below
+
+*/
+
+/* Default color */
+.custom-rating .current-rating {
+  /* color: #; */
+}
+
+/* Interaction color */
+.custom-rating .active {
+  /* color: #; */
+}

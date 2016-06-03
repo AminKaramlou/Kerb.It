@@ -115,6 +115,6 @@ AccountsTemplates.addFields([
     {
         _id: 'isDriver',
         type: 'checkbox',
-        displayName: "Register as Driver",
+        displayName: "Register as Driver"
     }
 ]);
