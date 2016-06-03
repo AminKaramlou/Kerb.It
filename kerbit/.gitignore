@@ -1,0 +1,8 @@
+xcuserdata/ 
+!Pods/
+Pods/*
+!Pods/Meteor
+Pods/Meteor/*
+!Pods/Meteor/Meteor
+Pods/Meteor/Meteor/*
+!Pods/Meteor/Meteor/METCollection.m
