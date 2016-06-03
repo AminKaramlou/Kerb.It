@@ -13,11 +13,6 @@ RequestsSchema = new SimpleSchema({
     label: "Image ID",
     regEx: SimpleSchema.RegEx.Id,
   },
-  transactionId: {
-    type: String,
-    label: "Transaction ID",
-    regEx: SimpleSchema.RegEx.Id,
-  },
   description: {
     type: String,
     label: "Description",
