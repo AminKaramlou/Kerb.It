@@ -26,7 +26,7 @@ if (Meteor.isServer) {
     describe('makeRequest', () => {
       beforeEach(() => {
         const makeRequest = Meteor.server.method_handlers['makeRequest'];
-        const invocation = { consumerId };
+        const invocation = { userId: consumerId };
 
         makeRequest.apply(invocation, [consumerId, imageId, description, bidWindow, sizeRequired, postcode]);
       });
@@ -34,13 +34,27 @@ if (Meteor.isServer) {
       it('should create request', () => {
         assert.equal(Requests.find().count(), 1);
       });
-      it('should create transaction', () => {
-        assert.equal(Transactions.find().count(), 1);
+    });
+    describe('deleteRequest', () => {
+      beforeEach(() => {
+        const deleteRequest = Meteor.server.method_handlers['deleteRequest'];
+        const invocation = { userId: consumerId };
+    
+        const requestId = Requests.insert({
+          consumerId,
+          imageId,
+          description,
+          bidWindow,
+          sizeRequired,
+          postcode,
+          offers: [],
+          createdAt: new Date()
+        });
+        deleteRequest.apply(invocation, [requestId]); 
       });
-      it('should have request with field pointing to transaction', () => {
-        const transaction = Transactions.findOne();
-        const request = Requests.findOne();
-        assert.equal(request.transactionId, transaction._id);
+
+      it('should delete request', () => {
+        assert.equal(Offers.find().count(), 0);
       });
     });
     describe('makeOffer', () => {
@@ -48,10 +62,8 @@ if (Meteor.isServer) {
         const makeOffer = Meteor.server.method_handlers['makeOffer'];
         const invocation = { userId: driverId };
     
-        const transactionId = Random.id();
         const requestId = Requests.insert({
           consumerId,
-          transactionId,
           imageId,
           description,
           bidWindow,
@@ -83,21 +95,14 @@ if (Meteor.isServer) {
     describe('acceptOffer', () => {
       beforeEach(() => {
         const acceptOffer = Meteor.server.method_handlers['acceptOffer'];
-        const invocation = { consumerId };
+        const invocation = { userId: consumerId };
     
         const sizeAllocated = 7;
         const price = 1000;
         const date = new Date();
-        const transactionId = Transactions.insert({
-          consumerId,
-          description,
-          sizeAllocated,
-          postcode,
-          createdAt: date
-        });
+        const offerId = Random.id();
         const requestId = Requests.insert({
           consumerId,
-          transactionId,
           imageId,
           description,
           bidWindow,
@@ -106,15 +111,15 @@ if (Meteor.isServer) {
           offers: [],
           createdAt: date
         });
-        const offerId = Offers.insert({
+        Offers.insert({
+          _id: offerId,
           requestId,
           consumerId,
-          transactionId,
           driverId,
           price,
           createdAt: date
         });
-        acceptOffer.apply(invocation, [transactionId, requestId, offerId, driverId, sizeAllocated, price]); 
+        acceptOffer.apply(invocation, [requestId, offerId, sizeAllocated]); 
       });
 
       it('should delete request', () => {
@@ -123,7 +128,10 @@ if (Meteor.isServer) {
       it('should delete offer', () => {
         assert.equal(Offers.find().count(), 0);
       });
-      it('should update transactions with driver ID', () => {
+      it('should create transaction', () => {
+        assert.equal(Transactions.find().count(), 1);
+      });
+      it('should have transaction pointing to corresponding driver', () => {
         const transaction = Transactions.findOne();
 
         assert.equal(transaction.driverId, driverId);
