@@ -95,4 +95,7 @@ if (Meteor.isServer) {
     // console.log(driverIds);
     return Meteor.users.find({});
   });
+  Meteor.publish('getUserDetails', function(username) {
+    return Meteor.users.findOne({'username': username});
+});
 }
