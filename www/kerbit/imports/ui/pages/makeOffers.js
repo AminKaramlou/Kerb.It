@@ -22,7 +22,7 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
         {
           $geometry: { type: "Point",
           coordinates: [Geolocation.currentLocation().coords.longitude,
-          Geolocation.currentLocation().coords.latitude]g
+          Geolocation.currentLocation().coords.latitude]
           },
         }
       }
