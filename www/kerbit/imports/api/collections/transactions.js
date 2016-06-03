@@ -43,6 +43,16 @@ TransactionsSchema = new SimpleSchema({
     type: Date,
     label: "Date Confirmed",
     optional: true
+  },
+  isCompleted: {
+    type: Boolean,
+    label: "Job was completed",
+    optional: true
+  },
+  dateCompleted: {
+    type: Date,
+    label: "Date Conpleted",
+    optional: true
   }
 });
 
