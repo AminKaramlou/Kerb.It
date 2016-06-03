@@ -5,19 +5,8 @@ import {Images} from './collections/images.js'
 
 Meteor.methods({
 
-  ImageUpload: function (fileInfo, fileData) {
-    console.log(fileInfo);
-    Images.insert(fileInfo, fileData, function (err, fileObj) {
-      if (err) console.log(err)
-      else {
-        //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-        console.log(fileObj);
-        return fileObj._id;
-      }
-    });
-  },
-
-  'makeRequest'(consumerId, imageId, description, bidWindow, sizeRequired, postcode) {
+  'makeRequest'(consumerId, imageId, description, bidWindow, sizeRequired,
+                postcode, latitude, longitude) {
     const date = new Date();
     const transactionId = Transactions.insert({
       consumerId,
@@ -35,6 +24,8 @@ Meteor.methods({
       bidWindow,
       sizeRequired,
       postcode,
+      latitude,
+      longitude,
       offers: [],
       createdAt: date
     });

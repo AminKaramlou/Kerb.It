@@ -17,6 +17,8 @@ if (Meteor.isServer) {
     const bidWindow = 7;
     const sizeRequired = 7;
     const postcode = "SW72AZ";
+    const latitude = 7;
+    const longitude = 50;
     beforeEach(() => {
       Transactions.remove({});
       Requests.remove({});
@@ -28,7 +30,7 @@ if (Meteor.isServer) {
         const makeRequest = Meteor.server.method_handlers['makeRequest'];
         const invocation = { consumerId };
 
-        makeRequest.apply(invocation, [consumerId, imageId, description, bidWindow, sizeRequired, postcode]);
+        makeRequest.apply(invocation, [consumerId, imageId, description, bidWindow, sizeRequired, postcode, latitude, longitude]);
       });
 
       it('should create request', () => {
@@ -57,6 +59,8 @@ if (Meteor.isServer) {
           bidWindow,
           sizeRequired,
           postcode,
+          latitude,
+          longitude,
           offers: [],
           createdAt: new Date()
         });
@@ -103,6 +107,8 @@ if (Meteor.isServer) {
           bidWindow,
           sizeRequired: sizeAllocated,
           postcode,
+          latitude,
+          longitude,
           offers: [],
           createdAt: date
         });

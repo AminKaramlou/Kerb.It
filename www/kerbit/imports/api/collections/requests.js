@@ -40,6 +40,16 @@ RequestsSchema = new SimpleSchema({
     label: "Postcode",
     regEx: /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])))) ?[0-9][A-Za-z]{2})$/ 
   },
+  latitude: {
+    type: Number,
+    label: "Latitude",
+    decimal: true
+  },
+  longitude: {
+    type: Number,
+    label: "Longitude",
+    decimal: true
+  },
   offers: {
     type: [String],
     label: "Offers",
