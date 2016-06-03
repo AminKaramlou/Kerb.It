@@ -29,7 +29,6 @@ Template.RequestPickup.events({
     const postcode = target.postcode.value;
     const image = target.file.files[0];
 
-
     function getCurrentCenter() {
       var currentCenter = new google.maps.LatLng(Template.map.getCenter());
     }

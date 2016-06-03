@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Requests } from '../../api/collections/requests.js';
 import { Offers } from '../../api/collections/offers.js';
+import { Images } from '../../api/collections/images.js';
 import './myRequests.html';
 
 Template.MyRequests.onCreated(function myRequestsCreated() {
@@ -11,6 +12,14 @@ Template.MyRequests.onCreated(function myRequestsCreated() {
 });
 
 Template.MyRequests.helpers({
+
+  images(imageId) {
+    console.log("hello baby");
+    return Images.find({
+      imageId
+    });
+  },
+
   requests() {
     return Requests.find({
       consumerId: Meteor.userId()
