@@ -14,9 +14,8 @@ Template.MyRequests.onCreated(function myRequestsCreated() {
 Template.MyRequests.helpers({
 
   images(imageId) {
-    console.log("hello baby");
     return Images.find({
-      imageId
+      _id: imageId
     });
   },
 
