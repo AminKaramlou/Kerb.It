@@ -18,7 +18,7 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
       added: function (document) {
         var marker = new google.maps.Marker({
           animation: google.maps.Animation.DROP,
-          position: new google.maps.LatLng(document.latitude, document.longitude),
+          position: new google.maps.LatLng(document.loc.coordinates[1], document.loc.coordinates[0]),
           map: map.instance,
           id: document._id
       });
@@ -75,7 +75,6 @@ Template.MakeOffersHelper.events({
     var requestId;
     if (target.requestId.length) {
       for (var i in target.requestId) {
-        console.log(i);
         if (target.requestId[i].checked) {
           requestId = target.requestId[i].value;
         }
