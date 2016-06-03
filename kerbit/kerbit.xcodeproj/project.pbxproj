@@ -17,6 +17,8 @@
 		2B56264B1CF23D5300834E68 /* PickupLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56264A1CF23D5300834E68 /* PickupLocationVC.swift */; };
 		2B6425A01D01376E0059A8DF /* SubscriptionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64259E1D01376E0059A8DF /* SubscriptionLoader.swift */; };
 		2B6425A11D01376E0059A8DF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64259F1D01376E0059A8DF /* DataManager.swift */; };
+		2B64C97C1D0153F5006C3E10 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64C97B1D0153F5006C3E10 /* Request.swift */; };
+		2B6F2B171D014465009619D1 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F2B161D014465009619D1 /* TestVC.swift */; };
 		2BEAFF231CF36F5200CDBD8A /* FormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEAFF221CF36F5200CDBD8A /* FormVC.swift */; };
 		FFFE1C912F9B1C7A747BCE01 /* libPods-kerbit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0B344014B762D92F71C7F71 /* libPods-kerbit.a */; };
 /* End PBXBuildFile section */
@@ -34,6 +36,8 @@
 		2B56264A1CF23D5300834E68 /* PickupLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupLocationVC.swift; sourceTree = "<group>"; };
 		2B64259E1D01376E0059A8DF /* SubscriptionLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionLoader.swift; sourceTree = "<group>"; };
 		2B64259F1D01376E0059A8DF /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		2B64C97B1D0153F5006C3E10 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		2B6F2B161D014465009619D1 /* TestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 		2BEAFF1F1CF364D900CDBD8A /* kerbit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "kerbit-Bridging-Header.h"; sourceTree = "<group>"; };
 		2BEAFF221CF36F5200CDBD8A /* FormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormVC.swift; sourceTree = "<group>"; };
 		9EC4C2113BB101BA34BCD418 /* Pods-kerbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kerbit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kerbit/Pods-kerbit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 				2BEAFF221CF36F5200CDBD8A /* FormVC.swift */,
 				2B56264A1CF23D5300834E68 /* PickupLocationVC.swift */,
 				2BEAFF1F1CF364D900CDBD8A /* kerbit-Bridging-Header.h */,
+				2B6F2B161D014465009619D1 /* TestVC.swift */,
+				2B64C97B1D0153F5006C3E10 /* Request.swift */,
 			);
 			path = kerbit;
 			sourceTree = "<group>";
@@ -238,6 +244,8 @@
 				2BEAFF231CF36F5200CDBD8A /* FormVC.swift in Sources */,
 				2B56264B1CF23D5300834E68 /* PickupLocationVC.swift in Sources */,
 				2B0D1FF31CF20FA1003E3130 /* AppDelegate.swift in Sources */,
+				2B64C97C1D0153F5006C3E10 /* Request.swift in Sources */,
+				2B6F2B171D014465009619D1 /* TestVC.swift in Sources */,
 				2B0D1FFB1CF20FA1003E3130 /* kerbit.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

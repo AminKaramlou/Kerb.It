@@ -157,7 +157,7 @@
 
 - (id)insertDocumentWithFields:(NSDictionary *)fields completionHandler:(METMethodCompletionHandler)completionHandler {
   NSString *methodName = [self methodNameForUpdateType:@"insert"];
-  
+  NSLog(methodName);
   if (!fields[@"_id"] && _database.client.currentMethodInvocationContext) {
     fields = [fields dictionaryByAddingObject:[self generateNewDocumentID] forKey:@"_id"];
   }

@@ -73,6 +73,9 @@ Meteor.methods({
       }
     });
   },
+  'requests.insert'(newRequest) {
+    Meteor.call('makeRequest', newRequest.consumerId, "Test Title", "Test Description", newRequest.bidWindow, newRequest.sizeRequired, newRequest.postcode);
+  },
   'players.insert'(newPlayer) {
     Players.insert(newPlayer);
   },
