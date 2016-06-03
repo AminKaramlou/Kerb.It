@@ -4,6 +4,7 @@ import { AccountsTemplates } from 'meteor/useraccounts:core';
 
 import '../../ui/pages/';
 import '../../ui/layouts/';
+import '../../ui/globalHelpers.js';
 
 const publicSection = FlowRouter.group({
   name: 'publicSection'
@@ -102,7 +103,7 @@ AccountsTemplates.configureRoute('signIn', {
     path: '/login',
     template: 'login',
     layoutTemplate: 'HomeLayout',
-    redirect: '/request-pickup',
+    redirect: '/',
     contentRegion: 'main'
 });
 AccountsTemplates.configureRoute('signUp', {
