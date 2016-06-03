@@ -8,7 +8,6 @@ Meteor.methods({
     Requests.insert({
       consumerId,
       imageId,
-      transactionId,
       description,
       bidWindow,
       sizeRequired,
@@ -18,7 +17,6 @@ Meteor.methods({
     });
   },
   'deleteRequest'(requestId) {
-    // Remove offers associated with this request
     var request = Requests.findOne(requestId);
     var offers = request.offers;
     for (var i in offers) {
@@ -26,15 +24,14 @@ Meteor.methods({
       Offers.remove(offerId);
     }
     Images.remove({_id:request.imageId});
-    // Remove this request
     Requests.remove(requestId);
   },
   'makeOffer'(requestId, driverId, price) {
-    const offers = Requests.findOne(requestId).offers;
+    const request = Requests.findOne(requestId);
+    const offers = request.offers;
     const offerId = Offers.insert({
       requestId,
       consumerId: request.consumerId,
-      transactionId: request.transactionId,
       driverId,
       price,
       createdAt: new Date()
