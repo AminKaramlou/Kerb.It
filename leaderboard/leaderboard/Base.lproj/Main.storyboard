@@ -14,10 +14,32 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34F-9y-R64">
+                                <rect key="frame" x="169" y="318" width="37" height="30"/>
+                                <state key="normal" title="Array"/>
+                                <connections>
+                                    <action selector="clickButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="JUl-Mo-4k7"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Dp-Ga-A0l">
+                                <rect key="frame" x="166.5" y="259.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="34F-9y-R64" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="EJz-5A-Y3D"/>
+                            <constraint firstItem="34F-9y-R64" firstAttribute="top" secondItem="1Dp-Ga-A0l" secondAttribute="bottom" constant="38" id="HW4-X5-TIz"/>
+                            <constraint firstItem="34F-9y-R64" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Whf-ah-upf"/>
+                            <constraint firstItem="1Dp-Ga-A0l" firstAttribute="centerX" secondItem="34F-9y-R64" secondAttribute="centerX" id="fua-ie-ufA"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -12,14 +12,37 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    let fetchRequest = NSFetchRequest(entityName: "Player")
+    fetchRequest.sortDescriptors = [NSSortDescriptor(key: "score", ascending: false), NSSortDescriptor(key: "name", ascending: true)]
+    let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: Meteor.mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+    do {
+      try fetchedResultsController.performFetch()
+    } catch _ {}
+    fetchedResultsController.delegate = DataManager.fetchedResultsControllerDelegate
+    let res = fetchedResultsController.fetchedObjects as! [NSManagedObject]
+    for r in res {
+      print(r)
+    }
+  }
+  
+  @IBAction func clickButton() {
+    let fetchRequest = NSFetchRequest(entityName: "Player")
+    fetchRequest.sortDescriptors = [NSSortDescriptor(key: "score", ascending: false), NSSortDescriptor(key: "name", ascending: true)]
+    let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: Meteor.mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+    do {
+      try fetchedResultsController.performFetch()
+    } catch _ {}
+    fetchedResultsController.delegate = DataManager.fetchedResultsControllerDelegate
+    let res = fetchedResultsController.fetchedObjects as! [NSManagedObject]
+    for r in res {
+      print(r)
+    }
   }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-
 
 }
 
