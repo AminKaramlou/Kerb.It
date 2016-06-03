@@ -9,6 +9,7 @@ import "./map.js";
 import "./notFound.js";
 import "./driverHistory.js";
 import "./clientHistory.js";
+import "./userProfilePublicView.js"
 
 import "../components/onlyDriver.js";
 import "../components/onlyConsumer.js";

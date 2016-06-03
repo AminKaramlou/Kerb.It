@@ -49,6 +49,16 @@ Meteor.methods({
       }
     });
   },
+    'collect'(orderId) {
+
+
+        Transactions.update(orderId, {
+            $set: {
+                isCompleted: true,
+                dateCompleted: new Date()
+            }
+        });
+    },
   'acceptOffer'(requestId, offerId, sizeAllocated) {
     const request = Requests.findOne(requestId);
     const offer = Offers.findOne(offerId);
@@ -60,7 +70,8 @@ Meteor.methods({
       createdAt: request.createdAt,
       price: offer.price,
       driverId: offer.driverId,
-      dateConfirmed: new Date()
+      dateConfirmed: new Date(),
+      isCompleted: false
     });
     Meteor.call('deleteRequest', requestId);
   },

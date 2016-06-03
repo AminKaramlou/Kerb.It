@@ -14,7 +14,19 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
 
     var markers = {};
 
-    Requests.find().observe({
+    Requests.find(
+    {
+      loc:
+      {
+        $near :
+        {
+          $geometry: { type: "Point",
+          coordinates: [Geolocation.currentLocation().coords.longitude,
+          Geolocation.currentLocation().coords.latitude]
+          },
+        }
+      }
+    }).observe({
       added: function (document) {
         var marker = new google.maps.Marker({
           animation: google.maps.Animation.DROP,
@@ -43,7 +55,20 @@ Template.MakeOffersHelper.helpers({
   },
   
   requests() {
-    return Requests.find({});
+    console.log(Geolocation.currentLocation().coords);
+    return Requests.find(
+      {
+        loc:
+        { $near :
+          {
+          $geometry: { type: "Point",
+            coordinates: [Geolocation.currentLocation().coords.longitude,
+                          Geolocation.currentLocation().coords.latitude] },
+
+          }
+        }
+      }
+    )
   },
   formatDate(date) {
     const monthNames = ["January", "February", "March", "April", "May", "June",
