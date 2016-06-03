@@ -5,7 +5,7 @@
 </template>
 
 <template name="ClientHistoryHelper">
-  <h3> You have {this many} jobs waiting for collection</h3>
+  <h3> You have {{getPendingCount}} jobs waiting for collection</h3>
     <table class="table table-hover">
   <thead>
     <tr>
@@ -19,7 +19,7 @@
   {{#each pending}}
     <tr>
       <th scope="row">{{_id}}</th>
-      <td><img src="https://randomuser.me/api/portraits/men/8.jpg" style="width:35px;height:30px;">{{getDriverName}}</td>
+      <td><img src="https://randomuser.me/api/portraits/men/8.jpg" style="width:35px;height:30px;">{{getDriverName driverId}}</td>
       <td>{{formatPostcode postcode}}</td>
       <td><button class="btn btn-default btn-success collect">Collected</button></td>
     </tr>
@@ -44,7 +44,7 @@
         <tr>
             <th>{{formatDate dateConfirmed}}</th>
             <th scope="row">{{_id}}</th>
-            <td><img src="https://randomuser.me/api/portraits/men/8.jpg" style="width:35px;height:30px;">{{getDriverName}}</td>
+            <td><img src="https://randomuser.me/api/portraits/men/8.jpg" style="width:35px;height:30px;">{{getDriverName driverId}}</td>
             <td>{{formatPostcode postcode}}</td>
             <td>{{> starsRating id='rating' mutable=true}}<button class="btn btn-default ratingButton">Rate this transaction</button></td>
         </tr>

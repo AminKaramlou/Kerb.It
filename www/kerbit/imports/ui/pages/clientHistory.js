@@ -23,8 +23,17 @@ Template.ClientHistoryHelper.helpers({
     });
   },
 
-  getDriverName(driverID) {
-    return "Dummy Name";
+  getPendingCount() {
+    var trans= Transactions.find({
+      consumerId: Meteor.userId(),
+      isCompleted: false
+    });
+    return trans.count();
+  },
+
+  getDriverName(driverId) {
+    var user= Meteor.users.findOne(driverId);
+        return user.username;
   },
 
   formatDate(date) {
