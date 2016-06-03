@@ -33,7 +33,6 @@ Template.RequestPickup.events({
       var currentCenter = new google.maps.LatLng(Template.map.getCenter());
     }
     const imageId = Images.insert(image)._id;
-    console.log(imageId);
     Meteor.call('makeRequest', Meteor.userId(), imageId, description, bidWindow, sizeRequired, postcode);
     target.reset();
   }

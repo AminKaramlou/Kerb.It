@@ -8,7 +8,9 @@ if (Meteor.isServer) {
   Meteor.publish('images', function imagesPublication() {
     return Images.find({});
   });
-  
+
+  //TODO: Secure images database by adding relevant allow and deny
+
   Images.deny({
     insert: function(){
       return false;
