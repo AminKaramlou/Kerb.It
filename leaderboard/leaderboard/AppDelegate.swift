@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     Meteor.connect()
-    //add Meteor managedObjectContext code here
+    DataManager.setup(Meteor.mainQueueManagedObjectContext)
     return true
   }
 

@@ -7,32 +7,39 @@
 //
 
 class DataManager: NSObject, NSFetchedResultsControllerDelegate {
-  var managedObjectContext: NSManagedObjectContext!
-  var subscriptionLoader: SubscriptionLoader!
+  static var managedObjectContext: NSManagedObjectContext!
+  static var subscriptionLoader: SubscriptionLoader!
+  static var fetchedResultsControllerDelegate: DataManager!
   
-  func getNewObjectFromEntity(withName entityName: String) -> NSManagedObject {
+  class func setup(managedObjectContext: NSManagedObjectContext) {
+    self.managedObjectContext = managedObjectContext
+    self.subscriptionLoader = SubscriptionLoader()
+    self.fetchedResultsControllerDelegate = DataManager()
+  }
+  
+  class func getNewObjectFromEntity(withName entityName: String) -> NSManagedObject {
     return NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext)
   }
   
-  func update() {
+  class func update() {
     do {
       try managedObjectContext.save()
     } catch _ {}
   }
   
-  func remove(entityObject object: NSManagedObject) {
+  class func remove(entityObject object: NSManagedObject) {
     managedObjectContext.deleteObject(object)
     update()
   }
   
-  func find(entityName: String, withDescriptors descriptors: [NSSortDescriptor]) -> [NSManagedObject] {
+  class func find(entityName: String, withDescriptors descriptors: [NSSortDescriptor]) -> [NSManagedObject] {
     let fetchRequest = NSFetchRequest(entityName: entityName)
     fetchRequest.sortDescriptors = descriptors
     let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
     do {
       try fetchedResultsController.performFetch()
     } catch _ {}
-    fetchedResultsController.delegate = self
+    fetchedResultsController.delegate = fetchedResultsControllerDelegate
     return fetchedResultsController.fetchedObjects as! [NSManagedObject] //WARNING: Result does not update
   }
   
