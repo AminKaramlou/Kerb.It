@@ -15,6 +15,11 @@
           Created on {{formatDate createdAt}}. <br>
           Pick up {{formatDescription description}} <br>
           at postcode: {{formatPostcode postcode}} <br>
+          {{#each images imageId}}
+            <div>
+              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-thumbnail" /></a>
+            </div>
+          {{/each}}
           {{#each offers _id}}
             <ul class="list-group">
               <li class="list-group-item">

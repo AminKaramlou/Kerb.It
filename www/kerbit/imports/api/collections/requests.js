@@ -8,6 +8,11 @@ RequestsSchema = new SimpleSchema({
     label: "Consumer ID",
     regEx: SimpleSchema.RegEx.Id,
   },
+  imageId: {
+    type: String,
+    label: "Image ID",
+    regEx: SimpleSchema.RegEx.Id,
+  },
   transactionId: {
     type: String,
     label: "Transaction ID",

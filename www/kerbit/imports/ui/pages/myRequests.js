@@ -2,14 +2,22 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Requests } from '../../api/collections/requests.js';
 import { Offers } from '../../api/collections/offers.js';
+import { Images } from '../../api/collections/images.js';
 import './myRequests.html';
 
 Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
-  Meteor.subscribe('requests'); 
+  Meteor.subscribe('requests');
   Meteor.subscribe('offers');
+  Meteor.subscribe('images');
 });
 
 Template.MyRequestsHelper.helpers({
+  images(imageId) {
+    return Images.find({
+      _id: imageId
+    });
+  },
+
   requests() {
     return Requests.find({
       consumerId: Meteor.userId()
@@ -47,5 +55,5 @@ Template.MyRequestsHelper.events({
   },
   'click .delete-request'() {
     Meteor.call('deleteRequest', this._id);
-  }
+  },
 });
