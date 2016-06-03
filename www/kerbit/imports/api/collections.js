@@ -4,6 +4,7 @@ export const Requests = new Mongo.Collection('requests');
 export const Offers = new Mongo.Collection('offers');
 export const Transactions = new Mongo.Collection('transactions');
 export const Markers = new Mongo.Collection('markers');
+export const Players = new Mongo.Collection('players');
 
 if (Meteor.isServer) {
   Meteor.publish('requests', function requestsPublication() {

@@ -1,4 +1,4 @@
-import { Transactions, Requests, Offers, Markers } from './collections.js';
+import { Transactions, Requests, Offers, Markers, Players } from './collections.js';
 
 Meteor.methods({
   'makeRequest'(consumerId, title, description, bidWindow, sizeRequired, postcode) {
@@ -72,5 +72,14 @@ Meteor.methods({
         longitude
       }
     });
+  },
+  'players.insert'(name, score) {
+    Players.insert({
+      name,
+      score
+    });
+  },
+  'players.update'(selector, options) {
+    Players.update(selector, options);
   }
 });
