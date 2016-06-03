@@ -1,5 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import { Images } from '../../api/collections/images.js';
+
 
 import { Requests } from '../../api/collections/requests.js';
 import '../../api/methods.js';
@@ -7,9 +9,18 @@ import "./makeOffers.html";
 
 Template.MakeOffers.onCreated(function driverHomeOnCreated() {
   Meteor.subscribe('requests');
+  Meteor.subscribe('images');
+  
 });
 
 Template.MakeOffers.helpers({
+
+  images(imageId) {
+    return Images.find({
+      _id: imageId
+    });
+  },
+  
   requests() {
     return Requests.find({});
   },

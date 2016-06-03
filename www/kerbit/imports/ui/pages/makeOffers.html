@@ -25,6 +25,11 @@
                 Created on {{formatDate createdAt}}. <br>
                 Pick up {{formatDescription description}} <br>
                 at postcode: {{formatPostcode postcode}} <br><br>
+                {{#each images imageId}}
+                  <div>
+                    <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="thumbnail" /></a>
+                  </div>
+                {{/each}}
               {{/each}}
             </div>
           </div>
