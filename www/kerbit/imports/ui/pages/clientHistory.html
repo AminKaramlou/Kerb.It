@@ -12,18 +12,11 @@
           {{#each transactions}}
             <li class ="list-group-item">
               {{>Transaction}}{{> starsRating id='rating' mutable=true}}
-              <button class="btn btn-default" onclick="getRating()">Rate this transaction</button>
+              <button class="btn btn-default ratingButton">Rate this transaction</button>
             </li>
           {{/each}}
         </ul>
       </div>
     </div>
-
-    <script>
-        function getRating() {
-            var rating = $('#rating').data('userrating');
-            Meteor.call('rateDriver', Meteor.userId(), rating);
-        }
-    </script>
 </template>
 

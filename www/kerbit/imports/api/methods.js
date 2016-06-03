@@ -7,13 +7,6 @@ Meteor.methods({
   'makeRequest'(consumerId, imageId, description, bidWindow, sizeRequired,
                 postcode, latitude, longitude) {
     const date = new Date();
-    const transactionId = Transactions.insert({
-      consumerId,
-      description,
-      sizeAllocated: sizeRequired, //to change later
-      postcode,
-      createdAt: date
-    });
 
     Requests.insert({
       consumerId,
