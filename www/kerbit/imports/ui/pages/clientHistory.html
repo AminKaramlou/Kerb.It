@@ -16,23 +16,15 @@
     </tr>
   </thead>
   <tbody>
+  {{#each pending}}
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <th scope="row">{{_id}}</th>
+      <td><img src="https://randomuser.me/api/portraits/men/8.jpg" style="width:35px;height:30px;">{{getDriverName}}</td>
+      <td>{{formatPostcode postcode}}</td>
+      <td><button class="btn btn-default btn-success collect">Collected</button></td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    {{/each}}
+
   </tbody>
 </table>
 
