@@ -1,27 +1,21 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import { Images } from '../../api/collections/images.js';
 
 import '../../api/methods.js';
 import "./requestPickup.html";
 
-
-
-function readURL(input) {
-  console.log(input);
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function (e) {
-      $('#image').attr('src', e.target.result);
-    }
-
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
 Template.RequestPickup.events({
   'change #file' (event) {
-    readURL(event.target);
+
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('#image').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
   },
   
   'submit form'(event) {
@@ -29,17 +23,19 @@ Template.RequestPickup.events({
 
     const target = event.target;
 
-    const title = target.title.value;
     const description = target.description.value;
     const bidWindow = Number(target.bidWindow.value);
     const sizeRequired = Number(target.sizeRequired.value);
     const postcode = target.postcode.value;
+    const image = target.file.files[0];
+
 
     function getCurrentCenter() {
       var currentCenter = new google.maps.LatLng(Template.map.getCenter());
     }
-
-    Meteor.call('makeRequest', Meteor.userId(), description, bidWindow, sizeRequired, postcode);
+    const imageId = Images.insert(image)._id;
+    console.log(imageId);
+    Meteor.call('makeRequest', Meteor.userId(), imageId, description, bidWindow, sizeRequired, postcode);
     target.reset();
   }
 });

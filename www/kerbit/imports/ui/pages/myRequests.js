@@ -7,6 +7,7 @@ import './myRequests.html';
 Template.MyRequests.onCreated(function myRequestsCreated() {
   Meteor.subscribe('requests');
   Meteor.subscribe('offers');
+  Meteor.subscribe('images');
 });
 
 Template.MyRequests.helpers({
