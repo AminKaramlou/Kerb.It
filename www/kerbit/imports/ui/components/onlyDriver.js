@@ -7,6 +7,6 @@ Template.OnlyDriver.helpers({
     return Meteor.loggingIn();
   },
   canShow: function() {
-    return Meteor.user().profile.isDriver;
+    return Meteor.user() && Meteor.user().profile.isDriver;
   }
 });

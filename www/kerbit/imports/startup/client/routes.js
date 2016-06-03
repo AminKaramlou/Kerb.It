@@ -5,50 +5,60 @@ import { AccountsTemplates } from 'meteor/useraccounts:core';
 import '../../ui/pages/';
 import '../../ui/layouts/';
 
-
-var consumerSection = FlowRouter.group({
+const publicSection = FlowRouter.group({
+  name: 'publicSection'
 });
 
-var driverSection = FlowRouter.group({
+const consumerSection = publicSection.group({
+  name: 'consumerSection',
+  prefix: '/consumer'
+});
+
+const driverSection = publicSection.group({
+  name: 'driverSection',
+  prefix: '/driver'
 });
 
 Accounts.onLogin(function() {
-  FlowRouter.go('Home');
+  publicSection.go('Home');
 });
 
 Accounts.onLogout(function() {
-  FlowRouter.go('Home');
+  publicSection.go('Home');
 });
 
-FlowRouter.route('/', {
+publicSection.route('/', {
   name: 'Home',
   action: function() {
     BlazeLayout.render('HomeLayout', {main: 'Home'});
   }
 });
 
-FlowRouter.route('/settings', {
+driverSection.route('/settings', {
   name: 'Settings',
   action: function() {
-    if(!Meteor.userId()) {
-      BlazeLayout.render('HomeLayout', {main: 'Home'});
-    } else {
-      BlazeLayout.render('DashLayout', {main: 'accountSettings'});
-    }
+    BlazeLayout.render('DashLayout', {main: 'accountSettings'});
+  }
+});
+
+consumerSection.route('/settings', {
+  name: 'Settings',
+  action: function() {
+    BlazeLayout.render('DashLayout', {main: 'accountSettings'});
   }
 });
 
 consumerSection.route('/history-client', {
   name: 'ClientHistory',
   action: function() {
-    BlazeLayout.render('DashLayout', {main: 'client_history'});
+    BlazeLayout.render('DashLayout', {main: 'ClientHistory'});
   }
 });
 
 driverSection.route('/history-driver', {
   name: 'DriverHistory',
   action: function() {
-    BlazeLayout.render('DashLayout', {main: 'driver_history'});
+    BlazeLayout.render('DashLayout', {main: 'DriverHistory'});
   }
 });
 

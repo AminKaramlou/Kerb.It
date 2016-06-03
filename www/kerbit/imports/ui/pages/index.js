@@ -10,5 +10,5 @@ import "./notFound.js";
 import "./driverHistory.js";
 import "./clientHistory.js";
 
-import '../components/onlyConsumer.js';
-import '../components/onlyDriver.js';
+import "../components/onlyDriver.js";
+import "../components/onlyConsumer.js";
