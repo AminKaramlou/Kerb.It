@@ -41,3 +41,4 @@ gwendall:auth-client-callbacks
 cfs:standard-packages
 cfs:gridfs
 fongandrew:user-settings
+barbatus:stars-rating

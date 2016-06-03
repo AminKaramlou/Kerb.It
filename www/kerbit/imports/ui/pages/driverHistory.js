@@ -11,7 +11,7 @@ Template.DriverHistoryHelper.onCreated(function () {
 Template.DriverHistoryHelper.helpers({
   transactions() {
     return Transactions.find({
-      consumerId: Meteor.userId()
+      driverId: Meteor.userId()
     });
   }
 });
