@@ -50,6 +50,11 @@ Transactions.attachSchema(TransactionsSchema);
 
 if (Meteor.isServer) {
   Meteor.publish('transactions', function transactionsPublication() {
-    return Transactions.find({});
+    return Transactions.find({}, {
+      $or: [
+        { consumerId: this.userId },
+        { driverId: this.userId }
+      ]
+    });
   });
 }

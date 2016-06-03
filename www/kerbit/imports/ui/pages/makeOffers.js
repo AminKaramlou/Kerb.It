@@ -52,15 +52,15 @@ Template.MakeOffersHelper.events({
     const target = event.target;
     const price = Number(target.price.value);
     var requestId;
-    if (target.requestId == Array) {
+    if (target.requestId.length) {
       for (var i in target.requestId) {
-
+        console.log(i);
         if (target.requestId[i].checked) {
-          requestId = String(target.requestId[i].value);
+          requestId = target.requestId[i].value;
         }
       }
     } else {
-      requestId = String(target.requestId.value);
+      requestId = target.requestId.value;
     }
 
     Meteor.call('makeOffer', requestId, Meteor.userId(), price);

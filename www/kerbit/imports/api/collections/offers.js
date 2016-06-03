@@ -13,11 +13,6 @@ OffersSchema = new SimpleSchema({
     label: "Consumer ID",
     regEx: SimpleSchema.RegEx.Id
   },
-  transactionId: {
-    type: String,
-    label: "Transaction ID",
-    regEx: SimpleSchema.RegEx.Id
-  },
   driverId: {
     type: String,
     label: "Driver ID",
