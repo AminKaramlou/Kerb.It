@@ -1,85 +1,88 @@
-import { Transactions, Requests, Offers, Markers, Players } from './collections.js';
+import { Transactions } from './collections/transactions.js'
+import { Requests } from './collections/requests.js'
+import { Offers } from './collections/offers.js'
+import { Images } from './collections/images.js'
 
 Meteor.methods({
-  'makeRequest'(consumerId, title, description, bidWindow, sizeRequired, postcode) {
+  'makeRequest'(consumerId, imageId, description, bidWindow, sizeRequired,
+                postcode, loc) {
     const date = new Date();
-
-    const transactionId = Transactions.insert({
-      title,
-      description,
-      consumerId,
-      sizeAllocated: sizeRequired, //to change later
-      postcode,
-      date
-    });
 
     Requests.insert({
       consumerId,
-      title,
+      imageId,
       description,
       bidWindow,
       sizeRequired,
       postcode,
-      transactionId,
+      loc,
       offers: [],
-      date
+      createdAt: new Date() 
     });
   },
-
+  'deleteRequest'(requestId) {
+    var request = Requests.findOne(requestId);
+    var offers = request.offers;
+    for (var i in offers) {
+      var offerId = offers[i];
+      Offers.remove(offerId);
+    }
+    Images.remove(request.imageId);
+    Requests.remove(requestId);
+  },
   'makeOffer'(requestId, driverId, price) {
     const request = Requests.findOne(requestId);
-
+    const offers = request.offers;
     const offerId = Offers.insert({
       requestId,
       consumerId: request.consumerId,
-      transactionId: request.transactionId,
       driverId,
       price,
-      date: new Date()
+      createdAt: new Date()
     });
 
-    request.offers.push(offerId);
-    //Does modifying the object change the database? Doubt it.
+    offers.push(offerId);
 
     Requests.update(requestId, {
       $set: {
-        offers: request.offers
+        offers: offers
       }
     });
   },
-  'acceptOffer'(transactionId, requestId, offerId, driverId, size_allocated, price) {
-    Requests.remove(requestId);
-    Offers.remove(offerId);
-    Transactions.update(transactionId, {
+  'acceptOffer'(requestId, offerId, sizeAllocated) {
+    const request = Requests.findOne(requestId);
+    const offer = Offers.findOne(offerId);
+    Transactions.insert({
+      consumerId: request.consumerId,
+      description: request.description,
+      sizeAllocated: sizeAllocated,
+      postcode: request.postcode,
+      createdAt: request.createdAt,
+      price: offer.price,
+      driverId: offer.driverId,
+      dateConfirmed: new Date()
+    });
+    Meteor.call('deleteRequest', requestId);
+  },
+  'rateDriver'(driverId, rating) {
+    /*
+     Pseudo-correct way of doing ratings (much more complicated EWMAs)
+     http://stackoverflow.com/questions/1411199/what-is-a-better-way-to-sort-by-a-5-star-rating
+     http://www.evanmiller.org/how-not-to-sort-by-average-rating.html
+     */
+
+    var user = Meteor.users.findOne(driverId);
+    var currentRating = user.rating;
+    var newRating = 0;
+    if (currentRating == null) {
+      newRating = rating;
+    } else {
+      newRating = (0.6*currentRating + 0.4*rating);
+    }
+    Meteor.users.update(driverId, {
       $set: {
-        //size_allocated,
-        price,
-        driverId,
-        dateConfirmed: new Date()
+        rating: newRating
       }
     });
-  },
-  'addMarker'(latitude, longitude) {
-    Markers.insert({
-      latitude,
-      longitude
-    });
-  },
-  'updateMarker'(markerId, latitude, longitude) {
-    Markers.update(markerId, {
-      $set: {
-        latitude,
-        longitude
-      }
-    });
-  },
-  'players.insert'(newPlayer) {
-    Players.insert(newPlayer);
-  },
-  'players.update'(selector, options) {
-    Players.update(selector, options);
-  },
-  'players.remove'(selector) {
-    Players.remove(selector);
   }
 });

@@ -1,16 +1,40 @@
-<template name="myRequests">
+<template name="MyRequests">
+  {{#OnlyConsumer}}
+    {{>MyRequestsHelper}}
+  {{/OnlyConsumer}}
+</template>
+
+<template name="MyRequestsHelper">
+  <div class="text-center h1"> My Requests </div>
   <div class="container">
     <div class="row">
-      {{#each requests}}
-        <li>
-          Request: {{_id}}
+      <ul class="list-group">
+        {{#each requests}}
+        <li class="list-group-item">
+          Request: {{description}} <br>
+          Created on {{formatDate createdAt}}. <br>
+          Pick up {{formatDescription description}} <br>
+          at postcode: {{formatPostcode postcode}} <br>
+          {{#each images imageId}}
+            <div>
+              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-thumbnail" /></a>
+            </div>
+          {{/each}}
           {{#each offers _id}}
-            <ul>
-              Offer: {{_id}} <button class='accept-offer'>Accept Offer</button>
+            <ul class="list-group">
+              <li class="list-group-item">
+                Offer: {{price}} <button class="btn btn-default btn-success accept-offer">Accept Offer</button>
+              </li>
             </ul>
           {{/each}}
+          <ul class="list-group">
+            <li class="list-group-item">
+              <button class="btn btn-default btn-danger delete-request">Delete Request</button>
+            </li>
+          </ul>
         </li>
-      {{/each}}
+        {{/each}}
+      </ul>
     </div>
   </div>
 </template>

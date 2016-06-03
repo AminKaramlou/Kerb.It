@@ -2,14 +2,22 @@ import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';
 import { assert } from 'meteor/practicalmeteor:chai';
  
-import { Transactions, Requests, Offers } from './collections.js';
+import { Requests } from './collections/requests.js';
+import { Offers } from './collections/offers.js';
+import { Transactions } from './collections/transactions.js';
 import './methods.js';
  
 if (Meteor.isServer) {
   describe('API methods', () => {
     const consumerId = Random.id();
     const driverId = Random.id();
+    const imageId = Random.id();
 
+    const description = "Test Description";
+    const bidWindow = 7;
+    const sizeRequired = 7;
+    const postcode = "SW72AZ";
+    const loc = {type: "Point", coordinates:[7,10]};
     beforeEach(() => {
       Transactions.remove({});
       Requests.remove({});
@@ -19,33 +27,56 @@ if (Meteor.isServer) {
     describe('makeRequest', () => {
       beforeEach(() => {
         const makeRequest = Meteor.server.method_handlers['makeRequest'];
-        const invocation = { consumerId };
+        const invocation = { userId: consumerId };
 
-        makeRequest.apply(invocation, {consumerId}); 
+        makeRequest.apply(invocation, [consumerId, imageId, description, bidWindow, sizeRequired, postcode, loc]);
       });
 
       it('should create request', () => {
         assert.equal(Requests.find().count(), 1);
       });
-      it('should create transaction', () => {
-        assert.equal(Transactions.find().count(), 1);
+    });
+    describe('deleteRequest', () => {
+      beforeEach(() => {
+        const deleteRequest = Meteor.server.method_handlers['deleteRequest'];
+        const invocation = { userId: consumerId };
+    
+        const requestId = Requests.insert({
+          consumerId,
+          imageId,
+          description,
+          bidWindow,
+          sizeRequired,
+          postcode,
+          loc,
+          offers: [],
+          createdAt: new Date()
+        });
+        deleteRequest.apply(invocation, [requestId]); 
       });
-      it('should have request with field pointing to transaction', () => {
-        const transaction = Transactions.findOne();
-        const request = Requests.findOne();
-        assert.equal(request.transactionId, transaction._id);
+
+      it('should delete request', () => {
+        assert.equal(Offers.find().count(), 0);
       });
     });
     describe('makeOffer', () => {
       beforeEach(() => {
         const makeOffer = Meteor.server.method_handlers['makeOffer'];
-        const invocation = { driverId };
+        const invocation = { userId: driverId };
     
         const requestId = Requests.insert({
-          offers: []
+          consumerId,
+          imageId,
+          description,
+          bidWindow,
+          sizeRequired,
+          postcode,
+          loc,
+          offers: [],
+          createdAt: new Date()
         });
-
-        makeOffer.apply(invocation, [requestId, driverId]); 
+        const price = 1000;
+        makeOffer.apply(invocation, [requestId, driverId, price]); 
       });
 
       it('should create offer', () => {
@@ -67,16 +98,33 @@ if (Meteor.isServer) {
     describe('acceptOffer', () => {
       beforeEach(() => {
         const acceptOffer = Meteor.server.method_handlers['acceptOffer'];
-        const invocation = { consumerId };
+        const invocation = { userId: consumerId };
     
-        const offerId = Offers.insert({
-        });
+        const sizeAllocated = 7;
+        const price = 1000;
+        const date = new Date();
+        const offerId = Random.id();
         const requestId = Requests.insert({
+          consumerId,
+          imageId,
+          description,
+          bidWindow,
+          sizeRequired: sizeAllocated,
+          postcode,
+          loc,
+          offers: [],
+          offers: [offerId],
+          createdAt: date
         });
-        const transactionId = Transactions.insert({
+        Offers.insert({
+          _id: offerId,
+          requestId,
+          consumerId,
+          driverId,
+          price,
+          createdAt: date
         });
-
-        acceptOffer.apply(invocation, [transactionId, requestId, offerId, driverId]); 
+        acceptOffer.apply(invocation, [requestId, offerId, sizeAllocated]); 
       });
 
       it('should delete request', () => {
@@ -85,7 +133,10 @@ if (Meteor.isServer) {
       it('should delete offer', () => {
         assert.equal(Offers.find().count(), 0);
       });
-      it('should update transactions with driver ID', () => {
+      it('should create transaction', () => {
+        assert.equal(Transactions.find().count(), 1);
+      });
+      it('should have transaction pointing to corresponding driver', () => {
         const transaction = Transactions.findOne();
 
         assert.equal(transaction.driverId, driverId);

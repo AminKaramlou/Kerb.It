@@ -1,16 +1,20 @@
-<template name="myOffers">
-<div class="container">
-  <div class="row">
-    {{#each offers}}
-      <li>
-        Offer: {{_id}}
-        {{#each requests requestId}}
-          <ul>
-            Request: {{_id}}
-          </ul>
-        {{/each}}
-      </li>
-    {{/each}}
+<template name="MyOffers">
+  {{#OnlyDriver}}
+    {{>MyOffersHelper}}
+  {{/OnlyDriver}}
+</template>
+
+<template name="MyOffersHelper">
+  <div class="text-center h1"> My Offers </div>
+    <div class="container">
+      <div class="row">
+        {{#each offer in offers}}
+          <li>
+            {{#each request in requests offer.requestId}}
+                Request: {{request.description}} {{offer.price}}
+            {{/each}}
+          </li>
+      {{/each}}
+    </div>
   </div>
-</div>
 </template>

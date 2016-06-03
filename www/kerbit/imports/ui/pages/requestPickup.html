@@ -1,20 +1,22 @@
-<template name="requestPickup">
+<template name="RequestPickup">
+  {{#OnlyConsumer}}
+    {{>RequestPickupHelper}}
+  {{/OnlyConsumer}}
+</template>
+
+<template name="RequestPickupHelper">
 <div class="container">
   <div class="jumbotron">
     <div class="row">
       <div class="col-md-6">
         <p class="h1 text-center">Map</p>
-        {{> map}}
+        <div id="map-container" class="request-pickup">
+          {{> map}}
+        </div>
       </div>
       <div class="col-md-6">
         <p class="h1 text-center">Address</p>
         <form class="form-horizontal">
-          <div class="form-group">
-            <label for="title" class="col-md-2 control-label">Title</label>
-            <div class="col-md-10">
-              <input type="text" class="form-control" id="title" placeholder="Title">
-            </div>
-          </div>
           <div class="form-group">
             <label for="description" class="col-md-2 control-label">Description</label>
             <div class="col-md-10">
@@ -22,15 +24,22 @@
             </div>
           </div>
           <div class="form-group">
+            <label for="image" class="col-md-2 control-label">Image</label>
+            <div class="col-md-10">
+              <input type="file" id="file" accept="images/*">
+              <img id="image" src="#" alt="your image" class="img-thumbnail">
+            </div>
+          </div>
+          <div class="form-group">
             <label for="sizeRequired" class="col-md-2 control-label">Size Required</label>
             <div class="col-md-10">
-              <input type="range" id="sizeRequired" value="50">
+              <input type="range" id="sizeRequired" value="5" min="1" max="10">
             </div>
           </div>
           <div class="form-group">
             <label for="bidWindow" class="col-md-2 control-label">Bid Window</label>
             <div class="col-md-10">
-              <input type="range" id="bidWindow" value="50">
+              <input type="range" id="bidWindow" value="10000" min="1" max="20160">
             </div>
           </div>
           <div class="form-group">

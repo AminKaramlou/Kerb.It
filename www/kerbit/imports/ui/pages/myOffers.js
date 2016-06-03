@@ -1,14 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Requests, Offers } from '../../api/collections.js';
+import { Requests } from '../../api/collections/requests.js';
+import { Offers } from '../../api/collections/offers.js';
 import './myOffers.html';
 
-Template.myOffers.onCreated(function myRequestsCreated() {
+Template.MyOffersHelper.onCreated(function myRequestsCreated() {
   Meteor.subscribe('requests'); 
   Meteor.subscribe('offers');
 });
 
-Template.myOffers.helpers({
+Template.MyOffersHelper.helpers({
   offers() {
     return Offers.find({
       driverId: Meteor.userId()

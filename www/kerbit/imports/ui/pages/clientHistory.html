@@ -1,0 +1,22 @@
+<template name="ClientHistory">
+  {{#OnlyConsumer}}
+    {{>ClientHistoryHelper }}
+  {{/OnlyConsumer}}
+</template>
+
+<template name="ClientHistoryHelper">
+  <div class="text-center h1"> My Recent Transactions </div>
+    <div class="container">
+      <div class="row">
+        <ul class="list-group">
+          {{#each transactions}}
+            <li class ="list-group-item">
+              {{>Transaction}}{{> starsRating id='rating' mutable=true}}
+              <button class="btn btn-default ratingButton">Rate this transaction</button>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+</template>
+

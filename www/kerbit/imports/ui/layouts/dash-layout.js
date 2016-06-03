@@ -1,3 +1,4 @@
 import "../components/header.js";
 import "../components/footer.js";
-import "./app-layout.html";
+import "../components/sidebar.js";
+import "./dash-layout.html";

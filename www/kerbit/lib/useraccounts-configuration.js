@@ -1,12 +1,14 @@
 // Options
 AccountsTemplates.configure({
+    defaultLayout: 'HomeLayout',
+    defaultContentRegion: 'main',
     // defaultLayout: 'emptyLayout',
     showForgotPasswordLink: true,
     overrideLoginErrors: true,
     enablePasswordChange: true,
 
     sendVerificationEmail: true,
-    enforceEmailVerification: true,
+    enforceEmailVerification: false,
     confirmPassword: true,
     //continuousValidation: false,
     //displayFormLabels: true,
@@ -22,6 +24,7 @@ AccountsTemplates.configure({
     },
     showReCaptcha: true,
     showLabels: false,
+
 
     negativeValidation: true,
     positiveValidation: true,
@@ -112,6 +115,6 @@ AccountsTemplates.addFields([
     {
         _id: 'isDriver',
         type: 'checkbox',
-        displayName: "Register as Driver",
+        displayName: "Register as Driver"
     }
 ]);
