@@ -18,28 +18,62 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34F-9y-R64">
-                                <rect key="frame" x="169" y="318" width="37" height="30"/>
-                                <state key="normal" title="Array"/>
+                                <rect key="frame" x="149" y="318" width="78" height="30"/>
+                                <state key="normal" title="List Players"/>
                                 <connections>
-                                    <action selector="clickButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="JUl-Mo-4k7"/>
+                                    <action selector="didListPlayers" destination="BYZ-38-t0r" eventType="touchUpInside" id="mqP-UA-cni"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Dp-Ga-A0l">
-                                <rect key="frame" x="166.5" y="259.5" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Score" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5IP-gu-l2w">
+                                <rect key="frame" x="139" y="180" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="VhK-yF-Rvu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EB-xr-pPX">
+                                <rect key="frame" x="145" y="257" width="86" height="30"/>
+                                <state key="normal" title="Insert Player"/>
+                                <connections>
+                                    <action selector="didInsertPlayer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YjY-Qt-IiW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqE-qF-ETS">
+                                <rect key="frame" x="120" y="370" width="135" height="30"/>
+                                <state key="normal" title="Remove First Player"/>
+                                <connections>
+                                    <action selector="didRemoveFirstPlayer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oRU-KQ-xZG"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5kb-ms-2z7">
+                                <rect key="frame" x="139" y="127" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="3u5-Ee-fYU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="34F-9y-R64" firstAttribute="top" secondItem="7EB-xr-pPX" secondAttribute="bottom" constant="31" id="22Z-ez-UGd"/>
+                            <constraint firstItem="5IP-gu-l2w" firstAttribute="top" secondItem="5kb-ms-2z7" secondAttribute="bottom" constant="23" id="4Jy-rV-z60"/>
                             <constraint firstItem="34F-9y-R64" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="EJz-5A-Y3D"/>
-                            <constraint firstItem="34F-9y-R64" firstAttribute="top" secondItem="1Dp-Ga-A0l" secondAttribute="bottom" constant="38" id="HW4-X5-TIz"/>
+                            <constraint firstItem="dqE-qF-ETS" firstAttribute="centerX" secondItem="34F-9y-R64" secondAttribute="centerX" id="FUi-KV-NEy"/>
+                            <constraint firstItem="dqE-qF-ETS" firstAttribute="top" secondItem="34F-9y-R64" secondAttribute="bottom" constant="22" id="KKs-4U-I4C"/>
+                            <constraint firstItem="5IP-gu-l2w" firstAttribute="centerX" secondItem="7EB-xr-pPX" secondAttribute="centerX" id="PGx-JE-YPp"/>
+                            <constraint firstItem="7EB-xr-pPX" firstAttribute="top" secondItem="5IP-gu-l2w" secondAttribute="bottom" constant="47" id="RcE-tY-sYC"/>
                             <constraint firstItem="34F-9y-R64" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Whf-ah-upf"/>
-                            <constraint firstItem="1Dp-Ga-A0l" firstAttribute="centerX" secondItem="34F-9y-R64" secondAttribute="centerX" id="fua-ie-ufA"/>
+                            <constraint firstItem="5kb-ms-2z7" firstAttribute="centerX" secondItem="5IP-gu-l2w" secondAttribute="centerX" id="m8u-Zd-45E"/>
+                            <constraint firstItem="7EB-xr-pPX" firstAttribute="centerX" secondItem="34F-9y-R64" secondAttribute="centerX" id="qDU-Az-jc2"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="nameTextField" destination="5kb-ms-2z7" id="d87-W6-zKQ"/>
+                        <outlet property="scoreTextField" destination="5IP-gu-l2w" id="uZl-3x-mSy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

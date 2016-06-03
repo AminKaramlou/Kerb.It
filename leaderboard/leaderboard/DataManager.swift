@@ -32,7 +32,7 @@ class DataManager: NSObject, NSFetchedResultsControllerDelegate {
     update()
   }
   
-  class func find(entityName: String, withDescriptors descriptors: [NSSortDescriptor]) -> [NSManagedObject] {
+  class func findObjectsfromEntity(withName entityName: String, withDescriptors descriptors: [NSSortDescriptor]) -> [NSManagedObject] {
     let fetchRequest = NSFetchRequest(entityName: entityName)
     fetchRequest.sortDescriptors = descriptors
     let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
