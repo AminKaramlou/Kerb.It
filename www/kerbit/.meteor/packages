@@ -28,5 +28,4 @@ useraccounts:iron-routing
 useraccounts:bootstrap
 email
 practicalmeteor:mocha
-autopublish
 meteortoys:allthings

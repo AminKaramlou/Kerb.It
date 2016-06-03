@@ -7,6 +7,9 @@ export const Markers = new Mongo.Collection('markers');
 export const Players = new Mongo.Collection('players');
 
 if (Meteor.isServer) {
+  Meteor.publish('players', function playersPublication() {
+    return Players.find({});
+  });
   Meteor.publish('requests', function requestsPublication() {
     if (Meteor.users.findOne(this.userId).profile.isDriver) {
       return Requests.find({});
