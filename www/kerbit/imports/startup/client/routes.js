@@ -103,7 +103,7 @@ AccountsTemplates.configureRoute('signIn', {
     path: '/login',
     template: 'login',
     layoutTemplate: 'HomeLayout',
-    redirect: '/request-pickup',
+    redirect: '/',
     contentRegion: 'main'
 });
 AccountsTemplates.configureRoute('signUp', {
