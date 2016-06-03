@@ -5,7 +5,8 @@ import './clientHistory.html';
 import '../components/transaction.html';
 
 Template.ClientHistoryHelper.onCreated(function () {
-  Meteor.subscribe('transactions'); 
+  Meteor.subscribe('transactions');
+  Meteor.subscribe('users');
 });
 
 Template.ClientHistoryHelper.helpers({
@@ -16,3 +17,10 @@ Template.ClientHistoryHelper.helpers({
   }
 });
 
+Template.ClientHistoryHelper.events({
+  'click .ratingButton'(event) {
+    event.preventDefault();
+    var rating = $('#rating').data('userrating');
+    Meteor.call('rateDriver', this.driverId, rating);
+  }
+});
