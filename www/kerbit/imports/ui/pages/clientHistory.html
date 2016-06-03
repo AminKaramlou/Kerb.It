@@ -46,7 +46,14 @@
             <th scope="row">{{_id}}</th>
             <td><img src="https://randomuser.me/api/portraits/men/8.jpg" style="width:35px;height:30px;">{{getDriverName driverId}}</td>
             <td>{{formatPostcode postcode}}</td>
-            <td>{{> starsRating id='rating' mutable=true}}<button class="btn btn-default ratingButton">Rate this transaction</button></td>
+            <td>
+                {{#if hasFeedback _id}}
+                    {{> starsRating rating=feedbackScore mutable=false}}
+                {{else}}
+                    {{> starsRating id='rating' mutable=true}}
+                    <button class="btn btn-default ratingButton">Rate this transaction</button>
+                {{/if}}
+            </td>
         </tr>
         {{/each}}
 

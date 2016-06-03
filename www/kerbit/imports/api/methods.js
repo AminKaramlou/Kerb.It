@@ -71,7 +71,9 @@ Meteor.methods({
       price: offer.price,
       driverId: offer.driverId,
       dateConfirmed: new Date(),
-      isCompleted: false
+      isCompleted: false,
+      hasLeftFeedback: false,
+      feedbackScore: 0
     });
     Meteor.call('deleteRequest', requestId);
   },
@@ -93,6 +95,16 @@ Meteor.methods({
     Meteor.users.update(driverId, {
       $set: {
         rating: newRating
+      }
+    });
+  },
+
+  'leaveFeedback'(transId, rating) {
+    Transactions.update(transId, {
+      $set: {
+        hasLeftFeedback: true,
+        dateRated: new Date(),
+        feedbackScore: rating
       }
     });
   }
