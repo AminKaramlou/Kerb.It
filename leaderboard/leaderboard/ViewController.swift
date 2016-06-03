@@ -11,11 +11,14 @@ import UIKit
 class ViewController: UIViewController {
   @IBOutlet weak var nameTextField: UITextField!
   @IBOutlet weak var scoreTextField: UITextField!
+  var fRC: NSFetchedResultsController!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     DataManager.subscriptionLoader.addSubscriptionWithName("players")
     DataManager.subscriptionLoader.whenReady() {
+      let descriptors = [NSSortDescriptor(key: "score", ascending: false), NSSortDescriptor(key: "name", ascending: true)]
+      self.fRC = DataManager.findObjectsfromEntity(withName: "Player", withDescriptors: descriptors)
       print("Done subscribing")
     }
   }
@@ -28,16 +31,14 @@ class ViewController: UIViewController {
   }
   
   @IBAction func didListPlayers() {
-    let descriptors = [NSSortDescriptor(key: "score", ascending: false), NSSortDescriptor(key: "name", ascending: true)]
-    let res = DataManager.findObjectsfromEntity(withName: "Player", withDescriptors: descriptors)
+    let res = fRC.fetchedObjects as! [NSManagedObject]
     for r in res {
       print(r)
     }
   }
 
   @IBAction func didRemoveFirstPlayer(sender: AnyObject) {
-    let descriptors = [NSSortDescriptor(key: "score", ascending: false), NSSortDescriptor(key: "name", ascending: true)]
-    let res = DataManager.findObjectsfromEntity(withName: "Player", withDescriptors: descriptors)
+    let res = fRC.fetchedObjects as! [NSManagedObject]
     if (res.count > 0) {
       DataManager.remove(entityObject: res[0])
       DataManager.update()
@@ -49,4 +50,3 @@ class ViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
 }
-

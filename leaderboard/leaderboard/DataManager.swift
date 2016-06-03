@@ -32,7 +32,7 @@ class DataManager: NSObject, NSFetchedResultsControllerDelegate {
     update()
   }
   
-  class func findObjectsfromEntity(withName entityName: String, withDescriptors descriptors: [NSSortDescriptor]) -> [NSManagedObject] {
+  class func findObjectsfromEntity(withName entityName: String, withDescriptors descriptors: [NSSortDescriptor]) -> NSFetchedResultsController {
     let fetchRequest = NSFetchRequest(entityName: entityName)
     fetchRequest.sortDescriptors = descriptors
     let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -40,14 +40,16 @@ class DataManager: NSObject, NSFetchedResultsControllerDelegate {
       try fetchedResultsController.performFetch()
     } catch _ {}
     fetchedResultsController.delegate = fetchedResultsControllerDelegate
-    return fetchedResultsController.fetchedObjects as! [NSManagedObject] //WARNING: Result does not update
+    return fetchedResultsController
   }
   
   @objc internal func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    print(1)
     //changes = [ChangeDetail]()
   }
   
   @objc internal func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+    print(2)
 //    switch(type) {
 //    case .Insert:
 //      changes!.append(.SectionInserted(sectionIndex))
@@ -59,6 +61,7 @@ class DataManager: NSObject, NSFetchedResultsControllerDelegate {
   }
   
   @objc internal func controller(controller: NSFetchedResultsController, didChangeObject object: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    print(3)
 //    switch(type) {
 //    case .Insert:
 //      changes!.append(.ObjectInserted(newIndexPath!))
@@ -72,6 +75,7 @@ class DataManager: NSObject, NSFetchedResultsControllerDelegate {
   }
   
   @objc internal func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    print(4)
 //    didChangeContent(changes!)
 //    changes = nil
   }

@@ -21,11 +21,6 @@ class FormVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
   }
   
   @IBAction func didSubmitForm() {
-    let newRequest = DataManager.getNewObjectFromEntity(withName: "Request") as! Request
-    newRequest.postcode = postcode.text!
-    newRequest.consumerId = Meteor.userID!
-    newRequest.bidWindow = Int64(bidWindow.value * 21640)
-    newRequest.sizeRequired = Int64(sizeRequired.value * 10)
-    DataManager.update()
+    Meteor.callMethodWithName("makeRequest", parameters: [Meteor.userID!, "Test Title", "Test Description", bidWindow.value * 21640, sizeRequired.value * 10, postcode.text!])
   }
 }

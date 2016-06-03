@@ -178,10 +178,10 @@
             </objects>
             <point key="canvasLocation" x="1148.5" y="365.5"/>
         </scene>
-        <!--View Controller-->
+        <!--My RequestsVC-->
         <scene sceneID="ECa-7m-UaE">
             <objects>
-                <viewController id="8KL-Ve-Gk8" customClass="ViewController" customModule="kerbit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8KL-Ve-Gk8" customClass="MyRequestsVC" customModule="kerbit" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="slo-n1-nFF"/>
                         <viewControllerLayoutGuide type="bottom" id="uAK-1o-qfn"/>
