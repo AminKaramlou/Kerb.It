@@ -108,7 +108,7 @@ if (Meteor.isServer) {
           bidWindow,
           sizeRequired: sizeAllocated,
           postcode,
-          offers: [],
+          offers: [offerId],
           createdAt: date
         });
         Offers.insert({
