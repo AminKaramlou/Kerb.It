@@ -51,7 +51,7 @@ Template.MyRequestsHelper.helpers({
 
 Template.MyRequestsHelper.events({
   'click .accept-offer'() {
-    Meteor.call('acceptOffer', this.transactionId, this.requestId, this._id, this.driverId, 100, this.price);
+    Meteor.call('acceptOffer', this.requestId, this._id, 5);
   },
   'click .delete-request'() {
     Meteor.call('deleteRequest', this._id);
