@@ -11,26 +11,27 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
   Meteor.subscribe('images');
 
   GoogleMaps.ready('map', function(map) {
-        var markers = {};
 
-        Requests.find().observe({
-            added: function (document) {
-                var marker = new google.maps.Marker({
-                    animation: google.maps.Animation.DROP,
-                    position: new google.maps.LatLng(document.latitude, document.longitude),
-                    map: map.instance,
-                    id: document._id
-                });
+    var markers = {};
 
-                markers[document._id] = marker;
-            },
+    Requests.find().observe({
+      added: function (document) {
+        var marker = new google.maps.Marker({
+          animation: google.maps.Animation.DROP,
+          position: new google.maps.LatLng(document.latitude, document.longitude),
+          map: map.instance,
+          id: document._id
+      });
 
-            removed: function (oldDocument) {
-              markers[oldDocument._id].setMap(null);
-              delete markers[oldDocument._id];
-            }
-        });
+        markers[document._id] = marker;
+      },
+
+      removed: function (oldDocument) {
+        markers[oldDocument._id].setMap(null);
+        delete markers[oldDocument._id];
+      }
     });
+  });
 });
 
 Template.MakeOffersHelper.helpers({
