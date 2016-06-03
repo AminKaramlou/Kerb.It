@@ -73,13 +73,13 @@ Meteor.methods({
       }
     });
   },
-  'players.insert'(name, score) {
-    Players.insert({
-      name,
-      score
-    });
+  'players.insert'(newPlayer) {
+    Players.insert(newPlayer);
   },
   'players.update'(selector, options) {
     Players.update(selector, options);
+  },
+  'players.remove'(selector) {
+    Players.remove(selector);
   }
 });
