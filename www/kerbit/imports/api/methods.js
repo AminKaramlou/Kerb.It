@@ -4,29 +4,7 @@ import { Offers } from './collections/offers.js'
 import {Images} from './collections/images.js'
 
 Meteor.methods({
-
-  ImageUpload: function (fileInfo, fileData) {
-    console.log(fileInfo);
-    Images.insert(fileInfo, fileData, function (err, fileObj) {
-      if (err) console.log(err)
-      else {
-        //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-        console.log(fileObj);
-        return fileObj._id;
-      }
-    });
-  },
-
   'makeRequest'(consumerId, imageId, description, bidWindow, sizeRequired, postcode) {
-    const date = new Date();
-    const transactionId = Transactions.insert({
-      consumerId,
-      description,
-      sizeAllocated: sizeRequired, //to change later
-      postcode,
-      createdAt: date
-    });
-
     Requests.insert({
       consumerId,
       imageId,
@@ -36,14 +14,14 @@ Meteor.methods({
       sizeRequired,
       postcode,
       offers: [],
-      createdAt: date
+      createdAt: new Date() 
     });
   },
   'deleteRequest'(requestId) {
     // Remove offers associated with this request
     var request = Requests.findOne(requestId);
     var offers = request.offers;
-    for (var i = 0; i < offers.length; i++) {
+    for (var i in offers) {
       var offerId = offers[i];
       Offers.remove(offerId);
     }
@@ -52,7 +30,7 @@ Meteor.methods({
     Requests.remove(requestId);
   },
   'makeOffer'(requestId, driverId, price) {
-    const request = Requests.findOne(requestId);
+    const offers = Requests.findOne(requestId).offers;
     const offerId = Offers.insert({
       requestId,
       consumerId: request.consumerId,
@@ -62,24 +40,28 @@ Meteor.methods({
       createdAt: new Date()
     });
 
-    request.offers.push(offerId);
+    offers.push(offerId);
 
     Requests.update(requestId, {
       $set: {
-        offers: request.offers
+        offers: offers
       }
     });
   },
-  'acceptOffer'(transactionId, requestId, offerId, driverId, sizeAllocated, price) {
+  'acceptOffer'(requestId, offerId, sizeAllocated) {
+    const request = Requests.findOne(requestId);
+    const offer = Offers.findOne(offerId);
+    Transactions.insert({
+      consumerId: request.consumerId,
+      description: request.description,
+      sizeAllocated: sizeAllocated,
+      postcode: request.postcode,
+      createdAt: request.createdAt,
+      price: offer.price,
+      driverId: offer.driverId,
+      dateConfirmed: new Date()
+    })
     Requests.remove(requestId);
     Offers.remove(offerId);
-    Transactions.update(transactionId, {
-      $set: {
-        //sizeAllocated,
-        price,
-        driverId,
-        dateConfirmed: new Date()
-      }
-    });
   }
 });
