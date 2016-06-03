@@ -1,12 +1,16 @@
 <template name='OnlyConsumer'>
-  {{#if authInProcess}}
-    <p> Currently logging you in ... </p>
-  {{else}}
-    {{#if canShow}}
-      {{> Template.contentBlock}}
+    {{#if authInProcess}}
+        <div class="text-center">
+            <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+            <h1>Logging in, please wait...</h1>
+        </div>
     {{else}}
-      <p> You are not authorized to see this page.</p>
-      <p> Please <a href="/login">login as a consumer</a> to see this page.</p>
+        {{#if canShow}}
+            {{> Template.contentBlock}}
+        {{else}}
+            <h1 class="text-center text-danger"><i class="fa fa-lock fa-fw"></i> Sorry, you cannot access this page.</h1>
+            <hr>
+            <h3 class="text-center">Please sign in with a client account to proceed.</h3>
+        {{/if}}
     {{/if}}
-  {{/if}}
 </template>

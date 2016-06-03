@@ -5,36 +5,52 @@
 </template>
 
 <template name="MyRequestsHelper">
-  <div class="text-center h1"> My Requests </div>
+  <div class="text-center h1">My requests
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button class="btn btn-success refresh-requests"><i class="fa fa-refresh fa-fw"></i> Refresh</button>
+      <button class="btn btn-danger delete-all-requets"><i class="fa fa-trash fa-fw"></i> Delete all</button>
+    </div>
+  </div>
+  <hr>
   <div class="container">
     <div class="row">
-      <ul class="list-group">
+      <div class="list-group">
         {{#each requests}}
-        <li class="list-group-item">
-          Request: {{description}} <br>
-          Created on {{formatDate createdAt}}. <br>
-          Pick up {{formatDescription description}} <br>
-          at postcode: {{formatPostcode postcode}} <br>
-          {{#each images imageId}}
-            <div>
-              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-thumbnail" /></a>
-            </div>
-          {{/each}}
-          {{#each offers _id}}
-            <ul class="list-group">
-              <li class="list-group-item">
-                Offer: {{price}} <button class="btn btn-default btn-success accept-offer">Accept Offer</button>
+          <li class="list-group-item">
+            <ul class="list-group custom-border">
+              <li class ="list-group-item">
+                {{#each images imageId}}
+                  <div class="container">
+                    <div class="col-md-2" style="padding-left: 0px;  padding-right: 0px;">
+                      <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-rounded img-responsive" /></a>
+                    </div>
+                  </div>
+                {{/each}}
               </li>
+              <li class ="list-group-item">
+                <span class="text-info">Description:</span> &nbsp;&nbsp;{{formatDescription description}}
+              </li>
+              <li class ="list-group-item">
+                <span class="text-info">Date created:</span> {{formatDate dateConfirmed}}
+              </li>
+              <li class ="list-group-item">
+                <span class="text-info">Location:</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{formatPostcode postcode}}
+              </li>
+              <li class ="list-group-item">
+                <span class="text-info">Offers:</span><br>
+                {{#each offers _id}}
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      Offer: {{price}} <button class="btn btn-default btn-success accept-offer">Accept Offer</button>
+                    </li>
+                  </ul>
+                {{/each}}
+              </li>
+              <button type="button" class="list-group-item list-group-item-danger"><i class="fa fa-trash fa-fw"></i> Delete this request</button>
             </ul>
-          {{/each}}
-          <ul class="list-group">
-            <li class="list-group-item">
-              <button class="btn btn-default btn-danger delete-request">Delete Request</button>
-            </li>
-          </ul>
-        </li>
+          </li>
         {{/each}}
-      </ul>
+      </div>
     </div>
   </div>
 </template>

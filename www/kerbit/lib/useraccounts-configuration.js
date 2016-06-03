@@ -77,7 +77,7 @@ AccountsTemplates.addFields([
         type: 'password',
         required: true,
         minLength: 6,
-        placeholder: "Password",
+        placeholder: "Password"
     },
     {
         _id: 'password_again',
