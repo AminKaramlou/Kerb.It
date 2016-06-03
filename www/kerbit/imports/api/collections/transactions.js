@@ -51,8 +51,24 @@ TransactionsSchema = new SimpleSchema({
   },
   dateCompleted: {
     type: Date,
-    label: "Date Conpleted",
+    label: "Date Completed",
     optional: true
+  },
+  hasLeftFeedback: {
+    type: Boolean,
+    label: "Feedback left",
+    optional: true
+  },
+  dateRated: {
+    type: Date,
+    label: "Feedback left on this date",
+    optional: true
+  },
+  feedbackScore: {
+    type: Number,
+    label: "Given feedback score",
+    min: 0,
+    max: 5
   }
 });
 
@@ -79,4 +95,7 @@ if (Meteor.isServer) {
     // console.log(driverIds);
     return Meteor.users.find({});
   });
+  Meteor.publish('getUserDetails', function(username) {
+    return Meteor.users.findOne({'username': username});
+});
 }

@@ -43,6 +43,11 @@ Template.ClientHistoryHelper.helpers({
     return user.username;
   },
 
+  hasFeedback(transId) {
+    var trans= Transactions.findOne(transId);
+    return trans.hasLeftFeedback;_
+  },
+
   formatDate(date) {
     const monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November",
@@ -69,6 +74,7 @@ Template.ClientHistoryHelper.events({
     event.preventDefault();
     var rating = $('#rating').data('userrating');
     Meteor.call('rateDriver', this.driverId, rating);
+    Meteor.call('leaveFeedback', this._id,rating);
   },
   'click .collect'(event) {
     event.preventDefault();
