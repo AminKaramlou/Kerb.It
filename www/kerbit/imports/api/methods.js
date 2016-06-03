@@ -5,15 +5,8 @@ import {Images} from './collections/images.js'
 
 Meteor.methods({
   'makeRequest'(consumerId, imageId, description, bidWindow, sizeRequired,
-                postcode, latitude, longitude) {
+                postcode, loc) {
     const date = new Date();
-    const transactionId = Transactions.insert({
-      consumerId,
-      description,
-      sizeAllocated: sizeRequired, //to change later
-      postcode,
-      createdAt: date
-    });
 
     Requests.insert({
       consumerId,
@@ -22,8 +15,7 @@ Meteor.methods({
       bidWindow,
       sizeRequired,
       postcode,
-      latitude,
-      longitude,
+      loc,
       offers: [],
       createdAt: new Date() 
     });
@@ -39,11 +31,8 @@ Meteor.methods({
     Requests.remove(requestId);
   },
   'makeOffer'(requestId, driverId, price) {
-    console.log(requestId);
     const request = Requests.findOne(requestId);
-    console.log(request);
     const offers = request.offers;
-    console.log(offers);
     const offerId = Offers.insert({
       requestId,
       consumerId: request.consumerId,
