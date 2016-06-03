@@ -7,6 +7,18 @@ AccountsTemplates.configure({
     }
 });
 
+Accounts.onCreateUser(function(options, user) {
+    user.rating = null;
+    // We still want the default hook's 'profile' behavior.
+    if (options.profile)
+        user.profile = options.profile;
+    return user
+});
+
+Meteor.publish(null, function() {
+    return Meteor.users.find(this.userId, {fields: {rating: 1}});
+});
+
 Meteor.startup(() => {
   // code to run on server at startup
 });

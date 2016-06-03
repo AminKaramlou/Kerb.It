@@ -8,7 +8,6 @@ Template.HomeLayout.helpers({
    * prevent the optimistic ui to render the home page if someone is logged in
    * */
   redirect() {
-    console.log(true);
     if( Meteor.user() && Meteor.user().profile.isDriver) {
       window.location.replace(FlowRouter.path('DriverHistory'));
     }

@@ -4,6 +4,7 @@ import { AccountsTemplates } from 'meteor/useraccounts:core';
 
 import '../../ui/pages/';
 import '../../ui/layouts/';
+import '../../ui/globalHelpers.js';
 
 const publicSection = FlowRouter.group({
   name: 'publicSection'
