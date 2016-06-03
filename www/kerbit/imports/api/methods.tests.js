@@ -11,6 +11,7 @@ if (Meteor.isServer) {
   describe('API methods', () => {
     const consumerId = Random.id();
     const driverId = Random.id();
+    const imageId = Random.id();
 
     const description = "Test Description";
     const bidWindow = 7;
@@ -27,7 +28,7 @@ if (Meteor.isServer) {
         const makeRequest = Meteor.server.method_handlers['makeRequest'];
         const invocation = { consumerId };
 
-        makeRequest.apply(invocation, [consumerId, description, bidWindow, sizeRequired, postcode]); 
+        makeRequest.apply(invocation, [consumerId, imageId, description, bidWindow, sizeRequired, postcode]);
       });
 
       it('should create request', () => {
@@ -51,6 +52,7 @@ if (Meteor.isServer) {
         const requestId = Requests.insert({
           consumerId,
           transactionId,
+          imageId,
           description,
           bidWindow,
           sizeRequired,
@@ -96,6 +98,7 @@ if (Meteor.isServer) {
         const requestId = Requests.insert({
           consumerId,
           transactionId,
+          imageId,
           description,
           bidWindow,
           sizeRequired: sizeAllocated,
