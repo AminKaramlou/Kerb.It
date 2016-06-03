@@ -24,16 +24,23 @@ Template.ClientHistoryHelper.helpers({
   },
 
   getPendingCount() {
-    var trans= Transactions.find({
+    var trans = Transactions.find({
       consumerId: Meteor.userId(),
       isCompleted: false
     });
     return trans.count();
   },
+  
+  getIsZero() {
+    return (getPendingCount() == 0);
+  },
+  getIsOne() {
+    return (getPendingCount() == 1);
+  },
 
   getDriverName(driverId) {
     var user= Meteor.users.findOne(driverId);
-        return user.username;
+    return user.username;
   },
 
   formatDate(date) {
@@ -48,7 +55,7 @@ Template.ClientHistoryHelper.helpers({
     const format = postcode.substring(0,2) + " " + postcode.substring(2);
     return format.toUpperCase();
   },
-  
+
   transactions() {
     return Transactions.find({
       consumerId: Meteor.userId(),
