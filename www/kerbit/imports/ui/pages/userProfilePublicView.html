@@ -1,9 +1,9 @@
-<template name="viewUser">
+<template name="ViewUser">
 {{#if Template.subscriptionsReady}}
   {{#if currentUser }}
       {{#if isAUser}}
 
-        {{>viewUserHelper }}
+        {{>ViewUserHelper }}
       {{else}}
 
           <p>User not found!</p>
@@ -16,7 +16,7 @@
   {{/if}}
 </template>
 
-<template name="viewUserHelper">
+<template name="ViewUserHelper">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6">

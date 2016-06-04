@@ -36,9 +36,9 @@ publicSection.route('/', {
 });
 
 FlowRouter.route('/users/:userName', {
-  name: "viewUser",
+  name: "ViewUser",
     action: function(params, queryParams) {
-    BlazeLayout.render('DashLayout', {main: 'viewUser'});
+    BlazeLayout.render('DashLayout', {main: 'ViewUser'});
   }
 });
 

@@ -1,6 +1,6 @@
 import './userProfilePublicView.html'
 
-Template.viewUser.onCreated(function () {
+Template.ViewUser.onCreated(function () {
   Meteor.subscribe('users');
   var userName = FlowRouter.getParam("userName");
 
@@ -10,46 +10,39 @@ Template.viewUser.onCreated(function () {
 
 var user;
 
-Template.viewUser.onRendered(function () {
+Template.ViewUser.onRendered(function () {
 var userName = FlowRouter.getParam("userName");
 
   user = Meteor.users.findOne({'username': userName});
 
 });
 
-Template.viewUserHelper.onCreated(function () {
+Template.ViewUserHelper.onCreated(function () {
   var userName = FlowRouter.getParam("userName");
   Meteor.subscribe('users');
   user = Meteor.users.findOne({'username': userName});
-
 });
 
-Template.viewUser.helpers({
-
+Template.ViewUser.helpers({
   isAUser() {
     return !(user == null);
   }
 });
 
-Template.viewUserHelper.helpers({
-
+Template.ViewUserHelper.helpers({
   isAUser() {
     return !(user == null);
   },
 
   getName() {
-
     return (user.profile.first_name + ' ' + user.profile.last_name);
   },
-
   getUsername() {
     return user.username;
   },
   getFeedbackScore() {
     return user.rating;
   },
-
-
   isDriver()  {
     return user.profile.isDriver();
   }
