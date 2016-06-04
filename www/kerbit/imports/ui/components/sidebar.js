@@ -2,6 +2,16 @@ import { Template } from 'meteor/templating';
 
 import "./sidebar.html";
 
+Template.side_bar.onRendered(function() {
+  this.autorun(() => {
+    $(".button-collapse").sideNav({
+      menuWidth: 240,
+      edge: 'right',
+      closeOnClick: true  
+    });
+  });
+});
+
 Template.side_bar.helpers({
   currentUserIsDriver() {
     return Meteor.user() && Meteor.user().profile.isDriver;

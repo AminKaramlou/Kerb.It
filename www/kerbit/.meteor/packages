@@ -18,7 +18,6 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 dburles:google-maps
-twbs:bootstrap
 spacebars
 accounts-password
 alanning:roles
@@ -26,7 +25,7 @@ kadira:flow-router
 kadira:blaze-layout
 accounts-ui
 useraccounts:flow-routing
-useraccounts:bootstrap
+useraccounts:materialize
 email
 practicalmeteor:mocha
 meteortoys:allthings
@@ -36,10 +35,11 @@ aldeed:autoform
 fastclick
 dburles:collection-helpers
 raix:handlebar-helpers
-matb33:bootstrap-glyphicons
 gwendall:auth-client-callbacks
 cfs:standard-packages
 cfs:gridfs
 fongandrew:user-settings
 barbatus:stars-rating
 mdg:geolocation
+fourseven:scss
+poetic:materialize-scss

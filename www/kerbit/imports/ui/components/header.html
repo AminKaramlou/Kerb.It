@@ -8,7 +8,7 @@
 </template>
 
 
-<template name = "nav_bar">
+<template name = "Nav_bar">
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -60,4 +60,21 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+</template>
+
+<template name="nav_bar">
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper container">
+        <a href="/#top" class="brand-logo"><i class="fa fa-truck fa-fw"></i> | KERB.IT</a>
+        <ul class="right hide-on-med-and-down">
+          {{#unless currentUser}}
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#services">Services</a></li>
+          {{/unless}}
+          {{> atNavButton}}
+        </ul>
+      </div>
+    </nav>
+  </div>
 </template>
