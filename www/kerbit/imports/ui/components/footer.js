@@ -1,8 +1,11 @@
 import "./footer.html";
 
 Template.Footer.events({
-  'submit .materialize-textarea'(event) {
+  'submit form': function(event) {
+    console.log("sub");
     event.preventDefault();
-    event.target.reset();
+    $('#comments').val('');
+    $('#comments').trigger('autoresize');
+    $('#comments').focusout();
   }
 })

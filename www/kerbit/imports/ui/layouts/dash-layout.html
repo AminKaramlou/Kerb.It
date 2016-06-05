@@ -1,19 +1,9 @@
 <template name="DashLayout">
   {{>PageHeader}}
   {{>Navbar}}
-    <div id="wrapper">
-      {{>Sidebar}}
-      <div id="page-content-wrapper">
-        <div class="page-content">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-                  {{>Template.dynamic template=main}}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    {{>Footer}}
+  {{>Sidebar}}
+  <main>
+    {{>Template.dynamic template=main}}
+  </main>
+  {{>Footer}}
 </template>
