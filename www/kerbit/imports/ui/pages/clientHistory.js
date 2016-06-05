@@ -56,10 +56,6 @@ Template.ClientHistoryHelper.helpers({
         date.getFullYear() + " at " + date.getHours()  + ":" +
         date.getMinutes() ;
   },
-  formatPostcode(postcode) {
-    const format = postcode.substring(0,2) + " " + postcode.substring(2);
-    return format.toUpperCase();
-  },
 
   transactions() {
     return Transactions.find({

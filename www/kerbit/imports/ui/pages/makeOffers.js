@@ -28,7 +28,6 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function (position) {
             currentPos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            console.log(currentPos);
             directionsServices[document._id].route({
               origin: currentPos,
               destination: new google.maps.LatLng(document.loc.coordinates[1], document.loc.coordinates[0]),
@@ -85,10 +84,7 @@ Template.MakeOffersHelper.helpers({
       date.getFullYear() + " at " + date.getHours()  + ":" +
       date.getMinutes() ;
   },
-  formatPostcode(postcode) {
-    const format = postcode.substring(0,2) + " " + postcode.substring(2);
-    return format.toUpperCase();
-  },
+
   formatDescription(desc) {
     let ret = desc
     if( desc.length > 100) {

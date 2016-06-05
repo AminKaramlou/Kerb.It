@@ -34,10 +34,6 @@ Template.MyRequestsHelper.helpers({
            date.getFullYear() + " at " + date.getHours()  + ":" +
            date.getMinutes() ;
   },
-  formatPostcode(postcode) {
-    const format = postcode.substring(0,2) + " " + postcode.substring(2);
-    return format.toUpperCase();
-  },
   formatDescription(desc) {
     let ret = desc;
     if( desc.length > 100) {

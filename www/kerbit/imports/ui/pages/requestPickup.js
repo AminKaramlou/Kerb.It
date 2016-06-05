@@ -32,7 +32,6 @@ Template.RequestPickupHelper.events({
     const description = target.description.value;
     const bidWindow = Number(target.bidWindow.value);
     const sizeRequired = Number(target.sizeRequired.value);
-    const postcode = target.postcode.value;
 
     const image = target.file.files[0];
     const imageId = Images.insert(image)._id;
@@ -41,7 +40,7 @@ Template.RequestPickupHelper.events({
     const loc = { type: "Point", coordinates: [ position.lng(), position.lat() ] };
 
     Meteor.call('makeRequest', Meteor.userId(), imageId, description, bidWindow,
-      sizeRequired, postcode, loc);
+      sizeRequired, loc);
     target.reset();
   }
 });

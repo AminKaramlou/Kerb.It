@@ -1,12 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';
 import { assert } from 'meteor/practicalmeteor:chai';
- 
+
 import { Requests } from './collections/requests.js';
 import { Offers } from './collections/offers.js';
 import { Transactions } from './collections/transactions.js';
 import './methods.js';
- 
+
 if (Meteor.isServer) {
   describe('API methods', () => {
     const consumerId = Random.id();
@@ -16,7 +16,6 @@ if (Meteor.isServer) {
     const description = "Test Description";
     const bidWindow = 7;
     const sizeRequired = 7;
-    const postcode = "SW72AZ";
     const loc = {type: "Point", coordinates:[7,10]};
     beforeEach(() => {
       Transactions.remove({});
@@ -29,7 +28,7 @@ if (Meteor.isServer) {
         const makeRequest = Meteor.server.method_handlers['makeRequest'];
         const invocation = { userId: consumerId };
 
-        makeRequest.apply(invocation, [consumerId, imageId, description, bidWindow, sizeRequired, postcode, loc]);
+        makeRequest.apply(invocation, [consumerId, imageId, description, bidWindow, sizeRequired, loc]);
       });
 
       it('should create request', () => {
@@ -40,19 +39,18 @@ if (Meteor.isServer) {
       beforeEach(() => {
         const deleteRequest = Meteor.server.method_handlers['deleteRequest'];
         const invocation = { userId: consumerId };
-    
+
         const requestId = Requests.insert({
           consumerId,
           imageId,
           description,
           bidWindow,
           sizeRequired,
-          postcode,
           loc,
           offers: [],
           createdAt: new Date()
         });
-        deleteRequest.apply(invocation, [requestId]); 
+        deleteRequest.apply(invocation, [requestId]);
       });
 
       it('should delete request', () => {
@@ -63,20 +61,19 @@ if (Meteor.isServer) {
       beforeEach(() => {
         const makeOffer = Meteor.server.method_handlers['makeOffer'];
         const invocation = { userId: driverId };
-    
+
         const requestId = Requests.insert({
           consumerId,
           imageId,
           description,
           bidWindow,
           sizeRequired,
-          postcode,
           loc,
           offers: [],
           createdAt: new Date()
         });
         const price = 1000;
-        makeOffer.apply(invocation, [requestId, driverId, price]); 
+        makeOffer.apply(invocation, [requestId, driverId, price]);
       });
 
       it('should create offer', () => {
@@ -99,7 +96,7 @@ if (Meteor.isServer) {
       beforeEach(() => {
         const acceptOffer = Meteor.server.method_handlers['acceptOffer'];
         const invocation = { userId: consumerId };
-    
+
         const sizeAllocated = 7;
         const price = 1000;
         const date = new Date();
@@ -110,7 +107,6 @@ if (Meteor.isServer) {
           description,
           bidWindow,
           sizeRequired: sizeAllocated,
-          postcode,
           loc,
           offers: [],
           offers: [offerId],
@@ -124,7 +120,7 @@ if (Meteor.isServer) {
           price,
           createdAt: date
         });
-        acceptOffer.apply(invocation, [requestId, offerId, sizeAllocated]); 
+        acceptOffer.apply(invocation, [requestId, offerId, sizeAllocated]);
       });
 
       it('should delete request', () => {

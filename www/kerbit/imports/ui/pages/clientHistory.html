@@ -30,7 +30,6 @@
       <th scope="row">{{_id}}</th>
       <td><a href="/users/{{getDriverName driverId}}"> <img src="https://randomuser.me/api/portraits/men/8.jpg" style="width:35px;height:30px;">{{getDriverName driverId}}</a>
       </td>
-      <td>{{formatPostcode postcode}}</td>
       <td><button class="btn btn-default btn-success collect">Collected</button></td>
     </tr>
     {{/each}}
@@ -55,7 +54,6 @@
             <th>{{formatDate dateConfirmed}}</th>
             <th scope="row">{{_id}}</th>
             <td><a href="/users/{{getDriverName driverId}}"><img src="https://randomuser.me/api/portraits/men/8.jpg" style="width:35px;height:30px;">{{getDriverName driverId}}</a></td>
-            <td>{{formatPostcode postcode}}</td>
             <td>
                 {{#if hasFeedback _id}}
                     {{> starsRating rating=feedbackScore mutable=false}}

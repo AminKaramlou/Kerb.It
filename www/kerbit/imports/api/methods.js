@@ -5,7 +5,7 @@ import {Images} from './collections/images.js'
 
 Meteor.methods({
   'makeRequest'(consumerId, imageId, description, bidWindow, sizeRequired,
-                postcode, loc) {
+                loc) {
     const date = new Date();
 
     Requests.insert({
@@ -14,7 +14,6 @@ Meteor.methods({
       description,
       bidWindow,
       sizeRequired,
-      postcode,
       loc,
       offers: [],
       createdAt: new Date() 
@@ -66,7 +65,6 @@ Meteor.methods({
       consumerId: request.consumerId,
       description: request.description,
       sizeAllocated: sizeAllocated,
-      postcode: request.postcode,
       createdAt: request.createdAt,
       price: offer.price,
       driverId: offer.driverId,
