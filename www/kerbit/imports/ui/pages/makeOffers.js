@@ -12,21 +12,36 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
 
   GoogleMaps.ready('map', function(map) {
 
-    var markers = {};
+    var directionsServices = {};
+    var directionsDisplays = {};
+
+    var currentPos = Geolocation.latLng();
+
 
     Requests.find().observe({
       added: function (document) {
-        markers[document._id] = new google.maps.Marker({
-          animation: google.maps.Animation.DROP,
-          position: new google.maps.LatLng(document.loc.coordinates[1], document.loc.coordinates[0]),
-          map: map.instance,
-          id: document._id
-      });
+
+        directionsServices[document._id] = new google.maps.DirectionsService;
+        directionsDisplays[document._id] = new google.maps.DirectionsRenderer;
+        directionsDisplays[document._id].setMap(map.instance);
+
+        directionsServices[document._id].route({
+          origin: currentPos,
+          destination: new google.maps.LatLng(document.loc.coordinates[1], document.loc.coordinates[0]),
+          travelMode: google.maps.TravelMode.DRIVING,
+        }, function(response, status) {
+          if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplays[document._id].setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
       },
 
       removed: function (oldDocument) {
-        markers[oldDocument._id].setMap(null);
-        delete markers[oldDocument._id];
+        directionsDisplays[oldDocument._id].setMap(null);
+        delete directionsDisplays[oldDocument._id];
+        delete directionsServices[oldDocument._id];
       }
     });
   });
