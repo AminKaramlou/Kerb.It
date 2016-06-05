@@ -1,4 +1,4 @@
-<template name = "page_header">
+<template name = "PageHeader">
     <head>
         <title>KERB.IT</title>
         <script src="https://use.fontawesome.com/658eff4761.js"></script>
@@ -62,13 +62,13 @@
     </nav>
 </template>
 
-<template name="nav_bar">
+<template name="Navbar">
   <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper container">
         <a href="/#top" class="brand-logo"><i class="fa fa-truck fa-fw"></i> | KERB.IT</a>
         <ul class="right hide-on-med-and-down">
-          {{#unless currentUser}}
+          {{#unless loggedIn}}
             <li><a href="/#about">About</a></li>
             <li><a href="/#services">Services</a></li>
           {{/unless}}

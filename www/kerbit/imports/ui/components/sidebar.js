@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 
 import "./sidebar.html";
 
-Template.side_bar.onRendered(function() {
+Template.Sidebar.onRendered(function() {
   this.autorun(() => {
     $(".button-collapse").sideNav({
       menuWidth: 240,
@@ -12,7 +12,7 @@ Template.side_bar.onRendered(function() {
   });
 });
 
-Template.side_bar.helpers({
+Template.Sidebar.helpers({
   currentUserIsDriver() {
     return Meteor.user() && Meteor.user().profile.isDriver;
   },
