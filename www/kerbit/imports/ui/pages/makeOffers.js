@@ -15,7 +15,7 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
     var directionsServices = {};
     var directionsDisplays = {};
 
-    var currentPos = Geolocation.latLng();
+
 
 
     Requests.find().observe({
@@ -25,17 +25,22 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
         directionsDisplays[document._id] = new google.maps.DirectionsRenderer;
         directionsDisplays[document._id].setMap(map.instance);
 
-        directionsServices[document._id].route({
-          origin: currentPos,
-          destination: new google.maps.LatLng(document.loc.coordinates[1], document.loc.coordinates[0]),
-          travelMode: google.maps.TravelMode.DRIVING,
-        }, function(response, status) {
-          if (status === google.maps.DirectionsStatus.OK) {
-            directionsDisplays[document._id].setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function (position) {
+            currentPos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            directionsServices[document._id].route({
+              origin: currentPos,
+              destination: new google.maps.LatLng(document.loc.coordinates[1], document.loc.coordinates[0]),
+              travelMode: google.maps.TravelMode.DRIVING,
+            }, function (response, status) {
+              if (status === google.maps.DirectionsStatus.OK) {
+                directionsDisplays[document._id].setDirections(response);
+              } else {
+                window.alert('Directions request failed due to ' + status);
+              }
+            });
+          })
+        }
       },
 
       removed: function (oldDocument) {
