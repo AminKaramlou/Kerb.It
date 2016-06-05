@@ -7,9 +7,7 @@ Template.map.onCreated(function (){
       browserSupportFlag = true;
       navigator.geolocation.getCurrentPosition(function (position) {
         initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        map.instance.setCenter(initialLocation);
-      }, function () {
-        handleNoGeolocation(browserSupportFlag);
+g        map.instance.setCenter(initialLocation);
       });
     }
   });

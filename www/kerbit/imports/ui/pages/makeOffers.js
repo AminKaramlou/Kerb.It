@@ -14,28 +14,14 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
 
     var markers = {};
 
-    Requests.find(
-    {
-      loc:
-      {
-        $near :
-        {
-          $geometry: { type: "Point",
-          coordinates: [Geolocation.currentLocation().coords.longitude,
-          Geolocation.currentLocation().coords.latitude]
-          },
-        }
-      }
-    }).observe({
+    Requests.find().observe({
       added: function (document) {
-        var marker = new google.maps.Marker({
+        markers[document._id] = new google.maps.Marker({
           animation: google.maps.Animation.DROP,
           position: new google.maps.LatLng(document.loc.coordinates[1], document.loc.coordinates[0]),
           map: map.instance,
           id: document._id
       });
-
-        markers[document._id] = marker;
       },
 
       removed: function (oldDocument) {
@@ -55,20 +41,20 @@ Template.MakeOffersHelper.helpers({
   },
   
   requests() {
-    console.log(Geolocation.currentLocation().coords);
-    return Requests.find(
+    if (Geolocation.currentLocation()) {
+      return Requests.find(
       {
-        loc:
-        { $near :
-          {
-          $geometry: { type: "Point",
-            coordinates: [Geolocation.currentLocation().coords.longitude,
-                          Geolocation.currentLocation().coords.latitude] },
-
+        loc: {
+          $near: {
+            $geometry: {
+              type: "Point",
+              coordinates: [Geolocation.currentLocation().coords.longitude,
+                Geolocation.currentLocation().coords.latitude]
+            },
           }
         }
-      }
-    )
+      });
+    }
   },
   formatDate(date) {
     const monthNames = ["January", "February", "March", "April", "May", "June",
