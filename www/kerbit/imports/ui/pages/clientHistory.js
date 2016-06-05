@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { Transactions } from '../../api/collections/transactions.js';
+import { Images } from '../../api/collections/images.js';
 import './clientHistory.html';
 import '../components/transaction.html';
 
@@ -10,9 +11,60 @@ Template.ClientHistoryHelper.onCreated(function () {
 });
 
 Template.ClientHistoryHelper.helpers({
+
+  images(imageId) {
+    return Images.find(imageId);
+  },
+
+  pending() {
+    return Transactions.find({
+      consumerId: Meteor.userId(),
+      isCompleted: false
+    });
+  },
+
+  getPendingCount() {
+    var trans = Transactions.find({
+      consumerId: Meteor.userId(),
+      isCompleted: false
+    });
+    return trans.count();
+  },
+  
+  getIsZero() {
+    return (getPendingCount() == 0);
+  },
+  getIsOne() {
+    return (getPendingCount() == 1);
+  },
+
+  getDriverName(driverId) {
+    var user= Meteor.users.findOne(driverId);
+    return user.username;
+  },
+
+  hasFeedback(transId) {
+    var trans= Transactions.findOne(transId);
+    return trans.hasLeftFeedback;_
+  },
+
+  formatDate(date) {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November",
+      "December"];
+    return date.getDate() + " " + monthNames[date.getMonth()] + ", " +
+        date.getFullYear() + " at " + date.getHours()  + ":" +
+        date.getMinutes() ;
+  },
+  formatPostcode(postcode) {
+    const format = postcode.substring(0,2) + " " + postcode.substring(2);
+    return format.toUpperCase();
+  },
+
   transactions() {
     return Transactions.find({
-      consumerId: Meteor.userId()
+      consumerId: Meteor.userId(),
+      isCompleted: true
     });
   }
 });
@@ -22,5 +74,13 @@ Template.ClientHistoryHelper.events({
     event.preventDefault();
     var rating = $('#rating').data('userrating');
     Meteor.call('rateDriver', this.driverId, rating);
+    Meteor.call('leaveFeedback', this._id,rating);
+  },
+  'click .collect'(event) {
+    event.preventDefault();
+    Meteor.call('collect', this._id);
   }
 });
+
+
+

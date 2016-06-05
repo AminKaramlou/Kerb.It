@@ -1,0 +1,42 @@
+<template name="ViewUser">
+{{#if Template.subscriptionsReady}}
+  {{#if currentUser }}
+      {{#if isAUser}}
+
+        {{>ViewUserHelper }}
+      {{else}}
+
+          <p>User not found!</p>
+
+      {{/if}}
+  {{else}}
+      <p> You are not authorized to see this page.</p>
+      <p> Please <a href="/">return to Home</a></p>
+  {{/if}}
+  {{/if}}
+</template>
+
+<template name="ViewUserHelper">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="well well-sm">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                        </div>
+                        <div class="col-sm-6 col-md-8">
+                            <h4>{{getUsername}}</h4>
+                            <small><cite title="Driver / Client">Driver / Client
+                            </cite></small>
+                            <p>
+
+                                {{> starsRating rating=getFeedbackScore mutable=false}}</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

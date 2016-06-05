@@ -22,23 +22,29 @@ AccountsTemplates.configure({
         theme: "light",
         data_type: "image"
     },
-    showReCaptcha: true,
+    showReCaptcha: false, /* Should be set to true in production */
     showLabels: false,
 
-
+    showValidating: true,
     negativeValidation: true,
     positiveValidation: true,
     negativeFeedback: false,
     positiveFeedback: true,
 
-    // Privacy Policy and Terms of Use
+    /* Privacy Policy and Terms of Use */
     //privacyUrl: 'privacy',
     //termsUrl: 'terms-of-use',
 
     // Texts
+    texts: {
+        inputIcons: {
+            isValidating: "", /* Default: fa fa-spinner fa-spin */
+            hasSuccess: "", /* Default: fa fa-check */
+            hasError: "" /* Default: fa fa-times */
+        }
+    }
+
 });
-
-
 
 // Support username or password login
 var pwd = AccountsTemplates.removeField('password');
@@ -71,7 +77,7 @@ AccountsTemplates.addFields([
         type: 'password',
         required: true,
         minLength: 6,
-        placeholder: "Password",
+        placeholder: "Password"
     },
     {
         _id: 'password_again',

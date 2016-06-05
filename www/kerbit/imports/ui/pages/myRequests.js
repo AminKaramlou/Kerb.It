@@ -39,7 +39,7 @@ Template.MyRequestsHelper.helpers({
     return format.toUpperCase();
   },
   formatDescription(desc) {
-    let ret = desc
+    let ret = desc;
     if( desc.length > 100) {
       ret = desc.substring(0,100) + " ...";
     }
@@ -48,10 +48,17 @@ Template.MyRequestsHelper.helpers({
 });
 
 Template.MyRequestsHelper.events({
+  'click .refresh-requests'() {
+    javascript:history.go(0)
+  },
   'click .accept-offer'() {
     Meteor.call('acceptOffer', this.requestId, this._id, 5);
   },
   'click .delete-request'() {
     Meteor.call('deleteRequest', this._id);
   },
+  'click .delete-all-requests'() {
+    alert('Feature not implemented yet!')
+    // TODO implement this button
+  }
 });

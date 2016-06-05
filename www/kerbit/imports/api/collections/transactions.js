@@ -43,6 +43,32 @@ TransactionsSchema = new SimpleSchema({
     type: Date,
     label: "Date Confirmed",
     optional: true
+  },
+  isCompleted: {
+    type: Boolean,
+    label: "Job was completed",
+    optional: true
+  },
+  dateCompleted: {
+    type: Date,
+    label: "Date Completed",
+    optional: true
+  },
+  hasLeftFeedback: {
+    type: Boolean,
+    label: "Feedback left",
+    optional: true
+  },
+  dateRated: {
+    type: Date,
+    label: "Feedback left on this date",
+    optional: true
+  },
+  feedbackScore: {
+    type: Number,
+    label: "Given feedback score",
+    min: 0,
+    max: 5
   }
 });
 
@@ -69,4 +95,7 @@ if (Meteor.isServer) {
     // console.log(driverIds);
     return Meteor.users.find({});
   });
+  Meteor.publish('getUserDetails', function(username) {
+    return Meteor.users.findOne({'username': username});
+});
 }

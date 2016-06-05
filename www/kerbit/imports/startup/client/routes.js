@@ -35,6 +35,13 @@ publicSection.route('/', {
   }
 });
 
+FlowRouter.route('/users/:userName', {
+  name: "ViewUser",
+    action: function(params, queryParams) {
+    BlazeLayout.render('DashLayout', {main: 'ViewUser'});
+  }
+});
+
 driverSection.route('/settings', {
   name: 'Settings',
   action: function() {

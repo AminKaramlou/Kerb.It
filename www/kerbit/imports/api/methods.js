@@ -49,6 +49,16 @@ Meteor.methods({
       }
     });
   },
+    'collect'(orderId) {
+
+
+        Transactions.update(orderId, {
+            $set: {
+                isCompleted: true,
+                dateCompleted: new Date()
+            }
+        });
+    },
   'acceptOffer'(requestId, offerId, sizeAllocated) {
     const request = Requests.findOne(requestId);
     const offer = Offers.findOne(offerId);
@@ -60,7 +70,10 @@ Meteor.methods({
       createdAt: request.createdAt,
       price: offer.price,
       driverId: offer.driverId,
-      dateConfirmed: new Date()
+      dateConfirmed: new Date(),
+      isCompleted: false,
+      hasLeftFeedback: false,
+      feedbackScore: 0
     });
     Meteor.call('deleteRequest', requestId);
   },
@@ -82,6 +95,16 @@ Meteor.methods({
     Meteor.users.update(driverId, {
       $set: {
         rating: newRating
+      }
+    });
+  },
+
+  'leaveFeedback'(transId, rating) {
+    Transactions.update(transId, {
+      $set: {
+        hasLeftFeedback: true,
+        dateRated: new Date(),
+        feedbackScore: rating
       }
     });
   }
