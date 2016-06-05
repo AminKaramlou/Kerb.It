@@ -28,6 +28,7 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function (position) {
             currentPos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            console.log(currentPos);
             directionsServices[document._id].route({
               origin: currentPos,
               destination: new google.maps.LatLng(document.loc.coordinates[1], document.loc.coordinates[0]),

@@ -51,13 +51,13 @@ Template.MyRequestsHelper.events({
   'click .refresh-requests'() {
     javascript:history.go(0)
   },
-  'click .accept-offer'() {
+  'click #accept-offer'() {
     Meteor.call('acceptOffer', this.requestId, this._id, 5);
   },
-  'click .delete-request'() {
+  'click #delete-request'() {
     Meteor.call('deleteRequest', this._id);
   },
-  'click .delete-all-requests'() {
+  'click #delete-all-requests'() {
     alert('Feature not implemented yet!')
     // TODO implement this button
   }
