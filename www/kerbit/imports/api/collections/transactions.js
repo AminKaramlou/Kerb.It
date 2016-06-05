@@ -84,18 +84,20 @@ if (Meteor.isServer) {
     });
   });
   Meteor.publish('users', function usersPublication() {
-    // TODO FIX FIX FIX needs to filter users database
-    // let transactions = Transactions.find({consumerId: this.userId}, {
-    //     driverId: 1, _id: 0
-    // });
-    // var driverIds = [];
-    // for (var i in transactions) {
-    //   driverIds.push(transactions[i].driverId);
-    // }
-    // console.log(driverIds);
-    return Meteor.users.find({});
+    let transactions = Transactions.find({consumerId: this.userId}, {
+      fields: { driverId: 1, _id: 0 }
+    }).fetch();
+    var driverIds = [];
+    for (var i in transactions) {
+      driverIds.push(transactions[i].driverId);
+    }
+    return Meteor.users.find({
+      _id: { $in: driverIds }
+    }, {
+      fields: { profile: 1 }
+    });
   });
   Meteor.publish('getUserDetails', function(username) {
     return Meteor.users.findOne({'username': username});
-});
+  });
 }
