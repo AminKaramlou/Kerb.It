@@ -5,8 +5,9 @@ import { Images } from './collections/images.js'
 
 Meteor.methods({
   'makeRequest'(consumerId, imageId, description, bidWindow, sizeRequired,
-                postcode, loc) {
+                postcode, lng, lat) {
     const date = new Date();
+    const loc = { type: "Point", coordinates: [lng, lat] };
 
     Requests.insert({
       consumerId,

@@ -12,6 +12,8 @@ let productionURL = "wss://kerbit.co.uk/websocket" //Not sure whether this is th
 let localURL = "ws://localhost:3000/websocket"
 let Meteor = METCoreDataDDPClient(serverURL: NSURL(string: localURL)!)
 
+let imageId = "5TdZ7xGdxkMARQPHo"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?

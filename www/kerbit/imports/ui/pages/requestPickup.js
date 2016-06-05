@@ -38,10 +38,9 @@ Template.RequestPickupHelper.events({
     const imageId = Images.insert(image)._id;
 
     const position = template.map.get().instance.getCenter();
-    const loc = { type: "Point", coordinates: [ position.lng(), position.lat() ] };
 
     Meteor.call('makeRequest', Meteor.userId(), imageId, description, bidWindow,
-      sizeRequired, postcode, loc);
+      sizeRequired, postcode, position.lng(), position.lat());
     target.reset();
   }
 });

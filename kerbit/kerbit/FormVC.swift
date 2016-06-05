@@ -16,11 +16,14 @@ class FormVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
   @IBOutlet weak var _description: UITextView!
   var image: UIImage!
   
+  var latitude: Double!
+  var longitude: Double!
+  
   override func viewDidLoad() {
     imageView.image = image
   }
   
   @IBAction func didSubmitForm() {
-    Meteor.callMethodWithName("makeRequest", parameters: [Meteor.userID!, "Test Title", "Test Description", bidWindow.value * 21640, sizeRequired.value * 10, postcode.text!])
+    Meteor.callMethodWithName("makeRequest", parameters: [Meteor.userID!, imageId, "Test Description", Int(bidWindow.value * 21640), Int(sizeRequired.value * 10), postcode.text!, longitude, latitude])
   }
 }

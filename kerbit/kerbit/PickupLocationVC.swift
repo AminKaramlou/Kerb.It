@@ -22,6 +22,8 @@ class PickupLocationVC: UIViewController {
   }
   
   @IBAction func didSetLocation(sender: AnyObject) {
+    next.latitude = mapView.camera.target.latitude
+    next.longitude = mapView.camera.target.longitude
     presentViewController(next, animated: true, completion: nil)
   }
 }
