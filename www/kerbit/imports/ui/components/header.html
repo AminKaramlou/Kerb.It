@@ -55,12 +55,12 @@
 <template name="Navbar">
   <div class="navbar-fixed">
     <nav>
-      <div class="nav-wrapper container">
+      <div class="nav-wrapper">
         <a href="/#top" class="brand-logo"><i class="fa fa-truck fa-fw"></i> | KERB.IT</a>
         <ul class="right hide-on-med-and-down">
           {{#unless loggedIn}}
-            <li><a href="/#about">About</a></li>
             <li><a href="/#services">Services</a></li>
+            <li><a href="/#about">About</a></li>
           {{/unless}}
           {{> atNavButton}}
         </ul>
