@@ -10,9 +10,16 @@ Template.RequestPickupHelper.onCreated(function(){
   GoogleMaps.ready('map', function(map) {
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    map.instance.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-    self.map = new ReactiveVar(map);
+    searchBox.addListener('places_changed', function() {
+      var places = searchBox.getPlaces();
+      console.log(places[0].geometry.viewport.getCenter());
+      map.instance.setCenter(places[0].geometry.viewport.getCenter())
+    });
+
+
+      self.map = new ReactiveVar(map);
   });
 });
 
