@@ -16,8 +16,7 @@ Template.RequestPickupHelper.onCreated(function(){
 
     searchBox.addListener('places_changed', function() {
       var places = searchBox.getPlaces();
-      console.log(places[0].geometry.viewport.getCenter());
-      map.instance.setCenter(places[0].geometry.viewport.getCenter())
+      map.instance.setCenter(places[0].geometry.location);
     });
 
 
