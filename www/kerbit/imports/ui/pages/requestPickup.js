@@ -8,6 +8,10 @@ import "./requestPickup.html";
 Template.RequestPickupHelper.onCreated(function(){
   var self = this;
   GoogleMaps.ready('map', function(map) {
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
     self.map = new ReactiveVar(map);
   });
 });
