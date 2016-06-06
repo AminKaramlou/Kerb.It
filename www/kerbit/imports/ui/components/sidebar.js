@@ -5,8 +5,6 @@ import "./sidebar.html";
 Template.Sidebar.onRendered(function() {
   this.autorun(() => {
     $(".button-collapse").sideNav({
-      menuWidth: 240,
-      edge: 'right',
       closeOnClick: true  
     });
   });

@@ -35,7 +35,6 @@
 </template>
 
 <template name="Sidebar">
-  <nav>
     <ul class="right hide-on-med-and-down">
       {{#each groupRoutes}}
       <li><a href="{{path}}">{{name}}</a></li>
@@ -47,5 +46,4 @@
       {{/each}}
     </ul>
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-  </nav>
 </template>
