@@ -9,7 +9,9 @@ Template.RequestPickupHelper.onCreated(function(){
   var self = this;
   GoogleMaps.ready('map', function(map) {
     var input = document.getElementById('pac-input');
+    console.log(input);
     var searchBox = new google.maps.places.SearchBox(input);
+    input.removeAttribute('hidden');
     map.instance.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     searchBox.addListener('places_changed', function() {
