@@ -18,9 +18,9 @@ RequestsSchema = new SimpleSchema({
     type: Date,
     label: "Created at"
   },
-  item: {
+  itemId: {
     type: String,
-    label: "Object ID"
+    label: "Item ID"
   }
 });
 

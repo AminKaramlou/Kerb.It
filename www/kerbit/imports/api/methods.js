@@ -23,21 +23,23 @@ Meteor.methods({
       consumerId: consumerId,
       bidWindow: bidWindow,
       createdAt: date,
-      item: id
+      itemId: id
       
     });
   },
   'deleteRequest'(requestId) {
     var request = Requests.findOne(requestId);
-    var item = Items.findOne(requestId);
-    Items.remove(item._id);
-    var offers = Offers.find({requestId: requestId});
+    var item = Items.findOne(request.itemId);
+
+    var offers = Offers.find({requestId: requestId}).fetch();
     for (var i in offers) {
       var offerId = offers[i];
       Offers.remove(offerId);
     }
-    Images.remove(request.imageId);
+    Items.remove(item._id);
+    Images.remove(item.imageId);
     Requests.remove(requestId);
+    
   },
   'makeOffer'(requestId, driverId, price) {
     const request = Requests.findOne(requestId);

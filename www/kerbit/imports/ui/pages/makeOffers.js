@@ -9,6 +9,7 @@ import "./makeOffers.html";
 Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
   Meteor.subscribe('requests');
   Meteor.subscribe('images');
+  Meteor.subscribe('items');
 
   GoogleMaps.ready('map', function(map) {
 

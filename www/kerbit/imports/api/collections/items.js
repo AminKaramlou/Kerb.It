@@ -45,3 +45,14 @@ ItemSchema = new SimpleSchema({
     label: "Created at"
   }
 });
+
+if (Meteor.isServer) {
+  Meteor.publish('items', function itemsPublication() {
+    if (Meteor.users.findOne(this.userId).profile.isDriver) {
+      return Items.find({});
+    }
+    return Items.find({
+      consumerId: this.userId
+    });
+  });
+}
