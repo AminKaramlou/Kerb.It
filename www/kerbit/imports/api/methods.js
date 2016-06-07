@@ -2,26 +2,36 @@ import { Transactions } from './collections/transactions.js'
 import { Requests } from './collections/requests.js'
 import { Offers } from './collections/offers.js'
 import {Images} from './collections/images.js'
+import {Items}  from './collections/items.js'
 
 Meteor.methods({
   'makeRequest'(consumerId, imageId, description, bidWindow, sizeRequired,
                 loc) {
     const date = new Date();
+    
+    var id = Item.insert({
+      consumerId: consumerId,
+      imageId: imageId,
+      description: description,
+      bidWindow: bidWindow,
+      sizeRequired: sizeRequired,
+      loc: loc,
+      createdAt: date
+    });
 
     Requests.insert({
-      consumerId,
-      imageId,
-      description,
-      bidWindow,
-      sizeRequired,
-      loc,
-      offers: [],
-      createdAt: new Date() 
+      consumerId: consumerId,
+      bidWindow: bidWindow,
+      createdAt: date,
+      item: id
+      
     });
   },
   'deleteRequest'(requestId) {
     var request = Requests.findOne(requestId);
-    var offers = request.offers;
+    var item = Items.findOne(requestId);
+    Items.remove(item._id);
+    var offers = Offers.find({requestId: requestId});
     for (var i in offers) {
       var offerId = offers[i];
       Offers.remove(offerId);
@@ -34,7 +44,6 @@ Meteor.methods({
     const offers = request.offers;
     const offerId = Offers.insert({
       requestId,
-      consumerId: request.consumerId,
       driverId,
       price,
       createdAt: new Date()
@@ -42,11 +51,6 @@ Meteor.methods({
 
     offers.push(offerId);
 
-    Requests.update(requestId, {
-      $set: {
-        offers: offers
-      }
-    });
   },
     'collect'(orderId) {
 
@@ -63,12 +67,10 @@ Meteor.methods({
     const offer = Offers.findOne(offerId);
     Transactions.insert({
       consumerId: request.consumerId,
-      description: request.description,
-      sizeAllocated: sizeAllocated,
-      createdAt: request.createdAt,
-      price: offer.price,
       driverId: offer.driverId,
       dateConfirmed: new Date(),
+      finalOffer: offerId,
+      item: request.item,
       isCompleted: false,
       hasLeftFeedback: false,
       feedbackScore: 0

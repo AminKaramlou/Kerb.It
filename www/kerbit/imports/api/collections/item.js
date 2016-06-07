@@ -18,12 +18,6 @@ ItemSchema = new SimpleSchema({
     label: "Description",
     max: 200
   },
-  bidWindow: {
-    type: Number,
-    label: "Bid window",
-    min: 1,
-    max: 20160 // Unit is minutes, maybe move to hours ?
-  },
   sizeRequired: {
     type: Number,
     label: "Required size estimate",
