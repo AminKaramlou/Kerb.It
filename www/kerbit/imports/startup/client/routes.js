@@ -70,7 +70,6 @@ driverSection.route('/history-driver', {
   }
 });
 
-
 consumerSection.route('/request-pickup', {
   name: 'RequestPickup',
   action: function() {
@@ -97,6 +96,20 @@ driverSection.route('/my-offers', {
   action: function() {
     BlazeLayout.render('DashLayout', {main: 'MyOffers'});
   } 
+});
+
+driverSection.route('/driver-transactions', {
+  name: 'DriverTransactions',
+  action: function() {
+    BlazeLayout.render('DashLayout', {main: 'DriverTransactions'});
+  }
+});
+
+consumerSection.route('/client-transactions', {
+  name: 'ClientTransactions',
+  action: function() {
+    BlazeLayout.render('DashLayout', {main: 'ClientTransactions'});
+  }
 });
 
 process.env.MAIL_URL ='';
