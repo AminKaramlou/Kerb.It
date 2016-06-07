@@ -18,6 +18,22 @@ RequestsSchema = new SimpleSchema({
     type: Date,
     label: "Created at"
   },
+  loc: {
+    type: Object,
+    index: '2dsphere',
+    label: "Location"
+  },
+  "loc.type": {
+    type: String,
+    allowedValues: ["Point"],
+    label: "Start location type"
+  },
+  "loc.coordinates": {
+    type: [Number],
+    minCount: 2,
+    maxCount: 2,
+    decimal: true
+  },
   itemId: {
     type: String,
     label: "Item ID"

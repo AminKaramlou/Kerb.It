@@ -13,6 +13,27 @@ Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
   Meteor.subscribe(('items'))
 });
 
+Template.MyRequestsHelper.helpers({
+  ImageWithId(imageId) {
+    return Images.find(imageId);
+  },
+
+  ItemWithId(itemId) {
+    return Items.find(itemId);
+  },
+
+  currentUsersRequests() {
+    return Requests.find({
+      consumerId: Meteor.userId()
+    });
+  },
+  offersWithRequestId(requestId) {
+    return Offers.find({
+      requestId
+    });
+  },
+});
+
 Template.MyRequestsHelper.events({
   'click .refresh-requests'() {
     javascript:history.go(0)

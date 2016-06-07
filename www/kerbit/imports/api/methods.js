@@ -23,6 +23,7 @@ Meteor.methods({
       consumerId: consumerId,
       bidWindow: bidWindow,
       createdAt: date,
+      loc: loc,
       itemId: id
       
     });

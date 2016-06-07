@@ -28,24 +28,3 @@ Template.registerHelper('formatDescription', (desc) => {
   }
   return ret;
 });
-
-//Collection Helpers
-Template.registerHelper('currentUsersRequests', () => {
-  return Requests.find({
-    consumerId: Meteor.userId()
-  });
-});
-
-Template.registerHelper('offersWithRequestId', (requestId) => {
-  return Offers.find({
-    requestId
-  });
-});
-
-Template.registerHelper('ImageWithId', (imageId) => {
-  return Images.find(imageId);
-});
-
-Template.registerHelper('ItemWithId', (itemId) => {
-  return Items.find(itemId);
-});
