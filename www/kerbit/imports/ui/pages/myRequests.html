@@ -18,18 +18,20 @@
         {{#each requests}}
           <li class="list-group-item">
             <ul class="list-group custom-border">
-              <li class ="list-group-item">
-                {{#each images imageId}}
-                  <div class="container">
-                    <div class="col-md-2" style="padding-left: 0px;  padding-right: 0px;">
-                      <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images'}}" alt="" class="img-rounded img-responsive" /></a>
+              {{#each getItemWithId itemId}}
+                <li class ="list-group-item">
+                  {{#each getImageWithId imageId}}
+                    <div class="container">
+                      <div class="col-md-2" style="padding-left: 0px;  padding-right: 0px;">
+                        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images'}}" alt="" class="img-rounded img-responsive" /></a>
+                      </div>
                     </div>
-                  </div>
-                {{/each}}
-              </li>
-              <li class ="list-group-item">
-                <span class="text-info">Description:</span> &nbsp;&nbsp;{{formatDescription description}}
-              </li>
+                  {{/each}}
+                </li>
+                <li class ="list-group-item">
+                  <span class="text-info">Description:</span> &nbsp;&nbsp;{{formatDescription description}}
+                </li>
+              {{/each}}
               <li class ="list-group-item">
                 <span class="text-info">Date created:</span> {{formatDate createdAt }}
               </li>

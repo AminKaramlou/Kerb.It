@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating';
 import { Requests } from '../../api/collections/requests.js';
 import { Offers } from '../../api/collections/offers.js';
 import { Images } from '../../api/collections/images.js';
+import { Items } from '../../api/collections/items.js';
 import './myRequests.html';
 
 Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
@@ -13,8 +14,12 @@ Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
 });
 
 Template.MyRequestsHelper.helpers({
-  images(imageId) {
+  getImageWithId(imageId) {
     return Images.find(imageId);
+  },
+
+  getItemWithId(itemId) {
+    return Items.find(itemId);
   },
 
   requests() {
@@ -27,14 +32,7 @@ Template.MyRequestsHelper.helpers({
       requestId
     });
   },
-  formatDate(date) {
-    const monthNames = ["January", "February", "March", "April", "May", "June", 
-                        "July", "August", "September", "October", "November", 
-                        "December"];
-    return date.getDate() + " " + monthNames[date.getMonth()] + ", " + 
-           date.getFullYear() + " at " + date.getHours()  + ":" +
-           date.getMinutes() ;
-  },
+
   formatDescription(desc) {
     let ret = desc;
     if( desc.length > 100) {
