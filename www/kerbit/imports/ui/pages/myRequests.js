@@ -13,35 +13,6 @@ Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
   Meteor.subscribe(('items'))
 });
 
-Template.MyRequestsHelper.helpers({
-  getImageWithId(imageId) {
-    return Images.find(imageId);
-  },
-
-  getItemWithId(itemId) {
-    return Items.find(itemId);
-  },
-
-  requests() {
-    return Requests.find({
-      consumerId: Meteor.userId()
-    });
-  },
-  offers(requestId) {
-    return Offers.find({
-      requestId
-    });
-  },
-
-  formatDescription(desc) {
-    let ret = desc;
-    if( desc.length > 100) {
-      ret = desc.substring(0,100) + " ...";
-    }
-    return ret;
-  }
-});
-
 Template.MyRequestsHelper.events({
   'click .refresh-requests'() {
     javascript:history.go(0)
