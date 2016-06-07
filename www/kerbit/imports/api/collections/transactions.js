@@ -8,31 +8,19 @@ TransactionsSchema = new SimpleSchema({
     label: "Transaction ID",
     regEx: SimpleSchema.RegEx.Id
   },
-  description: {
-    type: String,
-    label: "Description",
-    max: 200
-  },
-  sizeAllocated: {
-    type: Number,
-    label: "Allocated size",
-    min: 1,
-    max: 10
-  },
-  createdAt: {
-    type: Date,
-    label: "Created at"
-  },
-  price: {
-    type: Number,
-    label: "Price",
-    optional: true
-  },
   driverId: {
     type: String,
     label: "Driver ID",
     regEx: SimpleSchema.RegEx.Id,
     optional: true
+  },
+  item:{
+    type: String,
+    label: "Item ID"
+  },
+  finalOffer:{
+    type: String,
+    label: "Offer ID"
   },
   dateConfirmed: {
     type: Date,

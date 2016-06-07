@@ -8,11 +8,6 @@ OffersSchema = new SimpleSchema({
     label: "Request ID",
     regEx: SimpleSchema.RegEx.Id
   },
-  consumerId: {
-    type: String,
-    label: "Consumer ID",
-    regEx: SimpleSchema.RegEx.Id
-  },
   driverId: {
     type: String,
     label: "Driver ID",
@@ -35,7 +30,6 @@ if (Meteor.isServer) {
   Meteor.publish('offers', function offersPublication() {
     return Offers.find({
       $or: [
-        {consumerId: this.userId},
         {driverId: this.userId}
       ]
     });
