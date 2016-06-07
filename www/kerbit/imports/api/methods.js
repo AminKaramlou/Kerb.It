@@ -9,7 +9,7 @@ Meteor.methods({
                 loc) {
     const date = new Date();
     
-    var id = Item.insert({
+    var id = Items.insert({
       consumerId: consumerId,
       imageId: imageId,
       description: description,
