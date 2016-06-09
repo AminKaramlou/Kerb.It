@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Requests } from '../../api/collections/requests.js';
+import { Transactions } from '../../api/collections/transactions.js';
 import { Offers } from '../../api/collections/offers.js';
 import { Images } from '../../api/collections/images.js';
 import './myRequests.html';
@@ -21,6 +22,13 @@ Template.MyRequestsHelper.helpers({
       consumerId: Meteor.userId()
     });
   },
+
+  transactions() {
+    return Transactions.find({
+      consumerId: Meteor.userId()
+    });
+  },
+  
   offers(requestId) {
     return Offers.find({
       requestId
@@ -44,7 +52,14 @@ Template.MyRequestsHelper.helpers({
 });
 
 Template.MyRequestsHelper.events({
-  'click .refresh-requests'() {
+  'click .tab-links button' () {
+    const target = event.target;
+    const name = target.name;
+    $(name).show().siblings().hide();
+    $(target).parent('li').addClass('active').siblings().removeClass('active');
+  },
+
+  'click #refresh-requests'() {
     javascript:history.go(0)
   },
   'click #accept-offer'() {
