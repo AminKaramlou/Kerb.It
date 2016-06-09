@@ -20,7 +20,7 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
 
 
 
-    Requests.find().observe({
+    Requests.find({isActive: true}).observe({
       added: function (document) {
 
         directionsServices[document._id] = new google.maps.DirectionsService;
@@ -68,6 +68,7 @@ Template.MakeOffersHelper.helpers({
     if (Geolocation.currentLocation()) {
        return Requests.find(
       {
+        isActive: true,
         loc: {
           $near: {
             $geometry: {
