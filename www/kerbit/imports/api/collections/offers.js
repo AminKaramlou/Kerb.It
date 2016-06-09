@@ -29,9 +29,13 @@ Offers.attachSchema(OffersSchema);
 if (Meteor.isServer) {
   Meteor.publish('offers', function offersPublication() {
     return Offers.find({
-      $or: [
-        {driverId: this.userId}
-      ]
+        driverId: this.userId
+    });
+  });
+
+  Meteor.publish('offersByRequest', function offersPublication(requestId) {
+    return Offers.find({
+        requestId: requestId
     });
   });
 }

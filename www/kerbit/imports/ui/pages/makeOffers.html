@@ -29,7 +29,7 @@
             <div class="row" style="margin-left: 15px">
               {{#each requests}}
                 <input type="radio" name="requestId" value={{_id}}>
-                {{#each items itemId}}
+                {{#with items itemId}}
                   Request: {{description}} <br>
                   Created on {{formatDate createdAt}}. <br>
                   {{#each images imageId}}
@@ -37,7 +37,7 @@
                       <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-thumbnail" /></a>
                     </div>
                   {{/each}}
-                {{/each}}
+                {{/with}}
               {{/each}}
             </div>
           </div>

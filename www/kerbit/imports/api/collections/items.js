@@ -24,25 +24,17 @@ ItemSchema = new SimpleSchema({
     min: 1,
     max: 10 // Unit is cubic metres, maybe move to move to black bags ?
   },
-  loc: {
-    type: Object,
-    index: '2dsphere',
-    label: "Location"
-  },
-  "loc.type": {
-    type: String,
-    allowedValues: ["Point"],
-    label: "Start location type"
-  },
-  "loc.coordinates": {
-    type: [Number],
-    minCount: 2,
-    maxCount: 2,
-    decimal: true
-  },
   createdAt: {
     type: Date,
     label: "Created at"
+  },
+  expiryTime: {
+    type: Date,
+    label: "Expiry Time"
+  },
+  isActive: {
+    type: Boolean,
+    label: "Allow drivers to bid on this"
   }
 });
 

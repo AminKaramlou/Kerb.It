@@ -37,13 +37,15 @@
               </li>
               <li class ="list-group-item">
                 <span class="text-info">Offers:</span><br>
-                {{#each offersWithRequestId _id}}
-                  <ul class="list-group">
-                    <li class="list-group-item">
-                      Offer: {{price}} <button id="accept-offer" class="btn btn-default btn-success ">Accept Offer</button>
-                    </li>
-                  </ul>
-                {{/each}}
+
+                      <ul class="list-group">
+                  {{#each offersWithRequestId _id}}
+                          <li class="list-group-item">
+                              Offer: {{price}} <button id="accept-offer" class="btn btn-default btn-success ">Accept Offer</button>
+                          </li>
+                      {{/each}}
+                      </ul>
+
               </li>
               <button type="button" id="delete-request" class="list-group-item list-group-item-danger "><i class="fa fa-trash fa-fw"></i> Delete this request</button>
             </ul>

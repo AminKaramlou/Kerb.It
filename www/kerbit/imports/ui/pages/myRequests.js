@@ -8,7 +8,6 @@ import './myRequests.html';
 
 Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
   Meteor.subscribe('requests');
-  Meteor.subscribe('offers');
   Meteor.subscribe('images');
   Meteor.subscribe(('items'))
 });
@@ -28,10 +27,11 @@ Template.MyRequestsHelper.helpers({
     });
   },
   offersWithRequestId(requestId) {
+    Meteor.subscribe('offersByRequest', requestId);
     return Offers.find({
-      requestId
+      requestId: requestId
     });
-  },
+  }
 });
 
 Template.MyRequestsHelper.events({

@@ -60,13 +60,13 @@ Template.MakeOffersHelper.helpers({
     return Images.find(imageId);
   },
 
-  items(imageId) {
-    return Items.find(itemId);
+  items(itemId) {
+    return Items.findOne(itemId);
   },
   
   requests() {
     if (Geolocation.currentLocation()) {
-       Requests.find(
+       return Requests.find(
       {
         loc: {
           $near: {
@@ -98,7 +98,6 @@ Template.MakeOffersHelper.events({
     } else {
       requestId = target.requestId.value;
     }
-
     Meteor.call('makeOffer', requestId, Meteor.userId(), price);
     target.reset();
   }

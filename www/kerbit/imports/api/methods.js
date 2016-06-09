@@ -13,19 +13,18 @@ Meteor.methods({
       consumerId: consumerId,
       imageId: imageId,
       description: description,
-      bidWindow: bidWindow,
       sizeRequired: sizeRequired,
-      loc: loc,
-      createdAt: date
+      createdAt: date,
+      expiryTime: date + bidWindow,
+      isActive: true
     });
 
     Requests.insert({
       consumerId: consumerId,
       bidWindow: bidWindow,
       createdAt: date,
-      loc: loc,
-      itemId: id
-      
+      itemId: id,
+      loc: loc
     });
   },
   'deleteRequest'(requestId) {
@@ -43,16 +42,13 @@ Meteor.methods({
     
   },
   'makeOffer'(requestId, driverId, price) {
-    const request = Requests.findOne(requestId);
-    const offers = request.offers;
-    const offerId = Offers.insert({
+    console.log("method Inserted");
+    Offers.insert({
       requestId,
       driverId,
       price,
       createdAt: new Date()
     });
-
-    offers.push(offerId);
 
   },
     'collect'(orderId) {

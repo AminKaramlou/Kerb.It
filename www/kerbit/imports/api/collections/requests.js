@@ -45,9 +45,12 @@ Requests.attachSchema(RequestsSchema);
 if (Meteor.isServer) {
   Meteor.publish('requests', function requestsPublication() {
     if (Meteor.users.findOne(this.userId).profile.isDriver) {
+
       return Requests.find({});
     }
+    
     return Requests.find({
+
       consumerId: this.userId
     });
   });
