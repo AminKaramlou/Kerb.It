@@ -12,21 +12,21 @@ Template.ClientHistoryHelper.onCreated(function () {
 
 Template.ClientHistoryHelper.helpers({
 
-  images(imageId) {
-    return Images.find(imageId);
+  images(imageIds) {
+    return Images.find(imageIds);
   },
 
   pending() {
     return Transactions.find({
       consumerId: Meteor.userId(),
-      isCompleted: false
+      isCollected: false
     });
   },
 
   getPendingCount() {
     var trans = Transactions.find({
       consumerId: Meteor.userId(),
-      isCompleted: false
+      isCollected: false
     });
     return trans.count();
   },
@@ -45,22 +45,13 @@ Template.ClientHistoryHelper.helpers({
 
   hasFeedback(transId) {
     var trans= Transactions.findOne(transId);
-    return trans.hasLeftFeedback;_
-  },
-
-  formatDate(date) {
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November",
-      "December"];
-    return date.getDate() + " " + monthNames[date.getMonth()] + ", " +
-        date.getFullYear() + " at " + date.getHours()  + ":" +
-        date.getMinutes() ;
+    return trans.hasLeftFeedback;
   },
 
   transactions() {
     return Transactions.find({
       consumerId: Meteor.userId(),
-      isCompleted: true
+      isCollected: true
     });
   }
 });

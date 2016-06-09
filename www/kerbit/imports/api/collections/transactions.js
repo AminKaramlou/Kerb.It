@@ -39,14 +39,14 @@ TransactionsSchema = new SimpleSchema({
     label: "Date Confirmed",
     optional: true
   },
-  isCompleted: {
+  isCollected: {
     type: Boolean,
-    label: "Job was completed",
+    label: "Job was collected",
     optional: true
   },
-  dateCompleted: {
+  dateCollected: {
     type: Date,
-    label: "Date Completed",
+    label: "Date collected",
     optional: true
   },
   hasLeftFeedback: {
@@ -64,7 +64,23 @@ TransactionsSchema = new SimpleSchema({
     label: "Given feedback score",
     min: 0,
     max: 5
-  }
+  },
+  loc: {
+    type: Object,
+    index: '2dsphere',
+    label: "Location"
+  },
+  "loc.type": {
+    type: String,
+    allowedValues: ["Point"],
+    label: "Start location type"
+  },
+  "loc.coordinates": {
+    type: [Number],
+    minCount: 2,
+    maxCount: 2,
+    decimal: true
+  },
 });
 
 Transactions.attachSchema(TransactionsSchema);

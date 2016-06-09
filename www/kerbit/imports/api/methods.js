@@ -4,13 +4,13 @@ import { Offers } from './collections/offers.js'
 import {Images} from './collections/images.js'
 
 Meteor.methods({
-  'makeRequest'(consumerId, imageId, description, bidWindow, sizeRequired,
+  'makeRequest'(consumerId, imageIds, description, bidWindow, sizeRequired,
                 loc) {
     const date = new Date();
 
     Requests.insert({
       consumerId,
-      imageId,
+      imageIds,
       description,
       bidWindow,
       sizeRequired,
@@ -26,7 +26,7 @@ Meteor.methods({
       var offerId = offers[i];
       Offers.remove(offerId);
     }
-    Images.remove(request.imageId);
+    Images.remove({_id: {$in: request.imageIds}});
     Requests.remove(requestId);
   },
   'makeOffer'(requestId, driverId, price) {
@@ -53,8 +53,8 @@ Meteor.methods({
 
         Transactions.update(orderId, {
             $set: {
-                isCompleted: true,
-                dateCompleted: new Date()
+                isCollected: true,
+                dateColleceted: new Date()
             }
         });
     },
@@ -68,11 +68,13 @@ Meteor.methods({
       createdAt: request.createdAt,
       price: offer.price,
       driverId: offer.driverId,
-      dateConfirmed: new Date(),
-      isCompleted: false,
+      dateCollected: new Date(),
+      isCollected: false,
       hasLeftFeedback: false,
-      feedbackScore: 0
-    });
+      feedbackScore: 0,
+      loc: request.loc,
+    }
+    );
     Meteor.call('deleteRequest', requestId);
   },
   'rateDriver'(driverId, rating) {

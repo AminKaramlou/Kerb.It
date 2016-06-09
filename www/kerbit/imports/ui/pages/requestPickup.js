@@ -45,13 +45,18 @@ Template.RequestPickupHelper.events({
     const bidWindow = Number(target.bidWindow.value);
     const sizeRequired = Number(target.sizeRequired.value);
 
-    const image = target.file.files[0];
-    const imageId = Images.insert(image)._id;
+    const images = target.file.files;
+
+    var imageIds = new Array();
+
+    for (i = 0; i < images.length; i++) {
+      imageIds.push(Images.insert(images[i])._id);
+    }
 
     const position = template.map.get().instance.getCenter();
     const loc = { type: "Point", coordinates: [ position.lng(), position.lat() ] };
 
-    Meteor.call('makeRequest', Meteor.userId(), imageId, description, bidWindow,
+    Meteor.call('makeRequest', Meteor.userId(), imageIds, description, bidWindow,
       sizeRequired, loc);
     target.reset();
   }
