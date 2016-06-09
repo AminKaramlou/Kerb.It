@@ -26,7 +26,6 @@ Meteor.methods({
       var offerId = offers[i];
       Offers.remove(offerId);
     }
-    Images.remove({_id: {$in: request.imageIds}});
     Requests.remove(requestId);
   },
   'makeOffer'(requestId, driverId, price) {
@@ -63,6 +62,7 @@ Meteor.methods({
     const offer = Offers.findOne(offerId);
     Transactions.insert({
       consumerId: request.consumerId,
+      imageIds: request.imageIds,
       description: request.description,
       sizeAllocated: sizeAllocated,
       createdAt: request.createdAt,

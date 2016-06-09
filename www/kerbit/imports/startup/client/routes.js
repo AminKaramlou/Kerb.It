@@ -98,20 +98,6 @@ driverSection.route('/my-offers', {
   } 
 });
 
-driverSection.route('/driver-transactions', {
-  name: 'DriverTransactions',
-  action: function() {
-    BlazeLayout.render('DashLayout', {main: 'DriverTransactions'});
-  }
-});
-
-consumerSection.route('/client-transactions', {
-  name: 'ClientTransactions',
-  action: function() {
-    BlazeLayout.render('DashLayout', {main: 'ClientTransactions'});
-  }
-});
-
 process.env.MAIL_URL ='';
 
 AccountsTemplates.configureRoute('changePwd');

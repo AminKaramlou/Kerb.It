@@ -111,5 +111,6 @@ Template.MakeOffersHelper.events({
 
     Meteor.call('makeOffer', requestId, Meteor.userId(), price);
     target.reset();
+    alert("Your offer was recorded. Please check the My Offers page for updates");
   }
 });

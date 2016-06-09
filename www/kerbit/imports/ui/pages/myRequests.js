@@ -10,6 +10,7 @@ Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
   Meteor.subscribe('requests');
   Meteor.subscribe('offers');
   Meteor.subscribe('images');
+  Meteor.subscribe('transactions');
 });
 
 Template.MyRequestsHelper.helpers({

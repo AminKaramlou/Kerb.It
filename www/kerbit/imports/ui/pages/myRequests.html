@@ -61,8 +61,30 @@
       </div>
 
       <div id="tab2" class="tab">
-        <p>Tab #2 content goes here!</p>
-        <p>Donec pulvinar neque sed semper lacinia. Curabitur lacinia ullamcorper nibh; quis imperdiet velit eleifend ac. Donec blandit mauris eget aliquet lacinia! Donec pulvinar massa interdum risus ornare mollis. In hac habitasse platea dictumst. Ut euismod tempus hendrerit. Morbi ut adipiscing nisi. Etiam rutrum sodales gravida! Aliquam tellus orci, iaculis vel.</p>
+        {{#each transactions}}
+          <li class="list-group-item">
+            <ul class="list-group custom-border">
+              <li class ="list-group-item">
+                {{#each images imageIds}}
+                  <div class="container">
+                    <div class="col-md-2" style="padding-left: 0px;  padding-right: 0px;">
+                      <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images'}}" alt="" class="img-rounded img-responsive" /></a>
+                    </div>
+                  </div>
+                {{/each}}
+              </li>
+              <li class ="list-group-item">
+                <span class="text-info">Description:</span> &nbsp;&nbsp;{{formatDescription description}}
+              </li>
+              <li class ="list-group-item">
+                <span class="text-info">Date accepted:</span> {{formatDate dateCollected }}
+              </li>
+              <li class ="list-group-item">
+                <span class="text-info">Price:</span> {{price}}<br>
+              </li>
+            </ul>
+          </li>
+        {{/each}}
       </div>
     </div>
   </div>
