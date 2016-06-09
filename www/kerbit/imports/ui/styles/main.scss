@@ -16,6 +16,8 @@ ul.side-nav.fixed {
 .user-details .row {
   margin: 0;
   line-height: 25px;
+  color: #fff;
+  font-weight: bold;
 }
 ul.side-nav.fixed li.user-details {
   background: url(../images/user-bg.jpg) no-repeat center center;
@@ -63,6 +65,10 @@ ATFORM
 .at-btn {
   margin-top: 15px;
 }
+
+/*
+
+*/
 /* Structure APPEARS TO BE:
 
 form class = "setting specific-class"
