@@ -1,8 +1,5 @@
 import "./experiment.html";
 
-(function() {
-  'use strict';
-
   var emailRegex = new RegExp(
       "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+" +
       "@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?" +
@@ -46,7 +43,6 @@ import "./experiment.html";
   settingsSetup(Template.x_verifyEmail);
   settingsSetup(Template.x_changePassword);
   settingsSetup(Template.x_resetPassword);
-
 
   // Events ////////////
 
@@ -177,5 +173,3 @@ import "./experiment.html";
       });
     }
   });
-
-})();

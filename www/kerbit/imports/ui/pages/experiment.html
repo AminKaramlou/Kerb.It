@@ -1,4 +1,50 @@
-<template name="experiment">{{#with addContext}}
+<template name="experiment">
+  <!--
+  Change email
+  Change username
+  Change password
+  -->
+  <form class="setting">
+    <div class="main">
+      <span class="title">Change Email</span>
+      <div class="input-field">
+        <label for="email" class="active">New email</label>
+        <input type="text" name="email" id="email">
+      </div>
+    </div>
+    <div class="actions">
+      <button type="submit" class="save-btn">Update</button>
+    </div>
+  </form>
+  <form class="setting">
+    <div class="main">
+      <span class="title">Change Username</span>
+      <div class="input-field">
+        <label for="email" class="active">New username</label>
+        <input type="text" name="email" id="email">
+      </div>
+    </div>
+    <div class="actions">
+      <button type="submit" class="save-btn">Update</button>
+    </div>
+  </form>
+  <form class="setting">
+    <div class="main">
+      <span class="title">Change Password</span>
+      <div class="input-field">
+        <label for="password">Old Password</label>
+        <input type="password" id="password" name="password">
+      </div>
+      <div class="input-field">
+        <label for="newPassword">New Password</label>
+        <input type="password" id="newPassword" name="newPassword">
+      </div>
+    </div>
+    <div class="actions">
+      <button type="submit" class="save-btn">Update</button>
+    </div>
+  </form>
+  <!--{{#with addContext}}
   {{> x_changeEmail}}
 
   {{#if email}}
@@ -10,7 +56,8 @@
 
     {{> x_resetPassword}}
   {{/if}}
-{{/with}}</template>
+{{/with}}-->
+</template>
 
 <template name="x_errorMsg">
   <span class="error">
