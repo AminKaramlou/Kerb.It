@@ -1,15 +1,15 @@
 <template name="Transaction">
-    <ul class="list-group">
-        <li class ="list-group-item">
-            Price: £{{price}}
+    <ul>
+        <li>
+            Price: {{price}} £
         </li>
-        <li class ="list-group-item">
+        <li>
             Date: {{formatDate dateConfirmed}}
         </li>
-        <li class ="list-group-item">
+        <li>
             Location: {{formatPostcode postcode}}
         </li>
-        <li class ="list-group-item">
+        <li>
             Size: {{sizeAllocated}}
         </li>
     </ul>
