@@ -77,7 +77,8 @@ if (Meteor.isServer) {
     return Meteor.users.find({
       _id: { $in: driverIds }
     }, {
-      fields: { profile: 1 }
+      fields: { profile: 1 ,
+      username: 1}
     });
   });
   Meteor.publish('getUserDetails', function(username) {

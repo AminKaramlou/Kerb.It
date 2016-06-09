@@ -8,7 +8,7 @@ ItemSchema = new SimpleSchema({
     label: "Consumer ID",
     regEx: SimpleSchema.RegEx.Id,
   },
-  imageId: {
+  imageIds: {
     type: String,
     label: "Image ID",
     regEx: SimpleSchema.RegEx.Id,

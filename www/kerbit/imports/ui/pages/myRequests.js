@@ -15,8 +15,8 @@ Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
 });
 
 Template.MyRequestsHelper.helpers({
-  ImageWithId(imageId) {
-    return Images.find(imageId);
+  ImageWithId(imageIds) {
+    return Images.find({_id: {$in: imageIds}});
   },
 
   ItemWithId(itemId) {
@@ -31,13 +31,16 @@ Template.MyRequestsHelper.helpers({
   },
   offersWithRequestId(requestId) {
     Meteor.subscribe('offersByRequest', requestId);
-
-  transactions() {
+    return Offers.find({
+      requestId: requestId
+    });
+  },
+    transactions() {
     return Transactions.find({
       consumerId: Meteor.userId()
     });
   }
-  }
+
 });
 
 Template.MyRequestsHelper.events({

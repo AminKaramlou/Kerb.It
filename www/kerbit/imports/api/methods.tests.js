@@ -11,12 +11,12 @@ if (Meteor.isServer) {
   describe('API methods', () => {
     const consumerId = Random.id();
     const driverId = Random.id();
-
+    var requestId;
     var imageIds = new Array();
     for (i = 0; i < 5; i++) {
       imageIds.push(Random.id());
     }
-
+    const itemId = Random.id();
     const description = "Test Description";
     const bidWindow = 7;
     const sizeRequired = 7;
@@ -44,21 +44,19 @@ if (Meteor.isServer) {
         const deleteRequest = Meteor.server.method_handlers['deleteRequest'];
         const invocation = { userId: consumerId };
 
-        const requestId = Requests.insert({
+        requestId = Requests.insert({
           consumerId,
-          imageIds,
-          description,
           bidWindow,
-          sizeRequired,
           loc,
-          offers: [],
+          itemId,
+          isActive: true,
           createdAt: new Date()
         });
         deleteRequest.apply(invocation, [requestId]);
       });
 
       it('should delete request', () => {
-        assert.equal(Offers.find().count(), 0);
+        assert.equal(Requests.findOne(requestId).isActive, false);
       });
     });
     describe('makeOffer', () => {
@@ -68,12 +66,10 @@ if (Meteor.isServer) {
 
         const requestId = Requests.insert({
           consumerId,
-          imageIds,
-          description,
           bidWindow,
-          sizeRequired,
           loc,
-          offers: [],
+          itemId,
+          isActive: true,
           createdAt: new Date()
         });
         const price = 1000;
@@ -89,12 +85,7 @@ if (Meteor.isServer) {
 
         assert.equal(offer.requestId, request._id);
       });
-      it('should have request with array with element pointing to offer', () => {
-        const offer = Offers.findOne();
-        const request = Requests.findOne();
 
-        assert.equal(request.offers[0], offer._id);
-      });
     });
     describe('acceptOffer', () => {
       beforeEach(() => {
@@ -105,21 +96,17 @@ if (Meteor.isServer) {
         const price = 1000;
         const date = new Date();
         const offerId = Random.id();
-        const requestId = Requests.insert({
+        requestId = Requests.insert({
           consumerId,
-          imageIds,
-          description,
           bidWindow,
-          sizeRequired: sizeAllocated,
           loc,
-          offers: [],
-          offers: [offerId],
-          createdAt: date
+          itemId,
+          isActive: true,
+          createdAt: new Date()
         });
         Offers.insert({
           _id: offerId,
           requestId,
-          consumerId,
           driverId,
           price,
           createdAt: date
@@ -128,10 +115,7 @@ if (Meteor.isServer) {
       });
 
       it('should delete request', () => {
-        assert.equal(Requests.find().count(), 0);
-      });
-      it('should delete offer', () => {
-        assert.equal(Offers.find().count(), 0);
+         assert.equal(Requests.findOne(requestId).isActive, false);
       });
       it('should create transaction', () => {
         assert.equal(Transactions.find().count(), 1);

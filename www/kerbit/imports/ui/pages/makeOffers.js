@@ -56,8 +56,8 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
 
 Template.MakeOffersHelper.helpers({
 
-  images(imageId) {
-    return Images.find(imageId);
+  images(imageIds) {
+    return Images.find({_id: {$in: imageIds}});
   },
 
   items(itemId) {

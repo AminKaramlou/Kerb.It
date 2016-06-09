@@ -5,13 +5,13 @@ import {Images} from './collections/images.js'
 import {Items}  from './collections/items.js'
 
 Meteor.methods({
-  'makeRequest'(consumerId, imageId, description, bidWindow, sizeRequired,
+  'makeRequest'(consumerId, imageIds, description, bidWindow, sizeRequired,
                 loc) {
     const date = new Date();
     
     var id = Items.insert({
       consumerId: consumerId,
-      imageId: imageId,
+      imageIds: imageIds,
       description: description,
       sizeRequired: sizeRequired,
       createdAt: date,
@@ -67,6 +67,7 @@ Meteor.methods({
       hasLeftFeedback: false,
       feedbackScore: 0
     });
+
      Meteor.call('deleteRequest', requestId);
   },
   'rateDriver'(driverId, rating) {
