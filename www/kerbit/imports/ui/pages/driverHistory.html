@@ -5,16 +5,21 @@
 </template>
 
 <template name="DriverHistoryHelper">
-  <div class="text-center h1"> My Recent Jobs </div>
-    <div class="container">
-      <div class="row">
-        <ul class="list-group">
-          {{#each transactions}}
-            <li class ="list-group-item">
-              {{>Transaction}}
-            </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
+ <h2 class="center-align"> My Recent Jobs </h2>
+ <br>
+   <div class="row">
+     <ul class="collapsible popout" data-collapsible="accordion">
+       {{#each transactions}}
+       <li>
+         <div class="collapsible-header active">
+           <i class="material-icons">receipt</i>
+           Some relevant summary of the transaction
+         </div>
+         <div class="collapsible-body">
+           {{>Transaction}}
+         </div>
+       </li>
+       {{/each}}
+     </ul>
+   </div>
 </template>

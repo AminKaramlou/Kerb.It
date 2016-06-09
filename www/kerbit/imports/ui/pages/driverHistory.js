@@ -8,6 +8,14 @@ Template.DriverHistoryHelper.onCreated(function () {
   Meteor.subscribe('transactions'); 
 });
 
+Template.DriverHistoryHelper.onRendered(function () {
+  $(document).ready(function(){
+    $('.collapsible').collapsible({
+      accordion: true
+    });
+  });
+});
+
 Template.DriverHistoryHelper.helpers({
   transactions() {
     return Transactions.find({
