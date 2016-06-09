@@ -31,10 +31,6 @@ ItemSchema = new SimpleSchema({
   expiryTime: {
     type: Date,
     label: "Expiry Time"
-  },
-  isActive: {
-    type: Boolean,
-    label: "Allow drivers to bid on this"
   }
 });
 

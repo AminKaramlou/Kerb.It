@@ -37,6 +37,10 @@ RequestsSchema = new SimpleSchema({
   itemId: {
     type: String,
     label: "Item ID"
+  },
+  isActive: {
+    type: Boolean,
+    label: "is active request"
   }
 });
 
@@ -48,7 +52,7 @@ if (Meteor.isServer) {
 
       return Requests.find({});
     }
-    
+
     return Requests.find({
 
       consumerId: this.userId

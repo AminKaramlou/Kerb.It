@@ -15,8 +15,7 @@ Meteor.methods({
       description: description,
       sizeRequired: sizeRequired,
       createdAt: date,
-      expiryTime: date + bidWindow,
-      isActive: true
+      expiryTime: date + bidWindow
     });
 
     Requests.insert({
@@ -24,22 +23,17 @@ Meteor.methods({
       bidWindow: bidWindow,
       createdAt: date,
       itemId: id,
-      loc: loc
+      loc: loc,
+      isActive: true
     });
   },
   'deleteRequest'(requestId) {
     var request = Requests.findOne(requestId);
-    var item = Items.findOne(request.itemId);
-
-    var offers = Offers.find({requestId: requestId}).fetch();
-    for (var i in offers) {
-      var offerId = offers[i];
-      Offers.remove(offerId);
-    }
-    Items.remove(item._id);
-    Images.remove(item.imageId);
-    Requests.remove(requestId);
-    
+    Requests.update(requestId, {
+            $set: {
+                isActive: false
+            }
+        });
   },
   'makeOffer'(requestId, driverId, price) {
     console.log("method Inserted");
@@ -69,12 +63,12 @@ Meteor.methods({
       driverId: offer.driverId,
       dateConfirmed: new Date(),
       finalOffer: offerId,
-      item: request.item,
+      item: request.itemId,
       isCompleted: false,
       hasLeftFeedback: false,
       feedbackScore: 0
     });
-    Meteor.call('deleteRequest', requestId);
+     Meteor.call('deleteRequest', requestId);
   },
   'rateDriver'(driverId, rating) {
     /*

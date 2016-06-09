@@ -23,7 +23,8 @@ Template.MyRequestsHelper.helpers({
 
   currentUsersRequests() {
     return Requests.find({
-      consumerId: Meteor.userId()
+      consumerId: Meteor.userId(),
+      isActive: true
     });
   },
   offersWithRequestId(requestId) {
