@@ -35,15 +35,20 @@
 </template>
 
 <template name="Sidebar">
-    <ul class="right hide-on-med-and-down">
-      {{#each groupRoutes}}
-      <li><a href="{{path}}">{{name}}</a></li>
-      {{/each}}
-    </ul>
-    <ul id="slide-out" class="side-nav">
-      {{#each groupRoutes}}
-      <li><a href="{{path}}">{{name}}</a></li>
-      {{/each}}
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+  <ul class="side-nav fixed leftside-navigation z-depth-3">
+    <li class="user-details teal lighten-1">
+      <div class="row valign-wrapper">
+        <div class="col s4">
+          <img src="/random_tom.jpg" alt="PROFILE" class="circle responsive-img
+          valign profile-image">
+        </div>
+        <div class="col s8">
+          <p>{{fullName}}</p>
+        </div>
+      </div>
+    </li>
+    {{#each groupRoutes}}
+    <li><a href="{{path}}">{{name}}</a></li>
+    {{/each}}
+  </ul>
 </template>

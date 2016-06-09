@@ -10,3 +10,17 @@ body {
 main {
   flex: 1 0 auto;
 }
+ul.side-nav.fixed {
+  top: $navbar-height;
+}
+.user-details .row {
+  margin: 0;
+}
+ul.side-nav.fixed li.user-details {
+  background: url(../images/user-bg.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 15px 0px 15px 15px;
+}

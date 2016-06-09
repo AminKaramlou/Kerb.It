@@ -7,5 +7,7 @@ Template.Footer.events({
     $('#comments').val('');
     $('#comments').trigger('autoresize');
     $('#comments').focusout();
+    const $message = $('<span>Your feedback has been received. Thank you for your help                       !</span>');
+    Materialize.toast($message, 2000)
   }
 })
