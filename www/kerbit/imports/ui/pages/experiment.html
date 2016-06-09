@@ -1,0 +1,131 @@
+<template name="experiment">{{#with addContext}}
+  {{> x_changeEmail}}
+
+  {{#if email}}
+    {{#unless verified}}
+      {{> x_verifyEmail}}
+    {{/unless}}
+
+    {{> x_changePassword}}
+
+    {{> x_resetPassword}}
+  {{/if}}
+{{/with}}</template>
+
+<template name="x_errorMsg">
+  <span class="error">
+    <i class="fa fa-warning"></i>
+    {{#if errorText}}{{errorText}}{{else}}Unknown Error{{/if}}
+  </span>
+</template>
+
+<template name="x_successMsg">
+  <span class="success">
+    <i class="fa fa-check"></i>
+    {{#if successText}}{{successText}}{{else}}Saved{{/if}}
+  </span>
+</template>
+
+<template name="x_changeEmail">{{#with addContext}}
+  <form class="change-email setting">
+    <div class="main">
+      <span class="title">{{#if email}}Change{{else}}Set{{/if}} Email</span>
+      <div class="input-field">
+        <label class="{{#if email}}active{{/if}}" for="email">Email</label>
+        <input type="text" name="email" id="email" value="{{email}}"
+               class="{{#if error}}error{{/if}}" />
+      </div>
+    </div>
+
+    <div class="actions">
+      {{#if error}}<span class="error">
+        <i class="fa fa-warning"></i>
+        {{#if _eq error "invalid"}}Invalid address{{/if}}
+        {{#if _eq error "duplicate"}}Used by another account{{/if}}
+        {{#if _eq error "blank"}}Cannot be blank{{/if}}
+        {{#if _eq error "unknown"}}Unknown Error{{/if}}
+      </span>{{/if}}
+
+      {{#if saved}}{{> _successMsg}}{{/if}}
+
+      {{> saveButton}}
+    </div>
+  </form>
+{{/with}}</template>
+
+
+<template name="x_verifyEmail">{{#with addContext}}
+  <form class="setting js-verify-email">
+    <div class="main">
+      <span class="title">Verify E-mail Address</span>
+      <p>We've sent an e-mail to {{email}} to verify this address. Please
+        click on the link in the e-mail to verify your address.</p>
+    </div>
+
+    <div class="actions">
+      {{#if error}}{{> _errorMsg}}{{/if}}
+      {{#if saved}}{{> _successMsg successText="Sent"}}{{/if}}
+      {{> saveButton buttonText="Resend?"}}
+    </div>
+  </form>
+{{/with}}</template>
+
+
+<template name="x_changePassword">{{#with addContext}}
+  <form class="setting change-password">
+    <div class="main">
+      <span class="title">Change Password</span>
+      <div class="input-field
+                  {{#if _in error 'wrong-password' 'old-blank'}}error{{/if}}">
+        <label for="password">Old Password</label>
+        <input type="password" id="password" name="password"
+               class="{{#if _in error 'wrong-password' 'old-blank'}}error{{/if}}" />
+      </div>
+
+      <div class="input-field {{#if _in error 'new-blank'}}error{{/if}}">
+        <label for="newPassword">New Password</label>
+        <input type="password" id="newPassword" name="newPassword"
+               class="{{#if _in error 'new-blank'}}error{{/if}}" />
+      </div>
+    </div>
+
+    <div class="actions">
+      {{#if _in error 'wrong-password' 'old-blank'}}
+        <span class="error pw-error">
+          <i class="fa fa-warning"></i>
+          {{#if _eq error "wrong-password"}}Wrong password{{/if}}
+          {{#if _eq error "old-blank"}}Cannot be blank{{/if}}
+        </span>
+      {{/if}}
+
+      {{#if _eq error "new-blank"}}
+        <span class="error new-pw-error">
+          <i class="fa fa-warning"></i>
+          Cannot be blank
+        </span>
+      {{/if}}
+
+      {{#if _eq error "unknown"}}
+        {{> _errorMsg}}
+      {{/if}}
+
+      {{#if saved}}{{> _successMsg}}{{/if}}
+      {{> saveButton}}
+    </div>
+  </form>
+{{/with}}</template>
+
+
+<template name="x_resetPassword">{{#with addContext}}
+  <form class="setting reset-password">
+    <div class="main">
+      <span class="title">Forgot Password?</span>
+      <p>We can e-mail you a link to reset your password.</p>
+    </div>
+    <div class="actions">
+      {{#if error}}{{> _errorMsg}}{{/if}}
+      {{#if saved}}{{> _successMsg successText="Sent"}}{{/if}}
+      {{> saveButton}}
+    </div>
+  </form>
+{{/with}}</template>

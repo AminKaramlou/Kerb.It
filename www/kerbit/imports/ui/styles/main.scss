@@ -25,4 +25,68 @@ ul.side-nav.fixed li.user-details {
   background-size: cover;
   padding: 15px 0px 15px 15px;
 }
+/* accountSettings overrides */
+.save-btn {
+  @extend .btn;
+  @extend .waves-effect;
+  @extend .waves-light;
+}
 
+.title {
+  @extend h4;
+}
+.setting {
+  margin: 15px 0px;
+}
+.actions {
+  @extend .center-align;
+  margin: 10px 0px;
+}
+
+/* Structure APPEARS TO BE:
+
+form class = "setting specific-class"
+  div class = "main"    // Text
+    span class = "title"
+    --- FOLLOWED BY ---
+    p
+    --- OR ---
+    div class = "input-field"
+
+  div class = "actions" // Buttons
+
+
+// Generic form class
+.setting {
+
+}
+
+// Specific form classes
+.change-email {
+
+}
+.js-verify-email {
+
+}
+.change-password {
+
+}
+.reset-password {
+
+}
+
+// Inside form
+.main {
+
+}
+.actions {
+
+}
+
+// Inside main
+.title {
+
+}
+.input-field {
+
+} */
