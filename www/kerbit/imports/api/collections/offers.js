@@ -23,6 +23,11 @@ OffersSchema = new SimpleSchema({
     label: "Price",
     defaultValue: 0
   },
+  rating: {
+    type: Number,
+    label: "Rating",
+    decimal: true
+  },
   createdAt: {
     type: Date,
     label: "Created at"

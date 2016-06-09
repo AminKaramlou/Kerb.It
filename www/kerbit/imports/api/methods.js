@@ -30,12 +30,15 @@ Meteor.methods({
   },
   'makeOffer'(requestId, driverId, price) {
     const request = Requests.findOne(requestId);
+    const user = Meteor.users.findOne(driverId);
+    const rating = user.rating;
     const offers = request.offers;
     const offerId = Offers.insert({
       requestId,
       consumerId: request.consumerId,
       driverId,
       price,
+      rating,
       createdAt: new Date()
     });
 

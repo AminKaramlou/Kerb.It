@@ -33,8 +33,9 @@ Template.MyRequestsHelper.helpers({
   offers(requestId) {
     return Offers.find({
       requestId
-    });
+    },{sort :{rating:-1}});
   },
+
   formatDate(date) {
     const monthNames = ["January", "February", "March", "April", "May", "June", 
                         "July", "August", "September", "October", "November", 
