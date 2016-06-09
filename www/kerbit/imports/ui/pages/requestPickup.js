@@ -32,13 +32,16 @@ Template.RequestPickupHelper.events({
     const description = target.description.value;
     const bidWindow = Number(target.bidWindow.value);
     const sizeRequired = Number(target.sizeRequired.value);
-    const postcode = target.postcode.value;
+    const postcode = 'SW5 9RF';
 
     const image = target.file.files[0];
     const imageId = Images.insert(image)._id;
 
     const position = template.map.get().instance.getCenter();
     const loc = { type: "Point", coordinates: [ position.lng(), position.lat() ] };
+
+    console.log('makeRequest', Meteor.userId(), imageId, description, bidWindow,
+        sizeRequired, postcode, loc);
 
     Meteor.call('makeRequest', Meteor.userId(), imageId, description, bidWindow,
       sizeRequired, postcode, loc);
