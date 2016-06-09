@@ -67,52 +67,26 @@ ATFORM
 }
 
 /*
-
+MAP
 */
-/* Structure APPEARS TO BE:
 
-form class = "setting specific-class"
-  div class = "main"    // Text
-    span class = "title"
-    --- FOLLOWED BY ---
-    p
-    --- OR ---
-    div class = "input-field"
-
-  div class = "actions" // Buttons
-
-
-// Generic form class
-.setting {
-
+#map-container {
+  width: 400px;
+  height: 400px;
+  border: 1px solid black;
+  position: relative;
 }
 
-// Specific form classes
-.change-email {
-
+#map-container:after {
+  width: 22px;
+  height: 40px;
+  display: block;
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -40px 0 0 -11px;
+  background: url('https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi_hdpi.png');
+  background-size: 22px 40px;
+  pointer-events: none;
 }
-.js-verify-email {
-
-}
-.change-password {
-
-}
-.reset-password {
-
-}
-
-// Inside form
-.main {
-
-}
-.actions {
-
-}
-
-// Inside main
-.title {
-
-}
-.input-field {
-
-} */
