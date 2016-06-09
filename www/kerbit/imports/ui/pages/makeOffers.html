@@ -29,13 +29,15 @@
             <div class="row" style="margin-left: 15px">
               {{#each requests}}
                 <input type="radio" name="requestId" value={{_id}}>
-                Request: {{description}} <br>
-                Created on {{formatDate createdAt}}. <br>
-                {{#each images imageIds}}
-                  <div>
-                    <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-thumbnail" /></a>
-                  </div>
-                {{/each}}
+                {{#with items itemId}}
+                  Request: {{description}} <br>
+                  Created on {{formatDate createdAt}}. <br>
+                  {{#each images imageId}}
+                   <div>
+                      <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-thumbnail" /></a>
+                    </div>
+                  {{/each}}
+                {{/with}}
               {{/each}}
             </div>
           </div>

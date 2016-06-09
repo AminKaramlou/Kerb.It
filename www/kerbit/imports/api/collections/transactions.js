@@ -8,50 +8,33 @@ TransactionsSchema = new SimpleSchema({
     label: "Transaction ID",
     regEx: SimpleSchema.RegEx.Id
   },
-  imageIds: {
-    type: [String],
-    label: "Image IDs",
-    regEx: SimpleSchema.RegEx.Id
-  },
-  description: {
-    type: String,
-    label: "Description",
-    max: 200
-  },
-  sizeAllocated: {
-    type: Number,
-    label: "Allocated size",
-    min: 1,
-    max: 10
-  },
-  createdAt: {
-    type: Date,
-    label: "Created at"
-  },
-  price: {
-    type: Number,
-    label: "Price",
-    optional: true
-  },
   driverId: {
     type: String,
     label: "Driver ID",
     regEx: SimpleSchema.RegEx.Id,
     optional: true
   },
+  item:{
+    type: String,
+    label: "Item ID"
+  },
+  finalOffer:{
+    type: String,
+    label: "Offer ID"
+  },
   dateConfirmed: {
     type: Date,
     label: "Date Confirmed",
     optional: true
   },
-  isCollected: {
+  isCompleted: {
     type: Boolean,
-    label: "Job was collected",
+    label: "Job was completed",
     optional: true
   },
-  dateCollected: {
+  dateCompleted: {
     type: Date,
-    label: "Date collected",
+    label: "Date Completed",
     optional: true
   },
   hasLeftFeedback: {
@@ -69,23 +52,7 @@ TransactionsSchema = new SimpleSchema({
     label: "Given feedback score",
     min: 0,
     max: 5
-  },
-  loc: {
-    type: Object,
-    index: '2dsphere',
-    label: "Location"
-  },
-  "loc.type": {
-    type: String,
-    allowedValues: ["Point"],
-    label: "Start location type"
-  },
-  "loc.coordinates": {
-    type: [Number],
-    minCount: 2,
-    maxCount: 2,
-    decimal: true
-  },
+  }
 });
 
 Transactions.attachSchema(TransactionsSchema);

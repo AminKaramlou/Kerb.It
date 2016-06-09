@@ -4,51 +4,39 @@ import { Requests } from '../../api/collections/requests.js';
 import { Transactions } from '../../api/collections/transactions.js';
 import { Offers } from '../../api/collections/offers.js';
 import { Images } from '../../api/collections/images.js';
+import { Items } from '../../api/collections/items.js';
 import './myRequests.html';
 
 Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
   Meteor.subscribe('requests');
-  Meteor.subscribe('offers');
   Meteor.subscribe('images');
+  Meteor.subscribe(('items'))
   Meteor.subscribe('transactions');
 });
 
 Template.MyRequestsHelper.helpers({
-  images(imageIds) {
-    return Images.find({_id: {$in: imageIds}});
+  ImageWithId(imageId) {
+    return Images.find(imageId);
   },
 
-  requests() {
+  ItemWithId(itemId) {
+    return Items.find(itemId);
+  },
+
+  currentUsersRequests() {
     return Requests.find({
-      consumerId: Meteor.userId()
+      consumerId: Meteor.userId(),
+      isActive: true
     });
   },
+  offersWithRequestId(requestId) {
+    Meteor.subscribe('offersByRequest', requestId);
 
   transactions() {
     return Transactions.find({
       consumerId: Meteor.userId()
     });
-  },
-  
-  offers(requestId) {
-    return Offers.find({
-      requestId
-    });
-  },
-  formatDate(date) {
-    const monthNames = ["January", "February", "March", "April", "May", "June", 
-                        "July", "August", "September", "October", "November", 
-                        "December"];
-    return date.getDate() + " " + monthNames[date.getMonth()] + ", " + 
-           date.getFullYear() + " at " + date.getHours()  + ":" +
-           date.getMinutes() ;
-  },
-  formatDescription(desc) {
-    let ret = desc;
-    if( desc.length > 100) {
-      ret = desc.substring(0,100) + " ...";
-    }
-    return ret;
+  }
   }
 });
 

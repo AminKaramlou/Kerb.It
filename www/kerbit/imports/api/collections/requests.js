@@ -8,27 +8,15 @@ RequestsSchema = new SimpleSchema({
     label: "Consumer ID",
     regEx: SimpleSchema.RegEx.Id,
   },
-  imageIds: {
-    type: [String],
-    label: "Image ID",
-    regEx: SimpleSchema.RegEx.Id,
-  },
-  description: {
-    type: String,
-    label: "Description",
-    max: 200
-  },
   bidWindow: {
     type: Number,
     label: "Bid window",
     min: 1,
     max: 20160 // Unit is minutes, maybe move to hours ?
   },
-  sizeRequired: {
-    type: Number,
-    label: "Required size estimate",
-    min: 1,
-    max: 10 // Unit is cubic metres, maybe move to move to black bags ?
+  createdAt: {
+    type: Date,
+    label: "Created at"
   },
   loc: {
     type: Object,
@@ -45,15 +33,14 @@ RequestsSchema = new SimpleSchema({
     minCount: 2,
     maxCount: 2,
     decimal: true
-  }, 
-  offers: {
-    type: [String],
-    label: "Offers",
-    defaultValue: []
   },
-  createdAt: {
-    type: Date,
-    label: "Created at"
+  itemId: {
+    type: String,
+    label: "Item ID"
+  },
+  isActive: {
+    type: Boolean,
+    label: "is active request"
   }
 });
 
@@ -62,9 +49,12 @@ Requests.attachSchema(RequestsSchema);
 if (Meteor.isServer) {
   Meteor.publish('requests', function requestsPublication() {
     if (Meteor.users.findOne(this.userId).profile.isDriver) {
+
       return Requests.find({});
     }
+
     return Requests.find({
+
       consumerId: this.userId
     });
   });
