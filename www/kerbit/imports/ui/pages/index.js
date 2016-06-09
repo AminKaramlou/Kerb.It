@@ -10,6 +10,7 @@ import "./notFound.js";
 import "./driverHistory.js";
 import "./clientHistory.js";
 import "./userProfilePublicView.js"
+import "./customSettings.js"
 
 import "../components/onlyDriver.js";
 import "../components/onlyConsumer.js";
