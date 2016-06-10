@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Images } from '../../api/collections/images.js';
+import { Items } from '../../api/collections/items.js';
 import { Requests } from '../../api/collections/requests.js';
 
 import '../../api/methods.js';
@@ -9,13 +10,14 @@ import "./makeOffers.html";
 Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
   Meteor.subscribe('requests');
   Meteor.subscribe('images');
+  Meteor.subscribe('items');
 
   GoogleMaps.ready('map', function(map) {
 
     var directionsServices = {};
     var directionsDisplays = {};
-    
-    Requests.find().observe({
+      
+    Requests.find({isActive: true}).observe({
       added: function (document) {
 
         directionsServices[document._id] = new google.maps.DirectionsService;
@@ -54,11 +56,16 @@ Template.MakeOffersHelper.helpers({
   images(imageIds) {
     return Images.find({_id: {$in: imageIds}});
   },
+
+  items(itemId) {
+    return Items.findOne(itemId);
+  },
   
   requests() {
     if (Geolocation.currentLocation()) {
-      return Requests.find(
+       return Requests.find(
       {
+        isActive: true,
         loc: {
           $near: {
             $geometry: {
@@ -70,22 +77,6 @@ Template.MakeOffersHelper.helpers({
         }
       });
     }
-  },
-  formatDate(date) {
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November",
-      "December"];
-    return date.getDate() + " " + monthNames[date.getMonth()] + ", " +
-      date.getFullYear() + " at " + date.getHours()  + ":" +
-      date.getMinutes() ;
-  },
-
-  formatDescription(desc) {
-    let ret = desc
-    if( desc.length > 100) {
-      ret = desc.substring(0,100) + " ...";
-    }
-    return ret;
   }
 });
 
@@ -105,8 +96,7 @@ Template.MakeOffersHelper.events({
     } else {
       requestId = target.requestId.value;
     }
-
-    Meteor.call('makeOffer', requestId, Meteor.userId(), price);
+    Meteor.call('makeOffer', requestId, Meteor.userId(), price, Meteor.user().rating);
     target.reset();
     alert("Your offer was recorded. Please check the My Offers page for updates");
   }

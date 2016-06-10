@@ -10,6 +10,14 @@ Template.ClientHistoryHelper.onCreated(function () {
   Meteor.subscribe('users');
 });
 
+
+function getPending()  {
+  return Transactions.find({
+      consumerId: Meteor.userId(),
+      isCompleted: false
+    });
+}
+
 Template.ClientHistoryHelper.helpers({
 
   images(imageIds) {
@@ -17,25 +25,16 @@ Template.ClientHistoryHelper.helpers({
   },
 
   pending() {
-    return Transactions.find({
-      consumerId: Meteor.userId(),
-      isCollected: false
-    });
+    return getPending();
   },
 
-  getPendingCount() {
-    var trans = Transactions.find({
-      consumerId: Meteor.userId(),
-      isCollected: false
-    });
-    return trans.count();
-  },
+
   
   getIsZero() {
-    return (getPendingCount() == 0);
+    return (getPending().count() == 0);
   },
   getIsOne() {
-    return (getPendingCount() == 1);
+    return (getPending().count() == 1);
   },
 
   getDriverName(driverId) {
@@ -51,7 +50,7 @@ Template.ClientHistoryHelper.helpers({
   transactions() {
     return Transactions.find({
       consumerId: Meteor.userId(),
-      isCollected: true
+      isCompleted: true
     });
   }
 });

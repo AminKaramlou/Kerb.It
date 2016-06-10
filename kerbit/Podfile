@@ -1,3 +1,4 @@
 target 'kerbit' do
   pod 'GoogleMaps'
+  pod 'Meteor'
 end

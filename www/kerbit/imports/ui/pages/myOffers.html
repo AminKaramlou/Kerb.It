@@ -18,12 +18,19 @@
       <div id="tab1" class="tab">
         <div class="container">
           <div class="row">
-            {{#each offer in offers}}
-              <li>
-                {{#each request in requests offer.requestId}}
-                  Request: {{request.description}} {{offer.price}}
+            {{#each offers}}
+              <ul>
+                {{#each requests requestId}}
+                  <li>
+                    Request: {{description}} {{../price}}
+                    <form>
+                      <input type="text" name="id" id="id" value="{{../_id}}" hidden>
+                      <input type="text" name="price" id="price" placeholder="Price">
+                      <input type="submit" id="submit-update" class="btn btn-default btn-success " value="Update Offer">
+                    </form>
+                  </li>
                 {{/each}}
-              </li>
+              </ul>
             {{/each}}
           </div>
         </div>

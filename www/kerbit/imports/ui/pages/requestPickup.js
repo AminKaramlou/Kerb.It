@@ -65,10 +65,9 @@ Template.RequestPickupHelper.events({
     }
 
     const position = template.map.get().instance.getCenter();
-    const loc = { type: "Point", coordinates: [ position.lng(), position.lat() ] };
 
     Meteor.call('makeRequest', Meteor.userId(), imageIds, description, bidWindow,
-      sizeRequired, loc);
+      sizeRequired, position.lng(), position.lat());
     target.reset();
   }
 });

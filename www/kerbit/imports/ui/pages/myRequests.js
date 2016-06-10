@@ -4,38 +4,42 @@ import { Requests } from '../../api/collections/requests.js';
 import { Transactions } from '../../api/collections/transactions.js';
 import { Offers } from '../../api/collections/offers.js';
 import { Images } from '../../api/collections/images.js';
+import { Items } from '../../api/collections/items.js';
 import './myRequests.html';
 
 Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
   Meteor.subscribe('requests');
-  Meteor.subscribe('offers');
   Meteor.subscribe('images');
+  Meteor.subscribe(('items'))
   Meteor.subscribe('transactions');
 });
 
 Template.MyRequestsHelper.helpers({
-  images(imageIds) {
+  ImageWithId(imageIds) {
     return Images.find({_id: {$in: imageIds}});
   },
 
-  requests() {
-    return Requests.find({
-      consumerId: Meteor.userId()
-    });
+  ItemWithId(itemId) {
+    return Items.find(itemId);
   },
 
+  currentUsersRequests() {
+    return Requests.find({
+      consumerId: Meteor.userId(),
+      isActive: true
+    });
+  },
+  offersWithRequestId(requestId) {
+    Meteor.subscribe('offersByRequest', requestId);
+    return Offers.find({
+      requestId
+    },{sort :{rating:-1}});
+  },
   transactions() {
     return Transactions.find({
       consumerId: Meteor.userId()
     });
   },
-  
-  offers(requestId) {
-    return Offers.find({
-      requestId
-    },{sort :{rating:-1}});
-  },
-
   formatDate(date) {
     const monthNames = ["January", "February", "March", "April", "May", "June", 
                         "July", "August", "September", "October", "November", 
@@ -65,7 +69,7 @@ Template.MyRequestsHelper.events({
     javascript:history.go(0)
   },
   'click #accept-offer'() {
-    Meteor.call('acceptOffer', this.requestId, this._id, 5);
+    Meteor.call('acceptOffer', this.requestId, this._id);
   },
   'click #delete-request'() {
     Meteor.call('deleteRequest', this._id);

@@ -1,89 +1,110 @@
 import { Transactions } from './collections/transactions.js'
 import { Requests } from './collections/requests.js'
 import { Offers } from './collections/offers.js'
-import {Images} from './collections/images.js'
+import { Images } from './collections/images.js'
+import {Items}  from './collections/items.js'
 
 Meteor.methods({
   'makeRequest'(consumerId, imageIds, description, bidWindow, sizeRequired,
-                loc) {
+                  lng, lat) {
+
+    const loc = { type: "Point", coordinates: [lng, lat] };
+    
     Meteor.users.update(consumerId, {
       $set: {
         lastLoc: loc
       }
     });
+
+    if (typeof imageIds === 'string') {
+      imageIds = [imageIds];
+    }
     
     const date = new Date();
-    Requests.insert({
+
+    const itemId = Items.insert({
       consumerId,
       imageIds,
       description,
-      bidWindow,
       sizeRequired,
-      loc,
-      offers: [],
-      createdAt: new Date() 
+      createdAt: date,
     });
+
+    const requestId = Requests.insert({
+      consumerId,
+      bidWindow,
+      createdAt: date,
+      itemId,
+      loc,
+      isActive: true,
+      isLive: true
+    });
+
+    if (Meteor.isServer) {
+      Meteor.setTimeout(function() {
+        Requests.update(requestId, {
+          $set: {
+            isLive: false
+          }
+        });
+      }, bidWindow * 60000);
+    }
   },
   'deleteRequest'(requestId) {
     var request = Requests.findOne(requestId);
-    var offers = request.offers;
-    for (var i in offers) {
-      var offerId = offers[i];
-      Offers.remove(offerId);
-    }
-    Requests.remove(requestId);
+    Requests.update(requestId, {
+      $set: {
+        isActive: false
+      }
+    });
   },
-  'makeOffer'(requestId, driverId, price) {
+  'makeOffer'(requestId, driverId, price, rating) {
     const request = Requests.findOne(requestId);
     const user = Meteor.users.findOne(driverId);
-    const rating = user.rating;
     const offers = request.offers;
     const offerId = Offers.insert({
       requestId,
-      consumerId: request.consumerId,
       driverId,
       price,
       rating,
       createdAt: new Date()
     });
-
-    offers.push(offerId);
-
-    Requests.update(requestId, {
+  },
+  'updateOffer'(offerId, price) {
+    Offers.update(offerId, {
       $set: {
-        offers: offers
+        price
       }
     });
   },
-    'collect'(orderId) {
-
-
-        Transactions.update(orderId, {
-            $set: {
-                isCollected: true,
-                dateColleceted: new Date()
-            }
-        });
-    },
-  'acceptOffer'(requestId, offerId, sizeAllocated) {
+  'acceptOffer'(requestId, offerId) {
+    Requests.update(requestId, {
+      $set: {
+        isLive: false
+      }
+    });
     const request = Requests.findOne(requestId);
     const offer = Offers.findOne(offerId);
     Transactions.insert({
       consumerId: request.consumerId,
-      imageIds: request.imageIds,
-      description: request.description,
-      sizeAllocated: sizeAllocated,
-      createdAt: request.createdAt,
-      price: offer.price,
       driverId: offer.driverId,
-      dateCollected: new Date(),
-      isCollected: false,
+      dateConfirmed: new Date(),
+      finalOffer: offerId,
+      item: request.itemId,
+      isCompleted: false,
       hasLeftFeedback: false,
-      feedbackScore: 0,
-      loc: request.loc,
-    }
-    );
+      feedbackScore: 0
+    });
+
     Meteor.call('deleteRequest', requestId);
+  },
+  'collect'(orderId) {
+    Transactions.update(orderId, {
+      $set: {
+        isCompleted: true,
+        dateCompleted: new Date()
+      }
+    });
   },
   'rateDriver'(driverId, rating) {
     /*
@@ -106,9 +127,16 @@ Meteor.methods({
       }
     });
   },
+  'uploadImageIOS': function(base64Data) {
+    var newFile = new FS.File();
+    var fileDataBuffer = new Buffer(base64Data, 'base64');
+    newFile.attachData(fileDataBuffer, {type: 'image/jpg'});
 
-  'leaveFeedback'(transId, rating) {
-    Transactions.update(transId, {
+    const imageId = Images.insert(newFile)._id;
+    return imageId;
+  },
+  'leaveFeedback'(transactionId, rating) {
+    Transactions.update(transactionId, {
       $set: {
         hasLeftFeedback: true,
         dateRated: new Date(),

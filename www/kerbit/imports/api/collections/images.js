@@ -1,7 +1,12 @@
 
 
 export const Images = new FS.Collection("images", {
-  stores: [new FS.Store.GridFS("images", {path: "~/uploads"})]
+  stores: [new FS.Store.GridFS("images", {path: "~/uploads"})],
+  filter: {
+    allow: {
+      contentTypes: ['image/*']
+    }
+  }
 });
 
 if (Meteor.isServer) {
@@ -10,21 +15,6 @@ if (Meteor.isServer) {
   });
 
   //TODO: Secure images database by adding relevant allow and deny
-
-  Images.deny({
-    insert: function(){
-      return false;
-    },
-    update: function(){
-      return false;
-    },
-    remove: function(){
-      return false;
-    },
-    download: function(){
-      return false;
-    }
-  });
 
   Images.allow({
     insert: function(){
