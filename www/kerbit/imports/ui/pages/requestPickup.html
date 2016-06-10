@@ -22,18 +22,18 @@
         <div class="file-field input-field">
           <div class="btn">
             <span>Upload image</span>
-            <input type="file" id="clientImage" name="clientImage">
+            <input type="file" id="clientImage" name="clientImage" accept="images/*" multiple>
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text">
           </div>
         </div>
         <p class="range-field">
-          <input type="range" id="sizeRequired" name="sizeRequired" min="0" max="100" />
+          <input type="range" id="sizeRequired" name="sizeRequired" min="1" max="10" value="5"/>
           <label for="sizeRequired">Size required</label>
         </p>
         <p class="range-field">
-          <input type="range" id="bidWindow" name="bidWindow" min="0" max="100" />
+          <input type="range" id="bidWindow" name="bidWindow" min="1" max="20160" value="10080"/>
           <label for="bidWindow">Bid window</label>
         </p>
         <button type="submit" class="btn">Submit</button>
@@ -41,45 +41,3 @@
     </div>
   </div>
 </template>
-
-<!--
-
-      <form class="form-horizontal">
-        <div class="form-group">
-          <label for="description" class="col-md-2 control-label">Description</label>
-          <div class="col-md-10">
-            <textarea class="form-control" id="description" placeholder="Description" rows=10></textarea>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="image" class="col-md-2 control-label">Image</label>
-          <div class="col-md-10">
-            <input type="file" id="file" accept="images/*">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="sizeRequired" class="col-md-2 control-label">Size Required</label>
-          <div class="col-md-10">
-            <input type="range" value="6" min="1" max="11">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="bidWindow" class="col-md-2 control-label">Bid Window</label>
-          <div class="col-md-10">
-            <input type="range" value="10140" min="60" max="20160">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="postcode" class="col-md-2 control-label">Postcode</label>
-          <div class="col-md-10">
-            <input type="text" class="form-control" id="postcode" placeholder="Postcode">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-default">Submit</button>
-          </div>
-        </div>
-      </form>
-
--->
