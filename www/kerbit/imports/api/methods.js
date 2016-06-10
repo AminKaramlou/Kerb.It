@@ -5,8 +5,12 @@ import { Images } from './collections/images.js'
 import {Items}  from './collections/items.js'
 
 Meteor.methods({
-  'makeRequest'(consumerId, imageId, description, bidWindow, sizeRequired,
+  'makeRequest'(consumerId, imageIds, description, bidWindow, sizeRequired,
                 lng, lat) {
+    if (typeof imageIds === 'string') {
+      imageIds = [imageIds];
+    }
+
     const date = new Date();
     const loc = { type: "Point", coordinates: [lng, lat] };
 
