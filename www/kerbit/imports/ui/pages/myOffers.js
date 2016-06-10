@@ -28,9 +28,10 @@ Template.MyOffersHelper.helpers({
   ItemWithId(itemId) {
     return Items.find(itemId);
   },
-  offers() {
+  pendingOffers() {
     return Offers.find({
-      driverId: Meteor.userId()
+      driverId: Meteor.userId(),
+      isLive: true
     });
   },
   offerWithOfferId(offerId) {
