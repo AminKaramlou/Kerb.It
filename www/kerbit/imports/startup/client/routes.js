@@ -45,7 +45,7 @@ FlowRouter.route('/users/:userName', {
 driverSection.route('/settings', {
   name: 'Settings',
   action: function() {
-    BlazeLayout.render('DashLayout', {main: 'customSettings'});
+    BlazeLayout.render('DashLayout', {main: 'CustomSettings'});
   }
 });
 
