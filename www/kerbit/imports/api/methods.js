@@ -32,13 +32,15 @@ Meteor.methods({
       isLive: true
     });
 
-    Meteor.setTimeout(function() {
-      Requests.update(requestId, {
-        $set: {
-          isLive: false
-        }
-      });
-    }, bidWindow * 60000);
+    if (Meteor.isServer) {
+      Meteor.setTimeout(function() {
+        Requests.update(requestId, {
+          $set: {
+            isLive: false
+          }
+        });
+      }, bidWindow * 60000);
+    }
   },
   'deleteRequest'(requestId) {
     var request = Requests.findOne(requestId);
@@ -48,10 +50,9 @@ Meteor.methods({
       }
     });
   },
-  'makeOffer'(requestId, driverId, price) {
+  'makeOffer'(requestId, driverId, price, rating) {
     const request = Requests.findOne(requestId);
     const user = Meteor.users.findOne(driverId);
-    const rating = user.rating;
     const offers = request.offers;
     const offerId = Offers.insert({
       requestId,
@@ -69,6 +70,11 @@ Meteor.methods({
     });
   },
   'acceptOffer'(requestId, offerId) {
+    Requests.update(requestId, {
+      $set: {
+        isLive: false
+      }
+    });
     const request = Requests.findOne(requestId);
     const offer = Offers.findOne(offerId);
     Transactions.insert({

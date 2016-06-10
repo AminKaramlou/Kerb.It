@@ -9,7 +9,7 @@ Template.RequestPickupHelper.onCreated(function(){
   var self = this;
 
   GoogleMaps.ready('map', function(map) {
-    var input = document.getElementById('pac-input');
+    var input = document.getElementById('pac');
     var searchBox = new google.maps.places.SearchBox(input);
     input.hidden = false;
     map.instance.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
@@ -18,13 +18,13 @@ Template.RequestPickupHelper.onCreated(function(){
       var places = searchBox.getPlaces();
       map.instance.setCenter(places[0].geometry.location);
     });
+
     self.map = new ReactiveVar(map);
   });
 });
 
 Template.RequestPickupHelper.events({
   'change #file' (event) {
-
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
 

@@ -95,7 +95,7 @@ Template.MakeOffersHelper.events({
     } else {
       requestId = target.requestId.value;
     }
-    Meteor.call('makeOffer', requestId, Meteor.userId(), price);
+    Meteor.call('makeOffer', requestId, Meteor.userId(), price, Meteor.user().rating);
     target.reset();
     alert("Your offer was recorded. Please check the My Offers page for updates");
   }
