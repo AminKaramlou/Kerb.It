@@ -13,12 +13,8 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
   Meteor.subscribe('items');
 
   GoogleMaps.ready('map', function(map) {
-
     var directionsServices = {};
     var directionsDisplays = {};
-
-
-
 
     Requests.find({isActive: true}).observe({
       added: function (document) {
