@@ -5,6 +5,7 @@ import { assert } from 'meteor/practicalmeteor:chai';
 import { Requests } from './collections/requests.js';
 import { Offers } from './collections/offers.js';
 import { Transactions } from './collections/transactions.js';
+import { Items } from './collections/items.js';
 import './methods.js';
 
 if (Meteor.isServer) {
@@ -21,6 +22,7 @@ if (Meteor.isServer) {
     const bidWindow = 7;
     const sizeRequired = 7;
     const loc = {type: "Point", coordinates:[7,10]};
+    const rating = 5;
     beforeEach(() => {
       Transactions.remove({});
       Requests.remove({});
@@ -32,7 +34,7 @@ if (Meteor.isServer) {
         const makeRequest = Meteor.server.method_handlers['makeRequest'];
         const invocation = { userId: consumerId };
 
-        makeRequest.apply(invocation, [consumerId, imageIds, description, bidWindow, sizeRequired, loc]);
+        makeRequest.apply(invocation, [consumerId, imageIds, description, bidWindow, sizeRequired, loc.coordinates[0], loc.coordinates[1]]);
       });
 
       it('should create request', () => {
@@ -47,10 +49,11 @@ if (Meteor.isServer) {
         requestId = Requests.insert({
           consumerId,
           bidWindow,
-          loc,
+          createdAt: new Date(),
           itemId,
+          loc,
           isActive: true,
-          createdAt: new Date()
+          isLive: true
         });
         deleteRequest.apply(invocation, [requestId]);
       });
@@ -67,13 +70,14 @@ if (Meteor.isServer) {
         const requestId = Requests.insert({
           consumerId,
           bidWindow,
-          loc,
+          createdAt: new Date(),
           itemId,
+          loc,
           isActive: true,
-          createdAt: new Date()
+          isLive: true
         });
         const price = 1000;
-        makeOffer.apply(invocation, [requestId, driverId, price]);
+        makeOffer.apply(invocation, [requestId, driverId, price, rating]);
       });
 
       it('should create offer', () => {
@@ -99,19 +103,21 @@ if (Meteor.isServer) {
         requestId = Requests.insert({
           consumerId,
           bidWindow,
+          createdAt: new Date(),
           loc,
           itemId,
           isActive: true,
-          createdAt: new Date()
+          isLive: true
         });
         Offers.insert({
           _id: offerId,
           requestId,
           driverId,
           price,
+          rating,
           createdAt: date
         });
-        acceptOffer.apply(invocation, [requestId, offerId, sizeAllocated]);
+        acceptOffer.apply(invocation, [requestId, offerId]);
       });
 
       it('should delete request', () => {
