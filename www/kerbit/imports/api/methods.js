@@ -85,5 +85,16 @@ Meteor.methods({
         rating: newRating
       }
     });
+  },
+  'uploadImageIOS': function(base64Data, callback) {
+    var newFile = new FS.File();
+    var fileDataBuffer = new Buffer(base64Data, 'base64');
+    //newFile.name('IOSUpload.jpg');
+    newFile.attachData(fileDataBuffer, {type: 'image/jpg'});
+    //Do something with fileDataBuffer, like upload to S3 using meteor-knox.
+
+    const imageId = Images.insert(newFile)._id;
+    return imageId;
+    //return "Bye";
   }
 });
