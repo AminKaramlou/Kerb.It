@@ -16,6 +16,8 @@ ul.side-nav.fixed {
 .user-details .row {
   margin: 0;
   line-height: 25px;
+  color: #fff;
+  font-weight: bold;
 }
 ul.side-nav.fixed li.user-details {
   background: url(../images/user-bg.jpg) no-repeat center center;
@@ -42,50 +44,49 @@ ul.side-nav.fixed li.user-details {
   margin: 10px 0px;
 }
 
-/* Structure APPEARS TO BE:
-
-form class = "setting specific-class"
-  div class = "main"    // Text
-    span class = "title"
-    --- FOLLOWED BY ---
-    p
-    --- OR ---
-    div class = "input-field"
-
-  div class = "actions" // Buttons
-
-
-// Generic form class
-.setting {
-
+/*
+FOOTER
+*/
+.link-disabled {
+  color: grey;
+  text-decoration: none;
 }
 
-// Specific form classes
-.change-email {
-
-}
-.js-verify-email {
-
-}
-.change-password {
-
-}
-.reset-password {
-
+/*
+NAV
+*/
+nav {
+  //background-color: black;
 }
 
-// Inside form
-.main {
-
+/*
+ATFORM
+*/
+.at-btn {
+  margin-top: 15px;
 }
-.actions {
 
+/*
+MAP
+*/
+
+#map-container {
+  width: 400px;
+  height: 400px;
+  border: 1px solid black;
+  position: relative;
 }
 
-// Inside main
-.title {
-
+#map-container:after {
+  width: 22px;
+  height: 40px;
+  display: block;
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -40px 0 0 -11px;
+  background: url('https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi_hdpi.png');
+  background-size: 22px 40px;
+  pointer-events: none;
 }
-.input-field {
-
-} */
