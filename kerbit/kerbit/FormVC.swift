@@ -21,9 +21,14 @@ class FormVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
   
   override func viewDidLoad() {
     imageView.image = image
+    DataManager.subscriptionLoader.addSubscriptionWithName("images")
+    DataManager.subscriptionLoader.whenReady() {
+      print("images subscribed")
+    }
   }
   
   @IBAction func didSubmitForm() {
+    DataManager.uploadImageNow(image)
     Meteor.callMethodWithName("makeRequest", parameters: [Meteor.userID!, imageId, "Test Description", Int(bidWindow.value * 21640), Int(sizeRequired.value * 10), postcode.text!, longitude, latitude])
   }
 }

@@ -8,9 +8,11 @@
 
 import UIKit
 
-let productionURL = "wss://kerbit.co.uk/websocket" //Not sure whether this is the correct URL
-let localURL = "ws://localhost:3000/websocket"
-let Meteor = METCoreDataDDPClient(serverURL: NSURL(string: localURL)!)
+let productionUrl = "kerbit.co.uk"
+let localUrl = "localhost:3000"
+let baseUrl = localUrl
+let baseWs = "ws"
+let Meteor = METCoreDataDDPClient(serverURL: NSURL(string: "\(baseWs)://\(baseUrl)/websocket")!)
 
 let imageId = "5TdZ7xGdxkMARQPHo"
 
@@ -23,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     GMSServices.provideAPIKey(googleMapsApiKey)
     Meteor.connect()
     DataManager.setup(Meteor.mainQueueManagedObjectContext)
-    Meteor.loginWithEmail("mitrasaurav97@gmail.com", password: "obyron", completionHandler: nil);
+    Meteor.loginWithEmail("sm5214@ic.ac.uk", password: "obyron", completionHandler: nil);
     return true
   }
 
