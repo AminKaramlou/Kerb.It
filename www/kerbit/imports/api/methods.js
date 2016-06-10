@@ -2,51 +2,62 @@ import { Transactions } from './collections/transactions.js'
 import { Requests } from './collections/requests.js'
 import { Offers } from './collections/offers.js'
 import { Images } from './collections/images.js'
+import {Items}  from './collections/items.js'
 
 Meteor.methods({
   'makeRequest'(consumerId, imageId, description, bidWindow, sizeRequired,
-                postcode, lng, lat) {
+                lng, lat) {
     const date = new Date();
     const loc = { type: "Point", coordinates: [lng, lat] };
 
-    Requests.insert({
+    const itemId = Items.insert({
       consumerId,
-      imageId,
+      imageIds,
       description,
-      bidWindow,
       sizeRequired,
-      postcode,
-      loc,
-      offers: [],
-      createdAt: new Date() 
+      createdAt: date,
     });
+
+    const requestId = Requests.insert({
+      consumerId,
+      bidWindow,
+      createdAt: date,
+      itemId,
+      loc,
+      isActive: true,
+      isLive: true
+    });
+
+    Meteor.setTimeout(function() {
+      Requests.update(requestId, {
+        $set: {
+          isLive: false
+        }
+      });
+    }, bidWindow * 60000);
   },
   'deleteRequest'(requestId) {
     var request = Requests.findOne(requestId);
-    var offers = request.offers;
-    for (var i in offers) {
-      var offerId = offers[i];
-      Offers.remove(offerId);
-    }
-    Images.remove(request.imageId);
-    Requests.remove(requestId);
+    Requests.update(requestId, {
+      $set: {
+        isActive: false
+      }
+    });
   },
   'makeOffer'(requestId, driverId, price) {
-    const request = Requests.findOne(requestId);
-    const offers = request.offers;
-    const offerId = Offers.insert({
+    Offers.insert({
       requestId,
-      consumerId: request.consumerId,
       driverId,
       price,
       createdAt: new Date()
     });
 
-    offers.push(offerId);
-
-    Requests.update(requestId, {
+  },
+  'collect'(orderId) {
+    Transactions.update(orderId, {
       $set: {
-        offers: offers
+        isCompleted: true,
+        dateCompleted: new Date()
       }
     });
   },
@@ -55,14 +66,15 @@ Meteor.methods({
     const offer = Offers.findOne(offerId);
     Transactions.insert({
       consumerId: request.consumerId,
-      description: request.description,
-      sizeAllocated: sizeAllocated,
-      postcode: request.postcode,
-      createdAt: request.createdAt,
-      price: offer.price,
       driverId: offer.driverId,
-      dateConfirmed: new Date()
+      dateConfirmed: new Date(),
+      finalOffer: offerId,
+      item: request.itemId,
+      isCompleted: false,
+      hasLeftFeedback: false,
+      feedbackScore: 0
     });
+
     Meteor.call('deleteRequest', requestId);
   },
   'rateDriver'(driverId, rating) {
@@ -86,15 +98,21 @@ Meteor.methods({
       }
     });
   },
-  'uploadImageIOS': function(base64Data, callback) {
+  'uploadImageIOS': function(base64Data) {
     var newFile = new FS.File();
     var fileDataBuffer = new Buffer(base64Data, 'base64');
-    //newFile.name('IOSUpload.jpg');
     newFile.attachData(fileDataBuffer, {type: 'image/jpg'});
-    //Do something with fileDataBuffer, like upload to S3 using meteor-knox.
 
     const imageId = Images.insert(newFile)._id;
     return imageId;
-    //return "Bye";
+  },
+  'leaveFeedback'(transactionId, rating) {
+    Transactions.update(transactionId, {
+      $set: {
+        hasLeftFeedback: true,
+        dateRated: new Date(),
+        feedbackScore: rating
+      }
+    });
   }
 });

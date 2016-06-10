@@ -1,7 +1,17 @@
 <template name="Transaction">
-  You completed a transaction of {{sizeAllocated}} cubic meters,<br>
-  at the following postcode: {{formatPostcode postcode}}, <br>
-  on the {{formatDate dateConfirmed}}, <br>
-  for a price of {{price}}£.
+  <ul class="list-group">
+    <li class ="list-group-item">
+      Price: £{{price}}
+    </li>
+    <li class ="list-group-item">
+      Date: {{formatDate dateConfirmed}}
+    </li>
+    <li class ="list-group-item">
+      Location: {{formatPostcode postcode}}
+    </li>
+    <li class ="list-group-item">
+      Size: {{sizeAllocated}}
+    </li>
+  </ul>
 </template>
 

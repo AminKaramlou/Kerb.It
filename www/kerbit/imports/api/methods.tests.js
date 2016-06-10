@@ -1,22 +1,25 @@
 import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';
 import { assert } from 'meteor/practicalmeteor:chai';
- 
+
 import { Requests } from './collections/requests.js';
 import { Offers } from './collections/offers.js';
 import { Transactions } from './collections/transactions.js';
 import './methods.js';
- 
+
 if (Meteor.isServer) {
   describe('API methods', () => {
     const consumerId = Random.id();
     const driverId = Random.id();
-    const imageId = Random.id();
-
+    var requestId;
+    var imageIds = new Array();
+    for (i = 0; i < 5; i++) {
+      imageIds.push(Random.id());
+    }
+    const itemId = Random.id();
     const description = "Test Description";
     const bidWindow = 7;
     const sizeRequired = 7;
-    const postcode = "SW72AZ";
     const loc = {type: "Point", coordinates:[7,10]};
     beforeEach(() => {
       Transactions.remove({});
@@ -29,7 +32,7 @@ if (Meteor.isServer) {
         const makeRequest = Meteor.server.method_handlers['makeRequest'];
         const invocation = { userId: consumerId };
 
-        makeRequest.apply(invocation, [consumerId, imageId, description, bidWindow, sizeRequired, postcode, loc]);
+        makeRequest.apply(invocation, [consumerId, imageIds, description, bidWindow, sizeRequired, loc]);
       });
 
       it('should create request', () => {
@@ -40,43 +43,37 @@ if (Meteor.isServer) {
       beforeEach(() => {
         const deleteRequest = Meteor.server.method_handlers['deleteRequest'];
         const invocation = { userId: consumerId };
-    
-        const requestId = Requests.insert({
+
+        requestId = Requests.insert({
           consumerId,
-          imageId,
-          description,
           bidWindow,
-          sizeRequired,
-          postcode,
           loc,
-          offers: [],
+          itemId,
+          isActive: true,
           createdAt: new Date()
         });
-        deleteRequest.apply(invocation, [requestId]); 
+        deleteRequest.apply(invocation, [requestId]);
       });
 
       it('should delete request', () => {
-        assert.equal(Offers.find().count(), 0);
+        assert.equal(Requests.findOne(requestId).isActive, false);
       });
     });
     describe('makeOffer', () => {
       beforeEach(() => {
         const makeOffer = Meteor.server.method_handlers['makeOffer'];
         const invocation = { userId: driverId };
-    
+
         const requestId = Requests.insert({
           consumerId,
-          imageId,
-          description,
           bidWindow,
-          sizeRequired,
-          postcode,
           loc,
-          offers: [],
+          itemId,
+          isActive: true,
           createdAt: new Date()
         });
         const price = 1000;
-        makeOffer.apply(invocation, [requestId, driverId, price]); 
+        makeOffer.apply(invocation, [requestId, driverId, price]);
       });
 
       it('should create offer', () => {
@@ -88,50 +85,37 @@ if (Meteor.isServer) {
 
         assert.equal(offer.requestId, request._id);
       });
-      it('should have request with array with element pointing to offer', () => {
-        const offer = Offers.findOne();
-        const request = Requests.findOne();
 
-        assert.equal(request.offers[0], offer._id);
-      });
     });
     describe('acceptOffer', () => {
       beforeEach(() => {
         const acceptOffer = Meteor.server.method_handlers['acceptOffer'];
         const invocation = { userId: consumerId };
-    
+
         const sizeAllocated = 7;
         const price = 1000;
         const date = new Date();
         const offerId = Random.id();
-        const requestId = Requests.insert({
+        requestId = Requests.insert({
           consumerId,
-          imageId,
-          description,
           bidWindow,
-          sizeRequired: sizeAllocated,
-          postcode,
           loc,
-          offers: [],
-          offers: [offerId],
-          createdAt: date
+          itemId,
+          isActive: true,
+          createdAt: new Date()
         });
         Offers.insert({
           _id: offerId,
           requestId,
-          consumerId,
           driverId,
           price,
           createdAt: date
         });
-        acceptOffer.apply(invocation, [requestId, offerId, sizeAllocated]); 
+        acceptOffer.apply(invocation, [requestId, offerId, sizeAllocated]);
       });
 
       it('should delete request', () => {
-        assert.equal(Requests.find().count(), 0);
-      });
-      it('should delete offer', () => {
-        assert.equal(Offers.find().count(), 0);
+         assert.equal(Requests.findOne(requestId).isActive, false);
       });
       it('should create transaction', () => {
         assert.equal(Transactions.find().count(), 1);

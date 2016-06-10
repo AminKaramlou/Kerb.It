@@ -7,8 +7,20 @@ import "./requestPickup.html";
 
 Template.RequestPickupHelper.onCreated(function(){
   var self = this;
+
   GoogleMaps.ready('map', function(map) {
-    self.map = new ReactiveVar(map);
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    input.hidden = false;
+    map.instance.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    searchBox.addListener('places_changed', function() {
+      var places = searchBox.getPlaces();
+      map.instance.setCenter(places[0].geometry.location);
+    });
+
+
+      self.map = new ReactiveVar(map);
   });
 });
 
@@ -32,10 +44,14 @@ Template.RequestPickupHelper.events({
     const description = target.description.value;
     const bidWindow = Number(target.bidWindow.value);
     const sizeRequired = Number(target.sizeRequired.value);
-    const postcode = target.postcode.value;
 
-    const image = target.file.files[0];
-    const imageId = Images.insert(image)._id;
+    const images = target.file.files;
+
+    var imageIds = new Array();
+
+    for (i = 0; i < images.length; i++) {
+      imageIds.push(Images.insert(images[i])._id);
+    }
 
     const position = template.map.get().instance.getCenter();
 

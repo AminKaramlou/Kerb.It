@@ -1,5 +1,12 @@
 import "./map.html";
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/templating';
 
+import '../../api/methods.js';
+
+Meteor.startup(function() {
+  GoogleMaps.load( { key: 'AIzaSyBnvwhKrpFJ_r1_7zl0p4NZ07tmNvXm9MU', libraries: 'geometry,places'});
+});
 Template.map.onCreated(function (){
 
   GoogleMaps.ready('map', function(map) {
@@ -8,8 +15,6 @@ Template.map.onCreated(function (){
       navigator.geolocation.getCurrentPosition(function (position) {
         initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         map.instance.setCenter(initialLocation);
-      }, function () {
-        handleNoGeolocation(browserSupportFlag);
       });
     }
   });
