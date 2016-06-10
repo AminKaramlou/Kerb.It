@@ -97,6 +97,6 @@ Template.MakeOffersHelper.events({
     }
     Meteor.call('makeOffer', requestId, Meteor.userId(), price, Meteor.user().rating);
     target.reset();
-    alert("Your offer was recorded. Please check the My Offers page for updates");
+    Materialize.toast("Your offer was recorded. Please check the My Offers page for updates", 4000);
   }
 });

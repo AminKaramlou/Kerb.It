@@ -5,63 +5,65 @@
 </template>
 
 <template name="MyOffersHelper">
-  <div class="text-center h1"> My Offers </div>
-
-  <hr>
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active" ><button class="btn btn-link" name ="#tab1">Pending Offers</button></li>
-      <li><button class="btn btn-link" name= "#tab2">Accepted Offers</button></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab1" class="tab active">
-        <div class="container">
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s6"><a class="active" href="#pending">Pending Offers</a></li>
+        <li class="tab col s6"><a href="#accepted">Accepted Offers</a></li>
+      </ul>
+    </div>
+    <div id="pending" class="col s12">
+      <br>
+      {{#each offers}}
+        {{#each requests requestId}}
           <div class="row">
-            {{#each offers}}
-              <ul>
-                {{#each requests requestId}}
-                  <li>
-                    Request: {{description}} {{../price}}
-                    <form>
-                      <input type="text" name="id" id="id" value="{{../_id}}" hidden>
-                      <input type="text" name="price" id="price" placeholder="Price">
-                      <input type="submit" id="submit-update" class="btn btn-default btn-success " value="Update Offer">
-                    </form>
-                  </li>
-                {{/each}}
-              </ul>
-            {{/each}}
-          </div>
-        </div>
-      </div>
-
-      <div id="tab2" class="tab">
-        {{#each transactions}}
-          <li class="list-group-item">
-            <ul class="list-group custom-border">
-              <li class ="list-group-item">
-                {{#each images imageIds}}
-                  <div class="container">
-                    <div class="col-md-2" style="padding-left: 0px;  padding-right: 0px;">
-                      <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images'}}" alt="" class="img-rounded img-responsive" /></a>
+            <div class="col s12 m7">
+              <div class="card">
+                {{#each ItemWithId itemId}}
+                  <div class="card-image">
+                    {{#each ImageWithIds imageIds}}
+                      <img src="{{url store='images'}}" alt="request image"
+                                                        class="responsive-img">
+                    {{/each}}
+                  </div>
+                  <div class="card-content">
+                    <h5>{{description}}</h5>
+                  </div>
+                  {{/each}}
+                <div class="card-action">
+                  <div class="row" style="margin-top: 50px;">
+                    <div class="col s2">
+                      <div class="chip">
+                        {{../price}}
+                        <i class="fa fa-gbp"></i>
+                      </div>
+                    </div>
+                    <div class="col s10">
+                      <form>
+                        <div class="row">
+                          <div class="input-field col s8" style="top: -28px;">
+                            <input type="text" name="id" id="id" value="{{../_id}}" hidden>
+                            <input type="text" name="price" onfocus="document.getElementById('price').placeholder = '£';">
+                            <label for="price">Price</label>
+                          </div>
+                          <div class="col s4">
+                            <button type="submit" class="btn">Update
+                              Price</button>
+                          </div>
+                        </div>
+                      </form>
                     </div>
                   </div>
-                {{/each}}
-              </li>
-              <li class ="list-group-item">
-                <span class="text-info">Description:</span> &nbsp;&nbsp;{{formatDescription description}}
-              </li>
-              <li class ="list-group-item">
-                <span class="text-info">Date accepted:</span> {{formatDate dateCollected }}
-              </li>
-              <li class ="list-group-item">
-                <span class="text-info">Price:</span> {{price}}<br>
-              </li>
-            </ul>
-          </li>
+                </div>
+              </div>
+            </div>
+          </div>
         {{/each}}
-      </div>
+      {{/each}}
+    </div>
+    <div id="accepted" class="col s12">
+      <br>
+      HEY
     </div>
   </div>
 </template>
