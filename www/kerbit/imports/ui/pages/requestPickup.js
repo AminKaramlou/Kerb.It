@@ -18,9 +18,7 @@ Template.RequestPickupHelper.onCreated(function(){
       var places = searchBox.getPlaces();
       map.instance.setCenter(places[0].geometry.location);
     });
-
-
-      self.map = new ReactiveVar(map);
+    self.map = new ReactiveVar(map);
   });
 });
 
@@ -50,6 +48,7 @@ Template.RequestPickupHelper.events({
     for (i = 0; i < images.length; i++) {
       imageIds.push(Images.insert(images[i])._id);
     }
+    console.log(template.map);
     const position = template.map.get().instance.getCenter();
 
     Meteor.call('makeRequest', Meteor.userId(), imageIds, description, bidWindow,
