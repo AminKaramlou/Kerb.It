@@ -27,10 +27,6 @@ ItemSchema = new SimpleSchema({
   createdAt: {
     type: Date,
     label: "Created at"
-  },
-  expiryTime: {
-    type: Date,
-    label: "Expiry Time"
   }
 });
 
