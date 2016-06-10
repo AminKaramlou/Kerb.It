@@ -14,44 +14,41 @@
   <hr>
   <div class="container">
     <div class="row">
-      <div class="list-group">
-        {{#each currentUsersRequests}}
-          <li class="list-group-item">
-            <ul class="list-group custom-border">
+      {{#each currentUsersRequests}}
+        <div class="card">
+          {{#each ItemWithId itemId}}
+            {{#each ImageWithIds imageIds}}
+              <div class="card-image">
+                <img src="{{url store='images'}}" alt="" class="responsive-img" />
+                <span class="card-title">{{formatDate ../../createdAt}}</span>
+              </div>
+            {{/each}}
+          {{/each}}
+          <div class="card-content">
+            <ul class="collection">
               {{#each ItemWithId itemId}}
-                <li class ="list-group-item">
-                  {{#each ImageWithId imageIds}}
-                    <div class="container">
-                      <div class="col-md-2" style="padding-left: 0px;  padding-right: 0px;">
-                        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images'}}" alt="" class="img-rounded img-responsive" /></a>
-                      </div>
-                    </div>
-                  {{/each}}
-                </li>
-                <li class ="list-group-item">
-                  <span class="text-info">Description:</span> &nbsp;&nbsp;{{formatDescription description}}
+                <li class="collection-item">
+                  <span class="text-info">Description:</span> 
+                  &nbsp;&nbsp;{{formatDescription description}}
                 </li>
               {{/each}}
-              <li class ="list-group-item">
-                <span class="text-info">Date created:</span> {{formatDate createdAt }}
-              </li>
-              <li class ="list-group-item">
+              <li class="collection-item">
                 <span class="text-info">Offers:</span><br>
-
-                      <ul class="list-group">
+                <ul class="list-group">
                   {{#each offersWithRequestId _id}}
-                          <li class="list-group-item">
-                              Offer: {{price}} <button id="accept-offer" class="btn btn-default btn-success ">Accept Offer</button>
-                          </li>
-                      {{/each}}
-                      </ul>
-
+                    <li class="list-group-item">
+                      Offer: {{price}} <button id="accept-offer" class="btn btn-default btn-success ">Accept Offer</button>
+                    </li>
+                  {{/each}}
+                </ul>
               </li>
-              <button type="button" id="delete-request" class="list-group-item list-group-item-danger "><i class="fa fa-trash fa-fw"></i> Delete this request</button>
             </ul>
-          </li>
-        {{/each}}
-      </div>
+          </div>
+          <div class="card-action">
+            <button type="button" id="delete-request" class="list-group-item list-group-item-danger "><i class="fa fa-trash fa-fw"></i> Delete this request</button>
+          </div>
+        </div>
+      {{/each}}
     </div>
   </div>
 </template>
