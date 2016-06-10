@@ -9,10 +9,13 @@ Template.RequestPickupHelper.onCreated(function(){
   var self = this;
 
   GoogleMaps.ready('map', function(map) {
-    var input = document.getElementById('pac-input');
+    var input = document.getElementById('search');
     var searchBox = new google.maps.places.SearchBox(input);
     input.hidden = false;
     map.instance.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    var lastLoc = document.getElementById('last-loc');
+    lastLoc.hidden = false;
+    map.instance.controls[google.maps.ControlPosition.LEFT_TOP].push(lastLoc);
 
     searchBox.addListener('places_changed', function() {
       var places = searchBox.getPlaces();

@@ -16,10 +16,7 @@ Template.MyOffersHelper.onCreated(function myOffersCreated() {
 
     var directionsServices = {};
     var directionsDisplays = {};
-
-
-
-
+    
     Transactions.find({driverId: Meteor.userId()}).observe({
       added: function (document) {
 
