@@ -6,18 +6,18 @@
 
 <template name="RequestPickupHelper">
   <div class="row">
-    <div class="col m6">
+    <div class="col s6">
       <h1 class="center-align" id="mapSection">Map</h1>
       <div id="map-container">
         {{> map}}
       </div>
     </div>
-    <div class="col m6">
+    <div class="col s6">
       <h1 class="center-align" id="addressSection">Address</h1>
       <form>
         <div class="input-field">
-          <textarea id="description" name="description" class="materialize-textarea"></textarea>
           <label for="description">Description</label>
+          <textarea id="description" name="description" class="materialize-textarea"></textarea>
         </div>
         <div class="file-field input-field">
           <div class="btn">

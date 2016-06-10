@@ -52,7 +52,7 @@ driverSection.route('/settings', {
 consumerSection.route('/settings', {
   name: 'Settings',
   action: function() {
-    BlazeLayout.render('DashLayout', {main: 'customSettings'});
+    BlazeLayout.render('DashLayout', {main: 'CustomSettings'});
   }
 });
 

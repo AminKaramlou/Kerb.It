@@ -34,16 +34,18 @@ Template.RequestPickupHelper.events({
     const sizeRequired = Number(target.sizeRequired.value);
     const postcode = 'SW5 9RF';
 
-    const image = target.file.files[0];
-    const imageId = Images.insert(image)._id;
-
+    const images = target.clientImage.files;
+    let imageIds = new Array();
+    for (i = 0; i < images.length; i++) {
+      imageIds.push(Images.insert(images[i])._id);
+    }
     const position = template.map.get().instance.getCenter();
     const loc = { type: "Point", coordinates: [ position.lng(), position.lat() ] };
 
-    console.log('makeRequest', Meteor.userId(), imageId, description, bidWindow,
+    console.log('makeRequest', Meteor.userId(), imageIds, description, bidWindow,
         sizeRequired, postcode, loc);
 
-    Meteor.call('makeRequest', Meteor.userId(), imageId, description, bidWindow,
+    Meteor.call('makeRequest', Meteor.userId(), imageIds, description, bidWindow,
       sizeRequired, postcode, loc);
     target.reset();
   }
