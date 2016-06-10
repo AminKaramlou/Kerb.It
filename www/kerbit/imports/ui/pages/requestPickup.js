@@ -28,6 +28,14 @@ Template.RequestPickupHelper.onCreated(function(){
 });
 
 Template.RequestPickupHelper.events({
+  'click #last-loc' (event, template) {
+    if (Meteor.user().lastLoc) {
+      const lastLoc = new google.maps.LatLng(Meteor.user().lastLoc.coordinates[1],
+                                            Meteor.user().lastLoc.coordinates[0]);
+      template.map.get().instance.setCenter(lastLoc);
+    }
+  },
+
   'change #file' (event) {
 
     if (event.target.files && event.target.files[0]) {

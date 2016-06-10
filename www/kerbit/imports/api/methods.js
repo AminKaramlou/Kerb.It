@@ -6,8 +6,13 @@ import {Images} from './collections/images.js'
 Meteor.methods({
   'makeRequest'(consumerId, imageIds, description, bidWindow, sizeRequired,
                 loc) {
+    Meteor.users.update(consumerId, {
+      $set: {
+        lastLoc: loc
+      }
+    });
+    
     const date = new Date();
-
     Requests.insert({
       consumerId,
       imageIds,
