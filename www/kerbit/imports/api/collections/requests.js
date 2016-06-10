@@ -8,9 +8,11 @@ RequestsSchema = new SimpleSchema({
     label: "Consumer ID",
     regEx: SimpleSchema.RegEx.Id,
   },
-  deadline: {
-    type: Date,
-    label: "Deadline",
+  bidWindow: {
+    type: Number,
+    label: "Bid Window",
+    min: 1,
+    max: 20160 //Unit: minutes
   },
   createdAt: {
     type: Date,
@@ -38,7 +40,11 @@ RequestsSchema = new SimpleSchema({
   },
   isActive: {
     type: Boolean,
-    label: "is active request"
+    label: "Is Active"
+  },
+  isLive: {
+    type: Boolean,
+    label: "Is Live"
   }
 });
 
@@ -47,12 +53,12 @@ Requests.attachSchema(RequestsSchema);
 if (Meteor.isServer) {
   Meteor.publish('requests', function requestsPublication() {
     if (Meteor.users.findOne(this.userId).profile.isDriver) {
-
-      return Requests.find({});
+      return Requests.find({
+        isLive: true
+      });
     }
 
     return Requests.find({
-
       consumerId: this.userId
     });
   });
