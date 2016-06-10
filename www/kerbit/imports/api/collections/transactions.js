@@ -14,9 +14,10 @@ TransactionsSchema = new SimpleSchema({
     regEx: SimpleSchema.RegEx.Id,
     optional: true
   },
-  item:{
+  itemId: {
     type: String,
-    label: "Item ID"
+    label: "Item ID",
+    regEx: SimpleSchema.RegEx.Id,
   },
   finalOffer:{
     type: String,

@@ -13,10 +13,14 @@
        <li>
          <div class="collapsible-header active">
            <i class="material-icons">receipt</i>
-           Some relevant summary of the transaction
+           {{#each ItemWithItemId itemId}}
+             <p>{{description}}</p>
+           {{/each}} 
          </div>
          <div class="collapsible-body">
-           {{>Transaction}}
+           <div class="container">
+             {{>Transaction}}
+           </div>
          </div>
        </li>
        {{/each}}
