@@ -1,4 +1,6 @@
 import { Mongo } from 'meteor/mongo';
+import { Transactions } from './transactions.js';
+import { Offers } from './offers.js';
 
 export const Requests = new Mongo.Collection('requests');
 
@@ -53,8 +55,21 @@ Requests.attachSchema(RequestsSchema);
 if (Meteor.isServer) {
   Meteor.publish('requests', function requestsPublication() {
     if (Meteor.users.findOne(this.userId).profile.isDriver) {
+      const transactions = Transactions.find({driverId: this.userId}, {fields: { finalOffer: 1 }}).fetch();
+      var offerIds = [];
+      for (var i in transactions) {
+        offerIds.push(transactions[i].finalOffer);
+      }
+      const offers = Offers.find({_id: { $in: offerIds }}, {fields: { requestId: 1 }}).fetch();
+      var requestIds = [];
+      for (var i in offers) {
+        requestIds.push(offers[i].requestId);
+      }
       return Requests.find({
-        isLive: true
+        $or: [
+          {isActive: true, isLive: true},
+          {_id: { $in: requestIds } }
+        ]
       });
     }
 
