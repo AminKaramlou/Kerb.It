@@ -9,7 +9,7 @@ Meteor.methods({
                 loc) {
     const date = new Date();
     
-    var itemId = Items.insert({
+    const itemId = Items.insert({
       consumerId,
       imageIds,
       description,
@@ -17,16 +17,23 @@ Meteor.methods({
       createdAt: date,
     });
 
-    const deadline = new Date(date);
-    deadline.setMinutes(deadline.getMinutes() + bidWindow);
-    Requests.insert({
+    const requestId = Requests.insert({
       consumerId,
-      dealine,
+      bidWindow,
       createdAt: date,
       itemId,
       loc,
-      isActive: true
+      isActive: true,
+      isLive: true
     });
+
+    Meteor.setTimeout(function() {
+      Requests.update(requestId, {
+        $set: {
+          isLive: false
+        }
+      });
+    }, bidWindow * 60000);
   },
   'deleteRequest'(requestId) {
     var request = Requests.findOne(requestId);
