@@ -16,3 +16,11 @@ Template.registerHelper('formatPostcode', (postcode) => {
     const format = postcode.substring(0,cut) + " " + postcode.substring(cut);
     return format.toUpperCase();
 });
+
+Template.registerHelper('formatDescription', (desc) => {
+  let ret = desc;
+  if( desc.length > 100) {
+    ret = desc.substring(0,100) + " ...";
+  }
+  return ret;
+});

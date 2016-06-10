@@ -7,8 +7,20 @@ import "./requestPickup.html";
 
 Template.RequestPickupHelper.onCreated(function(){
   var self = this;
+
   GoogleMaps.ready('map', function(map) {
-    self.map = new ReactiveVar(map);
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    input.hidden = false;
+    map.instance.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    searchBox.addListener('places_changed', function() {
+      var places = searchBox.getPlaces();
+      map.instance.setCenter(places[0].geometry.location);
+    });
+
+
+      self.map = new ReactiveVar(map);
   });
 });
 
@@ -32,7 +44,6 @@ Template.RequestPickupHelper.events({
     const description = target.description.value;
     const bidWindow = Number(target.bidWindow.value);
     const sizeRequired = Number(target.sizeRequired.value);
-    const postcode = 'SW5 9RF';
 
     const images = target.clientImage.files;
     let imageIds = new Array();
@@ -40,13 +51,9 @@ Template.RequestPickupHelper.events({
       imageIds.push(Images.insert(images[i])._id);
     }
     const position = template.map.get().instance.getCenter();
-    const loc = { type: "Point", coordinates: [ position.lng(), position.lat() ] };
-
-    console.log('makeRequest', Meteor.userId(), imageIds, description, bidWindow,
-        sizeRequired, postcode, loc);
 
     Meteor.call('makeRequest', Meteor.userId(), imageIds, description, bidWindow,
-      sizeRequired, postcode, loc);
+      sizeRequired, position.lng(), position.lat());
     target.reset();
   }
 });

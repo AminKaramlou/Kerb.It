@@ -1,42 +1,46 @@
 <template name="ClientHistory">
-  {{#OnlyConsumer}}
-    {{>ClientHistoryHelper }}
-  {{/OnlyConsumer}}
+    {{#OnlyConsumer}}
+        {{>ClientHistoryHelper }}
+    {{/OnlyConsumer}}
 </template>
 
 <template name="ClientHistoryHelper">
 
-  <!-- TODO fix else block -->
-  {{#if getIsZero}}
-    <h3>You have no requests pending collection.</h3>
-  {{else}}
-    {{#if getIsOne}}
-      <h3>You have 1 request pending collection.</h3>
+    <!-- TODO fix else block -->
+    {{#if getIsZero}}
+        <h3>You have no requests pending collection.</h3>
+    {{else}}
+        {{#if getIsOne}}
+            <h3>You have 1 request pending collection.</h3>
+        {{else}}
+            <h3>You have {{getPendingCount}} requests pending collection.</h3>
+        {{/if}}
     {{/if}}
-    <h3>You have {{getPendingCount}} requests pending collection.</h3>
-  {{/if}}
-  <table class="table table-hover">
-    <thead>
-    <tr>
-      <th>Order ID</th>
-      <th>Driver</th>
-      <th>Location</th>
-      <th>Collection status</th>
-    </tr>
-  </thead>
-  <tbody>
-  {{#each pending}}
-    <tr>
-      <th scope="row">{{_id}}</th>
-      <td><a href="/users/{{getDriverName driverId}}"> <img src="https://randomuser.me/api/portraits/men/8.jpg" style="width:35px;height:30px;">{{getDriverName driverId}}</a>
-      </td>
-      <td>{{formatPostcode postcode}}</td>
-      <td><button class="btn btn-default btn-success collect">Collected</button></td>
-    </tr>
-    {{/each}}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Driver</th>
+            <th>Location</th>
+            <th>Collection status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each pending}}
+            <tr>
+                <th scope="row">{{_id}}</th>
+                <td><a href="/users/{{getDriverName driverId}}"> <img
+                        src="https://randomuser.me/api/portraits/men/8.jpg"
+                        style="width:35px;height:30px;">{{getDriverName driverId}}</a>
+                </td>
+                <td>
+                    <button class="btn btn-default btn-success collect">Collected</button>
+                </td>
+            </tr>
+        {{/each}}
 
-  </tbody>
-</table>
+        </tbody>
+    </table>
 
     <h3> Your last five completed jobs :</h3>
     <table class="table table-hover">
@@ -51,24 +55,25 @@
         </thead>
         <tbody>
         {{#each transactions}}
-        <tr>
-            <th>{{formatDate dateConfirmed}}</th>
-            <th scope="row">{{_id}}</th>
-            <td><a href="/users/{{getDriverName driverId}}"><img src="https://randomuser.me/api/portraits/men/8.jpg" style="width:35px;height:30px;">{{getDriverName driverId}}</a></td>
-            <td>{{formatPostcode postcode}}</td>
-            <td>
-                {{#if hasFeedback _id}}
-                    {{> starsRating rating=feedbackScore mutable=false}}
-                {{else}}
-                    {{> starsRating id='rating' mutable=true}}
-                    <button class="btn btn-default ratingButton">Rate this transaction</button>
-                {{/if}}
-            </td>
-        </tr>
+            <tr>
+                <th>{{formatDate dateConfirmed}}</th>
+                <th scope="row">{{_id}}</th>
+                <td><a href="/users/{{getDriverName driverId}}"><img src="https://randomuser.me/api/portraits/men/8.jpg"
+                                                                     style="width:35px;height:30px;">{{getDriverName driverId}}
+                </a></td>
+                <td>
+                    {{#if hasFeedback _id}}
+                        {{> starsRating rating=feedbackScore mutable=false}}
+                    {{else}}
+                        {{> starsRating id='rating' mutable=true}}
+                        <button class="btn btn-default ratingButton">Rate this transaction</button>
+                    {{/if}}
+                </td>
+            </tr>
         {{/each}}
 
-    </tbody>
-  </table>
+        </tbody>
+    </table>
 
 
 </template>

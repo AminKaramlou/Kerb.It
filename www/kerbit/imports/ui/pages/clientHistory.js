@@ -10,32 +10,31 @@ Template.ClientHistoryHelper.onCreated(function () {
   Meteor.subscribe('users');
 });
 
+
+function getPending()  {
+  return Transactions.find({
+      consumerId: Meteor.userId(),
+      isCompleted: false
+    });
+}
+
 Template.ClientHistoryHelper.helpers({
 
-  images(imageId) {
-    return Images.find(imageId);
+  images(imageIds) {
+    return Images.find(imageIds);
   },
 
   pending() {
-    return Transactions.find({
-      consumerId: Meteor.userId(),
-      isCompleted: false
-    });
+    return getPending();
   },
 
-  getPendingCount() {
-    var trans = Transactions.find({
-      consumerId: Meteor.userId(),
-      isCompleted: false
-    });
-    return trans.count();
-  },
+
   
   getIsZero() {
-    return (getPendingCount() == 0);
+    return (getPending().count() == 0);
   },
   getIsOne() {
-    return (getPendingCount() == 1);
+    return (getPending().count() == 1);
   },
 
   getDriverName(driverId) {
@@ -45,20 +44,7 @@ Template.ClientHistoryHelper.helpers({
 
   hasFeedback(transId) {
     var trans= Transactions.findOne(transId);
-    return trans.hasLeftFeedback;_
-  },
-
-  formatDate(date) {
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November",
-      "December"];
-    return date.getDate() + " " + monthNames[date.getMonth()] + ", " +
-        date.getFullYear() + " at " + date.getHours()  + ":" +
-        date.getMinutes() ;
-  },
-  formatPostcode(postcode) {
-    const format = postcode.substring(0,2) + " " + postcode.substring(2);
-    return format.toUpperCase();
+    return trans.hasLeftFeedback;
   },
 
   transactions() {

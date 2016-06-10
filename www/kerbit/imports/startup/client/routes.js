@@ -70,7 +70,6 @@ driverSection.route('/history-driver', {
   }
 });
 
-
 consumerSection.route('/request-pickup', {
   name: 'RequestPickup',
   action: function() {

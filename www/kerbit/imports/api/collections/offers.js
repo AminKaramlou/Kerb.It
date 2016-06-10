@@ -8,11 +8,6 @@ OffersSchema = new SimpleSchema({
     label: "Request ID",
     regEx: SimpleSchema.RegEx.Id
   },
-  consumerId: {
-    type: String,
-    label: "Consumer ID",
-    regEx: SimpleSchema.RegEx.Id
-  },
   driverId: {
     type: String,
     label: "Driver ID",
@@ -22,6 +17,11 @@ OffersSchema = new SimpleSchema({
     type: Number,
     label: "Price",
     defaultValue: 0
+  },
+  rating: {
+    type: Number,
+    label: "Rating",
+    decimal: true
   },
   createdAt: {
     type: Date,
@@ -34,10 +34,13 @@ Offers.attachSchema(OffersSchema);
 if (Meteor.isServer) {
   Meteor.publish('offers', function offersPublication() {
     return Offers.find({
-      $or: [
-        {consumerId: this.userId},
-        {driverId: this.userId}
-      ]
+        driverId: this.userId
+    });
+  });
+
+  Meteor.publish('offersByRequest', function offersPublication(requestId) {
+    return Offers.find({
+        requestId: requestId
     });
   });
 }
