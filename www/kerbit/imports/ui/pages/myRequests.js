@@ -69,7 +69,7 @@ Template.MyRequestsHelper.events({
     javascript:history.go(0)
   },
   'click #accept-offer'() {
-    Meteor.call('acceptOffer', this.requestId, this._id, 5);
+    Meteor.call('acceptOffer', this.requestId, this._id);
   },
   'click #delete-request'() {
     Meteor.call('deleteRequest', this._id);
