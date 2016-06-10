@@ -13,11 +13,10 @@ class TestVC: UIViewController, NSFetchedResultsControllerDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    DataManager.subscriptionLoader.addSubscriptionWithName("images")
     DataManager.subscriptionLoader.whenReady() {
       //let descriptors = [NSSortDescriptor(key: "price", ascending: true)]
       let descriptors: [NSSortDescriptor] = []
-      self.frc = DataManager.findObjectsfromEntity(withName: "Image", withDescriptors: descriptors, delegate: self)
+      self.frc = DataManager.findObjectsfromEntity(withName: "Request", withDescriptors: descriptors, delegate: self)
       let objs = self.frc.fetchedObjects as! [NSManagedObject]
       print(objs)
       for obj in objs {
