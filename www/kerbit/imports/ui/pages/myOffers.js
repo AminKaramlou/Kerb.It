@@ -4,6 +4,7 @@ import { Requests } from '../../api/collections/requests.js';
 import { Offers } from '../../api/collections/offers.js';
 import { Transactions } from '../../api/collections/transactions.js';
 import { Images } from '../../api/collections/images.js'
+import { Items } from '../../api/collections/items.js'
 import './myOffers.html';
 
 Template.MyOffersHelper.onCreated(function myRequestsCreated() {
@@ -11,13 +12,22 @@ Template.MyOffersHelper.onCreated(function myRequestsCreated() {
   Meteor.subscribe('offers');
   Meteor.subscribe('transactions');
   Meteor.subscribe('images');
+  Meteor.subscribe('items');
+});
+
+Template.MyOffersHelper.onRendered(function myRequestsCreated() {
+  $(document).ready(function() {
+    $('ul.tabs').tabs();
+  });
 });
 
 Template.MyOffersHelper.helpers({
-  images(imageIds) {
+  ImageWithIds(imageIds) {
     return Images.find({_id: {$in: imageIds}});
   },
-
+  ItemWithId(itemId) {
+    return Items.find(itemId);
+  },
   offers() {
     return Offers.find({
       driverId: Meteor.userId()

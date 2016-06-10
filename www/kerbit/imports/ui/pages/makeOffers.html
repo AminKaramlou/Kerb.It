@@ -28,7 +28,7 @@
         <label for={{_id}}>
           {{#with items itemId}}
             Request: {{description}} <br>
-            Created on: {{fromatDate createdAt}} <br>
+            Created on: {{formatDate createdAt}} <br>
             {{#each images imageIds}}
             <div>
               <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-thumbnail" /></a>
