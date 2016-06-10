@@ -55,8 +55,8 @@ Template.RequestPickupHelper.events({
 
     const position = template.map.get().instance.getCenter();
 
-    Meteor.call('makeRequest', Meteor.userId(), imageId, description, bidWindow,
-      sizeRequired, postcode, position.lng(), position.lat());
+    Meteor.call('makeRequest', Meteor.userId(), imageIds, description, bidWindow,
+      sizeRequired, position.lng(), position.lat());
     target.reset();
   }
 });
