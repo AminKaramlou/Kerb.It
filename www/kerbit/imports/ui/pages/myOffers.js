@@ -4,6 +4,7 @@ import { Requests } from '../../api/collections/requests.js';
 import { Offers } from '../../api/collections/offers.js';
 import { Transactions } from '../../api/collections/transactions.js';
 import { Images } from '../../api/collections/images.js'
+import { Items } from '../../api/collections/items.js'
 import './myOffers.html';
 
 Template.MyOffersHelper.onCreated(function myOffersCreated() {
@@ -11,13 +12,12 @@ Template.MyOffersHelper.onCreated(function myOffersCreated() {
   Meteor.subscribe('offers');
   Meteor.subscribe('transactions');
   Meteor.subscribe('images');
+  Meteor.subscribe('items');
 
   GoogleMaps.ready('map', function(map) {
 
     var directionsServices = {};
     var directionsDisplays = {};
-
-    console.log(Requests.find({driverId: Meteor.userId(), isLive: false}).fetch());
 
     Requests.find({driverId: Meteor.userId(), isLive: false}).observe({
       added: function (document) {
@@ -53,18 +53,29 @@ Template.MyOffersHelper.onCreated(function myOffersCreated() {
   });
 });
 
+Template.MyOffersHelper.onRendered(function myRequestsCreated() {
+  $(document).ready(function() {
+    $('ul.tabs').tabs();
+  });
+});
+
 Template.MyOffersHelper.helpers({
-  images(imageIds) {
+  ImageWithIds(imageIds) {
     return Images.find({_id: {$in: imageIds}});
   },
-
-  offers() {
+  ItemWithId(itemId) {
+    return Items.find(itemId);
+  },
+  pendingOffers() {
     return Offers.find({
-      driverId: Meteor.userId()
+      driverId: Meteor.userId(),
     });
   },
+  offerWithOfferId(offerId) {
+    return Offers.find(offerId);
+  },
   requests(requestId) {
-    return Requests.find(requestId);
+    return Requests.find({_id: requestId, isLive: true});
   },
   transactions() {
     return Transactions.find({
@@ -75,12 +86,6 @@ Template.MyOffersHelper.helpers({
 });
 
 Template.MyOffersHelper.events({
-  'click .tab-links button'() {
-    const target = event.target;
-    const name = target.name;
-    $(name).show().siblings().hide();
-    $(target).parent('li').addClass('active').siblings().removeClass('active');
-  },
   'submit form'(event) {
     event.preventDefault();
     const target = event.target;

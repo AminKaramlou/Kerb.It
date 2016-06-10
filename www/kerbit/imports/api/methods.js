@@ -90,7 +90,7 @@ Meteor.methods({
       driverId: offer.driverId,
       dateConfirmed: new Date(),
       finalOffer: offerId,
-      item: request.itemId,
+      itemId: request.itemId,
       isCompleted: false,
       hasLeftFeedback: false,
       feedbackScore: 0
@@ -143,5 +143,18 @@ Meteor.methods({
         feedbackScore: rating
       }
     });
+  },
+  'changeEmail'(newEmail) {
+    const prevEmail = Meteor.user().emails[0].address;
+    Accounts.addEmail(Meteor.userId(), newEmail);
+    Accounts.removeEmail(Meteor.userId(), prevEmail);
+    Accounts.sendVerificationEmail(Meteor.userId(), [newEmail]);
+  },
+  'changeUsername'(newUsername) {
+    var result = !Meteor.users.findOne({username: newUsername});
+    if(result && Meteor.isServer) {
+      Accounts.setUsername(Meteor.userId(),newUsername);
+    };
+    return result;
   }
 });

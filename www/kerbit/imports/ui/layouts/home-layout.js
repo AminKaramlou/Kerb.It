@@ -14,6 +14,6 @@ Template.HomeLayout.helpers({
     if (Meteor.user() && (! Meteor.user().profile.isDriver)) {
       window.location.replace(FlowRouter.path('ClientHistory'));
     }
-    return !Meteor.userId();
+    return !!Meteor.userId();
   }
 });

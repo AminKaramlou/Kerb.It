@@ -2,7 +2,15 @@ import { Template } from 'meteor/templating';
 
 import "./sidebar.html";
 
-Template.side_bar.helpers({
+Template.Sidebar.onRendered(function() {
+  this.autorun(() => {
+    $(".button-collapse").sideNav({
+      closeOnClick: true  
+    });
+  });
+});
+
+Template.Sidebar.helpers({
   currentUserIsDriver() {
     return Meteor.user() && Meteor.user().profile.isDriver;
   },

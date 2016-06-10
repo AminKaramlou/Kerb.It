@@ -2,9 +2,9 @@ import '../imports/api/methods.js';
 import '../imports/startup/server/index.js';
 
 AccountsTemplates.configure({
-    reCaptcha: {
-        secretKey: "6LfyASETAAAAAFYOtePoNAYCKx8WlmyFHFrWkQiI"
-    }
+  reCaptcha: {
+    secretKey: "6LfyASETAAAAAFYOtePoNAYCKx8WlmyFHFrWkQiI"
+  }
 });
 
 Accounts.onCreateUser(function(options, user) {

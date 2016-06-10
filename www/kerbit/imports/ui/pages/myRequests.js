@@ -15,7 +15,7 @@ Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
 });
 
 Template.MyRequestsHelper.helpers({
-  ImageWithId(imageIds) {
+  ImageWithIds(imageIds) {
     return Images.find({_id: {$in: imageIds}});
   },
 
