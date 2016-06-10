@@ -110,14 +110,6 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ahW-96-aKn">
                                 <rect key="frame" x="38" y="274" width="299" height="31"/>
                             </slider>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Postcode" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Aq-uR-sPb">
-                                <rect key="frame" x="136.5" y="228" width="102" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="102" id="HVc-cJ-OaH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hqj-hy-fVW">
                                 <rect key="frame" x="63" y="368" width="248" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -150,9 +142,7 @@
                         <constraints>
                             <constraint firstItem="9Ph-i6-pzK" firstAttribute="centerX" secondItem="hJs-Pr-Q0j" secondAttribute="centerX" id="AJm-9X-1TL"/>
                             <constraint firstItem="hqj-hy-fVW" firstAttribute="leading" secondItem="hJs-Pr-Q0j" secondAttribute="leadingMargin" constant="47" id="D2Z-HC-id2"/>
-                            <constraint firstItem="7Aq-uR-sPb" firstAttribute="centerX" secondItem="hJs-Pr-Q0j" secondAttribute="centerX" id="Q4g-d3-M3i"/>
                             <constraint firstItem="9Ph-i6-pzK" firstAttribute="leading" secondItem="hJs-Pr-Q0j" secondAttribute="leadingMargin" constant="24" id="QBi-Gb-mGM"/>
-                            <constraint firstItem="ahW-96-aKn" firstAttribute="top" secondItem="7Aq-uR-sPb" secondAttribute="bottom" constant="16" id="RAb-Ae-fSz"/>
                             <constraint firstItem="hqj-hy-fVW" firstAttribute="top" secondItem="9Ph-i6-pzK" secondAttribute="bottom" constant="19" id="Rvt-7f-Qb5"/>
                             <constraint firstItem="ahW-96-aKn" firstAttribute="leading" secondItem="hJs-Pr-Q0j" secondAttribute="leadingMargin" constant="24" id="Tdh-TN-noK"/>
                             <constraint firstItem="ahW-96-aKn" firstAttribute="centerX" secondItem="hJs-Pr-Q0j" secondAttribute="centerX" id="Xte-eg-exh"/>
@@ -160,8 +150,8 @@
                             <constraint firstItem="hqj-hy-fVW" firstAttribute="centerX" secondItem="hJs-Pr-Q0j" secondAttribute="centerX" id="ftF-aA-BCQ"/>
                             <constraint firstItem="9Ph-i6-pzK" firstAttribute="centerY" secondItem="hJs-Pr-Q0j" secondAttribute="centerY" id="gwt-AM-nuh"/>
                             <constraint firstItem="rXr-aD-Fm6" firstAttribute="top" secondItem="bfR-gd-LiL" secondAttribute="bottom" constant="46" id="hGj-O0-JjD"/>
-                            <constraint firstItem="7Aq-uR-sPb" firstAttribute="top" secondItem="Mq8-fA-pRN" secondAttribute="bottom" constant="25" id="hIA-ZP-tie"/>
                             <constraint firstItem="Mq8-fA-pRN" firstAttribute="centerX" secondItem="hJs-Pr-Q0j" secondAttribute="centerX" id="iaR-b5-omb"/>
+                            <constraint firstItem="ahW-96-aKn" firstAttribute="top" secondItem="Mq8-fA-pRN" secondAttribute="bottom" constant="71" id="ohm-IL-Hiv"/>
                             <constraint firstItem="bfR-gd-LiL" firstAttribute="centerX" secondItem="hJs-Pr-Q0j" secondAttribute="centerX" id="ys8-nH-E3h"/>
                         </constraints>
                     </view>
@@ -170,7 +160,6 @@
                         <outlet property="_description" destination="hqj-hy-fVW" id="3T8-px-gCi"/>
                         <outlet property="bidWindow" destination="ahW-96-aKn" id="nq2-rh-MAY"/>
                         <outlet property="imageView" destination="Mq8-fA-pRN" id="LS9-ce-nqj"/>
-                        <outlet property="postcode" destination="7Aq-uR-sPb" id="Ah3-aY-MO7"/>
                         <outlet property="sizeRequired" destination="9Ph-i6-pzK" id="64E-7K-jdS"/>
                     </connections>
                 </viewController>

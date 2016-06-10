@@ -9,7 +9,6 @@
 import UIKit
 
 class FormVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-  @IBOutlet weak var postcode: UITextField!
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var bidWindow: UISlider!
   @IBOutlet weak var sizeRequired: UISlider!
@@ -26,7 +25,7 @@ class FormVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
   @IBAction func didSubmitForm() {
     DataManager.uploadImageNow(image) {result in
       let imageId = result!
-      Meteor.callMethodWithName("makeRequest", parameters: [Meteor.userID!, imageId, "Test Description", Int(self.bidWindow.value * 21640), Int(self.sizeRequired.value * 10), self.postcode.text!, self.longitude, self.latitude])
+      Meteor.callMethodWithName("makeRequest", parameters: [Meteor.userID!, imageId, self._description.text!, Int(self.bidWindow.value * 20160 + 1), Int(self.sizeRequired.value * 10 + 1), self.longitude, self.latitude])
     }
   }
 }

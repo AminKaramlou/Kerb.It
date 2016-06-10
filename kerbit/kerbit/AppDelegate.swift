@@ -14,8 +14,6 @@ let baseUrl = localUrl
 let baseWs = "ws"
 let Meteor = METCoreDataDDPClient(serverURL: NSURL(string: "\(baseWs)://\(baseUrl)/websocket")!)
 
-let imageId = "5TdZ7xGdxkMARQPHo"
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
