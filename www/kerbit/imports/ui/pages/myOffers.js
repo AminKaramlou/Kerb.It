@@ -35,10 +35,20 @@ Template.MyOffersHelper.helpers({
 });
 
 Template.MyOffersHelper.events({
-  'click .tab-links button' () {
+  'click .tab-links button'() {
     const target = event.target;
     const name = target.name;
     $(name).show().siblings().hide();
     $(target).parent('li').addClass('active').siblings().removeClass('active');
   },
+  'submit form'(event) {
+    event.preventDefault();
+    const target = event.target;
+
+    const offerId = target.id.value;
+    const price = Number(target.price.value);
+
+    Meteor.call('updateOffer', offerId, price);
+    target.reset();
+  }
 });

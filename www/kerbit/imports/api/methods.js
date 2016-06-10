@@ -61,15 +61,14 @@ Meteor.methods({
       createdAt: new Date()
     });
   },
-  'collect'(orderId) {
-    Transactions.update(orderId, {
+  'updateOffer'(offerId, price) {
+    Offers.update(offerId, {
       $set: {
-        isCompleted: true,
-        dateCompleted: new Date()
+        price
       }
     });
   },
-  'acceptOffer'(requestId, offerId, sizeAllocated) {
+  'acceptOffer'(requestId, offerId) {
     const request = Requests.findOne(requestId);
     const offer = Offers.findOne(offerId);
     Transactions.insert({
@@ -84,6 +83,14 @@ Meteor.methods({
     });
 
     Meteor.call('deleteRequest', requestId);
+  },
+  'collect'(orderId) {
+    Transactions.update(orderId, {
+      $set: {
+        isCompleted: true,
+        dateCompleted: new Date()
+      }
+    });
   },
   'rateDriver'(driverId, rating) {
     /*
