@@ -9,31 +9,32 @@ Meteor.methods({
                 loc) {
     const date = new Date();
     
-    var id = Items.insert({
-      consumerId: consumerId,
-      imageIds: imageIds,
-      description: description,
-      sizeRequired: sizeRequired,
+    var itemId = Items.insert({
+      consumerId,
+      imageIds,
+      description,
+      sizeRequired,
       createdAt: date,
-      expiryTime: date + bidWindow
     });
 
+    const deadline = new Date(date);
+    deadline.setMinutes(deadline.getMinutes() + bidWindow);
     Requests.insert({
-      consumerId: consumerId,
-      bidWindow: bidWindow,
+      consumerId,
+      dealine,
       createdAt: date,
-      itemId: id,
-      loc: loc,
+      itemId,
+      loc,
       isActive: true
     });
   },
   'deleteRequest'(requestId) {
     var request = Requests.findOne(requestId);
     Requests.update(requestId, {
-            $set: {
-                isActive: false
-            }
-        });
+      $set: {
+        isActive: false
+      }
+    });
   },
   'makeOffer'(requestId, driverId, price) {
     Offers.insert({
@@ -44,16 +45,14 @@ Meteor.methods({
     });
 
   },
-    'collect'(orderId) {
-
-
-        Transactions.update(orderId, {
-            $set: {
-                isCompleted: true,
-                dateCompleted: new Date()
-            }
-        });
-    },
+  'collect'(orderId) {
+    Transactions.update(orderId, {
+      $set: {
+        isCompleted: true,
+        dateCompleted: new Date()
+      }
+    });
+  },
   'acceptOffer'(requestId, offerId, sizeAllocated) {
     const request = Requests.findOne(requestId);
     const offer = Offers.findOne(offerId);
@@ -68,7 +67,7 @@ Meteor.methods({
       feedbackScore: 0
     });
 
-     Meteor.call('deleteRequest', requestId);
+    Meteor.call('deleteRequest', requestId);
   },
   'rateDriver'(driverId, rating) {
     /*
