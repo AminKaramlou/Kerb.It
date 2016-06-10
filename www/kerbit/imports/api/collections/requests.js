@@ -8,11 +8,9 @@ RequestsSchema = new SimpleSchema({
     label: "Consumer ID",
     regEx: SimpleSchema.RegEx.Id,
   },
-  bidWindow: {
-    type: Number,
-    label: "Bid window",
-    min: 1,
-    max: 20160 // Unit is minutes, maybe move to hours ?
+  deadline: {
+    type: Date,
+    label: "Deadline",
   },
   createdAt: {
     type: Date,
