@@ -82,7 +82,7 @@ Meteor.methods({
       driverId: offer.driverId,
       dateConfirmed: new Date(),
       finalOffer: offerId,
-      item: request.itemId,
+      itemId: request.itemId,
       isCompleted: false,
       hasLeftFeedback: false,
       feedbackScore: 0

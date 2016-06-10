@@ -33,6 +33,9 @@ Template.MyOffersHelper.helpers({
       driverId: Meteor.userId()
     });
   },
+  offerWithOfferId(offerId) {
+    return Offers.find(offerId);
+  },
   requests(requestId) {
     return Requests.find(requestId);
   },
@@ -45,12 +48,6 @@ Template.MyOffersHelper.helpers({
 });
 
 Template.MyOffersHelper.events({
-  'click .tab-links button'() {
-    const target = event.target;
-    const name = target.name;
-    $(name).show().siblings().hide();
-    $(target).parent('li').addClass('active').siblings().removeClass('active');
-  },
   'submit form'(event) {
     event.preventDefault();
     const target = event.target;
