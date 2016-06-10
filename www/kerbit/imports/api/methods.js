@@ -32,13 +32,15 @@ Meteor.methods({
       isLive: true
     });
 
-    Meteor.setTimeout(function() {
-      Requests.update(requestId, {
-        $set: {
-          isLive: false
-        }
-      });
-    }, bidWindow * 60000);
+    if (Meteor.isServer) {
+      Meteor.setTimeout(function() {
+        Requests.update(requestId, {
+          $set: {
+            isLive: false
+          }
+        });
+      }, bidWindow * 60000);
+    }
   },
   'deleteRequest'(requestId) {
     var request = Requests.findOne(requestId);
