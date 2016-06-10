@@ -9,6 +9,7 @@ AccountsTemplates.configure({
 
 Accounts.onCreateUser(function(options, user) {
     user.rating = null;
+    user.lastLoc = null;
     // We still want the default hook's 'profile' behavior.
     if (options.profile)
         user.profile = options.profile;
@@ -16,7 +17,7 @@ Accounts.onCreateUser(function(options, user) {
 });
 
 Meteor.publish(null, function() {
-    return Meteor.users.find(this.userId, {fields: {rating: 1}});
+    return Meteor.users.find(this.userId, {fields: {rating: 1,  lastLoc: 1}});
 });
 
 Meteor.startup(() => {

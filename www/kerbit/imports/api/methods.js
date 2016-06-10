@@ -6,13 +6,21 @@ import {Items}  from './collections/items.js'
 
 Meteor.methods({
   'makeRequest'(consumerId, imageIds, description, bidWindow, sizeRequired,
-                lng, lat) {
+                  lng, lat) {
+
+    const loc = { type: "Point", coordinates: [lng, lat] };
+    
+    Meteor.users.update(consumerId, {
+      $set: {
+        lastLoc: loc
+      }
+    });
+
     if (typeof imageIds === 'string') {
       imageIds = [imageIds];
     }
-
+    
     const date = new Date();
-    const loc = { type: "Point", coordinates: [lng, lat] };
 
     const itemId = Items.insert({
       consumerId,

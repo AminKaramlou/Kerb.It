@@ -16,10 +16,7 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
 
     var directionsServices = {};
     var directionsDisplays = {};
-
-
-
-
+      
     Requests.find({isActive: true}).observe({
       added: function (document) {
 

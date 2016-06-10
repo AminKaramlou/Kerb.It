@@ -6,11 +6,51 @@ import { Transactions } from '../../api/collections/transactions.js';
 import { Images } from '../../api/collections/images.js'
 import './myOffers.html';
 
-Template.MyOffersHelper.onCreated(function myRequestsCreated() {
+Template.MyOffersHelper.onCreated(function myOffersCreated() {
   Meteor.subscribe('requests'); 
   Meteor.subscribe('offers');
   Meteor.subscribe('transactions');
   Meteor.subscribe('images');
+
+  GoogleMaps.ready('map', function(map) {
+
+    var directionsServices = {};
+    var directionsDisplays = {};
+
+    console.log(Requests.find({driverId: Meteor.userId(), isLive: false}).fetch());
+
+    Requests.find({driverId: Meteor.userId(), isLive: false}).observe({
+      added: function (document) {
+
+        directionsServices[document._id] = new google.maps.DirectionsService;
+        directionsDisplays[document._id] = new google.maps.DirectionsRenderer;
+        directionsDisplays[document._id].setMap(map.instance);
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function (position) {
+            currentPos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            directionsServices[document._id].route({
+              origin: currentPos,
+              destination: new google.maps.LatLng(document.loc.coordinates[1], document.loc.coordinates[0]),
+              travelMode: google.maps.TravelMode.DRIVING,
+            }, function (response, status) {
+              if (status === google.maps.DirectionsStatus.OK) {
+                directionsDisplays[document._id].setDirections(response);
+              } else {
+                window.alert('Directions request failed due to ' + status);
+              }
+            });
+          })
+        }
+      },
+
+      removed: function (oldDocument) {
+        directionsDisplays[oldDocument._id].setMap(null);
+        delete directionsDisplays[oldDocument._id];
+        delete directionsServices[oldDocument._id];
+      }
+    });
+  });
 });
 
 Template.MyOffersHelper.helpers({

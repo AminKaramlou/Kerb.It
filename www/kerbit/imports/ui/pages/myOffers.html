@@ -10,12 +10,12 @@
   <hr>
   <div class="tabs">
     <ul class="tab-links">
-      <li class="active" ><button class="btn btn-link" name ="#tab1">Pending Offers</button></li>
-      <li><button class="btn btn-link" name= "#tab2">Accepted Offers</button></li>
+      <li><button class="btn btn-link" name ="#tab1">Pending Offers</button></li>
+      <li class="active"><button class="btn btn-link" name= "#tab2">Accepted Offers</button></li>
     </ul>
 
     <div class="tab-content">
-      <div id="tab1" class="tab active">
+      <div id="tab1" class="tab">
         <div class="container">
           <div class="row">
             {{#each offers}}
@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <div id="tab2" class="tab">
+      <div id="tab2" class="tab active">
         {{#each transactions}}
           <li class="list-group-item">
             <ul class="list-group custom-border">
@@ -61,6 +61,9 @@
             </ul>
           </li>
         {{/each}}
+        <div id="map-container">
+          {{> map}}
+        </div>
       </div>
     </div>
   </div>
