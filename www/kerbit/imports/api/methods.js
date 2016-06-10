@@ -44,13 +44,17 @@ Meteor.methods({
     });
   },
   'makeOffer'(requestId, driverId, price) {
-    Offers.insert({
+    const request = Requests.findOne(requestId);
+    const user = Meteor.users.findOne(driverId);
+    const rating = user.rating;
+    const offers = request.offers;
+    const offerId = Offers.insert({
       requestId,
       driverId,
       price,
+      rating,
       createdAt: new Date()
     });
-
   },
   'collect'(orderId) {
     Transactions.update(orderId, {
