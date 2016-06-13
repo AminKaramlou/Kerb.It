@@ -12,9 +12,14 @@ Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
   Meteor.subscribe('images');
   Meteor.subscribe(('items'))
   Meteor.subscribe('transactions');
+  Meteor.subscribe('offers');
 });
 
 Template.MyRequestsHelper.helpers({
+  offerWithOfferId(offerId) {
+    console.log(offerId);
+    return Offers.find(offerId);
+  },
   ImageWithIds(imageIds) {
     return Images.find({_id: {$in: imageIds}});
   },
@@ -40,21 +45,6 @@ Template.MyRequestsHelper.helpers({
       consumerId: Meteor.userId()
     });
   },
-  formatDate(date) {
-    const monthNames = ["January", "February", "March", "April", "May", "June", 
-                        "July", "August", "September", "October", "November", 
-                        "December"];
-    return date.getDate() + " " + monthNames[date.getMonth()] + ", " + 
-           date.getFullYear() + " at " + date.getHours()  + ":" +
-           date.getMinutes() ;
-  },
-  formatDescription(desc) {
-    let ret = desc;
-    if( desc.length > 100) {
-      ret = desc.substring(0,100) + " ...";
-    }
-    return ret;
-  }
 });
 
 Template.MyRequestsHelper.onRendered(function myRequestsCreated() {
