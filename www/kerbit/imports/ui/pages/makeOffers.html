@@ -30,9 +30,9 @@
             Request: {{description}} <br>
             Created on: {{formatDate createdAt}} <br>
             {{#each images imageIds}}
-            <div>
-              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-thumbnail" /></a>
-            </div> 
+            <div class="container">
+              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-thumbnail responsive-img" /></a>
+            </div>
             {{/each}}
           {{/with}}
         </label>
