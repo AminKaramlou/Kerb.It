@@ -57,6 +57,12 @@ Template.MyRequestsHelper.helpers({
   }
 });
 
+Template.MyRequestsHelper.onRendered(function myRequestsCreated() {
+  $(document).ready(function() {
+    $('ul.tabs').tabs();
+  });
+});
+
 Template.MyRequestsHelper.events({
   'click .tab-links button' () {
     const target = event.target;
