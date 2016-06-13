@@ -8,9 +8,11 @@
     {{#if canShow}}
       {{> Template.contentBlock}}
     {{else}}
-      <h1 class="text-center text-danger"><i class="fa fa-lock fa-fw"></i> Sorry, you cannot access this page.</h1>
-      <hr>
-      <h3 class="text-center">Please sign in with a client account to proceed.</h3>
+      <div class="center-align">
+        <h1 class="text-danger"><i class="fa fa-lock fa-fw"></i> Sorry, you cannot access this page.</h1>
+        <hr>
+        <h3>Please sign in with a client account to proceed.</h3>
+      </div>
     {{/if}}
   {{/if}}
 </template>
