@@ -1,54 +1,68 @@
 <template name="CustomSettings">
-  <!--
-  Change email
-  Change username
-  Change password
-  -->
-  <form class="email">
-    <span class="title">Change Email</span>
-    <div class="input-field">
-      <label for="email">New email</label>
-      <input type="text" name="email" id="email">
-    </div>
-    <button type="submit" class="save-btn">Update</button>
-  </form>
+    <!--
+    Change User Image
+    Change email
+    Change username
+    Change password
+    -->
 
-  <br><br>
 
-  <form class="username">
-    <div class="main">
-      <span class="title">Change Username</span>
-      <div class="input-field">
-        <label for="username">New username</label>
-        <input type="text" name="username" id="username">
-      </div>
-    </div>
-    <div class="actions">
-      <button type="submit" class="save-btn">Update</button>
-    </div>
-  </form>
+    <form class="userId">
+        <span class="title">Change Profile picture</span>
+        <div class="input-field">
+            <input type="file" id="file" accept="images/*">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
 
-  <br><br>
+    <br><br>
 
-  <form class="password">
-    <div class="main">
-      <span class="title">Change Password</span>
-      <div class="input-field">
-        <label for="password">Old Password</label>
-        <input type="password" id="password" name="password">
-      </div>
-      <div class="input-field">
-        <label for="newPassword">New Password</label>
-        <input type="password" id="newPassword" name="newPassword">
-      </div>
-      <div class="input-field">
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" name="confirmPassword">
-      </div>
-    </div>
-    <div class="actions">
-      <button type="submit" class="save-btn">Update</button>
-    </div>
-  </form>
+    <form class="email">
+        <span class="title">Change Email</span>
+        <div class="input-field">
+            <label for="email">New email</label>
+            <input type="text" name="email" id="email">
+        </div>
+        <button type="submit" class="save-btn">Update</button>
+    </form>
+
+    <br><br>
+
+    <form class="username">
+        <div class="main">
+            <span class="title">Change Username</span>
+            <div class="input-field">
+                <label for="username">New username</label>
+                <input type="text" name="username" id="username">
+            </div>
+        </div>
+        <div class="actions">
+            <button type="submit" class="save-btn">Update</button>
+        </div>
+    </form>
+
+    <br><br>
+
+    <form class="password">
+        <div class="main">
+            <span class="title">Change Password</span>
+            <div class="input-field">
+                <label for="password">Old Password</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="input-field">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" name="newPassword">
+            </div>
+            <div class="input-field">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword">
+            </div>
+        </div>
+        <div class="actions">
+            <button type="submit" class="save-btn">Update</button>
+        </div>
+    </form>
 
 </template>

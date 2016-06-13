@@ -4,7 +4,6 @@
       <sourceFilesUrls>
         <item url="file://$USER_HOME$/.meteor/packages/webapp/1.2.8/npm/node_modules/useragent/index.js" />
         <item url="file://$USER_HOME$/.meteor/packages/webapp/1.2.8/npm/node_modules/useragent/bin/testfiles.js" />
-        <item url="file://$USER_HOME$/.meteor/packages/npm-bcrypt/0.8.5/npm/node_modules/bcrypt/bcrypt.js" />
         <item url="file://$USER_HOME$/.meteor/packages/webapp/1.2.8/npm/node_modules/useragent/bin/update.js" />
         <item url="file://$USER_HOME$/.meteor/packages/webapp/1.2.8/npm/node_modules/useragent/lib/regexps.js" />
         <item url="file://$USER_HOME$/.meteor/packages/webapp/1.2.8/npm/node_modules/useragent/lib/update.js" />
@@ -106,6 +105,7 @@
         <item url="file://$USER_HOME$/.meteor/packages/npm-mongo/1.4.43/npm/node_modules/mongodb/lib/mongodb/auth/mongodb_scram.js" />
         <item url="file://$USER_HOME$/.meteor/packages/npm-mongo/1.4.43/npm/node_modules/mongodb/lib/mongodb/auth/mongodb_plain.js" />
         <item url="file://$USER_HOME$/.meteor/packages/npm-mongo/1.4.43/npm/node_modules/mongodb/lib/mongodb/auth/mongodb_sspi.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/npm-bcrypt/0.8.6_1/npm/node_modules/bcrypt/bcrypt.js" />
         <item url="file://$USER_HOME$/.meteor/packages/npm-mongo/1.4.43/npm/node_modules/mongodb/lib/mongodb/gridfs/grid.js" />
         <item url="file://$USER_HOME$/.meteor/packages/npm-mongo/1.4.43/npm/node_modules/mongodb/lib/mongodb/gridfs/readstream.js" />
         <item url="file://$USER_HOME$/.meteor/packages/npm-mongo/1.4.43/npm/node_modules/mongodb/lib/mongodb/gridfs/gridstore.js" />
@@ -363,7 +363,6 @@
     <CLASSES>
       <root url="file://$USER_HOME$/.meteor/packages/webapp/1.2.8/npm/node_modules/useragent/index.js" />
       <root url="file://$USER_HOME$/.meteor/packages/webapp/1.2.8/npm/node_modules/useragent/bin/testfiles.js" />
-      <root url="file://$USER_HOME$/.meteor/packages/npm-bcrypt/0.8.5/npm/node_modules/bcrypt/bcrypt.js" />
       <root url="file://$USER_HOME$/.meteor/packages/webapp/1.2.8/npm/node_modules/useragent/bin/update.js" />
       <root url="file://$USER_HOME$/.meteor/packages/webapp/1.2.8/npm/node_modules/useragent/lib/regexps.js" />
       <root url="file://$USER_HOME$/.meteor/packages/webapp/1.2.8/npm/node_modules/useragent/lib/update.js" />
@@ -465,6 +464,7 @@
       <root url="file://$USER_HOME$/.meteor/packages/npm-mongo/1.4.43/npm/node_modules/mongodb/lib/mongodb/auth/mongodb_scram.js" />
       <root url="file://$USER_HOME$/.meteor/packages/npm-mongo/1.4.43/npm/node_modules/mongodb/lib/mongodb/auth/mongodb_plain.js" />
       <root url="file://$USER_HOME$/.meteor/packages/npm-mongo/1.4.43/npm/node_modules/mongodb/lib/mongodb/auth/mongodb_sspi.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/npm-bcrypt/0.8.6_1/npm/node_modules/bcrypt/bcrypt.js" />
       <root url="file://$USER_HOME$/.meteor/packages/npm-mongo/1.4.43/npm/node_modules/mongodb/lib/mongodb/gridfs/grid.js" />
       <root url="file://$USER_HOME$/.meteor/packages/npm-mongo/1.4.43/npm/node_modules/mongodb/lib/mongodb/gridfs/readstream.js" />
       <root url="file://$USER_HOME$/.meteor/packages/npm-mongo/1.4.43/npm/node_modules/mongodb/lib/mongodb/gridfs/gridstore.js" />

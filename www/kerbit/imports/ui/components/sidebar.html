@@ -1,54 +1,20 @@
-<template name="Side_bar">
-     <!-- Left side column. contains the sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="/random_tom.jpg" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p> Welcome Back, </p>
-          <p>{{fullName}}</p>
+<template name="Sidebar">
+    <ul class="side-nav fixed leftside-navigation z-depth-3">
+        <li class="user-details teal lighten-1">
+            <div class="row valign-wrapper">
+                <div class="col s4">
 
-        </div>
-      </div>
+                    <img src="{{getPhotoId imageId}}" alt="PROFILE" class="circle responsive-img
+          valign profile-image">
 
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
-        <li>
-         <!-- <a href="/settings">
-            <i class="fa fa-dashboard"></i> <span>Account Settings</span>
-         </a> -->
+                </div>
+                <div class="col s8">
+                    <p>Welcome back, {{fullName}}</p>
+                </div>
+            </div>
         </li>
         {{#each groupRoutes}}
-          <li>
-            <a class="page-scroll" href="{{path}}">{{name}}</a>
-          </li>
+            <li><a href="{{path}}">{{name}}</a></li>
         {{/each}}
-
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-</template>
-
-<template name="Sidebar">
-  <ul class="side-nav fixed leftside-navigation z-depth-3">
-    <li class="user-details teal lighten-1">
-      <div class="row valign-wrapper">
-        <div class="col s4">
-          <img src="/random_tom.jpg" alt="PROFILE" class="circle responsive-img
-          valign profile-image">
-        </div>
-        <div class="col s8">
-          <p>Welcome back, {{fullName}}</p>
-        </div>
-      </div>
-    </li>
-    {{#each groupRoutes}}
-    <li><a href="{{path}}">{{name}}</a></li>
-    {{/each}}
-  </ul>
+    </ul>
 </template>

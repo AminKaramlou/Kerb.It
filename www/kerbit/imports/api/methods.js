@@ -2,6 +2,7 @@ import { Transactions } from './collections/transactions.js'
 import { Requests } from './collections/requests.js'
 import { Offers } from './collections/offers.js'
 import { Images } from './collections/images.js'
+import { UserImages } from './collections/userImages.js'
 import {Items}  from './collections/items.js'
 
 Meteor.methods({
@@ -49,6 +50,16 @@ Meteor.methods({
         });
       }, bidWindow * 60000);
     }
+  },
+  'uploadUserImage': function(imageId, userId) {
+
+    var user = Meteor.users.findOne(userId);
+
+    Meteor.users.update(userId, {
+      $set: {
+        imageId: imageId
+      }
+    });
   },
   'deleteRequest'(requestId) {
     var request = Requests.findOne(requestId);
