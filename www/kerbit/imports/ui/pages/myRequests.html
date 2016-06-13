@@ -4,51 +4,187 @@
   {{/OnlyConsumer}}
 </template>
 
+<!--/*<template name="MyRequestsHelper">-->
+  <!--<div class="center-align extra-padding-bottom-15">-->
+    <!--<h1>My requests</h1>-->
+      <!--<button id="refresh-requests" class="btn btn-success"><i class="fa fa-refresh fa-fw"></i>Refresh</button>-->
+      <!--<button id="delete-all-requests" class="btn btn-danger "><i class="fa fa-trash fa-fw"></i> Delete all</button>-->
+  <!--</div>-->
+  <!--<hr>-->
+  <!--<div class="row">-->
+    <!--<div class="col s12">-->
+      <!--<ul class="tabs">-->
+        <!--<li class="tab col s6"><a class="active" href="#pending">Pending Requests</a></li>-->
+        <!--<li class="tab col s6"><a href="#accepted">Accepted Requests</a></li>-->
+      <!--</ul>-->
+    <!--</div>-->
+    <!--<div id="pending" class="col s12">-->
+      <!--<br><div class="container">-->
+      <!--<div class="row">-->
+        <!--{{#each currentUsersRequests}}-->
+          <!--<div class="col s6">-->
+            <!--<div class="card">-->
+              <!--{{#each ItemWithId itemId}}-->
+                <!--{{#each ImageWithIds imageIds}}-->
+                  <!--<div class="card-image">-->
+                    <!--<img src="{{url store='images'}}" alt="" class="responsive-img" />-->
+                    <!--<span class="card-title">{{formatDate ../../createdAt}}</span>-->
+                  <!--</div>-->
+                <!--{{/each}}-->
+              <!--{{/each}}-->
+              <!--<div class="card-content">-->
+                <!--<ul class="collection">-->
+                  <!--{{#each ItemWithId itemId}}-->
+                    <!--<li class="collection-item">-->
+                      <!--<span class="text-info">Description:</span>-->
+                      <!--&nbsp;&nbsp;{{formatDescription description}}-->
+                    <!--</li>-->
+                  <!--{{/each}}-->
+                  <!--<li class="collection-item">-->
+                    <!--<span class="text-info">Offers:</span><br>-->
+                    <!--<ul class="list-group">-->
+                      <!--{{#each offersWithRequestId _id}}-->
+                        <!--<li class="list-group-item">-->
+                          <!--Offer: {{price}} <button type="submit" id="accept-offer" class="btn">Accept Offer</button>-->
+                        <!--</li>-->
+                      <!--{{/each}}-->
+                    <!--</ul>-->
+                  <!--</li>-->
+                <!--</ul>-->
+              <!--</div>-->
+              <!--<div class="card-action">-->
+                <!--<button type="button" id="delete-request" class="list-group-item list-group-item-danger "><i class="fa fa-trash fa-fw"></i> Delete this request</button>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--{{/each}}-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div id="accepted" class="col s12">-->
+      <!--<div id="map-container">-->
+        <!--{{> map}}-->
+      <!--</div>-->
+      <!--<br>-->
+      <!--{{#each transactions}}-->
+        <!--<div class="row">-->
+          <!--<div class="col s12 m7">-->
+            <!--<div class="card">-->
+              <!--{{#each ItemWithId itemId}}-->
+                <!--<div class="card-image">-->
+                  <!--{{#each ImageWithIds imageIds}}-->
+                    <!--<img src="{{url store='images'}}" alt="request image"-->
+                         <!--class="responsive-img">-->
+                  <!--{{/each}}-->
+                <!--</div>-->
+                <!--<div class="card-content">-->
+                  <!--<h5>{{description}}</h5>-->
+                <!--</div>-->
+              <!--{{/each}}-->
+              <!--<div class="card-action">-->
+                <!--<div class="row" style="margin-top: 50px;">-->
+                  <!--<div class="col s12">-->
+                     <!--{{#each offerWithOfferId finalOffer}}-->
+                       <!--<h5 class="center-align">-->
+                         <!--Your offer was accepted for {{price}}-->
+                         <!--<i class="fa fa-gbp"></i>-->
+                       <!--</h5>-->
+                     <!--{{/each}}-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--{{/each}}-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</template>-->
+
 <template name="MyRequestsHelper">
-  <div class="center-align extra-padding-bottom-15">
-    <h1>My requests</h1>
-      <button id="refresh-requests" class="btn btn-success"><i class="fa fa-refresh fa-fw"></i>Refresh</button>
-      <button id="delete-all-requests" class="btn btn-danger "><i class="fa fa-trash fa-fw"></i> Delete all</button>
-  </div>
-  <hr>
-  <div class="container">
-    <div class="row">
-      {{#each currentUsersRequests}}
-      <div class="col s6">
-        <div class="card">
-          {{#each ItemWithId itemId}}
-            {{#each ImageWithIds imageIds}}
-              <div class="card-image">
-                <img src="{{url store='images'}}" alt="" class="responsive-img" />
-                <span class="card-title">{{formatDate ../../createdAt}}</span>
-              </div>
-            {{/each}}
-          {{/each}}
-          <div class="card-content">
-            <ul class="collection">
-              {{#each ItemWithId itemId}}
-                <li class="collection-item">
-                  <span class="text-info">Description:</span> 
-                  &nbsp;&nbsp;{{formatDescription description}}
-                </li>
-              {{/each}}
-              <li class="collection-item">
-                <span class="text-info">Offers:</span><br>
-                <ul class="list-group">
-                  {{#each offersWithRequestId _id}}
-                    <li class="list-group-item">
-                      Offer: {{price}} <button type="submit" id="accept-offer" class="btn">Accept Offer</button>
-                    </li>
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s6"><a class="active" href="#pending">Pending Requests</a></li>
+        <li class="tab col s6"><a href="#accepted">Accepted Requests</a></li>
+      </ul>
+    </div>
+    <div id="pending" class="col s12">
+
+      <div class="container">
+        <div class="row">
+          {{#each currentUsersRequests}}
+            <div class="col s6">
+              <div class="card">
+                {{#each ItemWithId itemId}}
+                  {{#each ImageWithIds imageIds}}
+                    <div class="card-image">
+                      <img src="{{url store='images'}}" alt="" class="responsive-img" />
+                      <span class="card-title">{{formatDate ../../createdAt}}</span>
+                    </div>
                   {{/each}}
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <div class="card-action">
-            <button type="button" id="delete-request" class="list-group-item list-group-item-danger "><i class="fa fa-trash fa-fw"></i> Delete this request</button>
-          </div>
+                {{/each}}
+                <div class="card-content">
+                  <ul class="collection">
+                    {{#each ItemWithId itemId}}
+                      <li class="collection-item">
+                        <span class="text-info">Description:</span>
+                        &nbsp;&nbsp;{{formatDescription description}}
+                      </li>
+                    {{/each}}
+                    <li class="collection-item">
+                      <span class="text-info">Offers:</span><br>
+                      <ul class="list-group">
+                        {{#each offersWithRequestId _id}}
+                          <li class="list-group-item">
+                            Offer: {{price}} <button type="submit" id="accept-offer" class="btn">Accept Offer</button>
+                          </li>
+                        {{/each}}
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                <div class="card-action">
+                  <button type="button" id="delete-request" class="list-group-item list-group-item-danger "><i class="fa fa-trash fa-fw"></i> Delete this request</button>
+                </div>
+              </div>
+            </div>
+          {{/each}}
         </div>
       </div>
+    </div>
+    <div id="accepted" class="col s12">
+      <br>
+      {{#each transactions}}
+        <div class="row">
+          <div class="col s12 m7">
+            <div class="card">
+              {{#each ItemWithId itemId}}
+                <div class="card-image">
+                  {{#each ImageWithIds imageIds}}
+                    <img src="{{url store='images'}}" alt="request image"
+                         class="responsive-img">
+                  {{/each}}
+                </div>
+                <div class="card-content">
+                  <h5>{{description}}</h5>
+                </div>
+              {{/each}}
+              <div class="card-action">
+                <div class="row" style="margin-top: 50px;">
+                  <div class="col s12">
+                    {{#each offerWithOfferId finalOffer}}
+                      <h5 class="center-align">
+                        Your offer was accepted for {{price}}
+                        <i class="fa fa-gbp"></i>
+                      </h5>
+                    {{/each}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       {{/each}}
     </div>
   </div>

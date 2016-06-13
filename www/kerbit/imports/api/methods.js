@@ -69,7 +69,7 @@ Meteor.methods({
       }
     });
   },
-  'makeOffer'(requestId, driverId, price, rating) {
+  'makeOffer'(requestId, driverId, price) {
     const request = Requests.findOne(requestId);
     const user = Meteor.users.findOne(driverId);
     const offers = request.offers;
@@ -77,7 +77,6 @@ Meteor.methods({
       requestId,
       driverId,
       price,
-      rating,
       createdAt: new Date()
     });
   },
