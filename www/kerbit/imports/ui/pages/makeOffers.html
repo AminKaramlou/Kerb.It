@@ -5,97 +5,39 @@
 </template>
 
 <template name="MakeOffersHelper">
-  <div class="row">
-    <div class="col s6">
-      <h1 class="center-align" id="mapSection">Map</h1>
-      <div id="map-container">
-        {{> map}}
+
+      <div id="map-london-container">
+          {{> googleMap name="map" options=mapOptions}}
       </div>
-    </div>
-    <div class="col s6">
-      <h1 class="center-align" id="offerSection">Make Offer</h1>
-      <form>
-        <div class="input-field">
-          <label for="price">Price</label>
-          <input id="price" type="text" name="price"
-          onfocus="document.getElementById('price').placeholder = '£';">
-        </div>
-        <h3>Current Requests</h3>
-        {{#each requests}}
-        <p>
-        <input class="with-gap" name="requestId" type="radio" id={{_id}} i
-          value={{_id}}>
-        <label for={{_id}}>
-          {{#with items itemId}}
-            Request: {{description}} <br>
-            Created on: {{formatDate createdAt}} <br>
-            {{#each images imageIds}}
-            <div class="container">
-              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-thumbnail responsive-img" /></a>
-            </div>
-            {{/each}}
-          {{/with}}
-        </label>
-        </p>
-        {{/each}}
-        <button type="submit" class="btn">Make Offer</button>
-      </form>
-    </div>
-  </div>
+    <!--<div class="col s6">-->
+      <!--<h1 class="center-align" id="offerSection">Make Offer</h1>-->
+      <!--<form>-->
+        <!--<div class="input-field">-->
+          <!--<label for="price">Price</label>-->
+          <!--<input id="price" type="text" name="price"-->
+          <!--onfocus="document.getElementById('price').placeholder = '£';">-->
+        <!--</div>-->
+        <!--<h3>Current Requests</h3>-->
+        <!--{{#each requests}}-->
+        <!--<p>-->
+        <!--<input class="with-gap" name="requestId" type="radio" id={{_id}} i-->
+          <!--value={{_id}}>-->
+        <!--<label for={{_id}}>-->
+          <!--{{#with items itemId}}-->
+            <!--Request: {{description}} <br>-->
+            <!--Created on: {{formatDate createdAt}} <br>-->
+            <!--{{#each images imageIds}}-->
+            <!--<div class="container">-->
+              <!--<a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-thumbnail responsive-img" /></a>-->
+            <!--</div>-->
+            <!--{{/each}}-->
+          <!--{{/with}}-->
+        <!--</label>-->
+        <!--</p>-->
+        <!--{{/each}}-->
+        <!--<button type="submit" class="btn">Make Offer</button>-->
+      <!--</form>-->
+    <!--</div>-->
+
 </template>
 
-<template name="makeOffersHelper">
-
-  <div class="container">
-    <div class="jumbotron">
-      <div class="row">
-        <div class="col-md-6">
-          <p class="h1 text-center">Map</p>
-          <div id="map-container">
-            {{> map}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <p class="h1 text-center">Make Offer</p>
-          <form class="form-horizontal">
-            <div class="form-group">
-              <label for="price" class="col-md-2 control-label">Price</label>
-              <div class="col-md-10">
-                <input type="text" class="form-control" name="price" id="price" placeholder="Price">
-              </div>
-            </div>
-          <div class="col-md-6">
-            <p class="h3 text">Current Requests</p>
-            <div class="row" style="margin-left: 15px">
-              {{#each requests}}
-                <input type="radio" name="requestId" value={{_id}}>
-                {{#with items itemId}}
-                  Request: {{description}} <br>
-                  Created on {{formatDate createdAt}}. <br>
-                  {{#each images imageIds}}
-                   <div>
-                      <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-thumbnail" /></a>
-                    </div>
-                  {{/each}}
-                {{/with}}
-              {{/each}}
-            </div>
-          </div>
-
-            <div class="form-group" style="margin-top: 150px; margin-right: 350px;">
-              <div class="col-md-offset-2 col-md-10">
-                <button type="submit" class="btn btn-default">Submit</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-      <!--<div class="row">-->
-          <!--<div class="col-md-12">-->
-              <!--{{> quickForm collection="Offers" id="insertOffer" type="insert" class="test-offer-form"}}-->
-          <!--</div>-->
-      <!--</div>-->
-  </div>
-
-</template>
