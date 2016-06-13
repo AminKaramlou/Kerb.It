@@ -7,13 +7,21 @@ import {Items}  from './collections/items.js'
 
 Meteor.methods({
   'makeRequest'(consumerId, imageIds, description, bidWindow, sizeRequired,
-                lng, lat) {
+                  lng, lat) {
+
+    const loc = { type: "Point", coordinates: [lng, lat] };
+    
+    Meteor.users.update(consumerId, {
+      $set: {
+        lastLoc: loc
+      }
+    });
+
     if (typeof imageIds === 'string') {
       imageIds = [imageIds];
     }
-
+    
     const date = new Date();
-    const loc = { type: "Point", coordinates: [lng, lat] };
 
     const itemId = Items.insert({
       consumerId,
@@ -93,7 +101,7 @@ Meteor.methods({
       driverId: offer.driverId,
       dateConfirmed: new Date(),
       finalOffer: offerId,
-      item: request.itemId,
+      itemId: request.itemId,
       isCompleted: false,
       hasLeftFeedback: false,
       feedbackScore: 0
@@ -146,5 +154,18 @@ Meteor.methods({
         feedbackScore: rating
       }
     });
+  },
+  'changeEmail'(newEmail) {
+    const prevEmail = Meteor.user().emails[0].address;
+    Accounts.addEmail(Meteor.userId(), newEmail);
+    Accounts.removeEmail(Meteor.userId(), prevEmail);
+    Accounts.sendVerificationEmail(Meteor.userId(), [newEmail]);
+  },
+  'changeUsername'(newUsername) {
+    var result = !Meteor.users.findOne({username: newUsername});
+    if(result && Meteor.isServer) {
+      Accounts.setUsername(Meteor.userId(),newUsername);
+    };
+    return result;
   }
 });

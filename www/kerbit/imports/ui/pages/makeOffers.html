@@ -5,6 +5,46 @@
 </template>
 
 <template name="MakeOffersHelper">
+  <div class="row">
+    <div class="col s6">
+      <h1 class="center-align" id="mapSection">Map</h1>
+      <div id="map-container">
+        {{> map}}
+      </div>
+    </div>
+    <div class="col s6">
+      <h1 class="center-align" id="offerSection">Make Offer</h1>
+      <form>
+        <div class="input-field">
+          <label for="price">Price</label>
+          <input id="price" type="text" name="price"
+          onfocus="document.getElementById('price').placeholder = '£';">
+        </div>
+        <h3>Current Requests</h3>
+        {{#each requests}}
+        <p>
+        <input class="with-gap" name="requestId" type="radio" id={{_id}} i
+          value={{_id}}>
+        <label for={{_id}}>
+          {{#with items itemId}}
+            Request: {{description}} <br>
+            Created on: {{formatDate createdAt}} <br>
+            {{#each images imageIds}}
+            <div>
+              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-thumbnail" /></a>
+            </div> 
+            {{/each}}
+          {{/with}}
+        </label>
+        </p>
+        {{/each}}
+        <button type="submit" class="btn">Make Offer</button>
+      </form>
+    </div>
+  </div>
+</template>
+
+<template name="makeOffersHelper">
 
   <div class="container">
     <div class="jumbotron">

@@ -5,51 +5,47 @@
 </template>
 
 <template name="RequestPickupHelper">
-<div class="container">
-  <div class="jumbotron">
-    <div class="row">
-      <div class="col-md-6">
-        <p class="h1 text-center">Map</p>
-        <input id="pac-input" class="controls" type="text" placeholder="Pick up Location" hidden>
-        <div id="map-container" class="request-pickup">
-          {{> map}}
+  <div class="row">
+    <div class="col s6">
+      <h1 class="center-align" id="mapSection">Map</h1>
+      <div class="row">
+        <div class="col s8">
+          <input id="search" class="controls pac-input" type="text" placeholder="Pick up Location">
+        </div>
+        <div class="col s3">
+          <button id="last-loc" class="controls map-button">Last Request Location</button>
         </div>
       </div>
-      <div class="col-md-6">
-        <p class="h1 text-center">Address</p>
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label for="description" class="col-md-2 control-label">Description</label>
-            <div class="col-md-10">
-              <textarea class="form-control" id="description" placeholder="Description" rows=10></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="image" class="col-md-2 control-label">Image</label>
-            <div class="col-md-10">
-              <input type="file" id="file" accept="images/*" multiple>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="sizeRequired" class="col-md-2 control-label">Size Required</label>
-            <div class="col-md-10">
-              <input type="range" id="sizeRequired" value="6" min="1" max="11">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="bidWindow" class="col-md-2 control-label">Bid Window</label>
-            <div class="col-md-10">
-              <input type="range" id="bidWindow" value="10140" min="1" max="20160">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-              <button type="submit" class="btn btn-default">Submit</button>
-            </div>
-          </div>
-        </form>
+      <div id="map-container">
+        {{> map}}
       </div>
     </div>
+    <div class="col s6">
+      <h1 class="center-align" id="addressSection">Address</h1>
+      <form>
+        <div class="input-field">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" class="materialize-textarea"></textarea>
+        </div>
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>Upload image</span>
+            <input type="file" id="clientImage" name="clientImage" accept="images/*" multiple>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+        <p class="range-field">
+          <input type="range" id="sizeRequired" name="sizeRequired" min="1" max="10" value="5"/>
+          <label for="sizeRequired">Size required</label>
+        </p>
+        <p class="range-field">
+          <input type="range" id="bidWindow" name="bidWindow" min="1" max="20160" value="10080"/>
+          <label for="bidWindow">Bid window</label>
+        </p>
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </div>
   </div>
-</div>
 </template>

@@ -1,0 +1,92 @@
+@import "{poetic:materialize-scss}/sass/components/_color.scss";
+
+// import main scss file
+@import "{poetic:materialize-scss}/sass/materialize.scss";
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
+ul.side-nav.fixed {
+  top: $navbar-height;
+}
+.user-details .row {
+  margin: 0;
+  line-height: 25px;
+  color: #fff;
+  font-weight: bold;
+}
+ul.side-nav.fixed li.user-details {
+  background: url(../images/user-bg.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 15px 0px 15px 15px;
+}
+/* accountSettings overrides */
+.save-btn {
+  @extend .btn;
+  @extend .waves-effect;
+  @extend .waves-light;
+}
+
+.title {
+  @extend h4;
+}
+.setting {
+  margin: 15px 0px;
+}
+.actions {
+  margin: 10px 0px;
+}
+
+/*
+FOOTER
+*/
+.link-disabled {
+  color: grey;
+  text-decoration: none;
+}
+
+/*
+NAV
+*/
+nav {
+  //background-color: black;
+}
+
+/*
+ATFORM
+*/
+.at-btn {
+  margin-top: 15px;
+}
+
+/*
+MAP
+*/
+
+#map-container {
+  width: 400px;
+  height: 400px;
+  border: 1px solid black;
+  position: relative;
+}
+
+#map-container:after {
+  width: 22px;
+  height: 40px;
+  display: block;
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -40px 0 0 -11px;
+  background: url('https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi_hdpi.png');
+  background-size: 22px 40px;
+  pointer-events: none;
+}

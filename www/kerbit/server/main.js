@@ -2,13 +2,14 @@ import '../imports/api/methods.js';
 import '../imports/startup/server/index.js';
 
 AccountsTemplates.configure({
-    reCaptcha: {
-        secretKey: "6LfyASETAAAAAFYOtePoNAYCKx8WlmyFHFrWkQiI"
-    }
+  reCaptcha: {
+    secretKey: "6LfyASETAAAAAFYOtePoNAYCKx8WlmyFHFrWkQiI"
+  }
 });
 
 Accounts.onCreateUser(function(options, user) {
     user.rating = null;
+    user.lastLoc = null;
     user.imageId = null;
     // We still want the default hook's 'profile' behavior.
     if (options.profile)
@@ -20,7 +21,8 @@ Meteor.publish(null, function () {
   return Meteor.users.find(this.userId, {
     fields: {
       rating: 1,
-      imageId: 1
+      imageId: 1,
+      lastLoc: 1
     }
   });
 });

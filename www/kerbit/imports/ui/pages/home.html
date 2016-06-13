@@ -1,83 +1,103 @@
 <template name="Home">
-
-  <!-- {{> map}} -->
   <div id="top"></div>
-  <div class="intro-header">
-    <div class="container">
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center white-text">KERB.IT</h1>
+        <div class="row center">
+          <h5 class="header col s12 white-text">Coming soon to London</h5>
+        </div>
+        <div class="row center">
+          <a href="/register" id="get-started" class="btn-large waves-effect
+          waves-light">GET STARTED</a> 
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="/truck1.jpg"></div>
+  </div>
+
+  <div id="services"></div>
+  <div class="container">
+    <div class="section">
 
       <div class="row">
-        <div class="col-md-12">
-          <div class="intro-message">
-            <h1>KERB.IT</h1>
-            <h3>Coming soon</h3>
-            <hr class="intro-divider">
-            <div class="row">
-              <div class="col-md-4 col-md-offset-4">
-                <a href="/register" class="btn btn-default btn-block"><span class="lead"><i class="fa fa-recycle fa-fw"></i> GET STARTED</span></a>
-              </div>
-            </div>
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">FASTER WASTE DISPOSAL</h5>
+            <p class="light">Once you've put in a request, just wait for offers to pile in
+              and pick your favourite company from our comprehensive array of service providers.
+              Get rid of that old sofa faster, smoother and for far less money!</p>
           </div>
+        </div>
+  
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center"><i class="material-icons">group</i></h2>
+            <h5 class="center">USER FOCUSED</h5> 
+            <p class="light">By continuously interacting with people
+              like you, we were able to create a platform that incorporates all the
+              right features for you and your projects. We're still growing, so make
+              sure to help us improve by providing some feedback at the bottom of the page.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center"><i class="material-icons">terrain</i></h2>
+            <h5 class="center">ECO-FRIENDLY</h5>
+            <p class="light">We understand environmental issues are a concern for most of our customers,
+              so we aim to reward eco-friendly waste disposal practices through our evolving ranking
+              system.</p>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot center-block valign">
+      <div class="row">
+        <h5 class="header col s12 center-align white-text">"Skips all the annoying bits I've had to go through before.
+        Definitely recommending to my friends"</h5>
+      </div>
+    </div>
+    <div class="parallax"><img src="/nature.jpg"></div>
+  </div>
+
+  <div id="about"></div>
+  <div class="container">
+    <div class="section">
+      <br><br>
+
+      <div class="row">
+        <div class="col s8 offset-s2 center">
+          <h4>About Us</h4>
+          <p class="center-align">We are a team of students at Imperial College London.
+            We're currently in second year, and we made this application as part of our
+            summer term project. We chose this idea because we felt the current
+            waste disposal industry really needed modernisation, which gave us an
+            opportunity to create a product with a lot of potential market value.
+            We also felt implementing Kerb.It would be very challenging, yet rewarding
+            and educational for us. Apart from being passionate programmers we like to party loads,
+            so if you ever need to contact us, just go to Imperial College Union or Belushi's in
+            Hammersmith and you are bound to find one of us.</p>
         </div>
       </div>
 
     </div>
-    <!-- /.container -->
-
   </div>
-  <!-- /.intro-header -->
 
-  <div class="container">
-
-    <!-- START THE FEATURETTES -->
-    <hr id="about" class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">About us</h2>
-        <p class="lead">We are a small group of five students dedicated
-          to making garbage disposal more confortable, more environmentally friendly
-          and above all, fairer for all parties involved. These days, most London
-          councils do not collect non-household waste, causing a massive increase in
-          London's flytipping rate. Thus, people have had to resort to private contractors
-          to get rid of their garbage.</p>
-        <p class="lead">Our aim is to empower DIY-ers, gardeners, and
-          small scale construction operations. We hope that our services
-          will make London a cleaner and more enjoyable city to live in.
-        </p>
-      </div>
-      <div class="col-md-5">
-        <img class="featurette-image img-responsive center-block" src="/app_home_mockup.jpeg" alt="Generic placeholder image">
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot center-block valign">
+      <div class="row">
+        <h5 class="header col s12 center-align white-text">"Super-fast service, competitive prices, much better than existing options"</h5>
       </div>
     </div>
-
-    <hr id="services" class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7 col-md-push-5">
-        <h2 class="featurette-heading">Our services</h2>
-        <p class="lead">We offer an easy-to-use, fast and complete platform to connect people in need of
-          garbage removal and independant garbage removal operations. Our service is accesible through our website
-          and Iphone app, and we hope to enter the Android market in the near future.
-        </p>
-      </div>
-      <div class="col-md-5 col-md-pull-7">
-        <img class="featurette-image img-responsive center-block" src="/app_offers_mockup.jpeg" alt="Generic placeholder image">
-      </div>
-    </div>
-
-    <hr id="feedback" class="featurette-divider">
-
-    <div class="row featurette">
-      <center>
-        <h2 class="featurette-heading">Help Us Improve With Feedback!</h2>
-        <form>
-          <input type="text" name="feedback" placeholder="Feedback" style="text-align: center">
-          <input type="submit" value="Submit">
-        </form>
-      </center>
-    </div>
-
-    <hr class="featurette-divider">
-    <!-- /END THE FEATURETTES -->
+    <div class="parallax"><img src="/vintage-truck.jpg"></div>
   </div>
 </template>
