@@ -42,6 +42,37 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
     console.log("function runs");
     console.log("gets here2");
     map.instance.data.loadGeoJson('http://cors.io/?u=https://www.kerbit.co.uk/londonboroughs.geojson');
+
+    // Color each letter gray. Change the color when the isColorful property
+    // is set to true.
+    map.instance.data.setStyle(function(feature) {
+      var color = 'green';
+      if (feature.getProperty('isColorful')) {
+        color = 'blue';
+      }
+      return /** @type {google.maps.Data.StyleOptions} */({
+        fillColor: color,
+        strokeColor: color,
+        strokeWeight: 2
+      });
+    });
+
+    // When the user clicks, set 'isColorful', changing the color of the letters.
+    map.instance.data.addListener('click', function(event) {
+      event.feature.setProperty('isColorful', true);
+    });
+
+    // When the user hovers, tempt them to click by outlining the letters.
+    // Call revertStyle() to remove all overrides. This will use the style rules
+    // defined in the function passed to setStyle()
+    map.instance.data.addListener('mouseover', function(event) {
+      map.instance.data.revertStyle();
+      map.instance.data.overrideStyle(event.feature, {strokeWeight: 8});
+    });
+
+    map.instance.data.addListener('mouseout', function(event) {
+      map.instance.data.revertStyle();
+    });
     console.log("function runs2");
     });
 
