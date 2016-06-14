@@ -38,8 +38,11 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
   Meteor.subscribe('items');
   GoogleMaps.ready('map', function(map) {
     console.log("gets here");
-      loadKmlLayer(src, map.instance);
+    //loadKmlLayer(src, map.instance);
     console.log("function runs");
+    console.log("gets here2");
+    map.instance.data.loadGeoJson('http://cors.io/?u=https://www.kerbit.co.uk/londonboroughs.geojson');
+    console.log("function runs2");
     });
 
   });
