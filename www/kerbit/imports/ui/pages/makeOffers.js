@@ -4,51 +4,26 @@ import { Images } from '../../api/collections/images.js';
 import { Items } from '../../api/collections/items.js';
 import { Requests } from '../../api/collections/requests.js';
 
+
 import '../../api/methods.js';
 import "./makeOffers.html";
 
 var src = 'https://www.kerbit.co.uk/london.kml';
-
-function loadKmlLayer(src, map) {
-  var kmlLayer = new google.maps.KmlLayer(src, {
-    suppressInfoWindows: true,
-    preserveViewport: false,
-    map: map
-  });
-  kmlLayer.setMap(map);
-  google.maps.event.addListener(kmlLayer, 'click', function(event) {
-    var content = event.featureData.name;
-    kmlLayer.setOptions({fillOpacity:1});
-    alert(content);
-
-  });
-  google.maps.event.addListener(kmlLayer, 'mouseover', function(event) {
-    this.setOptions({fillColor: "#00FF00"});
-    tooltip.style.visibility = 'visible';
-});
-
-google.maps.event.addListener(kmlLayer, 'mouseout', function() {
-    kmlLayer.setOptions({fillOpacity:0.0});
-});
-}
+Session.setDefault("selectedArea", "");
 
 Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
   Meteor.subscribe('requests');
   Meteor.subscribe('images');
   Meteor.subscribe('items');
   GoogleMaps.ready('map', function(map) {
-    console.log("gets here");
-    //loadKmlLayer(src, map.instance);
-    console.log("function runs");
-    console.log("gets here2");
+    // Load in our geojson
     map.instance.data.loadGeoJson('http://cors.io/?u=https://www.kerbit.co.uk/londonboroughs.geojson');
 
-    // Color each letter gray. Change the color when the isColorful property
-    // is set to true.
+    // Color each borough blue.
     map.instance.data.setStyle(function(feature) {
-      var color = 'green';
+      var color = 'blue';
       if (feature.getProperty('isColorful')) {
-        color = 'blue';
+        color = 'green';
       }
       return /** @type {google.maps.Data.StyleOptions} */({
         fillColor: color,
@@ -56,10 +31,17 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
         strokeWeight: 2
       });
     });
-
+    var lastClicked;
     // When the user clicks, set 'isColorful', changing the color of the letters.
     map.instance.data.addListener('click', function(event) {
+      if (lastClicked)  {
+        // make last clicked borough not colorful
+        lastClicked.setProperty('isColorful', false);
+      }
       event.feature.setProperty('isColorful', true);
+      Session.set("selectedArea" ,event.feature.getProperty('name'));
+      $('#modal1').openModal();
+      lastClicked = event.feature;
     });
 
     // When the user hovers, tempt them to click by outlining the letters.
@@ -73,7 +55,6 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
     map.instance.data.addListener('mouseout', function(event) {
       map.instance.data.revertStyle();
     });
-    console.log("function runs2");
     });
 
   });
@@ -117,6 +98,10 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
 
 Template.MakeOffersHelper.helpers({
 
+  getArea()   {
+    return Session.get("selectedArea");
+  },
+
   images(imageIds) {
     return Images.find({_id: {$in: imageIds}});
   },
@@ -124,23 +109,21 @@ Template.MakeOffersHelper.helpers({
   items(itemId) {
     return Items.findOne(itemId);
   },
+
+  getNum(borough) {
+    Meteor.subscribe('requestsByArea', borough);
+    return Requests.find({
+      isLive: true,
+      borough: borough
+    }).count();
+  },
   
-  requests() {
-    if (Geolocation.currentLocation()) {
-       return Requests.find(
-      {
-        isActive: true,
-        loc: {
-          $near: {
-            $geometry: {
-              type: "Point",
-              coordinates: [Geolocation.currentLocation().coords.longitude,
-                Geolocation.currentLocation().coords.latitude]
-            },
-          }
-        }
-      });
-    }
+  requests(borough) {
+    Meteor.subscribe('requestsByArea', borough);
+    return Requests.find({
+      isLive: true,
+      borough: borough
+    });
   },
 
   mapOptions: function() {
@@ -148,8 +131,8 @@ Template.MakeOffersHelper.helpers({
 
       return {
         center: new google.maps.LatLng(51.5074, -0.1278),
-        zoom: 15,
-        minZoom: 2
+        zoom: 10,
+        minZoom: 10
       };
     }
   }
