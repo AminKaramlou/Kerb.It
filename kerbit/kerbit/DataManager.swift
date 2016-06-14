@@ -47,22 +47,31 @@ class DataManager {
       (result, error) in
       completionHandler(result)
     }
-//    let imageData = UIImageJPEGRepresentation(image, 0.5)!
-//    let put = NSMutableURLRequest(URL: NSURL(string: "http://\(baseUrl)/cfs/files/images/")!)
-//    put.HTTPMethod = "PUT"
-//    put.HTTPBody = imageData
-//    put.setValue("image/jpg", forHTTPHeaderField: "Content-Type")
-//    put.setValue("\(imageData.length)", forHTTPHeaderField: "Content-Length")
-//    let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-//    let session = NSURLSession(configuration: config)
-//    let task = session.dataTaskWithRequest(put) {
-//      (data, response, error) in
-//      print(response)
-//      print(error)
-//      let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-//      print (responseString)
-//    }
-//    print("http://\(baseUrl)/cfs/files/images/")
-//    task.resume()
+  }
+  
+//  class func getImageFromURL(fileURL: NSString) -> UIImage {
+//    var result: UIImage
+//    var data = NSData.dataWith
+//    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:fileURL]];
+//  result = [UIImage imageWithData:data];
+//  
+//  return result;
+//  }
+  
+  class func downloadImageWithURL(imageCollection: NSString, imageId: NSString, completionBlock: (Bool, UIImage?)->Void) {
+    let url = NSURL(fileURLWithPath: "http://\(baseUrl)/cfs/files/\(imageCollection)/\(imageId)")
+    let request = NSMutableURLRequest(URL: url)
+    let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+    let session = NSURLSession(configuration: config)
+    let task = session.dataTaskWithRequest(request) {
+      (data, response, error) in
+      if (error != nil) {
+        let image = UIImage(data: data!)
+        completionBlock(true, image)
+      } else {
+        completionBlock(false, nil);
+      }
+    }
+    task.resume()
   }
 }
