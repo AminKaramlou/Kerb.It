@@ -9,10 +9,10 @@ Template.HomeLayout.helpers({
    * */
   redirect() {
     if( Meteor.user() && Meteor.user().profile.isDriver) {
-      window.location.replace(FlowRouter.path('DriverHistory'));
+      window.location.replace(FlowRouter.path('DriverSettings'));
     }
     if (Meteor.user() && (! Meteor.user().profile.isDriver)) {
-      window.location.replace(FlowRouter.path('ClientHistory'));
+      window.location.replace(FlowRouter.path('Settings'));
     }
     return !!Meteor.userId();
   }
