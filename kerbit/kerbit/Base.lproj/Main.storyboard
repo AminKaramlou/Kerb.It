@@ -170,7 +170,7 @@
         <!--My RequestsVC-->
         <scene sceneID="DPh-yi-rDk">
             <objects>
-                <viewController id="TZJ-Ez-s8z" customClass="MyRequestsVC" customModule="kerbit" sceneMemberID="viewController">
+                <viewController id="TZJ-Ez-s8z" customClass="MyRequestsVC" customModule="kerbit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UHS-1J-BY0"/>
                         <viewControllerLayoutGuide type="bottom" id="pLf-0p-rED"/>
@@ -178,9 +178,17 @@
                     <view key="view" contentMode="scaleToFill" id="XBg-Pr-iLE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MAG-j3-BvD" customClass="ViewManager" customModule="kerbit" customModuleProvider="target">
+                                <rect key="frame" x="20" y="28" width="335" height="399"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="viewManager" destination="MAG-j3-BvD" id="4A8-wm-G9C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cU3-yN-gxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

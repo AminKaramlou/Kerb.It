@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     GMSServices.provideAPIKey(googleMapsApiKey)
     Meteor.connect()
     DataManager.setup(Meteor.mainQueueManagedObjectContext)
-    Meteor.loginWithEmail("sm5214@ic.ac.uk", password: "obyron", completionHandler: nil);
+    Meteor.loginWithEmail("mitrasaurav97@gmail.com", password: "obyron", completionHandler: nil);
     return true
   }
 

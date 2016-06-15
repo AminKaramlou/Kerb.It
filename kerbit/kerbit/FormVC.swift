@@ -25,7 +25,7 @@ class FormVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
   @IBAction func didSubmitForm() {
     DataManager.uploadImageNow(image) {result in
       let imageId = result!
-      Meteor.callMethodWithName("makeRequest", parameters: [Meteor.userID!, imageId, self._description.text!, Int(self.bidWindow.value * 20160 + 1), Int(self.sizeRequired.value * 10 + 1), self.longitude, self.latitude])
+      Meteor.callMethodWithName("makeRequest", parameters: [Meteor.userID!, imageId, self._description.text!, Int(self.bidWindow.value * 336 + 1), Int(self.sizeRequired.value * 10 + 1), self.longitude, self.latitude])
     }
   }
 }

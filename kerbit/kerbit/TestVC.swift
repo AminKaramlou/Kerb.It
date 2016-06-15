@@ -13,11 +13,12 @@ class TestVC: UIViewController, NSFetchedResultsControllerDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    DataManager.subscriptionLoader.addSubscriptionWithName("items")
     DataManager.subscriptionLoader.whenReady() {
-      //let descriptors = [NSSortDescriptor(key: "price", ascending: true)]
-      let descriptors: [NSSortDescriptor] = []
-      self.frc = DataManager.findObjectsfromEntity(withName: "Request", withDescriptors: descriptors, delegate: self)
-      let objs = self.frc.fetchedObjects as! [NSManagedObject]
+      let descriptors = [NSSortDescriptor(key: "sizeRequired", ascending: true)]
+      //let descriptors: [NSSortDescriptor] = []
+      self.frc = DataManager.findObjectsfromEntity(withName: "Item", withDescriptors: descriptors, delegate: self)
+      let objs = self.frc.fetchedObjects as! [Item]
       print(objs)
       for obj in objs {
         print()
@@ -47,16 +48,12 @@ class TestVC: UIViewController, NSFetchedResultsControllerDelegate {
     switch(type) {
     case .Insert:
       print(frc.fetchedObjects)
-    //changes!.append(.ObjectInserted(newIndexPath!))
     case .Delete:
       print(frc.fetchedObjects)
-    //changes!.append(.ObjectDeleted(indexPath!))
     case .Update:
       print(frc.fetchedObjects)
-    //changes!.append(.ObjectUpdated(indexPath!))
     case .Move:
       print(frc.fetchedObjects)
-      //changes!.append(.ObjectMoved(indexPath: indexPath!, newIndexPath: newIndexPath!))
     }
   }
   

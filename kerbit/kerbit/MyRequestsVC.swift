@@ -10,6 +10,8 @@ import UIKit
 
 class MyRequestsVC: UIViewController, NSFetchedResultsControllerDelegate {
   var fRC: NSFetchedResultsController!
+  @IBOutlet weak var viewManager: ViewManager!
+  var colors: [UIColor] = [.redColor(), .blackColor(), .blueColor(), .greenColor()]
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -41,16 +43,19 @@ class MyRequestsVC: UIViewController, NSFetchedResultsControllerDelegate {
   @objc internal func controller(controller: NSFetchedResultsController, didChangeObject object: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
     switch(type) {
     case .Insert:
-      print(fRC.fetchedObjects)
+      let view = UIView(frame: CGRectMake(0, 0, viewManager.frame.width, 200))
+      view.backgroundColor = colors[0]
+      colors.append(colors.removeAtIndex(0))
+      viewManager.addViewToIndex(view, index: newIndexPath!.indexAtPosition(1))
     //changes!.append(.ObjectInserted(newIndexPath!))
     case .Delete:
-      print(fRC.fetchedObjects)
+      viewManager.removeView(atIndex: indexPath!.indexAtPosition(1))
     //changes!.append(.ObjectDeleted(indexPath!))
     case .Update:
-      print(fRC.fetchedObjects)
+      print(fRC.fetchedObjects!)
     //changes!.append(.ObjectUpdated(indexPath!))
     case .Move:
-      print(fRC.fetchedObjects)
+      viewManager.moveView(indexPath!.indexAtPosition(1), newIndex: newIndexPath!.indexAtPosition(1))
       //changes!.append(.ObjectMoved(indexPath: indexPath!, newIndexPath: newIndexPath!))
     }
   }
