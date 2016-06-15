@@ -1,19 +1,43 @@
 <template name="MakeOffers">
-  {{#OnlyDriver}}
-    {{>MakeOffersHelper}}
-  {{/OnlyDriver}}
+    {{#OnlyDriver}}
+        {{>MakeOffersHelper}}
+    {{/OnlyDriver}}
 </template>
 
 <template name="MakeOffersHelper">
 
-      <div id="map-london-container">
-          {{> googleMap name="map" options=mapOptions}}
-      </div>
+    <div id="map-london-container">
+        {{> googleMap name="map" options=mapOptions}}
+    </div>
 
     <!-- Modal Structure -->
     <div id="modal1" class="modal bottom-sheet">
         <div class="modal-content">
             <h4>Requests in {{getArea}} : ({{getNum getArea}})</h4>
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                </li>
+                {{#each requests getArea}}
+                    {{#with items itemId}}
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{description}}
+                            </div>
+                            <div class="collapsible-body">
+                                <p>Stuff</p>
+                                {{#each images imageIds}}
+                                    <div class="container">
+                                        <a href="{{this.url}}" target="_blank"><img
+                                                src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}"
+                                                alt="" class="img-thumbnail responsive-img"/></a>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        </li>
+                    {{/with}}
+                {{/each}}
+            </ul>
             <div class="col s6">
                 <h1 class="center-align" id="offerSection">Make Offer</h1>
                 <form>
@@ -33,7 +57,9 @@
                                     Created on: {{formatDate createdAt}} <br>
                                     {{#each images imageIds}}
                                         <div class="container">
-                                            <a href="{{this.url}}" target="_blank"><img src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}" alt="" class="img-thumbnail responsive-img" /></a>
+                                            <a href="{{this.url}}" target="_blank"><img
+                                                    src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}"
+                                                    alt="" class="img-thumbnail responsive-img"/></a>
                                         </div>
                                     {{/each}}
                                 {{/with}}
@@ -48,7 +74,6 @@
             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Back to Map</a>
         </div>
     </div>
-
 
 
 </template>

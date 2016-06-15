@@ -11,6 +11,12 @@ import "./makeOffers.html";
 var src = 'https://www.kerbit.co.uk/london.kml';
 Session.setDefault("selectedArea", "");
 
+Template.MakeOffersHelper.rendered = function() {
+  $('.collapsible').collapsible({
+    accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+  });
+};
+
 Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
   Meteor.subscribe('requests');
   Meteor.subscribe('images');
@@ -56,6 +62,7 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
       map.instance.data.revertStyle();
     });
     });
+
 
   });
 
