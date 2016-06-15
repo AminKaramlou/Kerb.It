@@ -79,7 +79,8 @@ if (Meteor.isServer) {
       _id: { $in: driverIds }
     }, {
       fields: { profile: 1 ,
-      username: 1}
+      username: 1,
+      imageId: 1}
     });
   });
   Meteor.publish('getUserDetails', function(username) {

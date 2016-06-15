@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { Transactions } from '../../api/collections/transactions.js';
 import { Images } from '../../api/collections/images.js';
+import { UserImages } from '../../api/collections/userImages.js';
 import './clientHistory.html';
 import '../components/transaction.html';
 
@@ -40,6 +41,15 @@ Template.ClientHistoryHelper.helpers({
   getDriverName(driverId) {
     var user= Meteor.users.findOne(driverId);
     return user.username;
+  },
+
+  getDriverPhoto(driverId)  {
+    var user= Meteor.users.findOne(driverId);
+    if (user.imageId == "") {
+      return "/profile-placeholder.png";
+    } else {
+      return (UserImages.findOne(user.imageId));
+    }
   },
 
   hasFeedback(transId) {

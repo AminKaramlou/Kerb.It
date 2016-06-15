@@ -1,78 +1,86 @@
 <template name="ClientHistory">
-  {{#OnlyConsumer}}
-    {{>ClientHistoryHelper }}
-  {{/OnlyConsumer}}
+    {{#OnlyConsumer}}
+        {{>ClientHistoryHelper }}
+    {{/OnlyConsumer}}
 </template>
 
 <template name="ClientHistoryHelper">
 
-  <!-- TODO fix else block -->
-  {{#if getIsZero}}
-    <h3>You have no requests pending collection.</h3>
-  {{else}}
-    {{#if getIsOne}}
-      <h3>You have 1 request pending collection.</h3>
+    <!-- TODO fix else block -->
+    {{#if getIsZero}}
+        <h3>You have no requests pending collection.</h3>
     {{else}}
-      <h3>You have {{getPendingCount}} requests pending collection.</h3>
+        {{#if getIsOne}}
+            <h3>You have 1 request pending collection.</h3>
+        {{else}}
+            <h3>You have {{getPendingCount}} requests pending collection.</h3>
+        {{/if}}
     {{/if}}
-  {{/if}}
-  <table class="bordered highlight">
-    <thead>
-    <tr>
-      <th>Order ID</th>
-      <th>Driver</th>
-      <th>Location</th>
-      <th>Collection status</th>
-    </tr>
-    </thead>
-    <tbody>
-    {{#each pending}}
-      <tr>
-        <th scope="row">{{_id}}</th>
-        <td><a href="/users/{{getDriverName driverId}}"> <img
-            src="https://randomuser.me/api/portraits/men/8.jpg"
-            style="width:35px;height:30px;">{{getDriverName driverId}}</a>
-        </td>
-        <td>
-          <button class="btn collect">Collected</button>
-        </td>
-      </tr>
-    {{/each}}
+    <table class="bordered highlight">
+        <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Driver</th>
+            <th>Location</th>
+            <th>Collection status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each pending}}
+            <tr>
+                <th scope="row">{{_id}}</th>
+                <td>
+                    {{#with getDriverPhoto driverId}}
+                        <a href="/users/{{getDriverName ../driverId}}"> <img
+                                src="{{this.url store='userImages'}}"
+                                style="width:35px;height:30px;">{{getDriverName ../driverId}}</a>
+                    {{/with}}
+                </td>
+                <td>
+                    <button class="btn collect">Collected</button>
+                </td>
+            </tr>
+        {{/each}}
 
-    </tbody>
-  </table>
+        </tbody>
+    </table>
 
-  <h3> Your last five completed jobs:</h3>
-  <table class="bordered highlight">
-    <thead>
-    <tr>
-      <th>Date</th>
-      <th>Order ID</th>
-      <th>Driver</th>
-      <th>Location</th>
-      <th>Feedback</th>
-    </tr>
-    </thead>
-    <tbody>
-    {{#each transactions}}
-      <tr>
-        <th>{{formatDate dateConfirmed}}</th>
-        <th scope="row">{{_id}}</th>
-        <td><a href="/users/{{getDriverName driverId}}"><img src="https://randomuser.me/api/portraits/men/8.jpg"
-                                                             style="width:35px;height:30px;">{{getDriverName driverId}}
-        </a></td>
-        <td>
-          {{#if hasFeedback _id}}
-            {{> starsRating rating=feedbackScore mutable=false}}
-          {{else}}
-            {{> starsRating id='rating' mutable=true}}
-            <button class="btn ratingButton">Rate this transaction</button>
-          {{/if}}
-        </td>
-      </tr>
-    {{/each}}
-    </tbody>
-  </table>
+    <h3> Your last five completed jobs:</h3>
+    <table class="bordered highlight">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Order ID</th>
+            <th>Driver</th>
+            <th>Location</th>
+            <th>Feedback</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each transactions}}
+            <tr>
+                <th>{{formatDate dateConfirmed}}</th>
+                <th scope="row">{{_id}}</th>
+                <td>{{#with getDriverPhoto driverId}}
+                    <a href="/users/{{getDriverName ../driverId}}">
+
+                        <img src="{{this.url store='userImages'}}"
+                             style="width:35px;height:30px;">{{getDriverName ../driverId}}
+                    </a>
+                {{/with}}
+                </td>
+                <td>
+                    {{#if hasFeedback _id}}
+                        {{> starsRating rating=feedbackScore mutable=false}}
+                    {{else}}
+                        {{> starsRating id='rating' mutable=true}}
+                        <button class="btn ratingButton">Rate this transaction</button>
+                    {{/if}}
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
 
 </template>
 

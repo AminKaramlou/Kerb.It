@@ -1,7 +1,9 @@
 import './userProfilePublicView.html'
+import { UserImages } from '../../api/collections/userImages.js';
 
 Template.ViewUser.onCreated(function () {
   Meteor.subscribe('users');
+  Meteor.subscribe('userImages');
   var userName = FlowRouter.getParam("userName");
 
   user = Meteor.users.findOne({'username': userName});
@@ -32,6 +34,14 @@ Template.ViewUser.helpers({
 Template.ViewUserHelper.helpers({
   isAUser() {
     return !(user == null);
+  },
+
+  getImage()  {
+    if (user.imageId == "") {
+      return "/profile-placeholder.png";
+    } else {
+      return (UserImages.findOne(user.imageId));
+    }
   },
 
   getName() {

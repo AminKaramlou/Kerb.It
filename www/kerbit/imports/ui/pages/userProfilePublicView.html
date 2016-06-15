@@ -1,37 +1,40 @@
 <template name="ViewUser">
-  {{#if Template.subscriptionsReady}}
-    {{#if currentUser }}
-      {{#if isAUser}}
-        {{>ViewUserHelper }}
-      {{else}}
-        {{>NotFound}}
-      {{/if}}
-    {{else}}
-      <h1 class="text-center text-danger"><i class="fa fa-lock fa-fw"></i> Sorry, you cannot access this page.</h1>
-      <hr>
-      <h3 class="text-center">Please <a href="/login">sign in</a> to proceed.</h3>
+    {{#if Template.subscriptionsReady}}
+        {{#if currentUser }}
+            {{#if isAUser}}
+                {{>ViewUserHelper }}
+            {{else}}
+                {{>NotFound}}
+            {{/if}}
+        {{else}}
+            <h1 class="text-center text-danger"><i class="fa fa-lock fa-fw"></i> Sorry, you cannot access this page.
+            </h1>
+            <hr>
+            <h3 class="text-center">Please <a href="/login">sign in</a> to proceed.</h3>
+        {{/if}}
     {{/if}}
-  {{/if}}
 </template>
 
 <template name="ViewUserHelper">
-  <div class="container">
-    <div class="row">
-      <div class="col s6">
-          <div class="row">
+    <div class="container">
+        <div class="row">
             <div class="col s6">
-              <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                <div class="row">
+                    <div class="col s6">
+                        {{#with getImage}}
+                            <img src="{{this.url store='userImages'}}" alt="" class="img-rounded img-responsive"/>
+                        {{/with}}
+                    </div>
+                    <div class="col s6">
+                        <h4>{{getUsername}}</h4>
+                        <small><cite title="Driver / Client">Driver / Client
+                        </cite></small>
+                        <p>
+                            {{> starsRating rating=getFeedbackScore mutable=false}}
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="col s6">
-              <h4>XDXDXD{{getUsername}}</h4>
-              <small><cite title="Driver / Client">Driver / Client
-              </cite></small>
-              <p>
-                {{> starsRating rating=getFeedbackScore mutable=false}}
-              </p>
-            </div>
-          </div>
-      </div>
+        </div>
     </div>
-  </div>
 </template>
