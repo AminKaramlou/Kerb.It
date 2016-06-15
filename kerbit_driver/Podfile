@@ -1,0 +1,4 @@
+target 'kerbit_driver' do
+  pod 'GoogleMaps'
+  pod 'Meteor'
+end

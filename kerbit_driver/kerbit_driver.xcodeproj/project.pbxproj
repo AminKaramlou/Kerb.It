@@ -1,0 +1,442 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2B1015321D1084200012D5F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1015311D1084200012D5F3 /* AppDelegate.swift */; };
+		2B1015341D1084200012D5F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1015331D1084200012D5F3 /* ViewController.swift */; };
+		2B1015371D1084200012D5F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B1015351D1084200012D5F3 /* Main.storyboard */; };
+		2B10153A1D1084200012D5F3 /* kerbit_driver.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B1015381D1084200012D5F3 /* kerbit_driver.xcdatamodeld */; };
+		2B10153C1D1084200012D5F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B10153B1D1084200012D5F3 /* Assets.xcassets */; };
+		2B10153F1D1084200012D5F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B10153D1D1084200012D5F3 /* LaunchScreen.storyboard */; };
+		2B1015501D10845B0012D5F3 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1015461D10845B0012D5F3 /* DataManager.swift */; };
+		2B1015511D10845B0012D5F3 /* FormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1015471D10845B0012D5F3 /* FormVC.swift */; };
+		2B1015521D10845B0012D5F3 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1015481D10845B0012D5F3 /* HomeVC.swift */; };
+		2B1015541D10845B0012D5F3 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B10154B1D10845B0012D5F3 /* Offer.swift */; };
+		2B1015551D10845B0012D5F3 /* PickupLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B10154C1D10845B0012D5F3 /* PickupLocationVC.swift */; };
+		2B1015561D10845B0012D5F3 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B10154D1D10845B0012D5F3 /* Request.swift */; };
+		2B1015571D10845B0012D5F3 /* SubscriptionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B10154E1D10845B0012D5F3 /* SubscriptionLoader.swift */; };
+		2B1015581D10845B0012D5F3 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B10154F1D10845B0012D5F3 /* TestVC.swift */; };
+		2B10155E1D108CD10012D5F3 /* MyRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B10155D1D108CD10012D5F3 /* MyRequestsVC.swift */; };
+		2B1015661D10EB210012D5F3 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1015651D10EB210012D5F3 /* Item.swift */; };
+		2B1015681D10EB280012D5F3 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1015671D10EB280012D5F3 /* ViewManager.swift */; };
+		C751E780E0DFD06140547D82 /* libPods-kerbit_driver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA45841B8A3AEB99F58409C /* libPods-kerbit_driver.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2B10152E1D1084200012D5F3 /* kerbit_driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kerbit_driver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B1015311D1084200012D5F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2B1015331D1084200012D5F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2B1015361D1084200012D5F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2B1015391D1084200012D5F3 /* kerbit_driver.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = kerbit_driver.xcdatamodel; sourceTree = "<group>"; };
+		2B10153B1D1084200012D5F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B10153E1D1084200012D5F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2B1015401D1084200012D5F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B1015461D10845B0012D5F3 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		2B1015471D10845B0012D5F3 /* FormVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormVC.swift; sourceTree = "<group>"; };
+		2B1015481D10845B0012D5F3 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		2B10154B1D10845B0012D5F3 /* Offer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
+		2B10154C1D10845B0012D5F3 /* PickupLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupLocationVC.swift; sourceTree = "<group>"; };
+		2B10154D1D10845B0012D5F3 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		2B10154E1D10845B0012D5F3 /* SubscriptionLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionLoader.swift; sourceTree = "<group>"; };
+		2B10154F1D10845B0012D5F3 /* TestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
+		2B10155A1D1085D40012D5F3 /* kerbit_driver-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "kerbit_driver-Bridging-Header.h"; sourceTree = "<group>"; };
+		2B10155D1D108CD10012D5F3 /* MyRequestsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRequestsVC.swift; sourceTree = "<group>"; };
+		2B1015651D10EB210012D5F3 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		2B1015671D10EB280012D5F3 /* ViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
+		CEA45841B8A3AEB99F58409C /* libPods-kerbit_driver.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kerbit_driver.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E03FCAD8C6BDBACF05F5E882 /* Pods-kerbit_driver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kerbit_driver.release.xcconfig"; path = "Pods/Target Support Files/Pods-kerbit_driver/Pods-kerbit_driver.release.xcconfig"; sourceTree = "<group>"; };
+		E9FBC963F1815909531F363D /* Pods-kerbit_driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kerbit_driver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kerbit_driver/Pods-kerbit_driver.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2B10152B1D1084200012D5F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C751E780E0DFD06140547D82 /* libPods-kerbit_driver.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B1015251D1084200012D5F3 = {
+			isa = PBXGroup;
+			children = (
+				2B1015301D1084200012D5F3 /* kerbit_driver */,
+				2B10152F1D1084200012D5F3 /* Products */,
+				4565C0FFD8735C10A6442BD3 /* Pods */,
+				CF5F44714E0AA4DF54BBD783 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2B10152F1D1084200012D5F3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B10152E1D1084200012D5F3 /* kerbit_driver.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2B1015301D1084200012D5F3 /* kerbit_driver */ = {
+			isa = PBXGroup;
+			children = (
+				2B10154E1D10845B0012D5F3 /* SubscriptionLoader.swift */,
+				2B1015461D10845B0012D5F3 /* DataManager.swift */,
+				2B1015311D1084200012D5F3 /* AppDelegate.swift */,
+				2B1015331D1084200012D5F3 /* ViewController.swift */,
+				2B1015351D1084200012D5F3 /* Main.storyboard */,
+				2B10153B1D1084200012D5F3 /* Assets.xcassets */,
+				2B10153D1D1084200012D5F3 /* LaunchScreen.storyboard */,
+				2B1015401D1084200012D5F3 /* Info.plist */,
+				2B1015381D1084200012D5F3 /* kerbit_driver.xcdatamodeld */,
+				2B1015671D10EB280012D5F3 /* ViewManager.swift */,
+				2B1015481D10845B0012D5F3 /* HomeVC.swift */,
+				2B1015471D10845B0012D5F3 /* FormVC.swift */,
+				2B10154C1D10845B0012D5F3 /* PickupLocationVC.swift */,
+				2B10155D1D108CD10012D5F3 /* MyRequestsVC.swift */,
+				2B10154F1D10845B0012D5F3 /* TestVC.swift */,
+				2B10155A1D1085D40012D5F3 /* kerbit_driver-Bridging-Header.h */,
+				2B10154D1D10845B0012D5F3 /* Request.swift */,
+				2B10154B1D10845B0012D5F3 /* Offer.swift */,
+				2B1015651D10EB210012D5F3 /* Item.swift */,
+			);
+			path = kerbit_driver;
+			sourceTree = "<group>";
+		};
+		4565C0FFD8735C10A6442BD3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E9FBC963F1815909531F363D /* Pods-kerbit_driver.debug.xcconfig */,
+				E03FCAD8C6BDBACF05F5E882 /* Pods-kerbit_driver.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CF5F44714E0AA4DF54BBD783 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CEA45841B8A3AEB99F58409C /* libPods-kerbit_driver.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2B10152D1D1084200012D5F3 /* kerbit_driver */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B1015431D1084200012D5F3 /* Build configuration list for PBXNativeTarget "kerbit_driver" */;
+			buildPhases = (
+				AF0316F072E0D65F869A144A /* 📦 Check Pods Manifest.lock */,
+				2B10152A1D1084200012D5F3 /* Sources */,
+				2B10152B1D1084200012D5F3 /* Frameworks */,
+				2B10152C1D1084200012D5F3 /* Resources */,
+				C3FEAA4FDF8C9450F278E97B /* 📦 Embed Pods Frameworks */,
+				A77118B309E654590AB2713D /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = kerbit_driver;
+			productName = kerbit_driver;
+			productReference = 2B10152E1D1084200012D5F3 /* kerbit_driver.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2B1015261D1084200012D5F3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = APTSD;
+				TargetAttributes = {
+					2B10152D1D1084200012D5F3 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = ZFFBRZM5F4;
+					};
+				};
+			};
+			buildConfigurationList = 2B1015291D1084200012D5F3 /* Build configuration list for PBXProject "kerbit_driver" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2B1015251D1084200012D5F3;
+			productRefGroup = 2B10152F1D1084200012D5F3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2B10152D1D1084200012D5F3 /* kerbit_driver */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2B10152C1D1084200012D5F3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B10153F1D1084200012D5F3 /* LaunchScreen.storyboard in Resources */,
+				2B10153C1D1084200012D5F3 /* Assets.xcassets in Resources */,
+				2B1015371D1084200012D5F3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A77118B309E654590AB2713D /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kerbit_driver/Pods-kerbit_driver-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF0316F072E0D65F869A144A /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C3FEAA4FDF8C9450F278E97B /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-kerbit_driver/Pods-kerbit_driver-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2B10152A1D1084200012D5F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B10155E1D108CD10012D5F3 /* MyRequestsVC.swift in Sources */,
+				2B1015571D10845B0012D5F3 /* SubscriptionLoader.swift in Sources */,
+				2B1015551D10845B0012D5F3 /* PickupLocationVC.swift in Sources */,
+				2B1015541D10845B0012D5F3 /* Offer.swift in Sources */,
+				2B1015511D10845B0012D5F3 /* FormVC.swift in Sources */,
+				2B1015581D10845B0012D5F3 /* TestVC.swift in Sources */,
+				2B1015341D1084200012D5F3 /* ViewController.swift in Sources */,
+				2B1015661D10EB210012D5F3 /* Item.swift in Sources */,
+				2B1015501D10845B0012D5F3 /* DataManager.swift in Sources */,
+				2B1015521D10845B0012D5F3 /* HomeVC.swift in Sources */,
+				2B1015321D1084200012D5F3 /* AppDelegate.swift in Sources */,
+				2B1015561D10845B0012D5F3 /* Request.swift in Sources */,
+				2B1015681D10EB280012D5F3 /* ViewManager.swift in Sources */,
+				2B10153A1D1084200012D5F3 /* kerbit_driver.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2B1015351D1084200012D5F3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B1015361D1084200012D5F3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2B10153D1D1084200012D5F3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B10153E1D1084200012D5F3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2B1015411D1084200012D5F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2B1015421D1084200012D5F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2B1015441D1084200012D5F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9FBC963F1815909531F363D /* Pods-kerbit_driver.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = kerbit_driver/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "aptsd.kerbit-driver";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "kerbit_driver/kerbit_driver-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2B1015451D1084200012D5F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E03FCAD8C6BDBACF05F5E882 /* Pods-kerbit_driver.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = kerbit_driver/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "aptsd.kerbit-driver";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "kerbit_driver/kerbit_driver-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2B1015291D1084200012D5F3 /* Build configuration list for PBXProject "kerbit_driver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B1015411D1084200012D5F3 /* Debug */,
+				2B1015421D1084200012D5F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B1015431D1084200012D5F3 /* Build configuration list for PBXNativeTarget "kerbit_driver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B1015441D1084200012D5F3 /* Debug */,
+				2B1015451D1084200012D5F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2B1015381D1084200012D5F3 /* kerbit_driver.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2B1015391D1084200012D5F3 /* kerbit_driver.xcdatamodel */,
+			);
+			currentVersion = 2B1015391D1084200012D5F3 /* kerbit_driver.xcdatamodel */;
+			path = kerbit_driver.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 2B1015261D1084200012D5F3 /* Project object */;
+}

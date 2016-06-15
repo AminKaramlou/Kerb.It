@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Automatic">
+    <entity name="Item" representedClassName="kerbit_driver.Item" syncable="YES">
+        <attribute name="consumerId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="descriptio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageIds" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="sizeRequired" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Offer" representedClassName="kerbit_driver.Offer" syncable="YES">
+        <attribute name="driverId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="requestId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Request" representedClassName="kerbit_driver.Request" syncable="YES">
+        <attribute name="bidWindow" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="consumerId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="isActive" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isLive" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="itemId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="loc" optional="YES" attributeType="Transformable" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Item" positionX="-27" positionY="18" width="128" height="120"/>
+        <element name="Offer" positionX="18" positionY="63" width="128" height="90"/>
+        <element name="Request" positionX="54" positionY="99" width="128" height="150"/>
+    </elements>
+</model>
