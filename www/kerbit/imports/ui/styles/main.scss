@@ -1,7 +1,10 @@
 @import "{poetic:materialize-scss}/sass/components/_color.scss";
+$primary-color: #34675c;
+$secondary-color: #86ac41;
 
 // import main scss file
 @import "{poetic:materialize-scss}/sass/materialize.scss";
+
 body {
   display: flex;
   min-height: 100vh;
