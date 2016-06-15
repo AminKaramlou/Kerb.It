@@ -59,6 +59,7 @@ Template.RequestPickupHelper.onCreated(function () {
 
 Template.RequestPickupHelper.rendered = function () {
   $('.modal-trigger').leanModal();
+  $('ul.tabs').tabs();
 };
 
 
@@ -103,7 +104,14 @@ Template.RequestPickupHelper.events({
 
     const description = target.description.value;
     const bidWindow = target.bidWindow.value;
-    const sizeRequired = Number(target.sizeRequired.value);
+    var sizeRequired;
+    if (target.sizeCubic.value> 0)  {
+      sizeRequired = Number(target.sizeCubic.value);
+    } else {
+      binBags = Number(target.sizeRequired.value);
+      sizeRequired = binBags /10;
+    }
+
 
     const images = target.clientImage.files;
     let imageIds = new Array();
