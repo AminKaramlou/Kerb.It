@@ -86,6 +86,8 @@ Meteor.methods({
     });
   },
   'updateOffer'(offerId, price) {
+    console.log(offerId);
+    console.log(price);
     Offers.update(offerId, {
       $set: {
         price
