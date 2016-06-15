@@ -9,7 +9,6 @@
         <!--HomeVC-->
         <scene sceneID="y4o-36-X5x">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AZb-kE-01c" sceneMemberID="firstResponder"/>
                 <viewController id="xjE-zI-dOG" customClass="HomeVC" customModule="kerbit_driver" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9da-ba-rM5"/>
@@ -77,6 +76,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AZb-kE-01c" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="316.5" y="365.5"/>
         </scene>
