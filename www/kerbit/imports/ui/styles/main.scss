@@ -1,9 +1,18 @@
 @import "{poetic:materialize-scss}/sass/components/_color.scss";
-$primary-color: #34675c;
-$secondary-color: #86ac41;
+$primary-color: #363237;
+$secondary-color: #73605b;
 
 // import main scss file
 @import "{poetic:materialize-scss}/sass/materialize.scss";
+
+.primary-color {
+  //color: $primary-color;
+  background-color: $primary-color;
+}
+.secondary-color {
+  //color: $secondary-color;
+  background-color: $secondary-color;
+}
 
 body {
   display: flex;
