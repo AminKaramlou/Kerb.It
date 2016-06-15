@@ -1,15 +1,26 @@
 @import "{poetic:materialize-scss}/sass/components/_color.scss";
-$primary-color: #363237;
-$secondary-color: #73605b;
+$primary-color: #2f3931;
+$secondary-color: #8593ae;
+//$button-raised-color: black;
 
 // import main scss file
 @import "{poetic:materialize-scss}/sass/materialize.scss";
+
+.tertiary-color {
+  background-color: #f8f5f2;
+}
+
+.primary-color-text {
+  color: $primary-color;
+}
+
 
 .primary-color {
   background-color: $primary-color;
 }
 .secondary-color {
   background-color: $secondary-color;
+
 }
 
 body {
@@ -184,7 +195,7 @@ GENERIC
   margin: 10px;
 }
 .border-bottom-thin {
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid $primary-color;
 }
 
 .override-padding-left-0 {
