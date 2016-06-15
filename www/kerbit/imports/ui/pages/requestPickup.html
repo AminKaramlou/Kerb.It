@@ -1,51 +1,119 @@
 <template name="RequestPickup">
-  {{#OnlyConsumer}}
-    {{>RequestPickupHelper}}
-  {{/OnlyConsumer}}
+    {{#OnlyConsumer}}
+        {{>RequestPickupHelper}}
+    {{/OnlyConsumer}}
 </template>
 
 <template name="RequestPickupHelper">
-  <div class="row">
-    <div class="col s6">
-      <h1 class="center-align" id="mapSection">Map</h1>
-      <div class="row">
-        <div class="col s8">
-          <input id="search" class="controls pac-input" type="text" placeholder="Pick up Location">
-        </div>
-        <div class="col s3">
-          <button id="last-loc" class="controls map-button">Last Request Location</button>
-        </div>
-      </div>
-      <div id="map-container" class="marker-overlay">
-        {{> map}}
-      </div>
+
+    <div id="map-london-container">
+        {{> googleMap name="map" options=mapOptions}}
     </div>
-    <div class="col s6">
-      <h1 class="center-align" id="addressSection">Address</h1>
-      <form>
-        <div class="input-field">
-          <label for="description">Description</label>
-          <textarea id="description" name="description" class="materialize-textarea"></textarea>
-        </div>
-        <div class="file-field input-field">
-          <div class="btn">
-            <span>Upload image</span>
-            <input type="file" id="clientImage" name="clientImage" accept="images/*" multiple>
-          </div>
-          <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-          </div>
-        </div>
-        <p class="range-field">
-          <input type="range" id="sizeRequired" name="sizeRequired" min="1" max="10" value="5"/>
-          <label for="sizeRequired">Size required</label>
-        </p>
-        <p class="range-field">
-          <input type="range" id="bidWindow" name="bidWindow" min="1" max="336" value="48" step = 1/>
-          <label for="bidWindow">Bid window</label>
-        </p>
-        <button type="submit" class="btn">Submit</button>
-      </form>
+
+    <div id="pop">
+        <h2>Welcome to KerbIt</h2>
+        <br>
+        <p>Please choose the location of your item, and press </p>
+        <button class="modal-trigger btn waves-effect waves-light" data-target="modal1" type="submit" name="action"
+                onclick="document.getElementById('pop').style.display='none'">Submit
+        </button>
     </div>
-  </div>
+
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal modal-fixed-footer">
+        <form class="details">
+            <div class="modal-content">
+                <h4>New Collection</h4>
+                <p>Please describe your waste as accurately as possible</p>
+
+                <div class="input-field">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                </div>
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Upload image</span>
+                        <input type="file" id="clientImage" name="clientImage" accept="images/*" multiple>
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <p class="range-field">
+                    <label for="sizeRequired">Size required</label>
+                    <input type="range" id="sizeRequired" name="sizeRequired" min="1" max="10"
+                           value="5"/>
+
+                </p>
+
+
+                <p class="range-field">
+
+                    <input name="bidWindow" type="radio" id="oneHour" value="1"/>
+                    <label for="oneHour">1 Hour</label>
+
+                    <input name="bidWindow" type="radio" id="threeHour" value="3"/>
+                    <label for="threeHour">3 Hours</label>
+
+                    <input name="bidWindow" type="radio" id="fiveHour" value="6"/>
+                    <label for="fiveHour">6 Hours</label>
+
+                    <input name="bidWindow" type="radio" id="twelveHour" value="12"/>
+                    <label for="twelveHour">12 Hours</label>
+
+                    <input name="bidWindow" type="radio" id="day" value="24"/>
+                    <label for="day">24 Hours</label>
+
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn waves-effect waves-green btn-flat ">Submit
+                </button>
+            </div>
+        </form>
+    </div>
+    <!--<div class="row">-->
+    <!--<div class="col s6">-->
+    <!--<h1 class="center-align" id="mapSection">Map</h1>-->
+    <!--<div class="row">-->
+    <!--<div class="col s8">-->
+    <!--<input id="search" class="controls pac-input" type="text" placeholder="Pick up Location">-->
+    <!--</div>-->
+    <!--<div class="col s3">-->
+    <!--<button id="last-loc" class="controls map-button">Last Request Location</button>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div id="map-container" class="marker-overlay">-->
+    <!--{{> map}}-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col s6">-->
+    <!--<h1 class="center-align" id="addressSection">Address</h1>-->
+    <!--<form>-->
+    <!--<div class="input-field">-->
+    <!--<label for="description">Description</label>-->
+    <!--<textarea id="description" name="description" class="materialize-textarea"></textarea>-->
+    <!--</div>-->
+    <!--<div class="file-field input-field">-->
+    <!--<div class="btn">-->
+    <!--<span>Upload image</span>-->
+    <!--<input type="file" id="clientImage" name="clientImage" accept="images/*" multiple>-->
+    <!--</div>-->
+    <!--<div class="file-path-wrapper">-->
+    <!--<input class="file-path validate" type="text">-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<p class="range-field">-->
+    <!--<input type="range" id="sizeRequired" name="sizeRequired" min="1" max="10" value="5"/>-->
+    <!--<label for="sizeRequired">Size required</label>-->
+    <!--</p>-->
+    <!--<p class="range-field">-->
+    <!--<input type="range" id="bidWindow" name="bidWindow" min="1" max="336" value="48" step = 1/>-->
+    <!--<label for="bidWindow">Bid window</label>-->
+    <!--</p>-->
+    <!--<button type="submit" class="btn">Submit</button>-->
+    <!--</form>-->
+    <!--</div>-->
+    <!--</div>-->
 </template>
