@@ -33,7 +33,7 @@ if (Meteor.isServer) {
         const makeRequest = Meteor.server.method_handlers['makeRequest'];
         const invocation = { userId: consumerId };
 
-        makeRequest.apply(invocation, [consumerId, imageIds, description, bidWindow, sizeRequired, loc.coordinates[0], loc.coordinates[1]]);
+        makeRequest.apply(invocation, [consumerId, imageIds, description, bidWindow, sizeRequired, loc.coordinates[-0.166320], loc.coordinates[51.501773]]);
       });
 
       it('should create request', () => {
