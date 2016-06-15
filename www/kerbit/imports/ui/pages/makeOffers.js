@@ -23,7 +23,7 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
   Meteor.subscribe('items');
   GoogleMaps.ready('map', function(map) {
     // Load in our geojson
-    map.instance.data.loadGeoJson('https://www.kerbit.co.uk/londonboroughs.geojson');
+    map.instance.data.loadGeoJson('/londonboroughs.geojson');
 
     // Color each borough blue.
     map.instance.data.setStyle(function(feature) {
