@@ -52,7 +52,8 @@ if (Meteor.isServer) {
           itemId,
           loc,
           isActive: true,
-          isLive: true
+          isLive: true,
+          borough: "Ealing"
         });
         deleteRequest.apply(invocation, [requestId]);
       });
@@ -73,7 +74,8 @@ if (Meteor.isServer) {
           itemId,
           loc,
           isActive: true,
-          isLive: true
+          isLive: true,
+          borough: "Ealing"
         });
         const price = 1000;
         makeOffer.apply(invocation, [requestId, driverId, price, ]);
@@ -106,7 +108,8 @@ if (Meteor.isServer) {
           loc,
           itemId,
           isActive: true,
-          isLive: true
+          isLive: true,
+          borough: "Ealing"
         });
         Offers.insert({
           _id: offerId,
