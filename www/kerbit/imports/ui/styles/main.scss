@@ -6,11 +6,9 @@ $secondary-color: #73605b;
 @import "{poetic:materialize-scss}/sass/materialize.scss";
 
 .primary-color {
-  //color: $primary-color;
   background-color: $primary-color;
 }
 .secondary-color {
-  //color: $secondary-color;
   background-color: $secondary-color;
 }
 
@@ -32,7 +30,6 @@ ul.side-nav.fixed {
   font-weight: bold;
 }
 ul.side-nav.fixed li.user-details {
-  background: url(../images/user-bg.jpg) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
