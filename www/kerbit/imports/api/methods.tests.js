@@ -22,7 +22,6 @@ if (Meteor.isServer) {
     const bidWindow = 7;
     const sizeRequired = 7;
     const loc = {type: "Point", coordinates:[7,10]};
-    const rating = 5;
     beforeEach(() => {
       Transactions.remove({});
       Requests.remove({});
@@ -77,7 +76,7 @@ if (Meteor.isServer) {
           isLive: true
         });
         const price = 1000;
-        makeOffer.apply(invocation, [requestId, driverId, price, rating]);
+        makeOffer.apply(invocation, [requestId, driverId, price, ]);
       });
 
       it('should create offer', () => {
@@ -114,7 +113,6 @@ if (Meteor.isServer) {
           requestId,
           driverId,
           price,
-          rating,
           createdAt: date
         });
         acceptOffer.apply(invocation, [requestId, offerId]);

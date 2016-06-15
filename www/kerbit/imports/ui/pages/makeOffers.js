@@ -8,7 +8,7 @@ import { Requests } from '../../api/collections/requests.js';
 import '../../api/methods.js';
 import "./makeOffers.html";
 
-var src = 'https://www.kerbit.co.uk/london.kml';
+
 Session.setDefault("selectedArea", "");
 
 Template.MakeOffersHelper.rendered = function() {
@@ -161,7 +161,7 @@ Template.MakeOffersHelper.events({
     } else {
       requestId = target.requestId.value;
     }
-    Meteor.call('makeOffer', requestId, Meteor.userId(), price, Meteor.user().rating);
+    Meteor.call('makeOffer', requestId, Meteor.userId(), price);
     target.reset();
     Materialize.toast("Your offer was recorded. Please check the My Offers page for updates", 4000);
   }
