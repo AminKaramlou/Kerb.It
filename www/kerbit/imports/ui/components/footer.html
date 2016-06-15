@@ -1,33 +1,27 @@
-<template name="footer">
-  <footer class="footer">
-    <div class="container">
-      <p class="text-muted text-center">Copyright <i class="fa fa-copyright fa-fw"></i> 2016 | <a href="#">Terms</a> | <a href="#">Privacy</a> </p>
-    </div>
-  </footer>
-</template>
-
 <template name="Footer">
-  <footer class="page-footer" style="background-color: transparent;" >
-<!--    <div class="container">
-      <div class="row">
-        <form id="feedback" class="col s12 feedback">
-          <div class="row">
-            <div class="input-field col s12">
-              <textarea id="comments" class="materialize-textarea white-text"
-                style="border-bottom: 1px solid #ffffff;"></textarea>
-              <label for="feedback" class="white-text">Help Us Improve With Feedback</label>
-            </div>
-              <button class="btn waves-effect waves-light red"
-                type="submit">Submit Feedback<i class="material-icons
-                  right">send</i></button>
-          </div>
-        </form>
-      </div>
-    </div>-->
-    <div class="footer-copyright">
+  <footer class="page-footer">
+    {{#if isHome}}
       <div class="container">
-        <span class="black-text"> <i class="fa fa-copyright fa-fw"></i>2016 Kerb.It team | <a href="#" class="link-disabled">Terms</a> | <a href="#" class="link-disabled">Privacy</a>
-      </span></div>
+        <div class="row">
+          <form id="feedback" class="col s12 feedback">
+            <div class="row">
+              <div class="input-field col s12">
+              <textarea id="comments" class="materialize-textarea white-text"
+                        style="border-bottom: 1px solid #ffffff;"></textarea>
+                <label for="feedback" class="white-text">Help Us Improve With Feedback</label>
+              </div>
+              <button class="btn waves-effect waves-light quaternary-color"
+                      type="submit">Submit Feedback<i class="material-icons
+                  right">send</i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    {{/if}}}
+  <div class="footer-copyright">
+    <div class="container">
+      <i class="fa fa-copyright fa-fw"></i> 2016 Kerb.It team | <a href="#" class="link-disabled">Terms</a> | <a href="#" class="link-disabled">Privacy</a>
     </div>
+  </div>
   </footer>
 </template>
