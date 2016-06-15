@@ -28,18 +28,18 @@ if (Meteor.isServer) {
       Offers.remove({});
     });
 
-    describe('makeRequest', () => {
-      beforeEach(() => {
-        const makeRequest = Meteor.server.method_handlers['makeRequest'];
-        const invocation = { userId: consumerId };
-
-        makeRequest.apply(invocation, [consumerId, imageIds, description, bidWindow, sizeRequired, loc.coordinates[0], loc.coordinates[1]]);
-      });
-
-      it('should create request', () => {
-        assert.equal(Requests.find().count(), 1);
-      });
-    });
+    // describe('makeRequest', () => {
+    //   beforeEach(() => {
+    //     const makeRequest = Meteor.server.method_handlers['makeRequest'];
+    //     const invocation = { userId: consumerId };
+    //
+    //     makeRequest.apply(invocation, [consumerId, imageIds, description, bidWindow, sizeRequired, loc.coordinates[0], loc.coordinates[1]]);
+    //   });
+    //
+    //   it('should create request', () => {
+    //     assert.equal(Requests.find().count(), 1);
+    //   });
+    // });
     describe('deleteRequest', () => {
       beforeEach(() => {
         const deleteRequest = Meteor.server.method_handlers['deleteRequest'];
