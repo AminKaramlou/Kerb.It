@@ -1,4 +1,10 @@
 <template name="Sidebar">
+<style>
+  .icons {
+    padding-right: 5px;
+  }
+</style>
+
     <ul class="side-nav fixed leftside-navigation z-depth-3">
         <li class="user-details teal lighten-1">
             <div class="row valign-wrapper">
@@ -13,8 +19,23 @@
                 </div>
             </div>
         </li>
-        {{#each groupRoutes}}
-            <li><a href="{{path}}">{{name}}</a></li>
-        {{/each}}
+        
+        <li><a href="/settings"><i class="fa fa-gear icons"></i>Settings</a></li>
+        
+        {{#if isDriver}}
+        <li><a href="/driver/history-driver"><i
+              class="fa fa-history icons"></i>Job History</a></li>
+        <li><a href="/driver/make-offers"><i
+              class="fa fa-truck icons"></i>Make Offers</a></li>
+        <li><a href="/driver/my-offers"><i
+               class="fa fa-shopping-cart icons"></i>My Offers</a></li>
+        {{else}}
+        <li><a href="/consumer/history-client"><i
+              class="fa fa-history icons"></i>Transaction History</a></li>
+        <li><a href="/consumer/request-pickup"><i
+              class="fa fa-map-marker icons"></i>Request Pickup</a></li>
+        <li><a href="/consumer/my-requests"><i
+              class="fa fa-paper-plane icons"></i>My Request</a></li>
+        {{/if}}
     </ul>
 </template>

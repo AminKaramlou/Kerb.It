@@ -42,14 +42,7 @@ FlowRouter.route('/users/:userName', {
   }
 });
 
-driverSection.route('/settings', {
-  name: 'DriverSettings',
-  action: function() {
-    BlazeLayout.render('DashLayout', {main: 'CustomSettings'});
-  }
-});
-
-consumerSection.route('/settings', {
+FlowRouter.route('/settings', {
   name: 'Settings',
   action: function() {
     BlazeLayout.render('DashLayout', {main: 'CustomSettings'});
