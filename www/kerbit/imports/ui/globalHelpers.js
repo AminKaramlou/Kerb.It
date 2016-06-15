@@ -1,4 +1,6 @@
 import { Template } from 'meteor/templating';
+import { Offers } from '../api/collections/offers.js';
+import { Requests } from '../api/collections/requests.js';
 
 Template.registerHelper('formatDate', (date) => {
     const monthNames = ["January", "February", "March", "April", "May", "June", 
@@ -23,4 +25,24 @@ Template.registerHelper('formatDescription', (desc) => {
     ret = desc.substring(0,100) + " ...";
   }
   return ret;
+});
+
+Template.registerHelper('formatLocation', (finalOffer) => {
+  Meteor.subscribe('offers');
+  Meteor.subscribe('requests');
+  let offer = Offers.findOne(finalOffer);
+  let request = Requests.findOne(offer.requestId);
+  return request.borough;
+});
+
+Template.registerHelper('formatPrice', (finalOffer) => {
+  Meteor.subscribe('offers');
+  let offer = Offers.findOne(finalOffer);
+  return offer.price;
+});
+
+Template.registerHelper('getUsernameFromID', (userId) => {
+  Meteor.subscribe('users');
+  let user = Meteor.users.findOne(userId);
+  return user.username;
 });

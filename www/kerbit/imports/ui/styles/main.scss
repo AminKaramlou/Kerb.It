@@ -168,6 +168,19 @@ GENERIC
 .extra-padding-bottom-15 {
   padding-bottom: 15px;
 }
+.extra-padding-left-15 {
+  padding-left: 15px;
+}
+.extra-margin-all-10 {
+  margin: 10px;
+}
+.border-bottom-thin {
+  border-bottom: 1px solid black;
+}
+
+.override-padding-left-0 {
+  padding-left: 0px !important;
+}
 
 #map-london-container {
   //width: 100%;

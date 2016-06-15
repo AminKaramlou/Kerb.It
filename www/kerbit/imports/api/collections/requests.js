@@ -9,7 +9,7 @@ RequestsSchema = new SimpleSchema({
   consumerId: {
     type: String,
     label: "Consumer ID",
-    regEx: SimpleSchema.RegEx.Id,
+    regEx: SimpleSchema.RegEx.Id
   },
   bidWindow: {
     type: Number,
