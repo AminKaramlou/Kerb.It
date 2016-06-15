@@ -1,5 +1,8 @@
 {
-            
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -2012,7 +2015,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -4025,7 +4028,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -6038,7 +6041,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -8051,7 +8054,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -10084,7 +10087,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -12097,7 +12100,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -13745,7 +13748,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -15788,7 +15791,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -17821,7 +17824,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -19864,7 +19867,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -21887,7 +21890,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -23900,7 +23903,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -25913,7 +25916,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -27926,7 +27929,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -29949,7 +29952,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -31962,7 +31965,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -33985,7 +33988,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -36018,7 +36021,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -38031,7 +38034,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -40044,7 +40047,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -42067,7 +42070,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -44080,7 +44083,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -46103,7 +46106,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -48116,7 +48119,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -50139,7 +50142,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -52152,7 +52155,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -54185,7 +54188,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -56198,7 +56201,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -58231,7 +58234,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -60254,7 +60257,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -62277,7 +62280,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -64290,7 +64293,7 @@
             }
         },
         {
-            
+            "type": "Feature",
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
@@ -66302,3 +66305,5 @@
                 "name": "Westminster"
             }
         }
+    ]
+}
