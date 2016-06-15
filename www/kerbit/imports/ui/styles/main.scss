@@ -77,7 +77,7 @@ MAP
   position: relative;
 }
 
-#map-container:after {
+#map-container.marker-overlay::after {
   width: 22px;
   height: 40px;
   display: block;
