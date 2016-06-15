@@ -10,15 +10,27 @@
         {{> googleMap name="map" options=mapOptions}}
     </div>
 
-    <div id="pop">
-        <h2>Welcome to KerbIt</h2>
-        <br>
-        <p>Please choose the location of your waste, then press </p>
-        <button class="modal-trigger btn waves-effect waves-light" data-target="modal1" type="submit" name="action"
-                onclick="document.getElementById('pop').style.display='none'">Submit
-        </button>
+    <div id="pop" class="background-transparent">
+      <div class="card white z-depth-5">
+        <div class="card-content">
+          <span class="card-title">Welcome to Kerb.It</span>
+          <p>Please choose where you want your waste picked up from, and press submit.</p>
+        </div>
+        <div class="card-action">
+          <button class="modal-trigger btn waves-effect waves-light" data-target="modal1" type="submit" name="action"
+                  onclick="document.getElementById('pop').style.display='none';
+                  document.getElementById('edit-pickup').style.display='initial'">Submit
+          </button>
+        </div>
+      </div>
     </div>
 
+  <div class="fixed-action-btn" id="edit-pickup" style="top: 10%; right: 1%;">
+    <a class="btn-floating z-depth-2" onclick="document.getElementById('pop').style.display='initial';
+    document.getElementById('edit-pickup').style.display='none'">
+      <i class="material-icons">location_on</i>
+    </a>
+  </div>
 
     <!-- Modal Structure -->
     <div id="modal1" class="modal modal-fixed-footer">

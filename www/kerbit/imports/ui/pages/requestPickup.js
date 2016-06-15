@@ -10,6 +10,7 @@ Template.RequestPickupHelper.onCreated(function () {
   var self = this;
 
 
+
   GoogleMaps.ready('map', function (map) {
     var marker = new google.maps.Marker({
       map: map.instance,
@@ -57,11 +58,11 @@ Template.RequestPickupHelper.onCreated(function () {
   });
 });
 
-Template.RequestPickupHelper.rendered = function () {
+Template.RequestPickupHelper.onRendered(function () {
   $('.modal-trigger').leanModal();
   $('ul.tabs').tabs();
-};
-
+  document.getElementById('edit-pickup').style.display='none';
+});
 
 Template.RequestPickupHelper.helpers(
     {
