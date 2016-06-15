@@ -9,8 +9,11 @@
 import CoreData
 
 class Request: NSManagedObject {
-  @NSManaged var consumerId: String!
-  @NSManaged var postcode: String!
+  @NSManaged var consumerId: String
   @NSManaged var bidWindow: Int64
-  @NSManaged var sizeRequired: Int64
+  @NSManaged var createdAt: NSDate
+  @NSManaged var loc: [String:AnyObject]?
+  @NSManaged var itemId: String
+  @NSManaged var isActive: Bool
+  @NSManaged var isLive: Bool
 }

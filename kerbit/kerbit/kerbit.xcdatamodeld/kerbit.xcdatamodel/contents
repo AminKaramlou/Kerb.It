@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Automatic">
-    <entity name="Image" syncable="YES"/>
+    <entity name="Item" representedClassName="kerbit.Item" syncable="YES">
+        <attribute name="consumerId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="descriptio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageIds" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="sizeRequired" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="Offer" representedClassName="kerbit.Offer" syncable="YES">
         <attribute name="driverId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -9,12 +15,15 @@
     <entity name="Request" representedClassName="kerbit.Request" syncable="YES">
         <attribute name="bidWindow" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="consumerId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="postcode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sizeRequired" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="isActive" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isLive" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="itemId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="loc" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <elements>
         <element name="Offer" positionX="-63" positionY="9" width="128" height="90"/>
-        <element name="Request" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="Image" positionX="-54" positionY="27" width="128" height="45"/>
+        <element name="Request" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="Item" positionX="-36" positionY="63" width="128" height="120"/>
     </elements>
 </model>

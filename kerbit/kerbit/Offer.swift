@@ -9,7 +9,7 @@
 import CoreData
 
 class Offer: NSManagedObject {
-  @NSManaged var requestId: String!
-  @NSManaged var driverId: String!
+  @NSManaged var requestId: String
+  @NSManaged var driverId: String
   @NSManaged var price: Int64
 }
