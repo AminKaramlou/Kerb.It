@@ -139,7 +139,7 @@ MAP
   position: relative;
 }
 
-#map-container:after {
+#map-container.marker-overlay::after {
   width: 22px;
   height: 40px;
   display: block;
@@ -168,7 +168,6 @@ GENERIC
 .extra-padding-bottom-15 {
   padding-bottom: 15px;
 }
-
 
 #map-london-container {
   //width: 100%;
