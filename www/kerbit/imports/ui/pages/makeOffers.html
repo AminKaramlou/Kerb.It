@@ -12,67 +12,53 @@
 
     <!-- Modal Structure -->
     <div id="modal1" class="modal bottom-sheet">
-        <div class="modal-content">
-            <h4>Requests in {{getArea}} : ({{getNum getArea}})</h4>
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                </li>
-                {{#each requests getArea}}
-                    {{#with items itemId}}
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{description}}
-                            </div>
-                            <div class="collapsible-body">
-                                <p>Stuff</p>
-                                {{#each images imageIds}}
-                                    <div class="container">
-                                        <a href="{{this.url}}" target="_blank"><img
-                                                src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}"
-                                                alt="" class="img-thumbnail responsive-img"/></a>
-                                    </div>
-                                {{/each}}
-                            </div>
-                        </li>
-                    {{/with}}
-                {{/each}}
-            </ul>
-            <div class="col s6">
-                <h1 class="center-align" id="offerSection">Make Offer</h1>
-                <form>
-                    <div class="input-field">
-                        <label for="price">Price</label>
-                        <input id="price" type="text" name="price"
-                               onfocus="document.getElementById('price').placeholder = '£';">
-                    </div>
-                    <h3>Current Requests</h3>
-                    {{#each requests getArea}}
-                        <p>
-                            <input class="with-gap" name="requestId" type="radio" id={{_id}} i
-                                   value={{_id}}>
-                            <label for={{_id}}>
-                                {{#with items itemId}}
-                                    Request: {{description}} <br>
-                                    Created on: {{formatDate createdAt}} <br>
-                                    {{#each images imageIds}}
-                                        <div class="container">
-                                            <a href="{{this.url}}" target="_blank"><img
-                                                    src="{{this.url store='images' uploading='/van.ico' storing='/van.ico'}}"
-                                                    alt="" class="img-thumbnail responsive-img"/></a>
-                                        </div>
-                                    {{/each}}
-                                {{/with}}
-                            </label>
+    <div class="modal-content">
+        <h4>Requests in {{getArea}} : ({{getNum getArea}})</h4>
+    <ul class="collapsible" data-collapsible="accordion">
+        {{#each requests getArea}}
+            {{#with items itemId}}
+                {{#each images imageIds}}
+                    <li>
+                        <div class="collapsible-header">
+                    <li class="collection-item avatar">
+                        <div class="col s1">
+                            <img src="{{this.url store='images'}}" alt="" class="square responsive-img
+          valign profile-image">
+                        </div>
+                        <span class="title">{{../description}}</span>
+                        <p> Placeholder<br>
+                            Something Else
                         </p>
-                    {{/each}}
-                    <button type="submit" class="btn">Make Offer</button>
-                </form>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Back to Map</a>
-        </div>
+
+                    </li>
+
+                </div>
+                    <div class="collapsible-body">
+                        <form>
+                            <div class="input-field">
+                                <label for="price">Price</label>
+                                <input id="price" type="text" name="price"
+                                       onfocus="document.getElementById('price').placeholder = '£';">
+                            </div>
+
+                            <input class="with-gap" name="requestId" type="radio" id={{../../_id}} i
+                                   value={{../../_id}}>
+                            <label for={{../../_id}}>
+                            </label>
+                            <button type="submit" class="btn">Make Offer</button>
+                        </form>
+
+                    </div>
+                    </li>
+                {{/each}}
+            {{/with}}
+        {{/each}}
+        </ul>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Back to Map</a>
+    </div>
     </div>
 
 
