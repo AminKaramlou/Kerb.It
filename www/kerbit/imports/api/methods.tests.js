@@ -21,7 +21,7 @@ if (Meteor.isServer) {
     const description = "Test Description";
     const bidWindow = 7;
     const sizeRequired = 7;
-    const loc = {type: "Point", coordinates:[7,10]};
+    const loc = {type: "Point", coordinates:[-0.166320, 51.501773]};
     beforeEach(() => {
       Transactions.remove({});
       Requests.remove({});
