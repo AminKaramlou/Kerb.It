@@ -1,86 +1,97 @@
 <template name="MakeOffers">
-    {{#OnlyDriver}}
-        {{>MakeOffersHelper}}
-    {{/OnlyDriver}}
+  {{#OnlyDriver}}
+    {{>MakeOffersHelper}}
+  {{/OnlyDriver}}
 </template>
 
 <template name="MakeOffersHelper">
 
-    <div id="map-london-container">
-        {{> googleMap name="map" options=mapOptions}}
-    </div>
+  <div id="map-london-container">
+    {{> googleMap name="map" options=mapOptions}}
+  </div>
 
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal bottom-sheet">
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal bottom-sheet">
     <div class="modal-content">
-        <h4>Requests in {{getArea}} : ({{getNum getArea}})</h4>
-    <ul class="collapsible" data-collapsible="accordion">
+      <h4>There are currently {{getNum getArea}} request(s) in {{getArea}}.</h4>
+      <ul class="collapsible" data-collapsible="accordion">
         {{#each requests getArea}}
-            {{#with items itemId}}
-                {{#each images imageIds}}
-                    <li>
-                        <div class="collapsible-header">
-                    <li class="collection-item avatar">
-                        <div class="col s1">
-                            <img src="{{this.url store='images'}}" alt="" class="square responsive-img
-          valign profile-image">
-                        </div>
-                        <span class="title">{{../description}}</span>
-                        <p> Placeholder<br>
-                            Something Else
-                        </p>
-
-                    </li>
-
-                </div>
-                    <div class="collapsible-body">
-                        {{#if hasAlreadyMadeOffer ../../_id}}
-                            <h2>You have already made an offer of £{{getOfferPrice ../../_id}} on this item !</h2>
-                            <p> If you wish to lower your offer, you can update your offer up to the end of the bid window</p>
-                        <br>
-                            <div class="col s10">
-                                <form class="update">
-                                    <div class="row">
-                                        <div class="input-field col s8" style="top: -28px;">
-                                            <input type="text" name="id" id="id" value="{{getOfferId ../../_id}}" hidden>
-                                            <input type="text" name="price" onfocus="document.getElementById('price').placeholder = '£';">
-                                            <label for="price">Price</label>
-                                        </div>
-                                        <div class="col s4">
-                                            <button type="update" class="btn">Update
-                                                Price</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        {{else}}
-                            <form class="input">
-                                <div class="input-field">
-                                    <label for="price">Price</label>
-                                    <input id="price" type="text" name="price"
-                                           onfocus="document.getElementById('price').placeholder = '£';">
-                                </div>
-
-                                <input class="with-gap" name="requestId" type="radio" id={{../../_id}} i
-                                       value={{../../_id}}>
-                                <label for={{../../_id}}>
-                                </label>
-                                <button type="submit" class="btn">Make Offer</button>
-                            </form>
-                        {{/if}}
-
+          {{#with items itemId}}
+            {{#each images imageIds}}
+              <li>
+                <div class="collapsible-header">
+                  <div class="row valign-wrapper override-margins-top-bottom-10">
+                    <div class="col s1">
+                      <img src="{{this.url store='images'}}" alt="" class="square valign responsive-img profile-image">
                     </div>
-                    </li>
-                {{/each}}
-            {{/with}}
+                    <div class="col s10">
+                      <span class="black-text">{{../description}}</span>
+                    </div>
+                    <div class="col s1">
+                      {{#if hasAlreadyMadeOffer ../../_id}}
+                        <i class="fa fa-check-circle"></i>
+                      {{/if}}
+                    </div>
+                  </div>
+                </div>
+                <div class="collapsible-body">
+                  {{#if hasAlreadyMadeOffer ../../_id}}
+                    <ul class="collection">
+                      <li class="collection-item">
+                        <h5>You have offered £{{getOfferPrice ../../_id}} for this item!</h5>
+                      </li>
+                      <li class="collection-item">
+                        If you wish to update your offer, please do so below:
+                      </li>
+                      <li class="collection-item">
+                        <form class="update">
+                          <div class="row">
+                            <div class="input-field col s8">
+                              <input type="text" name="id" id="id" value="{{getOfferId ../../_id}}" hidden>
+                              <input type="text" name="price" onfocus="document.getElementById('price').placeholder = '£';">
+                              <label for="price">Price</label>
+                            </div>
+                            <div class="input-field col s4">
+                              <button type="update" class="btn small">Update Price</button>
+                            </div>
+                          </div>
+                        </form>
+                      </li>
+                    </ul>
+                  {{else}}
+                    <ul class="collection">
+                      <li class="collection-item">
+                        <h5>You have not yet offered a price for this item.</h5>
+                      </li>
+                      <li class="collection-item">
+                        <form class="input">
+                          <div class="input-field">
+                            <input class="with-gap" name="requestId" type="radio" id={{../../_id}} value={{../../_id}}>
+                            <label for={{../../_id}}>
+                            </label>
+                          </div> <!-- WHAT THE FUCK IS THIS RADIO INPUT FOR -->
+                          <div class="input-field">
+                            <label for="price">Price</label>
+                            <input id="price" type="text" name="price" onfocus="document.getElementById('price').placeholder = '£';">
+                          </div>
+                          <div class="input-field">
+                            <button type="submit" class="btn">Make Offer</button>
+                          </div>
+                        </form>
+                      </li>
+                    </ul>
+                  {{/if}}
+                </div>
+              </li>
+            {{/each}}
+          {{/with}}
         {{/each}}
-        </ul>
-
+      </ul>
     </div>
     <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Back to Map</a>
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Back to Map</a>
     </div>
-    </div>
+  </div>
 
 
 </template>
