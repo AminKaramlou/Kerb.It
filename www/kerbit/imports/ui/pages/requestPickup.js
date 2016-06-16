@@ -10,44 +10,23 @@ Template.RequestPickupHelper.onCreated(function () {
   var self = this;
 
 
-
   GoogleMaps.ready('map', function (map) {
-    var marker = new google.maps.Marker({
-      map: map.instance,
-      draggable: true,
-      position: map.instance.getCenter()
-    });
-    Session.set('long', map.instance.getCenter().lng());
-    Session.set('lat', map.instance.getCenter().lat());
-    //console.log(map.instance.getCenter());
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         map.instance.setCenter(initialLocation);
-        marker.setPosition(initialLocation);
         map.instance.setZoom(15);
       });
-      Session.set('long', marker.getPosition().lng());
-      Session.set('lat', marker.getPosition().lat());
     }
 
 
-    google.maps.event.addListener(marker, 'dragend', function (event) {
-      marker.getPosition();
-      Session.set("long", marker.getPosition().lng());
-      Session.set("lat", marker.getPosition().lat());
+    var input = document.getElementById('search');
+    var searchBox = new google.maps.places.SearchBox(input);
 
+    searchBox.addListener('places_changed', function () {
+      var places = searchBox.getPlaces();
+      map.instance.setCenter(places[0].geometry.location);
     });
-
-
-     var input = document.getElementById('search');
-     var searchBox = new google.maps.places.SearchBox(input);
-
-     searchBox.addListener('places_changed', function () {
-       var places = searchBox.getPlaces();
-       map.instance.setCenter(places[0].geometry.location);
-     });
     self.map = new ReactiveVar(map);
   });
 });
@@ -113,9 +92,10 @@ Template.RequestPickupHelper.events({
     for (i = 0; i < images.length; i++) {
       imageIds.push(Images.insert(images[i])._id);
     }
-
-    var latitude = Session.get('lat');
-    var longtitude = Session.get('long');
+    console.log(template.map.get());
+    var latitude = template.map.get().instance.getCenter().lat();
+    var longtitude = template.map.get().instance.getCenter().lng();
+    console.log(latitude);
     Meteor.call('makeRequest', Meteor.userId(), imageIds, description, bidWindow,
         sizeRequired, longtitude, latitude);
     target.reset();

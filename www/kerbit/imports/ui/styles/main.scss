@@ -159,7 +159,7 @@ MAP
   position: relative;
 }
 
-#map-container.marker-overlay::after {
+.marker-overlay::after {
   width: 22px;
   height: 40px;
   display: block;
