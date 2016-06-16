@@ -3,6 +3,11 @@ import { Mongo } from 'meteor/mongo';
 export const Transactions = new Mongo.Collection('transactions');
 
 TransactionsSchema = new SimpleSchema({
+  requestId: {
+    type: String,
+    label: "Request ID",
+    regEx: SimpleSchema.RegEx.Id,
+  },
   consumerId: {
     type: String,
     label: "Consumer ID",

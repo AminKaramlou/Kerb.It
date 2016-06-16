@@ -1,13 +1,13 @@
 <template name="Transaction">
   <ul class="collection">
     <li class="collection-item">
-      Price: £{{formatPrice finalOffer}}
+      Price: £{{formatPrice finalOffer requestId}}
     </li>
     <li class="collection-item">
       Date: {{formatDate dateConfirmed}}
     </li>
     <li class="collection-item">
-      Location: {{formatLocation finalOffer}}
+      Location: {{formatLocation requestId }}
     </li>
   </ul>
 </template>

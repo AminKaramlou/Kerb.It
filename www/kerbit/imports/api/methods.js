@@ -86,8 +86,6 @@ Meteor.methods({
     });
   },
   'updateOffer'(offerId, price) {
-    console.log(offerId);
-    console.log(price);
     Offers.update(offerId, {
       $set: {
         price
@@ -103,6 +101,7 @@ Meteor.methods({
     const request = Requests.findOne(requestId);
     const offer = Offers.findOne(offerId);
     Transactions.insert({
+      requestId,
       consumerId: request.consumerId,
       driverId: offer.driverId,
       dateConfirmed: new Date(),

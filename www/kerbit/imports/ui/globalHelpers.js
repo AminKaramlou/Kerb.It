@@ -27,16 +27,15 @@ Template.registerHelper('formatDescription', (desc) => {
   return ret;
 });
 
-Template.registerHelper('formatLocation', (finalOffer) => {
-  Meteor.subscribe('offers');
+Template.registerHelper('formatLocation', (requestId) => {
   Meteor.subscribe('requests');
-  let offer = Offers.findOne(finalOffer);
-  let request = Requests.findOne(offer.requestId);
+  let request = Requests.findOne(requestId);
   return request.borough;
 });
 
-Template.registerHelper('formatPrice', (finalOffer) => {
-  Meteor.subscribe('offers');
+Template.registerHelper('formatPrice', (finalOffer, requestId) => {
+  Meteor.subscribe('requests')
+  Meteor.subscribe('offersByRequest', requestId);
   let offer = Offers.findOne(finalOffer);
   return offer.price;
 });
