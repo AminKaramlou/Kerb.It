@@ -31,7 +31,12 @@ class DataManager {
   }
   
   class func findObjectsfromEntity(withName entityName: String, withDescriptors descriptors: [NSSortDescriptor], delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController {
+    return findObjectsfromEntity(withName: entityName, withDescriptors: descriptors, withPredicate: nil, delegate: delegate)
+  }
+  
+  class func findObjectsfromEntity(withName entityName: String, withDescriptors descriptors: [NSSortDescriptor], withPredicate predicate: NSPredicate?, delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController {
     let fetchRequest = NSFetchRequest(entityName: entityName)
+    fetchRequest.predicate = predicate
     fetchRequest.sortDescriptors = descriptors
     let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
     do {
@@ -49,6 +54,15 @@ class DataManager {
     }
   }
   
+  class func objectWithId(collectionName: String, documentID: String) -> NSManagedObject {
+    let objectID = Meteor.objectIDForDocumentKey(METDocumentKey(collectionName: collectionName  , documentID: documentID))
+    return managedObjectContext.objectWithID(objectID)
+  }
+  
+  class func idOfObject(object: NSManagedObject) -> String {
+    return Meteor.documentKeyForObjectID(object.objectID).documentID as! String
+  }
+  
 //  class func getImageFromURL(fileURL: NSString) -> UIImage {
 //    var result: UIImage
 //    var data = NSData.dataWith
@@ -59,7 +73,7 @@ class DataManager {
 //  }
   
   class func downloadImageWithURL(imageCollection: NSString, imageId: NSString, completionBlock: (Bool, UIImage?)->Void) {
-    let url = NSURL(fileURLWithPath: "http://\(baseUrl)/cfs/files/\(imageCollection)/\(imageId)")
+    let url = NSURL(string: "http://\(baseUrl)/cfs/files/\(imageCollection)/\(imageId)")!
     let request = NSMutableURLRequest(URL: url)
     let config = NSURLSessionConfiguration.defaultSessionConfiguration()
     let session = NSURLSession(configuration: config)
