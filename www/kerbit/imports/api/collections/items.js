@@ -6,12 +6,12 @@ ItemSchema = new SimpleSchema({
   consumerId: {
     type: String,
     label: "Consumer ID",
-    regEx: SimpleSchema.RegEx.Id,
+    regEx: SimpleSchema.RegEx.Id
   },
   imageIds: {
     type: String,
     label: "Image ID",
-    regEx: SimpleSchema.RegEx.Id,
+    regEx: SimpleSchema.RegEx.Id
   },
   description: {
     type: String,

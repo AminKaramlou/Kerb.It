@@ -119,7 +119,6 @@ Template.MakeOffersHelper.helpers({
   },
 
   getNum(borough) {
-    Meteor.subscribe('requestsByArea', borough);
     return Requests.find({
       isLive: true,
       borough: borough
@@ -127,7 +126,6 @@ Template.MakeOffersHelper.helpers({
   },
 
   requests(borough) {
-    Meteor.subscribe('requestsByArea', borough);
     return Requests.find({
       isLive: true,
       borough: borough

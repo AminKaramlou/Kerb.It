@@ -72,11 +72,13 @@ if (Meteor.isServer) {
       for (var i in transactions) {
         offerIds.push(transactions[i].finalOffer);
       }
+      console.log(offerIds);
       const offers = Offers.find({_id: { $in: offerIds }}, {fields: { requestId: 1 }}).fetch();
       var requestIds = [];
       for (var i in offers) {
         requestIds.push(offers[i].requestId);
       }
+
       return Requests.find({
         $or: [
           {isActive: true, isLive: true},
