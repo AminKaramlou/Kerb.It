@@ -41,19 +41,13 @@ Template.RequestPickupHelper.onCreated(function () {
     });
 
 
-    // var input = document.getElementById('search');
-    // var searchBox = new google.maps.places.SearchBox(input);
-    // input.hidden = false;
-    // // map.instance.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-    // var lastLoc = document.getElementById('last-loc');
-    // lastLoc.hidden = false;
-    // //map.instance.controls[google.maps.ControlPosition.LEFT_TOP].push(lastLoc);
-    //
-    // searchBox.addListener('places_changed', function () {
-    //   var places = searchBox.getPlaces();
-    //   map.instance.setCenter(places[0].geometry.location);
-    // });
+     var input = document.getElementById('search');
+     var searchBox = new google.maps.places.SearchBox(input);
 
+     searchBox.addListener('places_changed', function () {
+       var places = searchBox.getPlaces();
+       map.instance.setCenter(places[0].geometry.location);
+     });
     self.map = new ReactiveVar(map);
   });
 });

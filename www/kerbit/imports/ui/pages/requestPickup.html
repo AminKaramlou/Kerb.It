@@ -1,29 +1,32 @@
 <template name="RequestPickup">
-    {{#OnlyConsumer}}
-        {{>RequestPickupHelper}}
-    {{/OnlyConsumer}}
+  {{#OnlyConsumer}}
+    {{>RequestPickupHelper}}
+  {{/OnlyConsumer}}
 </template>
 
 <template name="RequestPickupHelper">
+  <div id="map-london-container">
+    {{> googleMap name="map" options=mapOptions}}
+  </div>
 
-    <div id="map-london-container">
-        {{> googleMap name="map" options=mapOptions}}
-    </div>
-
-    <div id="pop" class="background-transparent">
-      <div class="card white z-depth-5">
-        <div class="card-content">
-          <span class="card-title">Welcome to Kerb.It</span>
-          <p>Please choose where you want your waste picked up from, and press submit.</p>
-        </div>
-        <div class="card-action">
-          <button class="modal-trigger btn waves-effect waves-light" data-target="modal1" type="submit" name="action"
-                  onclick="document.getElementById('pop').style.display='none';
-                  document.getElementById('edit-pickup').style.display='initial'">Submit
-          </button>
-        </div>
+  <div id="pop" class="background-transparent">
+    <div class="card z-depth-5">
+      <div class="card-content">
+        <p>Please choose where you want your waste picked up from</p>
+      </div>
+      <div class="card-action">
+        <input id="search" class="controls pac-input" type="text" placeholder="Pick up Location">
       </div>
     </div>
+    <div id="buttons" class="row">
+      <button class="modal-trigger btn waves-effect waves-light" data-target="modal1"
+              onclick="document.getElementById('pop').style.display='none';
+                    document.getElementById('edit-pickup').style.display='initial'">Request Disposal
+      </button>
+
+      <button id="last-loc" class="btn waves-effect waves-light">Last Request Location</button>
+    </div>
+  </div>
 
   <div class="fixed-action-btn" id="edit-pickup" style="top: 10%; right: 1%;">
     <a class="btn-floating z-depth-2" onclick="document.getElementById('pop').style.display='initial';
@@ -32,154 +35,111 @@
     </a>
   </div>
 
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal modal-fixed-footer">
-        <form class="details">
-            <div class="modal-content">
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <form class="details">
+      <div class="modal-content">
 
-                <div class="row">
-                    <div class="col s12">
-                        <ul class="tabs">
-                            <li class="tab col s3"><a class="active" href="#1">Description</a></li>
-                            <li class="tab col s3"><a href="#2">Image</a></li>
-                            <li class="tab col s3"><a href="#3">Size</a></li>
-                            <li class="tab col s3"><a href="#4">Bid Window</a></li>
-                        </ul>
-                    </div>
-                    <div id="1" class="col s12"><h4>New Collection</h4>
-                        <p>Please describe your waste as accurately as possible</p>
+        <div class="row">
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s3"><a class="active" href="#1">Description</a></li>
+              <li class="tab col s3"><a href="#2">Image</a></li>
+              <li class="tab col s3"><a href="#3">Size</a></li>
+              <li class="tab col s3"><a href="#4">Bid Window</a></li>
+            </ul>
+          </div>
+          <div id="1" class="col s12"><h4>New Collection</h4>
+            <p>Please describe your waste as accurately as possible</p>
 
-                        <div class="input-field">
-                            <label for="description">Description</label>
-                            <textarea id="description" name="description" class="materialize-textarea"></textarea>
-                        </div>
-                    </div>
-                    <div id="2" class="col s12">
-                        <p> Please upload an image to provide drivers with a good idea of makeup of the waste. You can
-                            upload multiple photos. At least one image must show the entire amount of waste that is
-                            intended to
-                            be cleared.</p>
-                        <div class="file-field input-field">
-                            <div class="btn">
-                                <span>Upload image</span>
-                                <input type="file" id="clientImage" name="clientImage" accept="images/*" multiple>
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
-                            </div>
-                        </div>
-                        <img class="responsive-img" src="/Camera.png">
-                    </div>
-                    <div id="3" class="col s12">
-                        <div class="row">
-                            <div class="col s12">
-                                <ul class="tabs">
-                                    <li class="tab col s3"><a href="#bags">Measure by bin bags</a></li>
-                                    <li class="tab col s3"><a class="active" href="#yards">Measure by Cubic Yards</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div id="bags" class="col s12">
-                                <p>Please provide an approximation for the size of the waste by the number of standard
-                                    UK
-                                    supermarket
-                                    binbags, ranging from 1 to 10+. Should your waste not be contained/fit in bin bags,
-                                    dont worry,
-                                    this is just to provide a size estimate</p>
-                                <p class="range-field">
-                                    <label for="sizeRequired">Size required</label>
-                                    <input type="range" id="sizeRequired" name="sizeRequired" min="1" max="10"
-                                           value="5"/>
+            <div class="input-field">
+              <label for="description">Description</label>
+              <textarea id="description" name="description" class="materialize-textarea"></textarea>
+            </div>
+          </div>
+          <div id="2" class="col s12">
+            <p> Please upload an image to provide drivers with a good idea of makeup of the waste. You can
+              upload multiple photos. At least one image must show the entire amount of waste that is
+              intended to
+              be cleared.</p>
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>Upload image</span>
+                <input type="file" id="clientImage" name="clientImage" accept="images/*" multiple>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+            <img class="responsive-img" src="/Camera.png">
+          </div>
+          <div id="3" class="col s12">
+            <div class="row">
+              <div class="col s12">
+                <ul class="tabs">
+                  <li class="tab col s3"><a href="#bags">Measure by bin bags</a></li>
+                  <li class="tab col s3"><a class="active" href="#yards">Measure by Cubic Yards</a>
+                  </li>
+                </ul>
+              </div>
+              <div id="bags" class="col s12">
+                <p>Please provide an approximation for the size of the waste by the number of standard
+                  UK
+                  supermarket
+                  binbags, ranging from 1 to 10+. Should your waste not be contained/fit in bin bags,
+                  dont worry,
+                  this is just to provide a size estimate</p>
+                <p class="range-field">
+                  <label for="sizeRequired">Size required</label>
+                  <input type="range" id="sizeRequired" name="sizeRequired" min="1" max="10"
+                         value="5"/>
 
-                                </p>
-                                <img class="responsive-img" src="/binbagscale.jpg">
-                            </div>
-                            <div id="yards" class="col s12">
-                                <p>Please enter a size in cubic yards. A cubic yard is 3ft x 3ft x 3ft, which is about the size of two washing machines</p>
-                                <input type="number" min="1" step="1" id="sizeCubic" name="sizeCubic" value="0" />
-                                <img class="responsive-img" src="/washingmachine.png"><img class="responsive-img" src="/washingmachine.png">
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-                    <div id="4" class="col s12">
-                        <p> Please select a length of time for the bid window. A bid window is the amount of time
-                            potential drivers will be able to see your request on the map view, and place offers.</p>
-                        <p class="range-field">
-
-                            <input name="bidWindow" type="radio" id="oneHour" value="1"/>
-                            <label for="oneHour">1 Hour</label>
-
-                            <input name="bidWindow" type="radio" id="threeHour" value="3"/>
-                            <label for="threeHour">3 Hours</label>
-
-                            <input name="bidWindow" type="radio" id="fiveHour" value="6"/>
-                            <label for="fiveHour">6 Hours</label>
-
-                            <input name="bidWindow" type="radio" id="twelveHour" value="12"/>
-                            <label for="twelveHour">12 Hours</label>
-
-                            <input name="bidWindow" type="radio" id="day" value="24"/>
-                            <label for="day">24 Hours</label>
-
-                        </p>
-
-
-                    </div>
-                </div>
-
+                </p>
+                <img class="responsive-img" src="/binbagscale.jpg">
+              </div>
+              <div id="yards" class="col s12">
+                <p>Please enter a size in cubic yards. A cubic yard is 3ft x 3ft x 3ft, which is about the size of two washing machines</p>
+                <input type="number" min="1" step="1" id="sizeCubic" name="sizeCubic" value="0" />
+                <img class="responsive-img" src="/washingmachine.png"><img class="responsive-img" src="/washingmachine.png">
+              </div>
 
             </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn waves-effect waves-green btn-flat ">Submit
-                </button>
-            </div>
-        </form>
-    </div>
-    <!--<div class="row">-->
-    <!--<div class="col s6">-->
-    <!--<h1 class="center-align" id="mapSection">Map</h1>-->
-    <!--<div class="row">-->
-    <!--<div class="col s8">-->
-    <!--<input id="search" class="controls pac-input" type="text" placeholder="Pick up Location">-->
-    <!--</div>-->
-    <!--<div class="col s3">-->
-    <!--<button id="last-loc" class="controls map-button">Last Request Location</button>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div id="map-container" class="marker-overlay">-->
-    <!--{{> map}}-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="col s6">-->
-    <!--<h1 class="center-align" id="addressSection">Address</h1>-->
-    <!--<form>-->
-    <!--<div class="input-field">-->
-    <!--<label for="description">Description</label>-->
-    <!--<textarea id="description" name="description" class="materialize-textarea"></textarea>-->
-    <!--</div>-->
-    <!--<div class="file-field input-field">-->
-    <!--<div class="btn">-->
-    <!--<span>Upload image</span>-->
-    <!--<input type="file" id="clientImage" name="clientImage" accept="images/*" multiple>-->
-    <!--</div>-->
-    <!--<div class="file-path-wrapper">-->
-    <!--<input class="file-path validate" type="text">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<p class="range-field">-->
-    <!--<input type="range" id="sizeRequired" name="sizeRequired" min="1" max="10" value="5"/>-->
-    <!--<label for="sizeRequired">Size required</label>-->
-    <!--</p>-->
-    <!--<p class="range-field">-->
-    <!--<input type="range" id="bidWindow" name="bidWindow" min="1" max="336" value="48" step = 1/>-->
-    <!--<label for="bidWindow">Bid window</label>-->
-    <!--</p>-->
-    <!--<button type="submit" class="btn">Submit</button>-->
-    <!--</form>-->
-    <!--</div>-->
-    <!--</div>-->
+
+
+          </div>
+
+          <div id="4" class="col s12">
+            <p> Please select a length of time for the bid window. A bid window is the amount of time
+              potential drivers will be able to see your request on the map view, and place offers.</p>
+            <p class="range-field">
+
+              <input name="bidWindow" type="radio" id="oneHour" value="1"/>
+              <label for="oneHour">1 Hour</label>
+
+              <input name="bidWindow" type="radio" id="threeHour" value="3"/>
+              <label for="threeHour">3 Hours</label>
+
+              <input name="bidWindow" type="radio" id="fiveHour" value="6"/>
+              <label for="fiveHour">6 Hours</label>
+
+              <input name="bidWindow" type="radio" id="twelveHour" value="12"/>
+              <label for="twelveHour">12 Hours</label>
+
+              <input name="bidWindow" type="radio" id="day" value="24"/>
+              <label for="day">24 Hours</label>
+
+            </p>
+
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn waves-effect waves-green btn-flat ">Submit
+        </button>
+      </div>
+    </form>
+  </div>
 </template>
