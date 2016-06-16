@@ -26,20 +26,20 @@
                     </div>
                   {{/each}}
                   <div class="col s10">
-                    <span class="black-text">{{../description}}</span>
+                    <span class="black-text">{{description}}</span>
                   </div>
                   <div class="col s1">
-                    {{#if hasAlreadyMadeOffer ../../_id}}
+                    {{#if hasAlreadyMadeOffer ../_id}}
                       <i class="fa fa-check-circle"></i>
                     {{/if}}
                   </div>
                 </div>
               </div>
               <div class="collapsible-body">
-                {{#if hasAlreadyMadeOffer ../../_id}}
+                {{#if hasAlreadyMadeOffer ../_id}}
                   <ul class="collection">
                     <li class="collection-item">
-                      <h5>You have offered £{{getOfferPrice ../../_id}} for this item!</h5>
+                      <h5>You have offered £{{getOfferPrice ../_id}} for this item!</h5>
                     </li>
                     <li class="collection-item">
                       If you wish to update your offer, please do so below:
@@ -48,7 +48,7 @@
                       <form class="update">
                         <div class="row">
                           <div class="input-field col s8">
-                            <input type="text" name="id" id="id" value="{{getOfferId ../../_id}}" hidden>
+                            <input type="text" name="id" id="id" value="{{getOfferId ../_id}}" hidden>
                             <input type="text" name="price" onfocus="document.getElementById('price').placeholder = '£';">
                             <label for="price">Price</label>
                           </div>
