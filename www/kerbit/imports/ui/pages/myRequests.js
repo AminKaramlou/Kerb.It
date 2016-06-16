@@ -59,7 +59,7 @@ Template.MyRequestsHelper.events({
     const name = target.name;
     $(name).show().siblings().hide();
     $(target).parent('li').addClass('active').siblings().removeClass('active');
-  },
+  } ,
 
   'click #refresh-requests'() {
     javascript:history.go(0)

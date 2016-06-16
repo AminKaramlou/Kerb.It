@@ -77,7 +77,6 @@ Template.RequestPickupHelper.events({
     const target = event.target;
 
     const description = target.description.value;
-    const bidWindow = target.bidWindow.value;
     var sizeRequired;
     if (target.sizeCubic.value> 0)  {
       sizeRequired = Number(target.sizeCubic.value);
@@ -86,7 +85,15 @@ Template.RequestPickupHelper.events({
       sizeRequired = binBags /10;
     }
 
-
+    if (target.bidWindow.length) {
+      for (i in target.bidWindow) {
+        if (target.bidWindow[i].checked) {
+          bidWindow = target.bidWindow[i].value;
+        }
+      }
+    } else {
+      bidWindow = target.bidWindow.value;
+    }
     const images = target.clientImage.files;
     let imageIds = new Array();
     for (i = 0; i < images.length; i++) {
@@ -95,7 +102,6 @@ Template.RequestPickupHelper.events({
     console.log(template.map.get());
     var latitude = template.map.get().instance.getCenter().lat();
     var longtitude = template.map.get().instance.getCenter().lng();
-    console.log(latitude);
     Meteor.call('makeRequest', Meteor.userId(), imageIds, description, bidWindow,
         sizeRequired, longtitude, latitude);
     target.reset();
