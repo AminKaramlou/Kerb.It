@@ -10,7 +10,7 @@ import './myRequests.html';
 Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
   Meteor.subscribe('requests');
   Meteor.subscribe('images');
-  Meteor.subscribe(('items'))
+  Meteor.subscribe('items');
   Meteor.subscribe('transactions');
   Meteor.subscribe('offers');
 });
@@ -59,7 +59,7 @@ Template.MyRequestsHelper.events({
     const name = target.name;
     $(name).show().siblings().hide();
     $(target).parent('li').addClass('active').siblings().removeClass('active');
-  },
+  } ,
 
   'click #refresh-requests'() {
     javascript:history.go(0)

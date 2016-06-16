@@ -2,13 +2,14 @@ import { Mongo } from 'meteor/mongo';
 import { Transactions } from './transactions.js';
 import { Offers } from './offers.js';
 
+
 export const Requests = new Mongo.Collection('requests');
 
 RequestsSchema = new SimpleSchema({
   consumerId: {
     type: String,
     label: "Consumer ID",
-    regEx: SimpleSchema.RegEx.Id,
+    regEx: SimpleSchema.RegEx.Id
   },
   bidWindow: {
     type: Number,
@@ -47,12 +48,23 @@ RequestsSchema = new SimpleSchema({
   isLive: {
     type: Boolean,
     label: "Is Live"
+  },
+  borough: {
+    type: String,
+    label: "Borough where item is located"
   }
 });
 
 Requests.attachSchema(RequestsSchema);
 
 if (Meteor.isServer) {
+
+  Meteor.publish('requestsByArea', function offersPublication(area) {
+    return Requests.find({
+      borough: area
+    });
+  });
+
   Meteor.publish('requests', function requestsPublication() {
     if (Meteor.users.findOne(this.userId).profile.isDriver) {
       const transactions = Transactions.find({driverId: this.userId}, {fields: { finalOffer: 1 }}).fetch();
@@ -60,11 +72,13 @@ if (Meteor.isServer) {
       for (var i in transactions) {
         offerIds.push(transactions[i].finalOffer);
       }
+      console.log(offerIds);
       const offers = Offers.find({_id: { $in: offerIds }}, {fields: { requestId: 1 }}).fetch();
       var requestIds = [];
       for (var i in offers) {
         requestIds.push(offers[i].requestId);
       }
+
       return Requests.find({
         $or: [
           {isActive: true, isLive: true},

@@ -36,13 +36,14 @@ Template.CustomSettings.events({
       Materialize.toast("The username you entered is not valid.", 4000);
       return;
     }
-    const result = Meteor.call('changeUsername', newUsername); 
+    Meteor.call('changeUsername', newUsername, function(error, result) {
     if(result) {
       Materialize.toast("Your username has been changed.", 4000);
     } else {
       Materialize.toast("The username you entered already exists", 4000);
     }
     event.target.reset();
+    }); 
   },
   'submit .password'(event) {
     event.preventDefault();

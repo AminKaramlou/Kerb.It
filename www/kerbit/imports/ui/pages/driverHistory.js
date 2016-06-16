@@ -10,13 +10,12 @@ Template.DriverHistoryHelper.onCreated(function () {
   Meteor.subscribe('items');
 });
 
-Template.DriverHistoryHelper.onRendered(function () {
-  $(document).ready(function(){
+Template.DriverHistoryHelper.rendered = function () {
+    $('.modal-trigger').leanModal();
     $('.collapsible').collapsible({
       accordion: true
     });
-  });
-});
+};
 
 Template.DriverHistoryHelper.helpers({
   transactions() {
@@ -24,8 +23,16 @@ Template.DriverHistoryHelper.helpers({
       driverId: Meteor.userId()
     });
   },
-  ItemWithItemId(itemId) {
-    return Items.find(itemId);
+  getItem(itemId) {
+    return Items.findOne(itemId);
   }
 });
+
+Template.DriverHistoryHelper.events({
+  // 'click .more-details'(event) {
+  //   event.preventDefault();
+  //   alert('Todo');
+  // }
+});
+
 

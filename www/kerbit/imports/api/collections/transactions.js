@@ -5,7 +5,7 @@ export const Transactions = new Mongo.Collection('transactions');
 TransactionsSchema = new SimpleSchema({
   consumerId: {
     type: String,
-    label: "Transaction ID",
+    label: "Consumer ID",
     regEx: SimpleSchema.RegEx.Id
   },
   driverId: {
@@ -17,7 +17,7 @@ TransactionsSchema = new SimpleSchema({
   itemId: {
     type: String,
     label: "Item ID",
-    regEx: SimpleSchema.RegEx.Id,
+    regEx: SimpleSchema.RegEx.Id
   },
   finalOffer:{
     type: String,
@@ -68,18 +68,25 @@ if (Meteor.isServer) {
     });
   });
   Meteor.publish('users', function usersPublication() {
-    let transactions = Transactions.find({consumerId: this.userId}, {
-      fields: { driverId: 1, _id: 0 }
+    let transactions = Transactions.find({
+      $or: [
+        {consumerId: this.userId},
+        {driverId: this.userId}
+      ],
+    }, {
+      fields: { consumerId: 1, driverId: 1, _id: 0 }
     }).fetch();
-    var driverIds = [];
+    var userIds = [];
     for (var i in transactions) {
-      driverIds.push(transactions[i].driverId);
+      userIds.push(transactions[i].driverId);
+      userIds.push(transactions[i].consumerId);
     }
     return Meteor.users.find({
-      _id: { $in: driverIds }
+      _id: { $in: userIds }
     }, {
       fields: { profile: 1 ,
-      username: 1}
+      username: 1,
+      imageId: 1}
     });
   });
   Meteor.publish('getUserDetails', function(username) {

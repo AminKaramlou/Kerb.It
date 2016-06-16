@@ -1,16 +1,24 @@
 <template name="Transaction">
-  <ul>
-    <li>
-      Price: {{price}} £
+  <ul class="collection">
+    <li class="collection-item">
+      Price: £{{formatPrice finalOffer}}
     </li>
-    <li>
+    <li class="collection-item">
       Date: {{formatDate dateConfirmed}}
     </li>
-    <li>
-      Location: {{formatPostcode postcode}}
+    <li class="collection-item">
+      Location: {{formatLocation finalOffer}}
     </li>
-    <li>
-      Size: {{sizeAllocated}}
+  </ul>
+</template>
+
+<template name="TransactionDetails">
+  <ul class="collection">
+    <li class="collection-item">
+      Provider: <a href="/users/{{getUsernameFromID driverId}}"><span class="green-text text-darken-2">{{getUsernameFromID driverId}}</span></a>
+    </li>
+    <li class="collection-item">
+      Client: <a href="/users/{{getUsernameFromID consumerId}}"><span class="green-text text-darken-2">{{getUsernameFromID consumerId}}</span></a>
     </li>
   </ul>
 </template>

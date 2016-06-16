@@ -18,8 +18,7 @@ Template.MyOffersHelper.onCreated(function myOffersCreated() {
 
     var directionsServices = {};
     var directionsDisplays = {};
-
-    Requests.find({driverId: Meteor.userId(), isLive: false}).observe({
+    Requests.find({ isLive: false}).observe({
       added: function (document) {
 
         directionsServices[document._id] = new google.maps.DirectionsService;
@@ -57,6 +56,8 @@ Template.MyOffersHelper.onRendered(function myRequestsCreated() {
   $(document).ready(function() {
     $('ul.tabs').tabs();
   });
+
+
 });
 
 Template.MyOffersHelper.helpers({

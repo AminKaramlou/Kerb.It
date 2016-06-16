@@ -1,49 +1,53 @@
 import './userProfilePublicView.html'
+import { UserImages } from '../../api/collections/userImages.js';
 
 Template.ViewUser.onCreated(function () {
-  Meteor.subscribe('users');
   var userName = FlowRouter.getParam("userName");
-
-  user = Meteor.users.findOne({'username': userName});
-
-});
-
-var user;
-
-Template.ViewUser.onRendered(function () {
-var userName = FlowRouter.getParam("userName");
-
-  user = Meteor.users.findOne({'username': userName});
-
+  self.user = new ReactiveVar();
+  Meteor.subscribe('users', function() {
+    self.user.set(Meteor.users.findOne({'username': userName}));
+  });
+  Meteor.subscribe('userImages');
 });
 
 Template.ViewUserHelper.onCreated(function () {
   var userName = FlowRouter.getParam("userName");
-  Meteor.subscribe('users');
-  user = Meteor.users.findOne({'username': userName});
+  self.user = new ReactiveVar();
+  Meteor.subscribe('users', function() {
+    self.user.set(Meteor.users.findOne({'username': userName}));
+  });
+  Meteor.subscribe('userImages');
 });
 
 Template.ViewUser.helpers({
   isAUser() {
-    return !(user == null);
+    return !(user.get() == null);
   }
 });
 
 Template.ViewUserHelper.helpers({
   isAUser() {
-    return !(user == null);
+    return !(user.get() == null);
+  },
+
+  getImage()  {
+    if (user.get().imageId == "") {
+      return "/profile-placeholder.png";
+    } else {
+      return (UserImages.findOne(user.get().imageId));
+    }
   },
 
   getName() {
-    return (user.profile.first_name + ' ' + user.profile.last_name);
+    return (user.get().profile.first_name + ' ' + user.get().profile.last_name);
   },
   getUsername() {
-    return user.username;
+    return user.get().username;
   },
   getFeedbackScore() {
-    return user.rating;
+    return user.get().rating;
   },
-  isDriver()  {
-    return user.profile.isDriver();
+  isDriver() {
+    return user.get().profile.isDriver();
   }
 });

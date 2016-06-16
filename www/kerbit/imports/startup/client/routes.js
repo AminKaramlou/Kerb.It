@@ -36,20 +36,13 @@ publicSection.route('/', {
 });
 
 FlowRouter.route('/users/:userName', {
-  name: "ViewUser",
+  name: "View User",
     action: function(params, queryParams) {
     BlazeLayout.render('DashLayout', {main: 'ViewUser'});
   }
 });
 
-driverSection.route('/settings', {
-  name: 'Settings',
-  action: function() {
-    BlazeLayout.render('DashLayout', {main: 'CustomSettings'});
-  }
-});
-
-consumerSection.route('/settings', {
+FlowRouter.route('/settings', {
   name: 'Settings',
   action: function() {
     BlazeLayout.render('DashLayout', {main: 'CustomSettings'});
@@ -57,42 +50,42 @@ consumerSection.route('/settings', {
 });
 
 consumerSection.route('/history-client', {
-  name: 'ClientHistory',
+  name: 'Client History',
   action: function() {
     BlazeLayout.render('DashLayout', {main: 'ClientHistory'});
   }
 });
 
 driverSection.route('/history-driver', {
-  name: 'DriverHistory',
+  name: 'Driver History',
   action: function() {
     BlazeLayout.render('DashLayout', {main: 'DriverHistory'});
   }
 });
 
 consumerSection.route('/request-pickup', {
-  name: 'RequestPickup',
+  name: 'Request Pickup',
   action: function() {
     BlazeLayout.render('DashLayout', {main: 'RequestPickup'});
   }
 });
 
 consumerSection.route('/my-requests', {
-  name: 'MyRequests',
+  name: 'My Requests',
   action: function() {
     BlazeLayout.render('DashLayout', {main: 'MyRequests'});
   } 
 });
 
 driverSection.route('/make-offers', {
-  name: 'MakeOffers',
+  name: 'Make Offers',
   action: function() {
     BlazeLayout.render('DashLayout', {main: 'MakeOffers'});
   }
 });
 
 driverSection.route('/my-offers', {
-  name: 'MyOffers',
+  name: 'My Offers',
   action: function() {
     BlazeLayout.render('DashLayout', {main: 'MyOffers'});
   } 

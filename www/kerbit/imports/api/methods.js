@@ -4,18 +4,22 @@ import { Offers } from './collections/offers.js'
 import { Images } from './collections/images.js'
 import { UserImages } from './collections/userImages.js'
 import {Items}  from './collections/items.js'
+import { Boroughs } from './collections/boroughs.js'
+
 
 Meteor.methods({
   'makeRequest'(consumerId, imageIds, description, bidWindow, sizeRequired,
                   lng, lat) {
 
     const loc = { type: "Point", coordinates: [lng, lat] };
+
     
     Meteor.users.update(consumerId, {
       $set: {
         lastLoc: loc
       }
     });
+    var boroughName = Boroughs.findOne({ geometry: { $geoIntersects: { $geometry: loc } } }).name;
 
     if (typeof imageIds === 'string') {
       imageIds = [imageIds];
@@ -38,7 +42,8 @@ Meteor.methods({
       itemId,
       loc,
       isActive: true,
-      isLive: true
+      isLive: true,
+      borough: boroughName
     });
 
     if (Meteor.isServer) {
@@ -81,6 +86,8 @@ Meteor.methods({
     });
   },
   'updateOffer'(offerId, price) {
+    console.log(offerId);
+    console.log(price);
     Offers.update(offerId, {
       $set: {
         price
@@ -161,10 +168,10 @@ Meteor.methods({
     Accounts.sendVerificationEmail(Meteor.userId(), [newEmail]);
   },
   'changeUsername'(newUsername) {
-    var result = !Meteor.users.findOne({username: newUsername});
+    const result = !Meteor.users.findOne({username: newUsername});
     if(result && Meteor.isServer) {
       Accounts.setUsername(Meteor.userId(),newUsername);
-    };
+    }
     return result;
   }
 });
