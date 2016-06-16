@@ -32,29 +32,22 @@
                     </div>
                   {{/each}}
                   <div class="card-action">
-                    <div class="row" style="margin-top: 50px;">
-                      <div class="col s2">
-                        <div class="chip">
+                    <form>
+                      <div class="row">
+                        <div class="chip col s3">
                           {{../price}}
                           <i class="fa fa-gbp"></i>
                         </div>
+                        <div class="input-field col s9" style="top:-28px">
+                          <input type="text" name="id" id="id" value="{{../_id}}" hidden>
+                          <input type="text" name="price" onfocus="document.getElementById('price').placeholder = '£';">
+                          <label for="price">Price</label>
+                        </div>
+                        <div class="col s6 offset-s3" style="margin-top:-28px">
+                          <button type="submit" class="btn">Update Price</button>
+                        </div>
                       </div>
-                      <div class="col s10">
-                        <form>
-                          <div class="row">
-                            <div class="input-field col s8" style="top: -28px;">
-                              <input type="text" name="id" id="id" value="{{../_id}}" hidden>
-                              <input type="text" name="price" onfocus="document.getElementById('price').placeholder = '£';">
-                              <label for="price">Price</label>
-                            </div>
-                            <div class="col s4">
-                              <button type="submit" class="btn">Update
-                                Price</button>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
+                    </form>
                   </div>
                 </div>
               </div>
