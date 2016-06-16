@@ -77,12 +77,12 @@
                 <div class="card-action">
                   <div class="row" style="margin-top: 50px;">
                     <div class="col s12">
-                      {{#each offerWithOfferId finalOffer}}
-                        <h5 class="center-align">
-                          Your offer was accepted for {{price}}
-                          <i class="fa fa-gbp"></i>
-                        </h5>
-                      {{/each}}
+                      {{#if hasFeedback _id}}
+                        {{> starsRating rating=feedbackScore mutable=false}}
+                      {{else}}
+                        {{> starsRating id='rating' mutable=true}}
+                        <button class="btn ratingButton">Rate this transaction</button>
+                      {{/if}}
                     </div>
                   </div>
                 </div>
