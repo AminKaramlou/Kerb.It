@@ -170,16 +170,7 @@ Template.MakeOffersHelper.events({
 
     const target = event.target;
     const price = Number(target.price.value);
-    var requestId;
-    if (target.requestId.length) {
-      for (var i in target.requestId) {
-        if (target.requestId[i].checked) {
-          requestId = target.requestId[i].value;
-        }
-      }
-    } else {
-      requestId = target.requestId.value;
-    }
+    const requestId = target.requestId.value;
     Meteor.call('makeOffer', requestId, Meteor.userId(), price, 
                 function(error, result) {
       if(!error) {
