@@ -16,42 +16,44 @@
       <br>
       {{#each pendingOffers}}
         {{#each requests requestId}}
-          <div class="row">
-            <div class="col s6">
-              <div class="card">
-                {{#each ItemWithId itemId}}
-                  <div class="card-image">
-                    {{#each ImageWithIds imageIds}}
-                      <img src="{{url store='images'}}" alt="request image"
-                                                        class="responsive-img same-size-image">
-                    {{/each}}
-                  </div>
-                  <div class="card-content">
-                    <h5>{{description}}</h5>
-                  </div>
-                  {{/each}}
-                <div class="card-action">
-                  <div class="row" style="margin-top: 50px;">
-                    <div class="col s2">
-                      <div class="chip">
-                        {{../price}}
-                        <i class="fa fa-gbp"></i>
-                      </div>
+          <div class="container">
+            <div class="row">
+              <div class="col s6">
+                <div class="card">
+                  {{#each ItemWithId itemId}}
+                    <div class="card-image">
+                      {{#each ImageWithIds imageIds}}
+                        <img src="{{url store='images'}}" alt="request image"
+                             class="responsive-img same-size-image">
+                      {{/each}}
                     </div>
-                    <div class="col s10">
-                      <form>
-                        <div class="row">
-                          <div class="input-field col s8" style="top: -28px;">
-                            <input type="text" name="id" id="id" value="{{../_id}}" hidden>
-                            <input type="text" name="price" onfocus="document.getElementById('price').placeholder = '£';">
-                            <label for="price">Price</label>
-                          </div>
-                          <div class="col s4">
-                            <button type="submit" class="btn">Update
-                              Price</button>
-                          </div>
+                    <div class="card-content">
+                      <h5>{{description}}</h5>
+                    </div>
+                  {{/each}}
+                  <div class="card-action">
+                    <div class="row" style="margin-top: 50px;">
+                      <div class="col s2">
+                        <div class="chip">
+                          {{../price}}
+                          <i class="fa fa-gbp"></i>
                         </div>
-                      </form>
+                      </div>
+                      <div class="col s10">
+                        <form>
+                          <div class="row">
+                            <div class="input-field col s8" style="top: -28px;">
+                              <input type="text" name="id" id="id" value="{{../_id}}" hidden>
+                              <input type="text" name="price" onfocus="document.getElementById('price').placeholder = '£';">
+                              <label for="price">Price</label>
+                            </div>
+                            <div class="col s4">
+                              <button type="submit" class="btn">Update
+                                Price</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -67,6 +69,7 @@
       </div>
       <br>
       {{#each transactions}}
+        <div class="container">
           <div class="row">
             <div class="col s6">
               <div class="card">
@@ -74,21 +77,21 @@
                   <div class="card-image">
                     {{#each ImageWithIds imageIds}}
                       <img src="{{url store='images'}}" alt="request image"
-                                                        class="responsive-img same-size-image">
+                           class="responsive-img same-size-image">
                     {{/each}}
                   </div>
                   <div class="card-content">
                     <h5>{{description}}</h5>
                   </div>
-                  {{/each}}
+                {{/each}}
                 <div class="card-action">
                   <div class="row" style="margin-top: 50px;">
                     <div class="col s12">
                       {{#each offerWithOfferId finalOffer}}
-                      <h5 class="center-align">
-                        Your offer was accepted for {{price}}
-                        <i class="fa fa-gbp"></i>
-                      </h5>
+                        <h5 class="center-align">
+                          Your offer was accepted for {{price}}
+                          <i class="fa fa-gbp"></i>
+                        </h5>
                       {{/each}}
                     </div>
                   </div>
@@ -96,6 +99,7 @@
               </div>
             </div>
           </div>
+        </div>
       {{/each}}
     </div>
   </div>

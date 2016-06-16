@@ -59,29 +59,31 @@
     <div id="accepted" class="col s12">
       <br>
       {{#each transactions}}
-        <div class="row">
-          <div class="col s6">
-            <div class="card">
-              {{#each ItemWithId itemId}}
-                {{#each ImageWithIds imageIds}}
-                <div class="card-image">
-                  <img src="{{url store='images'}}" alt="request image"
-                       class="responsive-img same-size-image">
-                </div>
+        <div class="container">
+          <div class="row">
+            <div class="col s6">
+              <div class="card">
+                {{#each ItemWithId itemId}}
+                  {{#each ImageWithIds imageIds}}
+                    <div class="card-image">
+                      <img src="{{url store='images'}}" alt="request image"
+                           class="responsive-img same-size-image">
+                    </div>
+                  {{/each}}
+                  <div class="card-content">
+                    <h5>{{description}}</h5>
+                  </div>
                 {{/each}}
-                <div class="card-content">
-                  <h5>{{description}}</h5>
-                </div>
-              {{/each}}
-              <div class="card-action">
-                <div class="row" style="margin-top: 50px;">
-                  <div class="col s12">
-                    {{#each offerWithOfferId finalOffer}}
-                      <h5 class="center-align">
-                        Your offer was accepted for {{price}}
-                        <i class="fa fa-gbp"></i>
-                      </h5>
-                    {{/each}}
+                <div class="card-action">
+                  <div class="row" style="margin-top: 50px;">
+                    <div class="col s12">
+                      {{#each offerWithOfferId finalOffer}}
+                        <h5 class="center-align">
+                          Your offer was accepted for {{price}}
+                          <i class="fa fa-gbp"></i>
+                        </h5>
+                      {{/each}}
+                    </div>
                   </div>
                 </div>
               </div>
