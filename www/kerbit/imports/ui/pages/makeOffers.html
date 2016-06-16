@@ -66,11 +66,7 @@
                     </li>
                     <li class="collection-item">
                       <form class="input">
-                        <div class="input-field">
-                          <input class="with-gap" name="requestId" type="radio" id={{../../_id}} value={{../../_id}}>
-                          <label for={{../../_id}}>
-                          </label>
-                        </div> <!-- WHAT THE FUCK IS THIS RADIO INPUT FOR -->
+                        <input name="requestId" type="radio" id={{../_id}} value={{../_id}} hidden>
                         <div class="input-field">
                           <label for="price">Price</label>
                           <input id="price" type="text" name="price" onfocus="document.getElementById('price').placeholder = '£';">
