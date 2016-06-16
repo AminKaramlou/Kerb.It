@@ -18,7 +18,7 @@
 <template name="ViewUserHelper">
     <div class="container">
         <div class="row">
-            <div class="col s6">
+            <div class="col s10">
                 <div class="row">
                     <div class="col s6">
                         {{#with getImage}}
@@ -27,10 +27,20 @@
                     </div>
                     <div class="col s6">
                         <h4>{{getUsername}}</h4>
-                        <small><cite title="Driver / Client">Driver / Client
-                        </cite></small>
+                        <!--<small><cite title="Driver / Client">Driver / Client
+                        </cite></small>-->
                         <p>
-                            {{> starsRating rating=getFeedbackScore mutable=false}}
+                          Full Name: {{getName}} <br/>
+                          Telephone Number: {{getPhoneNumber}}<br/>
+                          Registered Address: {{getPostcode}}<br/>
+                          <div class='row'>
+                            <div class='col s2'>
+                              Rating: 
+                            </div>
+                            <div class='col s9 offset-s1'>
+                              {{> starsRating rating=getFeedbackScore mutable=false}}
+                            </div>
+                          </div>
                         </p>
                     </div>
                 </div>

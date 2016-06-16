@@ -47,6 +47,12 @@ Template.ViewUserHelper.helpers({
   getFeedbackScore() {
     return user.get().rating;
   },
+  getPhoneNumber() {
+    return user.get().profile.telephone;
+  },
+  getPostcode() {
+    return user.get().profile.postcode;
+  },
   isDriver() {
     return user.get().profile.isDriver();
   }
