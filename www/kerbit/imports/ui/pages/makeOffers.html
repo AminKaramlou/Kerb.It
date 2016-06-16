@@ -17,73 +17,73 @@
       <ul class="collapsible" data-collapsible="accordion">
         {{#each requests getArea}}
           {{#with items itemId}}
-            {{#each images imageIds}}
-              <li>
-                <div class="collapsible-header">
-                  <div class="row valign-wrapper override-margins-top-bottom-10">
+            <li>
+              <div class="collapsible-header">
+                <div class="row valign-wrapper override-margins-top-bottom-10">
+                  {{#each images imageIds}}
                     <div class="col s1">
                       <img src="{{this.url store='images'}}" alt="" class="square valign responsive-img profile-image">
                     </div>
-                    <div class="col s10">
-                      <span class="black-text">{{../description}}</span>
-                    </div>
-                    <div class="col s1">
-                      {{#if hasAlreadyMadeOffer ../../_id}}
-                        <i class="fa fa-check-circle"></i>
-                      {{/if}}
-                    </div>
+                  {{/each}}
+                  <div class="col s10">
+                    <span class="black-text">{{../description}}</span>
+                  </div>
+                  <div class="col s1">
+                    {{#if hasAlreadyMadeOffer ../../_id}}
+                      <i class="fa fa-check-circle"></i>
+                    {{/if}}
                   </div>
                 </div>
-                <div class="collapsible-body">
-                  {{#if hasAlreadyMadeOffer ../../_id}}
-                    <ul class="collection">
-                      <li class="collection-item">
-                        <h5>You have offered £{{getOfferPrice ../../_id}} for this item!</h5>
-                      </li>
-                      <li class="collection-item">
-                        If you wish to update your offer, please do so below:
-                      </li>
-                      <li class="collection-item">
-                        <form class="update">
-                          <div class="row">
-                            <div class="input-field col s8">
-                              <input type="text" name="id" id="id" value="{{getOfferId ../../_id}}" hidden>
-                              <input type="text" name="price" onfocus="document.getElementById('price').placeholder = '£';">
-                              <label for="price">Price</label>
-                            </div>
-                            <div class="input-field col s4">
-                              <button type="update" class="btn small">Update Price</button>
-                            </div>
-                          </div>
-                        </form>
-                      </li>
-                    </ul>
-                  {{else}}
-                    <ul class="collection">
-                      <li class="collection-item">
-                        <h5>You have not yet offered a price for this item.</h5>
-                      </li>
-                      <li class="collection-item">
-                        <form class="input">
-                          <div class="input-field">
-                            <input class="with-gap" name="requestId" type="radio" id={{../../_id}} value={{../../_id}}>
-                            <label for={{../../_id}}>
-                            </label>
-                          </div> <!-- WHAT THE FUCK IS THIS RADIO INPUT FOR -->
-                          <div class="input-field">
+              </div>
+              <div class="collapsible-body">
+                {{#if hasAlreadyMadeOffer ../../_id}}
+                  <ul class="collection">
+                    <li class="collection-item">
+                      <h5>You have offered £{{getOfferPrice ../../_id}} for this item!</h5>
+                    </li>
+                    <li class="collection-item">
+                      If you wish to update your offer, please do so below:
+                    </li>
+                    <li class="collection-item">
+                      <form class="update">
+                        <div class="row">
+                          <div class="input-field col s8">
+                            <input type="text" name="id" id="id" value="{{getOfferId ../../_id}}" hidden>
+                            <input type="text" name="price" onfocus="document.getElementById('price').placeholder = '£';">
                             <label for="price">Price</label>
-                            <input id="price" type="text" name="price" onfocus="document.getElementById('price').placeholder = '£';">
                           </div>
-                          <div class="input-field">
-                            <button type="submit" class="btn">Make Offer</button>
+                          <div class="input-field col s4">
+                            <button type="update" class="btn small">Update Price</button>
                           </div>
-                        </form>
-                      </li>
-                    </ul>
-                  {{/if}}
-                </div>
-              </li>
-            {{/each}}
+                        </div>
+                      </form>
+                    </li>
+                  </ul>
+                {{else}}
+                  <ul class="collection">
+                    <li class="collection-item">
+                      <h5>You have not yet offered a price for this item.</h5>
+                    </li>
+                    <li class="collection-item">
+                      <form class="input">
+                        <div class="input-field">
+                          <input class="with-gap" name="requestId" type="radio" id={{../../_id}} value={{../../_id}}>
+                          <label for={{../../_id}}>
+                          </label>
+                        </div> <!-- WHAT THE FUCK IS THIS RADIO INPUT FOR -->
+                        <div class="input-field">
+                          <label for="price">Price</label>
+                          <input id="price" type="text" name="price" onfocus="document.getElementById('price').placeholder = '£';">
+                        </div>
+                        <div class="input-field">
+                          <button type="submit" class="btn">Make Offer</button>
+                        </div>
+                      </form>
+                    </li>
+                  </ul>
+                {{/if}}
+              </div>
+            </li>
           {{/with}}
         {{/each}}
       </ul>
