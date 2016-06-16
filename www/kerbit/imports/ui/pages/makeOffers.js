@@ -8,14 +8,7 @@ import {Offers} from '../../api/collections/offers.js';
 import '../../api/methods.js';
 import "./makeOffers.html";
 
-
 Session.setDefault("selectedArea", "");
-
-Template.MakeOffersHelper.rendered = function () {
-  $('.collapsible').collapsible({
-    accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-  });
-};
 
 Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
   Meteor.subscribe('requests');
@@ -65,6 +58,12 @@ Template.MakeOffersHelper.onCreated(function driverHomeOnCreated() {
   });
 
 
+});
+
+Template.MakeOffersHelper.onRendered(function () {
+  $('.collapsible').collapsible({
+    accordion: true
+  });
 });
 
 // GoogleMaps.ready('map', function(map) {
@@ -181,9 +180,15 @@ Template.MakeOffersHelper.events({
     } else {
       requestId = target.requestId.value;
     }
-    Meteor.call('makeOffer', requestId, Meteor.userId(), price);
-    target.reset();
-    Materialize.toast("Your offer was recorded. Please check the My Offers page for updates", 4000);
+    Meteor.call('makeOffer', requestId, Meteor.userId(), price, 
+                function(error, result) {
+      if(!error) {
+        Materialize.toast("Your offer was recorded. Please check the My Offers page for updates", 4000);
+      } else {
+        Materialize.toast("There was an error processing your offer. Sorry.", 4000);
+      }
+      target.reset();
+    });
   },
 
   'submit .update'(event) {
