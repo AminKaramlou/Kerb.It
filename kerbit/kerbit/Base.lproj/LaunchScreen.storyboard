@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,14 +16,45 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="ZTa-jB-bXh">
+                                <rect key="frame" x="16" y="49" width="343" height="76.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ZTa-jB-bXh" secondAttribute="height" multiplier="166:37" id="GNB-3j-yFC"/>
+                                    <constraint firstAttribute="height" constant="74" id="NKQ-di-3Li"/>
+                                    <constraint firstAttribute="width" constant="286" id="iJ4-bi-WNK"/>
+                                    <constraint firstAttribute="height" constant="56" id="uWk-to-Vcf"/>
+                                    <constraint firstAttribute="width" constant="335" id="y71-Tn-gtW"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="uWk-to-Vcf"/>
+                                        <exclude reference="iJ4-bi-WNK"/>
+                                        <exclude reference="GNB-3j-yFC"/>
+                                        <exclude reference="y71-Tn-gtW"/>
+                                        <exclude reference="NKQ-di-3Li"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97254901959999995" green="0.96078431369999995" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZTa-jB-bXh" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="RIm-Le-hWF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZTa-jB-bXh" secondAttribute="trailing" id="gMi-wb-KUT"/>
+                            <constraint firstItem="ZTa-jB-bXh" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="29" id="kd4-tq-ue9"/>
+                            <constraint firstItem="ZTa-jB-bXh" firstAttribute="width" secondItem="ZTa-jB-bXh" secondAttribute="height" multiplier="166:37" id="lJe-ev-deW"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Logo" width="974" height="186"/>
+    </resources>
 </document>

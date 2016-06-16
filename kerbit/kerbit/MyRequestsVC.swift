@@ -10,17 +10,32 @@ import UIKit
 
 class MyRequestsVC: UIViewController, NSFetchedResultsControllerDelegate {
   var fRC: NSFetchedResultsController!
-  @IBOutlet weak var viewManager: ViewManager!
-  var colors: [UIColor] = [.redColor(), .blackColor(), .blueColor(), .greenColor()]
+  var viewManager: ViewManager!
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    viewManager = ViewManager(frame: CGRectMake(10, 20, 355, 399))
     
-    DataManager.subscriptionLoader.addSubscriptionWithName("offers")
+    view.addSubview(viewManager)
+    
+    DataManager.subscriptionLoader.addSubscriptionWithName("requests")
     DataManager.subscriptionLoader.whenReady() {
-      let descriptors = [NSSortDescriptor(key: "price", ascending: true)]
-      self.fRC = DataManager.findObjectsfromEntity(withName: "Offer", withDescriptors: descriptors, delegate: self)
-      print(self.fRC.fetchedObjects)
+      let descriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
+      self.fRC = DataManager.findObjectsfromEntity(withName: "Request", withDescriptors: descriptors, delegate: self)
+      for object in self.fRC.fetchedObjects! {
+        self.insertObject(object, index: nil)
+      }
+    }
+  }
+  
+  func insertObject(object: AnyObject, index: Int?) {
+    let request = object as! Request
+    let view = RequestView(frame: CGRectMake(0, 0, viewManager.frame.width, 20),
+                           request: request, superViewManager: viewManager)
+    if (index == nil) {
+      viewManager.addView(view)
+    } else {
+      viewManager.addViewToIndex(view, index: index!)
     }
   }
   
@@ -43,10 +58,7 @@ class MyRequestsVC: UIViewController, NSFetchedResultsControllerDelegate {
   @objc internal func controller(controller: NSFetchedResultsController, didChangeObject object: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
     switch(type) {
     case .Insert:
-      let view = UIView(frame: CGRectMake(0, 0, viewManager.frame.width, 200))
-      view.backgroundColor = colors[0]
-      colors.append(colors.removeAtIndex(0))
-      viewManager.addViewToIndex(view, index: newIndexPath!.indexAtPosition(1))
+      insertObject(object, index: newIndexPath!.indexAtPosition(1))
     //changes!.append(.ObjectInserted(newIndexPath!))
     case .Delete:
       viewManager.removeView(atIndex: indexPath!.indexAtPosition(1))
