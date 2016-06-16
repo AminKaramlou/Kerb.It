@@ -2,7 +2,6 @@ import "./footer.html";
 
 Template.Footer.events({
   'submit form': function(event) {
-    console.log("sub");
     event.preventDefault();
     $('#comments').val('');
     $('#comments').trigger('autoresize');
@@ -11,3 +10,13 @@ Template.Footer.events({
     Materialize.toast($message, 2000)
   }
 })
+
+Template.Footer.helpers({
+  isHome() {
+    var routeName = new ReactiveVar('');
+    Tracker.autorun(function() {
+      routeName.set(FlowRouter.getRouteName());
+    });
+    return routeName.get() === 'Home';
+  }
+});

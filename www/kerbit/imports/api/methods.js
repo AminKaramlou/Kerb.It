@@ -168,10 +168,10 @@ Meteor.methods({
     Accounts.sendVerificationEmail(Meteor.userId(), [newEmail]);
   },
   'changeUsername'(newUsername) {
-    var result = !Meteor.users.findOne({username: newUsername});
+    const result = !Meteor.users.findOne({username: newUsername});
     if(result && Meteor.isServer) {
       Accounts.setUsername(Meteor.userId(),newUsername);
-    };
+    }
     return result;
   }
 });

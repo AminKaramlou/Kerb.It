@@ -31,6 +31,12 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+.side-nav{
+  width: 240px;
+  overflow: scroll;
+}
+
 ul.side-nav.fixed {
   top: $navbar-height;
 }
@@ -159,7 +165,7 @@ MAP
   position: relative;
 }
 
-#map-container.marker-overlay::after {
+.marker-overlay::after {
   width: 22px;
   height: 40px;
   display: block;
@@ -214,10 +220,10 @@ GENERIC
   //border: 1px solid black;
   //position: relative;
   position: absolute;
-    top:0;
+    top:64px;
     bottom:0;
     right:0;
-    left:0;
+    left: 240px;
     overflow:hidden;
 }
 
