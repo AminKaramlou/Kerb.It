@@ -15,7 +15,7 @@ RequestsSchema = new SimpleSchema({
     type: Number,
     label: "Bid Window",
     min: 1,
-    max: 336 //Unit: Hours
+    max: 20160 //Unit: mins
   },
   createdAt: {
     type: Date,

@@ -16,6 +16,10 @@ Template.MyRequestsHelper.onCreated(function myRequestsCreated() {
 });
 
 Template.MyRequestsHelper.helpers({
+  hasFeedback(transId) {
+    var trans= Transactions.findOne(transId);
+    return trans.hasLeftFeedback;
+  },
   offerWithOfferId(offerId) {
     console.log(offerId);
     return Offers.find(offerId);
@@ -74,4 +78,13 @@ Template.MyRequestsHelper.events({
     alert('Feature not implemented yet!')
     // TODO implement this button
   }
+});
+
+Template.MyRequests.events({
+  'click .ratingButton'(event) {
+    event.preventDefault();
+    var rating = $('#rating').data('userrating');
+    Meteor.call('rateDriver', this.driverId, rating);
+    Meteor.call('leaveFeedback', this._id,rating);
+  },
 });

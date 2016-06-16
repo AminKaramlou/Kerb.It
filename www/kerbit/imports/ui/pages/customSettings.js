@@ -86,7 +86,7 @@ Template.CustomSettings.events({
   'submit .userId'(event, template) {
     event.preventDefault();
     const target = event.target;
-    const images = target.file.files;
+    const images = target.picture.files;
     console.log("imageInsert");
     var imageId = UserImages.insert(images[0])._id;
     Meteor.call('uploadUserImage',imageId, Meteor.userId());

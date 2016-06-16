@@ -58,9 +58,9 @@
     </div>
     <div id="accepted" class="col s12">
       <br>
-      {{#each transactions}}
-        <div class="container">
-          <div class="row">
+      <div class="container">
+        <div class="row">
+          {{#each transactions}}
             <div class="col s6">
               <div class="card">
                 {{#each ItemWithId itemId}}
@@ -77,20 +77,20 @@
                 <div class="card-action">
                   <div class="row" style="margin-top: 50px;">
                     <div class="col s12">
-                      {{#each offerWithOfferId finalOffer}}
-                        <h5 class="center-align">
-                          Your offer was accepted for {{price}}
-                          <i class="fa fa-gbp"></i>
-                        </h5>
-                      {{/each}}
+                      {{#if hasFeedback _id}}
+                        {{> starsRating rating=feedbackScore mutable=false}}
+                      {{else}}
+                        {{> starsRating id='rating' mutable=true}}
+                        <button class="btn ratingButton">Rate this transaction</button>
+                      {{/if}}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          {{/each}}
         </div>
-      {{/each}}
+      </div>
     </div>
   </div>
 </template>

@@ -8,12 +8,17 @@
 
 
     <form class="userId">
-        <span class="title">Change Profile picture</span>
-        <div class="input-field">
-            <input type="file" id="file" accept="images/*">
+      <span class="title">Change Profile picture</span>
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>Upload image</span>
+            <input type="file" id="picture" name="picture" accept="images/*">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
         </div>
-        <br>
-        <button type="submit" class="btn btn-default">Submit</button>
+      <button type="submit" class="btn btn-default">Update</button>
     </form>
 
     <br><br>

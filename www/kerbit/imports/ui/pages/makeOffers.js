@@ -118,15 +118,27 @@ Template.MakeOffersHelper.helpers({
   },
 
   getNum(borough) {
+    let offers = Offers.find({}).fetch();
+    let requestIds = [];
+    for (offer in offers) {
+      requestIds.push(offer.requestId);
+    }
     return Requests.find({
       isLive: true,
+      _id: {$nin: requestIds},
       borough: borough
     }).count();
   },
 
   requests(borough) {
+    let offers = Offers.find({}).fetch();
+    let requestIds = [];
+    for (offer in offers) {
+      requestIds.push(offer.requestId);
+    }
     return Requests.find({
       isLive: true,
+      _id: {$nin: requestIds},
       borough: borough
     });
   },
